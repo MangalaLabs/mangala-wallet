@@ -1,0 +1,128 @@
+name: 🤖 QA
+
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+  issues: write
+  deployments: write
+  actions: read
+
+jobs:
+  qa:
+    name: "Build"
+    if: ${{ github.event.label.name == 'deploy-qa0' }}
+    runs-on: self-hosted
+    steps:
+      - name: "Use QA0"
+        if: ${{ github.event.label.name == 'deploy-qa0' }}
+        run: echo "QA_ENV=0" >> "$GITHUB_ENV"
+
+      - name: Unlabel
+        if: ${{ github.event.label.name == 'deploy-qa0' }}
+        run: |
+          curl -X DELETE -H 'Authorization: token ${{secrets.GITHUB_TOKEN}}' -H "Accept: application/vnd.github.v3+json" "${{ github.api_url }}/repos/${{ github.repository }}/issues/${{github.event.pull_request.number}}/labels/${{github.event.label.name}}"
+
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Decode secret properties, Firebase Admin Credential, Play Store Credential
+        run: sh ./scripts/decode.sh
+        env:
+          PLAY_CREDENTIAL: ${{ secrets.PLAY_CREDENTIAL_PKG_CONTENT }}
+          FIREBASE_CREDENTIAL: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          USERNAME: ${{ secrets.ACT }}
+          TOKEN: ${{ secrets.TOK }}
+          REVENUECATANDROID: ${{ secrets.REVENUECATANDROID }}
+          REVENUECATIOS: ${{ secrets.REVENUECATIOS }}
+          INFURASECRET: ${{ secrets.INFURASECRET }}
+          INFURAAPI: ${{ secrets.INFURAAPI }}
+          COVALENTAPI: ${{ secrets.COVALENTAPI }}
+          ALCHEMYAPI: ${{ secrets.ALCHEMY }}
+          MORALISAPI: ${{ secrets.MORALISAPI }}
+
+      - name: 📝 Create keystore file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore'
+          fileDir: '.'
+          encodedString: ${{ secrets.KEYSTORE }}
+
+      - name: 📝 Create signing config secrets file
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore.properties'
+          fileDir: '.'
+          encodedString: ${{ secrets.KEYSTORE_PROPERTIES }}
+
+      - name: 📝 Create google-services file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'google-services.json'
+          fileDir: './composeApp/src/proDevRelease'
+          encodedString: ${{ secrets.GOOGLESERVICES }}
+
+      - name: Get latest release
+        run: |
+          LATEST_TAG=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/releases/latest \
+            | jq -r '.tag_name')
+
+          echo "Latest tag from API: $LATEST_TAG"
+          
+          # Remove 'v' prefix if exists
+          CLEAN_TAG=$(echo "$LATEST_TAG" | sed 's/^v//')
+
+          echo "Cleaned tag: $CLEAN_TAG"
+          echo "RELEASE_VERSION=$CLEAN_TAG" >> $GITHUB_ENV
+      - run: echo "BUILD_REF=qa${{env.QA_ENV}}.$(sed -e s:refs/heads/::g -e s:/:-:g <<< ${GITHUB_HEAD_REF}).$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+      - run: echo "RELEASE_NOTES=${{ env.BUILD_REF }} ${{ github.event.pull_request.title }}" >> $GITHUB_ENV
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ruby-
+      - name: Install Gems
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle install
+      - name: Bundle and Upload to Firebase Distribution
+        run: |
+          bundle exec fastlane build_and_release_to_firebase build_type:Qa
+        env:
+          FIREBASE_ANDROID_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+          VERSION_NAME: ${{ env.RELEASE_VERSION }}-${{ env.BUILD_REF }}
+          BUILD_REF: ${{ env.BUILD_REF }}
+          RELEASE_NOTES: ${{ env.RELEASE_NOTES }}
+          PULL_REQUEST_URL: ${{github.server_url}}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
+          GITHUB_RUN_NUMBER: ${{github.run_number}}
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{github.event.pull_request.number}}
+          body: |
+            Android Download link [${{ env.RELEASE_VERSION }}-${{ env.BUILD_REF }}](${{ env.DOWNLOAD_LINK }})
+            ![qrcode](${{ env.QR_CODE }})

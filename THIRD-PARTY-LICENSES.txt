@@ -1,0 +1,956 @@
+# Third-Party Licenses
+
+This file lists all third-party dependencies used in Mangala Wallet and their respective licenses.
+
+Last updated: 2025-11-29
+
+================================================================================
+## License Summary
+================================================================================
+
+| License Type   | Count  | Type       |
+|----------------|--------|------------|
+| Apache 2.0     | ~130   | Permissive |
+| MIT            | ~21    | Permissive |
+| EPL 1.0        | 1      | Permissive |
+| LGPL 3.0       | 1      | Copyleft   |
+
+================================================================================
+## GRADLE DEPENDENCIES
+================================================================================
+
+### Kotlin & JetBrains Core Libraries
+
+- Kotlin v2.1.20
+  License: Apache 2.0
+  URL: https://kotlinlang.org/
+
+- Compose Multiplatform v1.8.0
+  License: Apache 2.0
+  URL: https://www.jetbrains.com/lp/compose-multiplatform/
+
+- KSP (Kotlin Symbol Processing) v2.1.20-1.0.32
+  License: Apache 2.0
+  URL: https://github.com/google/ksp
+
+--------------------------------------------------------------------------------
+### Build Plugins
+--------------------------------------------------------------------------------
+
+- Android Gradle Plugin (AGP) v8.9.3
+  License: Apache 2.0
+  URL: https://developer.android.com/studio/build
+
+- SQLDelight Gradle v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- Google Services v4.3.15
+  License: Apache 2.0
+  URL: https://developers.google.com/android/guides/google-services-plugin
+
+- Firebase Crashlytics Plugin v3.0.2
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/crashlytics
+
+- Firebase Performance Plugin v1.4.2
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/perf-mon
+
+- OWASP Dependency Check v12.1.1
+  License: Apache 2.0
+  URL: https://owasp.org/www-project-dependency-check/
+
+- Spotless v6.7.0
+  License: Apache 2.0
+  URL: https://github.com/diffplug/spotless
+
+- BuildKonfig Gradle v0.17.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/BuildKonfig
+
+- Sonarqube v6.1.0
+  License: LGPL 3.0 (Copyleft)
+  URL: https://www.sonarsource.com/products/sonarqube/
+  Note: Build-time only, not shipped in final application
+
+- Realm Gradle v10.19.0
+  License: Apache 2.0
+  URL: https://realm.io/
+
+--------------------------------------------------------------------------------
+### AndroidX Libraries
+--------------------------------------------------------------------------------
+
+- AndroidX Core KTX v1.16.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx
+
+- AndroidX Activity Compose v1.9.3
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/activity
+
+- AndroidX Lifecycle v2.8.4 / v2.8.6
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/lifecycle
+
+- AndroidX Material v1.12.0 / v1.9.0
+  License: Apache 2.0
+  URL: https://material.io/develop/android
+
+- AndroidX Fragment KTX v1.5.2
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/fragment
+
+- AndroidX Biometric v1.1.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/biometric
+
+- AndroidX Credentials v1.3.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/credentials
+
+- AndroidX Credentials Play Services Auth v1.3.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/credentials
+
+- AndroidX DataStore v1.1.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/datastore
+
+- AndroidX Startup Runtime v1.1.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/startup
+
+- AndroidX Core Splashscreen v1.0.1
+  License: Apache 2.0
+  URL: https://developer.android.com/develop/ui/views/launch/splash-screen
+
+- AndroidX Work Runtime KTX v2.7.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/work
+
+- AndroidX Work Multiprocess v2.7.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/work
+
+- AndroidX Work RxJava2 v2.7.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/work
+
+- AndroidX Constraint Layout v2.1.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/constraintlayout
+
+- AndroidX Billing v7.1.1
+  License: Apache 2.0
+  URL: https://developer.android.com/google/play/billing
+
+- AndroidX AppCompat v1.8.0
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/appcompat
+
+- AndroidX Jetpack Compose Paging v3.3.0-alpha02-0.5.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/androidx/releases/paging
+
+--------------------------------------------------------------------------------
+### Firebase Libraries
+--------------------------------------------------------------------------------
+
+- Firebase BOM v33.1.2
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/android/setup
+
+- Firebase Analytics
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/analytics
+
+- Firebase Auth
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/auth
+
+- Firebase Crashlytics
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/crashlytics
+
+- Firebase Messaging
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/cloud-messaging
+
+- Firebase Remote Config
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/remote-config
+
+- Firebase Functions
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/functions
+
+- Firebase Installations
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/projects/manage-installations
+
+- Firebase AppCheck PlayIntegrity
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/app-check
+
+- Firebase AppCheck Debug
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/app-check
+
+- Firebase Performance
+  License: Apache 2.0
+  URL: https://firebase.google.com/docs/perf-mon
+
+- Firebase KMP Remote Config v1.13.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/firebase-kotlin-sdk
+
+- Firebase KMP Functions v1.13.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/firebase-kotlin-sdk
+
+- Firebase KMP Installations v1.13.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/firebase-kotlin-sdk
+
+- Firebase KMP Analytics v1.13.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/firebase-kotlin-sdk
+
+- Crashkios Crashlytics v0.8.6
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/CrashKiOS
+
+--------------------------------------------------------------------------------
+### Networking & Serialization
+--------------------------------------------------------------------------------
+
+- Ktor Client Core v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client OkHttp v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client iOS v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client Darwin v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client CIO v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client WebSockets v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Server WebSockets v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client Content Negotiation v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client Logging v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client Auth v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Serialization KotlinX JSON v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor IO v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Utils v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Network v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Network TLS v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktor Client Mock v3.1.2
+  License: Apache 2.0
+  URL: https://ktor.io/
+
+- Ktorfit v2.4.1
+  License: Apache 2.0
+  URL: https://foso.github.io/Ktorfit/
+
+- KotlinX Serialization Core v1.7.3
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.serialization
+
+- KotlinX Serialization JSON v1.7.3
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.serialization
+
+- KotlinX DateTime v0.6.2
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx-datetime
+
+- KotlinX Coroutines Core v1.10.2
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.coroutines
+
+- KotlinX Coroutines Android v1.10.2
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.coroutines
+
+- KotlinX Coroutines Play Services v1.8.0
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.coroutines
+
+- KotlinX Coroutines Swing v1.10.2
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.coroutines
+
+- KotlinX Coroutines Test v1.10.2
+  License: Apache 2.0
+  URL: https://github.com/Kotlin/kotlinx.coroutines
+
+- OkIO v3.3.0
+  License: Apache 2.0
+  URL: https://square.github.io/okio/
+
+--------------------------------------------------------------------------------
+### Dependency Injection & Navigation
+--------------------------------------------------------------------------------
+
+- Koin Core v4.0.4
+  License: Apache 2.0
+  URL: https://insert-koin.io/
+
+- Koin Android v4.0.4
+  License: Apache 2.0
+  URL: https://insert-koin.io/
+
+- Koin Androidx Compose v4.0.4
+  License: Apache 2.0
+  URL: https://insert-koin.io/
+
+- Voyager Core v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+- Voyager Navigator v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+- Voyager Tab Navigator v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+- Voyager Bottom Sheet Navigator v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+- Voyager Transitions v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+- Voyager Koin v1.0.0-rc10
+  License: Apache 2.0
+  URL: https://voyager.adriel.cafe/
+
+--------------------------------------------------------------------------------
+### Cryptography & Security
+--------------------------------------------------------------------------------
+
+- secp256k1-kmp v0.19.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/secp256k1-kmp
+
+- secp256k1-kmp-jni-android v0.19.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/secp256k1-kmp
+
+- secp256k1-kmp-jni-jvm v0.19.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/secp256k1-kmp
+
+- Cryptohash v0.10.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/cryptohash-kotlin
+
+- Krypto (Korlibs) v3.0.1
+  License: MIT
+  URL: https://korlibs.soywiz.com/krypto/
+
+- BigNum v0.3.10
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/kotlin-multiplatform-bignum
+
+- Credential Secure Storage (Microsoft) v1.0.0
+  License: MIT
+  URL: https://github.com/nicnhus22/compose-multiplatform-keychain
+
+- Google Play Integrity v1.4.0
+  License: Apache 2.0
+  URL: https://developer.android.com/google/play/integrity
+
+--------------------------------------------------------------------------------
+### Database & Local Storage
+--------------------------------------------------------------------------------
+
+- SQLDelight Runtime v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- SQLDelight Coroutines Extensions v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- SQLDelight Android Driver v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- SQLDelight iOS Native Driver v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- SQLDelight Desktop SQLite Driver v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- SQLDelight AndroidX Paging3 v2.0.2
+  License: Apache 2.0
+  URL: https://github.com/cashapp/sqldelight
+
+- Multiplatform Settings Core v0.9
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-settings
+
+- Multiplatform Settings No-Arg v0.9
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-settings
+
+- Multiplatform Settings Coroutines v0.9
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-settings
+
+--------------------------------------------------------------------------------
+### Blockchain & Crypto Libraries
+--------------------------------------------------------------------------------
+
+- Bitcoin KMP v0.22.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/bitcoin-kmp
+
+- Lightning KMP v1.9.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/lightning-kmp
+
+- Bitcoinj v1.0 (Custom)
+  License: Apache 2.0
+  URL: https://bitcoinj.org/
+
+--------------------------------------------------------------------------------
+### QR Code & Scanning
+--------------------------------------------------------------------------------
+
+- ZXing Core v3.4.1
+  License: Apache 2.0
+  URL: https://github.com/zxing/zxing
+
+- ZXing JavaSE v3.4.1
+  License: Apache 2.0
+  URL: https://github.com/zxing/zxing
+
+- ZXing Android Embedded v4.1.0
+  License: Apache 2.0
+  URL: https://github.com/journeyapps/zxing-android-embedded
+
+- Journeyapps ZXing Android v4.1.0
+  License: Apache 2.0
+  URL: https://github.com/journeyapps/zxing-android-embedded
+
+- Rinku v1.2.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Rinku
+
+- Rinku Compose Ext v1.2.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Rinku
+
+--------------------------------------------------------------------------------
+### UI & Resources
+--------------------------------------------------------------------------------
+
+- Compose UI v1.8.1
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Compose Foundation
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Compose Material
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Compose Material3
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Compose Material Icons Extended
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Compose Material Icons Core v1.7.3
+  License: Apache 2.0
+  URL: https://developer.android.com/jetpack/compose
+
+- Components Resources v1.8.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/compose-multiplatform
+
+- Image Loader v1.9.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/compose-imageloader
+
+- Moko Resources v0.24.5
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/moko-resources
+
+- Moko Resources Compose v0.24.5
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/moko-resources
+
+- Moko Resources Generator v0.24.5
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/moko-resources
+
+- Moko Parcelize v0.9.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/moko-parcelize
+
+- Multiplatform Markdown Renderer Code v0.34.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-markdown-renderer
+
+- Multiplatform Markdown Renderer M3 v0.34.0
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-markdown-renderer
+
+--------------------------------------------------------------------------------
+### Pagination
+--------------------------------------------------------------------------------
+
+- Multiplatform Paging Common v3.3.0-alpha02-0.5.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-paging
+
+- Multiplatform Paging Compose UI v3.3.0-alpha02-0.5.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/multiplatform-paging
+
+--------------------------------------------------------------------------------
+### Concurrency & Threading
+--------------------------------------------------------------------------------
+
+- Stately Common v2.0.7
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Stately
+
+- Stately Concurrency v2.0.7
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Stately
+
+- Stately Isolate v2.0.5
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Stately
+
+- Stately ISO Collections v2.0.5
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Stately
+
+- Stately v2.0.7
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Stately
+
+--------------------------------------------------------------------------------
+### Logging
+--------------------------------------------------------------------------------
+
+- Napier v2.7.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Napier
+
+--------------------------------------------------------------------------------
+### Testing
+--------------------------------------------------------------------------------
+
+- JUnit v4.13.2
+  License: EPL 1.0
+  URL: https://junit.org/junit4/
+
+- Kotlin Test
+  License: Apache 2.0
+  URL: https://kotlinlang.org/api/latest/kotlin.test/
+
+- Kotlin Test Common
+  License: Apache 2.0
+  URL: https://kotlinlang.org/api/latest/kotlin.test/
+
+- Kotlin Test Annotations Common
+  License: Apache 2.0
+  URL: https://kotlinlang.org/api/latest/kotlin.test/
+
+- Kotlin Test JUnit
+  License: Apache 2.0
+  URL: https://kotlinlang.org/api/latest/kotlin.test/
+
+- MockK v1.12.4
+  License: Apache 2.0
+  URL: https://mockk.io/
+
+- MockK Common v1.12.4
+  License: Apache 2.0
+  URL: https://mockk.io/
+
+--------------------------------------------------------------------------------
+### Utilities
+--------------------------------------------------------------------------------
+
+- UUID v0.7.0
+  License: MIT
+  URL: https://github.com/nicnhus22/uuid
+
+- BenAsher44 UUID
+  License: MIT
+  URL: https://github.com/benasher44/uuid
+
+- Chucker v4.1.0
+  License: Apache 2.0
+  URL: https://github.com/ChuckerTeam/chucker
+
+- Chucker No-Op v4.1.0
+  License: Apache 2.0
+  URL: https://github.com/ChuckerTeam/chucker
+
+- Calf File Picker v0.7.1
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/Calf
+
+- DateTime Wheel Picker v1.0.1
+  License: Apache 2.0
+  URL: Custom Mangala package
+
+- Browser App v1.1
+  License: Apache 2.0
+  URL: Custom Mangala package
+
+- Hyperdrive Multiplatformx API v0.1.139
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/hyperdrive-multiplatformx
+
+
+================================================================================
+## iOS DEPENDENCIES (CocoaPods)
+================================================================================
+
+--------------------------------------------------------------------------------
+### Direct CocoaPods
+--------------------------------------------------------------------------------
+
+- BigInt ~3.1
+  License: MIT
+  URL: https://github.com/attaswift/BigInt
+
+- StatefulViewController
+  License: Apache 2.0
+  URL: https://github.com/aschuch/StatefulViewController
+
+- R.swift
+  License: MIT
+  URL: https://github.com/mac-cain13/R.swift
+
+- Kingfisher ~7.6.2
+  License: MIT
+  URL: https://github.com/onevcat/Kingfisher
+
+- Wormholy (Debug only)
+  License: MIT
+  URL: https://github.com/nicnhus22/Wormholy
+
+- FirebaseCore
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseMessaging
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseRemoteConfig
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseAppCheck
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseFunctions
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseCrashlytics
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseAnalytics
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+- FirebaseInstallations
+  License: Apache 2.0
+  URL: https://firebase.google.com/
+
+--------------------------------------------------------------------------------
+### AlphaWallet Custom Pods (Local)
+--------------------------------------------------------------------------------
+
+- AlphaWalletAddress
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletAttestation
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletCore
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletGoBack
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletENS
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletHardwareWallet
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletLogger
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletOpenSea
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletFoundation
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletTrackAPICalls
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletWeb3
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletShareExtensionCore
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletTrustWalletCoreExtensions
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+- AlphaWalletNotifications
+  License: Apache 2.0
+  URL: https://github.com/AlphaWallet/alpha-wallet-ios
+
+--------------------------------------------------------------------------------
+### Git Dependency Pods (Remote)
+--------------------------------------------------------------------------------
+
+- AlphaWalletWeb3Provider
+  License: Apache 2.0
+  Source: https://github.com/AlphaWallet/AlphaWallet-web3-provider
+  Commit: bdb38b06eeedeb4ca1e32d3ecd81783b5116ae68
+
+- TrustKeystore
+  License: Apache 2.0
+  Source: https://github.com/nicnhus22/latest-keystore-snapshot
+  Commit: 72389a7ade614e6cf53fde51d7b2dbe50b2795ae
+
+- EthereumABI
+  License: Apache 2.0
+  Source: https://github.com/AlphaWallet/EthereumABI.git
+  Commit: 877b77e8e7cbc54ab0712d509b74fec21b79d1bb
+
+- WalletConnectSwift
+  License: Apache 2.0
+  Source: https://github.com/AlphaWallet/WalletConnectSwift.git
+  Branch: alphaWallet
+
+- TrezorCrypto
+  License: MIT
+  Source: https://github.com/trustwallet/trezor-crypto-ios
+  Commit: b48a18d86f1e16ab8bc532e2b63bceece81b6512
+
+- Result
+  License: MIT
+  Source: https://github.com/nicnhus22/Result
+  Commit: 2770f7ffe73107a896ece0c15dbd7b98169b8770
+
+
+================================================================================
+## NPM DEPENDENCIES (Automation Tests)
+================================================================================
+
+- @wdio/logger ^8.0.0
+  License: MIT
+  URL: https://webdriver.io/
+
+- appium ^2.0.0
+  License: Apache 2.0
+  URL: https://appium.io/
+
+- chai ^5.2.0
+  License: MIT
+  URL: https://www.chaijs.com/
+
+- mocha ^10.0.0
+  License: MIT
+  URL: https://mochajs.org/
+
+- webdriverio ^9.12.7
+  License: MIT
+  URL: https://webdriver.io/
+
+- appium-uiautomator2-driver ^4.2.3 (Dev)
+  License: Apache 2.0
+  URL: https://github.com/nicnhus22/appium-uiautomator2-driver
+
+- eslint ^8.0.0 (Dev)
+  License: MIT
+  URL: https://eslint.org/
+
+
+================================================================================
+## GIT SUBMODULES
+================================================================================
+
+- features/auth
+  Source: git@github.com:nicnhus22/features-auth.git
+  Branch: develop
+  License: Check submodule repository for license
+
+
+================================================================================
+## LICENSE TEXTS
+================================================================================
+
+--------------------------------------------------------------------------------
+### Apache License 2.0
+--------------------------------------------------------------------------------
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+--------------------------------------------------------------------------------
+### MIT License
+--------------------------------------------------------------------------------
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+### Eclipse Public License 1.0 (EPL 1.0)
+--------------------------------------------------------------------------------
+
+THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC
+LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM
+CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
+
+Full license text: https://www.eclipse.org/legal/epl-v10.html
+
+--------------------------------------------------------------------------------
+### GNU Lesser General Public License 3.0 (LGPL 3.0)
+--------------------------------------------------------------------------------
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation; either version 3 of the License, or (at your option) any
+later version.
+
+This library is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.
+
+Full license text: https://www.gnu.org/licenses/lgpl-3.0.html
+
+
+================================================================================
+## NOTES FOR OPEN SOURCE COMPLIANCE
+================================================================================
+
+1. COPYLEFT DEPENDENCIES:
+   - Sonarqube (LGPL 3.0): Build-time only, not shipped in application
+   - TrezorCrypto (LGPL 3.0): Used in iOS app for cryptographic operations
+     * If you modify this library, source must be made available
+     * Consider linking dynamically to comply with LGPL requirements
+
+2. CUSTOM PACKAGES:
+   The following are custom Mangala packages that should have explicit
+   license headers in their source code:
+   - datetime-wheel-picker v1.0.1
+   - browser-app v1.1
+   - bitcoinj v1.0 (custom fork)
+
+3. SUBMODULES:
+   The features/auth submodule license should be verified before open-sourcing
+
+4. ATTRIBUTION:
+   When distributing this software, include this THIRD-PARTY-LICENSES.txt file
+   to provide proper attribution to all third-party libraries.
+
+================================================================================

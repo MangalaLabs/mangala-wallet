@@ -1,0 +1,77 @@
+[
+  {
+    "@timestamp": "2024-07-19T09:40:37.000",
+    "timestamp": "2024-07-19T09:40:37.000",
+    "block_num": 151189792,
+    "block_id": "0902f920699cd25323f6fa903a18908c828a926e94d7b2a0cfbe9d1b536bbd68",
+    "trx_id": "e7004f7ac7d949d7301d6576088735e66da750972d4aa67cc049beb4c5fa29a2",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "eosio.fees",
+        "amount": 0.2663,
+        "symbol": "EOS",
+        "memo": "transfer from harkonnenmgl to eosio.fees",
+        "quantity": "0.2663 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 211125995,
+    "producer": "jumpingfrogs",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-07-19T09:40:37.000",
+    "timestamp": "2024-07-19T09:40:37.000",
+    "block_num": 151189792,
+    "block_id": "0902f920699cd25323f6fa903a18908c828a926e94d7b2a0cfbe9d1b536bbd68",
+    "trx_id": "e7004f7ac7d949d7301d6576088735e66da750972d4aa67cc049beb4c5fa29a2",
+    "act": {
+      "account": "eosio",
+      "name": "powerup",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "payer": "harkonnenmgl",
+        "receiver": "harkonnenmgl",
+        "days": 1,
+        "net_frac": "20000000000",
+        "cpu_frac": "80000000000",
+        "max_payment": "10.0000 EOS"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 475,
+    "net_usage_words": 18,
+    "account_ram_deltas": [
+      {
+        "account": "harkonnenmgl",
+        "delta": 405
+      },
+      {
+        "account": "lioninjungle",
+        "delta": -810
+      }
+    ],
+    "global_sequence": 211125994,
+    "producer": "jumpingfrogs",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_JwG77EP7bktFFQXdCPdT4BtXTqZTWrxUbTHFj4mqCKEBgMGc3VLCkqUJjnz3JseE4ttnXzWgxD2QAU6MbRBoGni9kVi6su"
+    ]
+  }
+]

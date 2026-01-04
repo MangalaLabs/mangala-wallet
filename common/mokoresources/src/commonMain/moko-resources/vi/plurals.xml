@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <plural name="chars_count">
+        <item quantity="zero">0 ký tự</item>
+        <item quantity="one">%d ký tự</item>
+        <item quantity="two">%d ký tự</item>
+        <item quantity="other">%d ký tự</item>
+    </plural>
+</resources>

@@ -1,0 +1,131 @@
+{
+  "account_name": "test.gm",
+  "head_block_num": 391922852,
+  "head_block_time": "2024-09-01T09:51:07.000",
+  "privileged": false,
+  "last_code_update": "1970-01-01T00:00:00.000",
+  "created": "2024-03-10T13:47:32.000",
+  "core_liquid_balance": "23.9896 EOS",
+  "ram_quota": 10062370,
+  "net_weight": 50000,
+  "cpu_weight": 50000,
+  "net_limit": {
+    "used": 0,
+    "available": 94619,
+    "max": 94619,
+    "last_usage_update_time": "2024-03-10T13:47:32.000",
+    "current_used": 0
+  },
+  "cpu_limit": {
+    "used": 0,
+    "available": 4,
+    "max": 4,
+    "last_usage_update_time": "2024-03-10T13:47:32.000",
+    "current_used": 0
+  },
+  "ram_usage": 8996104,
+  "permissions": [
+    {
+      "perm_name": "active",
+      "parent": "owner",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          },
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    },
+    {
+      "perm_name": "agc.shipload",
+      "parent": "active",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": [
+        {
+          "account": "agc.shipload"
+        }
+      ]
+    },
+    {
+      "perm_name": "owner",
+      "parent": "",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    }
+  ],
+  "total_resources": {
+    "owner": "test.gm",
+    "net_weight": "5.0000 EOS",
+    "cpu_weight": "5.0000 EOS",
+    "ram_bytes": 10060970
+  },
+  "self_delegated_bandwidth": {
+    "from": "test.gm",
+    "to": "test.gm",
+    "net_weight": "5.0000 EOS",
+    "cpu_weight": "5.0000 EOS"
+  },
+  "refund_request": null,
+  "voter_info": {
+    "owner": "test.gm",
+    "proxy": "",
+    "producers": [],
+    "staked": 4600000,
+    "last_vote_weight": "0.00000000000000000",
+    "proxied_vote_weight": "0.00000000000000000",
+    "is_proxy": 0,
+    "flags1": 0,
+    "reserved2": 0,
+    "reserved3": "0 "
+  },
+  "rex_info": {
+    "version": 0,
+    "owner": "test.gm",
+    "vote_stake": "450.0000 EOS",
+    "rex_balance": "4274964.8458 REX",
+    "matured_rex": 0,
+    "rex_maturities": [
+      {
+        "first": "2106-02-07T06:28:15",
+        "second": "42749648458"
+      }
+    ]
+  },
+  "subjective_cpu_bill_limit": {
+    "used": 0,
+    "available": 0,
+    "max": 0,
+    "last_usage_update_time": "2000-01-01T00:00:00.000",
+    "current_used": 0
+  },
+  "eosio_any_linked_actions": []
+}

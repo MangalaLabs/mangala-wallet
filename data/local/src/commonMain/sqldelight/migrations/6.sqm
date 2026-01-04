@@ -1,0 +1,76 @@
+-- Migration 6: Add portfolio-related tables
+
+-- TABLE PORTFOLIO ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioEntity (
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    portfolio_id TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, network_id, portfolio_id)
+);
+
+-- TABLE PORTFOLIO ACCOUNT ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioAccountEntity (
+    account_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    address TEXT NOT NULL,
+    label TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    PRIMARY KEY (account_id, user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioEntity(user_id, network_id) ON DELETE CASCADE
+);
+
+-- TABLE PORTFOLIO TOKEN ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioTokenEntity (
+    token_key TEXT NOT NULL,
+    account_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    symbol TEXT NOT NULL,
+    name TEXT NOT NULL,
+    quantity TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    price_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    PRIMARY KEY (token_key, account_id, user_id, network_id),
+    FOREIGN KEY(account_id, user_id, network_id) REFERENCES PortfolioAccountEntity(account_id, user_id, network_id) ON DELETE CASCADE
+);
+
+-- TABLE PORTFOLIO PRICING CONTEXT ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioPricingContextEntity (
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    as_of TEXT NOT NULL,
+    quote_currency TEXT NOT NULL,
+    status TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioEntity(user_id, network_id) ON DELETE CASCADE
+);
+
+-- TABLE PORTFOLIO TOKEN PRICE ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioTokenPriceEntity (
+    token_key TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    spot TEXT NOT NULL,
+    price_24h_ago TEXT NOT NULL,
+    last_updated TEXT NOT NULL,
+    source TEXT NOT NULL,
+    PRIMARY KEY (token_key, user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioPricingContextEntity(user_id, network_id) ON DELETE CASCADE
+);

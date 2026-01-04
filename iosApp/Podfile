@@ -1,0 +1,57 @@
+target 'iosApp' do
+  use_frameworks!
+  platform :ios, '15'
+  pod 'composeApp', :path => '../composeApp'
+  pod 'BigInt', '~> 3.1'
+  pod 'AlphaWalletAddress', :path => '.'
+  pod 'AlphaWalletAttestation', :path => '.'
+  pod 'AlphaWalletCore', :path => '.'
+  pod 'AlphaWalletGoBack', :path => '.'
+  pod 'AlphaWalletENS', :path => '.'
+  pod 'AlphaWalletHardwareWallet', :path => '.'
+  pod 'AlphaWalletLogger', :path => '.'
+  pod 'AlphaWalletOpenSea', :path => '.'
+  pod 'AlphaWalletFoundation', :path => '.'
+  pod 'AlphaWalletTrackAPICalls', :path => '.'
+  pod 'AlphaWalletWeb3', :path => '.'
+  pod 'AlphaWalletShareExtensionCore', :path => '.'
+  pod 'AlphaWalletTrustWalletCoreExtensions', :path => '.'
+  pod 'AlphaWalletNotifications', :path => '.'
+  pod 'AlphaWalletWeb3Provider', :git=>'https://github.com/AlphaWallet/AlphaWallet-web3-provider', :commit => 'bdb38b06eeedeb4ca1e32d3ecd81783b5116ae68'
+  pod 'TrustKeystore', :git => 'https://github.com/trainingdeveloperpro/latest-keystore-snapshot', :commit => '72389a7ade614e6cf53fde51d7b2dbe50b2795ae'
+  pod 'EthereumABI', :git => 'https://github.com/AlphaWallet/EthereumABI.git', :commit => '877b77e8e7cbc54ab0712d509b74fec21b79d1bb'
+  pod 'WalletConnectSwift', :git => 'https://github.com/AlphaWallet/WalletConnectSwift.git', :branch => 'alphaWallet'
+  pod 'StatefulViewController'
+  pod 'R.swift'
+  pod 'Kingfisher', '~> 7.6.2'
+  pod 'FirebaseMessaging'
+  pod 'FirebaseCore'
+  pod 'FirebaseRemoteConfig'
+  pod 'FirebaseAppCheck'
+  pod 'FirebaseFunctions'
+  pod 'FirebaseCrashlytics'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseInstallations'
+  pod 'TrezorCrypto', :git => 'https://github.com/trainingdeveloperpro/trezor-crypto-ios', :commit => 'b48a18d86f1e16ab8bc532e2b63bceece81b6512', :submodules => true
+  pod 'Result', :git => 'https://github.com/trainingdeveloperpro/Result', :commit => '2770f7ffe73107a896ece0c15dbd7b98169b8770'
+  pod 'Wormholy', :configurations => ['Debug', 'DebugCold', 'DebugPro']
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+          project.targets.each do |target|
+              target.build_configurations.each do |config|
+                  config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+               end
+          end
+   end
+
+   installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.base_configuration_reference.is_a? Xcodeproj::Project::Object::PBXFileReference
+        xcconfig_path = config.base_configuration_reference.real_path
+        IO.write(xcconfig_path, IO.read(xcconfig_path).gsub("DT_TOOLCHAIN_DIR", "TOOLCHAIN_DIR"))
+      end
+    end
+  end
+end

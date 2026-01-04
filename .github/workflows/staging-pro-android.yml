@@ -1,0 +1,108 @@
+name: 📲 Internal Google Play
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  internal:
+    name: Build and release
+    runs-on: self-hosted
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Decode secret properties, Firebase Admin Credential, Play Store Credential
+        run: sh ./scripts/decode.sh
+        env:
+          PLAY_CREDENTIAL: ${{ secrets.PLAY_CREDENTIAL_PKG_CONTENT }}
+          FIREBASE_CREDENTIAL: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          USERNAME: ${{ secrets.ACT }}
+          TOKEN: ${{ secrets.TOK }}
+          REVENUECATANDROID: ${{ secrets.REVENUECATANDROID }}
+          REVENUECATIOS: ${{ secrets.REVENUECATIOS }}
+          INFURASECRET: ${{ secrets.INFURASECRET }}
+          INFURAAPI: ${{ secrets.INFURAAPI }}
+          COVALENTAPI: ${{ secrets.COVALENTAPI }}
+          MORALISAPI: ${{ secrets.MORALISAPI }}
+
+      - name: 📝 Create keystore file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE }}
+
+      - name: 📝 Create signing config secrets file
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore.properties'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE_PROPERTIES }}
+
+      - name: 📝 Create google-services file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'google-services.json'
+          fileDir: './composeApp/src/proStgRelease'
+          encodedString: ${{ secrets.GOOGLESERVICES }}
+
+      - run: echo "RELEASE_VERSION=$(sed -e s:refs/heads/::g -e s:/:-:g -e s:v::g -e 's/\-canary.*$//' -e 's/\-update.*$//' -e 's/\-pre-alpha.*$//' -e 's/\-patch.*$//' <<< ${GITHUB_REF#refs/*/})" >> $GITHUB_ENV
+      
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ruby-
+
+      - name: Install Gems
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle install
+
+      - name: Bundle and Upload to PlayStore
+        id: build
+        run: |
+          source ~/.bashrc
+          bundle exec fastlane pro_stg_build_and_release
+        env:
+          VERSION_NAME: ${{ env.RELEASE_VERSION }}
+          GITHUB_RUN_NUMBER: ${{github.run_number}}
+
+      - name: Telegram Success Notification
+        if: ${{steps.build.outcome == 'success'}}
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{
+              "chat_id": "${{secrets.TELEGRAM_CHAT_ID}}",
+              "message_thread_id": "${{secrets.TELEGRAM_MESSAGE_THREAD_ID}}",
+              "text": "🚀 Build and upload to Internal Google Play Console successfully for ${{env.RELEASE_VERSION}} (${{env.VERSION_CODE}})"
+          }' https://api.telegram.org/bot${{secrets.TELEGRAM_BOT_TOKEN}}/sendMessage
+
+      - name: Telegram Failed Notification
+        if: ${{failure()}}
+        run: |
+          curl -X POST -H "Content-Type: application/json" -d '{
+              "chat_id": "${{secrets.TELEGRAM_CHAT_ID}}",
+              "message_thread_id": "${{secrets.TELEGRAM_MESSAGE_THREAD_ID}}",
+              "parse_mode": "Markdown",
+              "text": "🆘 Android Internal Google Play \nBuild failed \nPlease check the logs [here](${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}})"
+          }' https://api.telegram.org/bot${{secrets.TELEGRAM_BOT_TOKEN}}/sendMessage

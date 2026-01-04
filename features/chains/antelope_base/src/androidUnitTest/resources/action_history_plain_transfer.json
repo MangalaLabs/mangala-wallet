@@ -1,0 +1,71 @@
+[
+  {
+    "@timestamp": "2024-10-08T15:18:03.000",
+    "timestamp": "2024-10-08T15:18:03.000",
+    "block_num": 165157243,
+    "block_id": "09d8197bb17bfc4a0a9f2c941fef7d8508a7c727d2ddb17d188d65375834e317",
+    "trx_id": "65c07a2c5e1120702a49578360db38a0fcfb9f1c1bf1219d3a7569db566580c9",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "owner"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "mangalaprovn",
+        "amount": 0.0001,
+        "symbol": "EOS",
+        "memo": "",
+        "quantity": "0.0001 EOS"
+      }
+    },
+    "receipts": [
+      {
+        "receiver": "eosio.token",
+        "global_sequence": 226558744,
+        "recv_sequence": 8428606,
+        "auth_sequence": [
+          {
+            "account": "harkonnenmgl",
+            "sequence": 1081
+          }
+        ]
+      },
+      {
+        "receiver": "harkonnenmgl",
+        "global_sequence": 226558745,
+        "recv_sequence": 609,
+        "auth_sequence": [
+          {
+            "account": "harkonnenmgl",
+            "sequence": 1082
+          }
+        ]
+      },
+      {
+        "receiver": "mangalaprovn",
+        "global_sequence": 226558746,
+        "recv_sequence": 1189,
+        "auth_sequence": [
+          {
+            "account": "harkonnenmgl",
+            "sequence": 1083
+          }
+        ]
+      }
+    ],
+    "cpu_usage_us": 114,
+    "net_usage_words": 16,
+    "global_sequence": 226558744,
+    "producer": "detroitdhole",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_JzoBw7U5ZbM7bwU922uoHzRMQjj9hsikq71TpMKquZ37pqowRYjNDBRPWYAC3ysCib8iocmNQHqnxf1kEdhjw6fpHy3mZ9"
+    ]
+  }
+]

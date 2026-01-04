@@ -1,0 +1,38 @@
+graph TB
+    subgraph "Function Registry System"
+        subgraph "Function Definition Layer"
+            FD[FunctionDefinition]
+            FR[FunctionRegistry]
+            FD -->|registered in| FR
+        end
+        
+        subgraph "Function Execution Layer"
+            FH[FunctionHandler]
+            FHP[FunctionHandlerPlugin]
+            FHR[FunctionHandlerRegistry]
+            FH -->|registered in| FHR
+            FHP -->|provides handlers to| FHR
+        end
+        
+        subgraph "Function Confirmation Layer"
+            CR[ConfirmationRenderer]
+            CRP[ConfirmationRendererPlugin]
+            CRR[ConfirmationRendererRegistry]
+            CR -->|registered in| CRR
+            CRP -->|provides renderers to| CRR
+        end
+    end
+    
+    subgraph "Use Case Flow"
+        UC[SendMessageUseCase]
+        UC -->|1. getFunctionByName| FR
+        UC -->|2. check requiresConfirmation| FD
+        UC -->|3. getHandlerByName| FHR
+        UC -->|4. execute| FH
+    end
+    
+    subgraph "Confirmation Flow"
+        CF[ConfirmFunctionCallUseCase]
+        CF -->|getRenderer| CRR
+        CF -->|render confirmation UI| CR
+    end

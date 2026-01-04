@@ -1,0 +1,27 @@
+package com.mangala.wallet.features.transactionhistory.presentation.antelope
+
+enum class ActionUiStyle(val color: Int, val style: Int) {
+    NORMAL(0xFF000000.toInt(), 0),
+    SUCCESS(0xFF00FF00.toInt(), 0),
+    ERROR(0xFFFF0000.toInt(), 0),
+    WARNING(0xFFFFFF00.toInt(), 0),
+    INFO(0xFF0000FF.toInt(), 0),
+    BOLD(0xFF000000.toInt(), 1),
+    ITALIC(0xFF000000.toInt(), 2),
+    UNDERLINE(0xFF000000.toInt(), 4),
+    STRIKE_THROUGH(0xFF000000.toInt(), 8),
+    BOLD_ITALIC(0xFF000000.toInt(), 3),
+    BOLD_UNDERLINE(0xFF000000.toInt(), 5),
+    BOLD_STRIKE_THROUGH(0xFF000000.toInt(), 9),
+    ITALIC_UNDERLINE(0xFF000000.toInt(), 6),
+    ITALIC_STRIKE_THROUGH(0xFF000000.toInt(), 10),
+    UNDERLINE_STRIKE_THROUGH(0xFF000000.toInt(), 12),
+    BOLD_ITALIC_UNDERLINE(0xFF000000.toInt(), 7),
+    BOLD_ITALIC_STRIKE_THROUGH(0xFF000000.toInt(), 11),
+    BOLD_UNDERLINE_STRIKE_THROUGH(0xFF000000.toInt(), 13),
+    ITALIC_UNDERLINE_STRIKE_THROUGH(0xFF000000.toInt(), 14),
+    BOLD_ITALIC_UNDERLINE_STRIKE_THROUGH(0xFF000000.toInt(), 15),
+    MONEY(0xFF000000.toInt(), 16),
+    ACCOUNT(0xFF000000.toInt(), 17),
+    CPU_NET(0xFF000000.toInt(), 18),
+}

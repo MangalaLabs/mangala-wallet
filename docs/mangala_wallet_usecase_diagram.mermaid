@@ -1,0 +1,266 @@
+graph TB
+    %% Actors
+    User((User))
+    ColdWalletUser((Cold Wallet User))
+    DAppUser((DApp User))
+    System((System))
+
+    %% Use Cases - Authentication & Setup
+    subgraph "Authentication & Setup"
+        UC1[Authenticate with PIN/Biometrics]
+        UC2[Setup New PIN]
+        UC3[Enable Biometric Authentication]
+        UC4[Recover Forgotten PIN]
+        UC5[Create New Wallet]
+        UC6[Backup Wallet with Recovery Phrase]
+        UC7[Restore Wallet from Recovery Phrase]
+    end
+
+    %% Use Cases - Wallet Management
+    subgraph "Wallet Management"
+        UC8[View Portfolio Overview]
+        UC9[Manage Multiple Accounts]
+        UC10[Add New Account]
+        UC11[Import Account via Private Key]
+        UC12[View Account Details]
+        UC13[Sync Accounts Between Devices]
+        UC14[View Transaction History]
+        UC15[Filter Transaction History]
+    end
+
+    %% Use Cases - Token Operations
+    subgraph "Token Operations"
+        UC16[Send Cryptocurrency]
+        UC17[Receive Cryptocurrency]
+        UC18[Swap Tokens]
+        UC19[Select Token for Operations]
+        UC20[Set Transaction Amount]
+        UC21[Configure Transaction Fees]
+        UC22[Verify and Confirm Transaction]
+        UC23[View Transaction Success]
+    end
+
+    %% Use Cases - NFT Management
+    subgraph "NFT Management"
+        UC24[View NFT Collection]
+        UC25[Import New NFT]
+        UC26[Send NFT to Another Address]
+        UC27[View NFT Details]
+        UC28[Filter NFTs by Chain]
+    end
+
+    %% Use Cases - Antelope Blockchain Features
+    subgraph "Antelope Blockchain Features"
+        UC29[Manage Antelope Account Resources]
+        UC30[Stake/Unstake CPU and NET]
+        UC31[Buy/Sell RAM]
+        UC32[Transfer RAM]
+        UC33[Rent Resources via REX]
+        UC34[Power Up Resources]
+        UC35[Manage Account Permissions]
+        UC36[Create/Update Permissions]
+        UC37[Link/Unlink Authorizations]
+        UC38[Create Multisig Proposals]
+        UC39[Approve/Reject Multisig Proposals]
+        UC40[Backup Antelope Account]
+        UC41[Create EOS Account via EVM]
+        UC42[Import EOS Account via EVM]
+    end
+
+    %% Use Cases - Settings & Configuration
+    subgraph "Settings & Configuration"
+        UC43[Change App Theme]
+        UC44[Select Language]
+        UC45[Set Default Currency]
+        UC46[Manage Custom Networks]
+        UC47[Configure Notifications]
+        UC48[Manage Security Settings]
+        UC49[Manage Contacts]
+        UC50[Add/Edit Contacts]
+        UC51[View App Information]
+    end
+
+    %% Use Cases - Browser & DApp Integration
+    subgraph "Browser & DApp Integration"
+        UC52[Browse Web3 Sites]
+        UC53[Connect to DApps]
+        UC54[Sign Messages for DApps]
+        UC55[Confirm DApp Transactions]
+        UC56[Switch Blockchain Networks]
+        UC57[Manage WalletConnect Sessions]
+        UC58[Sign ESR Requests]
+    end
+
+    %% Use Cases - Cold Wallet Features
+    subgraph "Cold Wallet Features"
+        UC59[Generate Transaction QR Code]
+        UC60[Scan Transaction QR Code]
+        UC61[Sign Transactions Offline]
+        UC62[Display Signed Transaction QR]
+        UC63[Sync Account Data via QR]
+    end
+
+    %% Use Cases - Crypto Payments
+    subgraph "Crypto Payments"
+        UC64[Pay with Cryptocurrency]
+        UC65[Select Payment Method]
+        UC66[Select Payment Network]
+        UC67[Configure Token Allowance]
+        UC68[Review Payment Details]
+        UC69[Handle Payment Errors]
+    end
+
+    %% Use Cases - Account Creation
+    subgraph "Account Creation"
+        UC70[Create Antelope Account]
+        UC71[Select Account Type]
+        UC72[Choose Account Name]
+        UC73[Pay for Account Creation]
+        UC74[Create Account for Friend]
+        UC75[Purchase Account via IAP]
+    end
+
+    %% Actor Relationships
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4
+    User --> UC5
+    User --> UC6
+    User --> UC7
+    User --> UC8
+    User --> UC9
+    User --> UC10
+    User --> UC11
+    User --> UC12
+    User --> UC13
+    User --> UC14
+    User --> UC15
+    User --> UC16
+    User --> UC17
+    User --> UC18
+    User --> UC19
+    User --> UC20
+    User --> UC21
+    User --> UC22
+    User --> UC23
+    User --> UC24
+    User --> UC25
+    User --> UC26
+    User --> UC27
+    User --> UC28
+    User --> UC29
+    User --> UC30
+    User --> UC31
+    User --> UC32
+    User --> UC33
+    User --> UC34
+    User --> UC35
+    User --> UC36
+    User --> UC37
+    User --> UC38
+    User --> UC39
+    User --> UC40
+    User --> UC41
+    User --> UC42
+    User --> UC43
+    User --> UC44
+    User --> UC45
+    User --> UC46
+    User --> UC47
+    User --> UC48
+    User --> UC49
+    User --> UC50
+    User --> UC51
+    User --> UC70
+    User --> UC71
+    User --> UC72
+    User --> UC73
+    User --> UC74
+    User --> UC75
+
+    ColdWalletUser --> UC59
+    ColdWalletUser --> UC60
+    ColdWalletUser --> UC61
+    ColdWalletUser --> UC62
+    ColdWalletUser --> UC63
+    ColdWalletUser --> UC1
+    ColdWalletUser --> UC8
+    ColdWalletUser --> UC12
+
+    DAppUser --> UC52
+    DAppUser --> UC53
+    DAppUser --> UC54
+    DAppUser --> UC55
+    DAppUser --> UC56
+    DAppUser --> UC57
+    DAppUser --> UC58
+    DAppUser --> UC64
+    DAppUser --> UC65
+    DAppUser --> UC66
+    DAppUser --> UC67
+    DAppUser --> UC68
+    DAppUser --> UC69
+
+    %% Include relationships
+    UC16 -.->|includes| UC19
+    UC16 -.->|includes| UC20
+    UC16 -.->|includes| UC21
+    UC16 -.->|includes| UC22
+    UC18 -.->|includes| UC19
+    UC18 -.->|includes| UC22
+    UC26 -.->|includes| UC22
+    UC5 -.->|includes| UC6
+    UC10 -.->|includes| UC71
+    UC38 -.->|includes| UC22
+    UC64 -.->|includes| UC65
+    UC64 -.->|includes| UC66
+    UC49 -.->|includes| UC50
+    UC70 -.->|includes| UC71
+    UC70 -.->|includes| UC72
+    UC70 -.->|includes| UC73
+
+    %% Extend relationships
+    UC1 -.->|extends| UC4
+    UC6 -.->|extends| UC7
+    UC22 -.->|extends| UC61
+    UC55 -.->|extends| UC59
+    UC14 -.->|extends| UC15
+    UC24 -.->|extends| UC28
+    UC29 -.->|extends| UC30
+    UC29 -.->|extends| UC31
+    UC29 -.->|extends| UC33
+    UC29 -.->|extends| UC34
+    UC35 -.->|extends| UC36
+    UC35 -.->|extends| UC37
+    UC68 -.->|extends| UC69
+
+    %% System interactions
+    System --> UC13
+    System --> UC23
+    System --> UC63
+
+    %% Styling
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:1px
+    classDef authUC fill:#e8f5e8,stroke:#2e7d32,stroke-width:1px
+    classDef walletUC fill:#fff3e0,stroke:#ef6c00,stroke-width:1px
+    classDef tokenUC fill:#e3f2fd,stroke:#1565c0,stroke-width:1px
+    classDef nftUC fill:#fce4ec,stroke:#c2185b,stroke-width:1px
+    classDef antelopeUC fill:#fff8e1,stroke:#f57f17,stroke-width:1px
+    classDef settingsUC fill:#f1f8e9,stroke:#558b2f,stroke-width:1px
+    classDef browserUC fill:#e0f2f1,stroke:#00695c,stroke-width:1px
+    classDef coldUC fill:#fafafa,stroke:#424242,stroke-width:1px
+    classDef cryptoUC fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px
+
+    class User,ColdWalletUser,DAppUser,System actor
+    class UC1,UC2,UC3,UC4 authUC
+    class UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15 walletUC
+    class UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23 tokenUC
+    class UC24,UC25,UC26,UC27,UC28 nftUC
+    class UC29,UC30,UC31,UC32,UC33,UC34,UC35,UC36,UC37,UC38,UC39,UC40,UC41,UC42,UC70,UC71,UC72,UC73,UC74,UC75 antelopeUC
+    class UC43,UC44,UC45,UC46,UC47,UC48,UC49,UC50,UC51 settingsUC
+    class UC52,UC53,UC54,UC55,UC56,UC57,UC58 browserUC
+    class UC59,UC60,UC61,UC62,UC63 coldUC
+    class UC64,UC65,UC66,UC67,UC68,UC69 cryptoUC
+    class UC5,UC6,UC7 walletUC

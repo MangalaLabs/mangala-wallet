@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Düzenle";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Göster";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Geri al";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Ekle";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Yer imi ekle";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Yer İmleri";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "İptal";
+
+/* Copy action */
+"action.title.copy" = "Kopyala";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL kopyalandı";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Gizlilik Korumasını Devre Dışı Bırak";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "İndirilenler";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Yer İşaretini Düzenle";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Gizlilik Korumasını Etkinleştir";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Sekmeleri Kapat ve Verileri Temizle";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Sekmeler ve veriler temizlendi";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Arka Planda Aç";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Yeni";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Yeni Sekmede Aç";
+
+/* Open action */
+"action.title.open" = "Aç";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Yapıştır ve Git";
+
+/* Print action */
+"action.title.print" = "Yazdır";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Yenile";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Favoriyi Kaldır";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Hatalı Siteyi Bildir";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Masaüstü Sitesi";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Mobil Site";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Kaydet";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Yer İmi ekle";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Favori Ekle";
+
+/* Settings action */
+"action.title.settings" = "Ayarlar";
+
+/* Share action */
+"action.title.share" = "Paylaş";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Widget Ekle";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Özel aramaya ve sevdiğiniz sitelere hızlı erişim elde edin.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Sallama moduna girmek için ana ekranda uzun basın.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Artı %@ düğmesine dokunun.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Mangala Wallet'yu bulun ve seçin. Ardından bir widget seçin.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Favori sitelerinize tek dokunuşla erişin.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Mevcut yer imleri çoğaltılmayacaktır.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Tüm Sekmelere Yer İmi Eklensin mi?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Korumasız Sitelere Ekle";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Yer İmi Kaydet";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Favori Kaydet";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Mangala Wallet'nun kilidini açın.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Oturum Aç";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "%@ adresinde oturum açın. Giriş bilgileriniz güvenli bir şekilde gönderilecektir.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "%@ adresine oturum aç. Bağlantı şifrelenmemiş olduğu için parolanız güvenli olmayan bir şekilde gönderilecek.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Parola";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Kimlik Doğrulaması Gerekli";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Kullanıcı adı";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Kapalı";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Açık";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Yer İmi ekle";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Favori Ekle";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Klasör Ekle";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Klasör Ekle";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Sil";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Bu klasörü ve %i ögeyi silmek istediğinizden emin misiniz?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Bu klasörü ve %i ögeyi silmek istediğinizden emin misiniz?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "%@ silinsin mi?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Yer İşaretini Düzenle";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Favoriyi Düzenle";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Klasörü Düzenle";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Konum";
+
+/* More options button text */
+"bookmark.moreButton" = "Daha fazla";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Web sitesi başlığı";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Yer İmleri";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Tüm sekmeler için yeni yer işaretleri eklendi";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Tüm sekmelere yer imi eklendi";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Yer İmleri";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Yer işaretlerinizi dışarı aktaramadık. Lütfen tekrar deneyin.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Yer işaretleriniz dışarı aktarıldı.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Yer işaretleriniz paylaşıldı.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "HTML Dosyasını Dışarı Aktar";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Ne yazık ki bu dosya içeri aktarılamıyor.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Yer işaretleriniz içeri aktarıldı.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "HTML Dosyasını İçeri Aktar";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Başka bir tarayıcıdan yer işaretleri dosyasını içeri aktarma";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Yer işaretleri HTML dosyasını başka bir tarayıcıdan içeri aktarın veya mevcut yer işaretlerinizi dışarı aktarın.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Yorumlar yüklenmedi";
+
+/* Broken Site Category */
+"brokensite.category.content" = "İçerik eksik";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Resimler yüklenmedi";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Bağlantılar veya düğmeler çalışmıyor";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Oturum açamıyorum";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Başka bir şey";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Site benden devre dışı bırakmamı istedi";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Tarayıcı uyumsuz";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Video oynatılamadı";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "NE OLDUĞUNU AÇIKLAYIN";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Geçen ay";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Geçen hafta";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Bugün";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Dün";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "İpuçlarını Sonsuza Kadar Gizle";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "İptal";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Sadece birkaç tane var ve onları da bilgilendirici hâle getirmeye çalıştık.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Kalan ipuçları gizlensin mi?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Mangala Wallet aramalarınız anonimdir. Her zaman. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Uf!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Çak Bir Beşlik!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* sizi burada izlemeye çalışıyordu.\n\nOnları engelledim!\n\n☝️ Yeni bir siteyi ziyaret ettiğinizde sizi kimin izlemeye çalıştığını görmek için adres çubuğunu kontrol edebilirsiniz.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Çak Bir Beşlik!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Dikkat! %2$@ üzerindeki etkinliğinizin %1$@ tarafından görülmesini önleyemiyorum.\n\nAma benimle gezinirseniz diğer birçok sitedeki izleyicisini engelleyerek %1$@ tarafından sizinle ilgili olarak toplanan bilgilerin miktarını genel anlamda azaltabilirim.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Anladım";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Dikkat! %1$@ sitesinin sahibi %2$@ olduğundan, buradaki etkinliğinizi görmesini engelleyemem.\n\nAma benimle gezinirseniz diğer sitelerdeki pek çok izleyicisini engelleyerek sizinle ilgili olarak %2$@ tarafından toplanan bilgilerin miktarını genel anlamda azaltabilirim.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Anladım";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Siz internette gezinirken sinir bozucu izleyicileri engelleyeceğim.\n\nHadi gezinmeye devam edin!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Anladım";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Kişisel veriler tarayıcınızda birikebilir. İğrenç. Bunların hepsini yakmak için Yangın Düğmesi'ni kullanın. Hemen deneyin! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "İptal";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Sekmeleri Kapat ve Verileri Temizle";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "En sevdiğiniz siteleri anında ziyaret edin!\n\nSevdiğiniz bir siteye gidin. Ardından \"...\" simgesine dokunun ve *Favorilere Ekle* ögesini seçin.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "En sevdiğiniz siteleri anında ziyaret edin! En sevdiğiniz sitelerden birini ziyaret edin. Ardından, menü düğmesine dokunun ve Favorilere Ekle'yi seçin.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "Şimdi favori sitelerinizden birini ziyaret etmeyi deneyin!\n\nSizi gözetlemelerini önlemek için izleyicileri engelleyeceğim. Mümkünse bağlantınızın güvenlik seviyesini de yükselteceğim. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "İşte bu kadar!\n\nUnutmayın: İnterneti benimle ne kadar çok gezerseniz rahatsız edici reklamları da o kadar az görürsünüz. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "İnternet bazen ürkütücü olabilir.\n\nEndişelenmeyin! İnternette kimsenin göremeyeceği şekilde arama yapmak ve gezinmek sandığınızdan çok daha kolay.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Devre Dışı";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Daha Fazla Bilgi";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Etkin";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet birçok izleyiciyi otomatik olarak engeller. Küresel Gizlilik Kontrolü (GPC) ile, katılımcı web sitelerinden kişisel verilerinizin satışını veya diğer şirketlerle paylaşımını kısıtlamalarını da isteyebilirsiniz.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "İndirilenlere Kaydet";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "İptal";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Bu indirmeyi iptal etmek istediğinizden emin misiniz?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Devam et";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "İndirme iptal edilsin mi?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Tümünü Sil";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Henüz indirilen dosya yok";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "İndiriliyor - %1$@ / %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "İndiriliyor - %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "İndirilenler";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Bu işlem devam eden indirmeleri de iptal edecektir";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Tüm dosyalar silindi";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "%@ için indirme tamamlandı";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "%@ Silindi";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "İndirme başarısız. İnternet bağlantınızı kontrol edin.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "%@ için indirme başlatıldı";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "İptal";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Özel Adres Oluşturun";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Duck Adresi ile e-posta izleyicileri engelleyin";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "%@ adresini kullan";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Yeni adres panoya kopyalandı";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Duck Adresi Oluştur";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Etkin";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "E-posta Korumasını bu cihazdan kaldırmak, Web'de gezinirken Kişisel Duck Adresinizi veya yeni oluşturulan Özel Duck Adresinizi e-posta alanlarına doldurma seçeneğini kaldırır.\n\nDuck Adreslerinizi tamamen silmek veya diğer sorularınız veya geri bildirimleriniz için support@duck.com adresinden bize ulaşın.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Kapalı";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "İptal";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "E-posta Korumasının bu cihazdan kaldırılması Duck Adresinizin silinmesine yol açmaz.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Kaldır";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "E-posta Koruması Kaldırılsın mı?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Bekleme listesine katılırken bir hata oluştu, lütfen daha sonra tekrar deneyin";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Başlayın";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Davet Kodum var";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Davet edildiniz!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Özel Bekleme Listesine Katılın";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Bekleme listesindesiniz!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Özellik hazır olduğunda davetiyeniz burada gösterilecek. Hazır olduğunda %1$@ ister misiniz? E-posta Koruması hakkında %2$@.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "bildirim almak";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "E-posta Koruması hazır olduğunda size bildirim gönderilecektir. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Daha fazla bilgi";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "E-posta Koruması'nı kullanmaya başlayabileceğiniz zaman size bir bildirim göndereceğiz.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Sıra size geldiğinde haber vermemizi ister misiniz?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Bekleme listesine katılarak E-posta Koruması'nı deneme sırası size geldiğinde sizi bilgilendirmemizi istediniz.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Hayır Teşekkürler";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "BANA BİLDİR";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "E-posta Koruması için Davetlisiniz!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "E-postalarınızı kaydetmiyoruz. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "E-posta gizliliğinin basitleştirilmiş hâli.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "E-posta sağlayıcınızı değiştirmeden e-posta izleyicileri engelleyin ve adresinizi gizleyin. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Henüz yer imi eklenmedi";
+
+/* Empty list state placholder */
+"empty.favorites" = "Henüz hiç favori eklenmedi";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Eşleşme bulunamadı";
+
+/* No comment provided by engineer. */
+"favorite" = "Favori";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Sil";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Düzenle";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Reklam ve pop-up engelleme";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Yer imleri oluşturma ve yönetme";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Hangi tarama özelliğini ekleyebilir veya geliştirebiliriz?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Tarayıcı Özelliği Sorunları";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Tarama özellikleri eksik veya sinir bozucu";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Görüntülerle etkileşim kurma";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "İleri geri gitme ve/veya yenileme";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Bunların hiçbiri";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Sekmeler oluşturma ve yönetme";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Videoları izleme";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Yer imlerinin görünüşü";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Hangi özelleştirme seçeneğini ekleyebilir veya geliştirebiliriz?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Özelleştirme Sorunları";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Uygulamayı özelleştirmek için yeterli seçenek yok";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Ana ekran yapılandırması";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Bunların hiçbiri";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Sekmelerin görüntülenme şekli";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Uygulamanın görünüşü";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Hangi veriler temizlenir";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Veriler temizlendiğinde";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Daha iyi otomatik tamamlama";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Hangi arama özelliğini ekleyebilir veya geliştirebiliriz?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Mangala Wallet Arama Sorunları";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Mangala Wallet arama özelliği yeterince iyi değil";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Belirli bir dilde veya bölgede arama yapma";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Düzen daha çok Google gibi olmalı";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Daha hızlı yükleme süresi";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Bunların hiçbiri";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programlama/teknik arama";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Neleri geliştirebileceğimizi lütfen bize söyleyin";
+
+/* Confirmation button */
+"feedback.form.submit" = "Gönder";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Lütfen mümkün olduğunca spesifik olun";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Ayrıntılı olarak belirtmek istediğiniz herhangi bir şey var mı?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Bunu Duyduğumuza Üzüldük";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "En çok ne ile ilgili sıkıntı yaşadınız?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Diğer Sorunlar";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Bunların hiçbiri";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Hangi sorunu yaşıyorsunuz?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Uygulama çöküyor veya donuyor";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Performans Sorunları";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Uygulama yavaş, hatalı veya kilitleniyor";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Bunların hiçbiri";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Video veya medya oynatma hataları";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Web sayfaları veya arama sonuçları yavaş yükleniyor";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Ayrıntıları paylaşın";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Nelerden hoşlandınız?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Ekiple paylaşmak istediğiniz ayrıntılar var mı?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Bunu Duymak Harika!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Hayır Teşekkürler! Şimdilik Bu Kadar";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Ayrıntıları paylaşın";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "İsimsiz geri bildiriminiz bizim için önemlidir.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Hadi Başlayalım!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Geri bildirimlerinizi nasıl sınıflandırırsınız?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Teşekkür Ederiz! Geri bildirim gönderildi.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Web Sitesi Yükleme Sorunları";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Bazı web siteleri düzgün yüklenmiyor";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Bu durumdan hangi içerikler etkileniyor?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Bu sorunları nerede görüyorsunuz?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "Hangi web sitesinde sorunlar var?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d / %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Sayfada bul";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Hava";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Ateş";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Yok";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Girdap";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Mangala Wallet'yu ana ekranınıza ekleyin!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Kolay erişim için Mangala Wallet'yu dock'unuza ekleyin!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Mangala Wallet'yu ana sayfaya ekleyin";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Adres ara veya gir";
+
+/* Home tab title */
+"homeTab.title" = "Ana Sayfa";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Yer İmi ekle";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Favori Ekle";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Geri Dön";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "İleri Git";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Kapat";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Sekmeyi kapat";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Sayfada bul";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Sonraki bul";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Öncekini bul";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Tüm Sekmeleri ve Verileri Temizle";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Adres Ara veya Gir";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Yeni Sekme";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Sonraki Sekme";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Bağlantıyı Arka Planda Aç";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Bağlantıyı Yeni Sekmede Aç";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Önceki Sekme";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Yazdır";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Tekrar yükle";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Seç";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Tüm Sekmeleri Göster";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Mangala Wallet'ya\nHoş Geldiniz!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Göz Atma Menüsü";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Bitti";
+
+/* Edit button */
+"navigation.title.edit" = "Düzenle";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Widget Ekle";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Mangala Wallet'yu kullanmak artık daha kolay.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Belki Sonra";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Devam et";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Belki Sonra";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Mangala Wallet'yu varsayılan tarayıcınız yapın.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Varsayılan Tarayıcı olarak ayarla";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Atla";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Gezinmeye Başla";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Mangala Wallet'ya Hoş Geldiniz!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Bu bağlantıyı açmak için gereken uygulama bulunamıyor";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Web siteleri oturumunuzu açık tutmak için çerezler kullanır. Bir siteyi Korumalı hâle getirdiğinizde çerezler silinmez ve Yangın Düğmesi'ni kullandıktan sonra bile oturumunuz açık kalır. Korumalı web sitelerinde bulunan üçüncü taraf izleyicileri yine engelleriz.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Korumalı Siteler";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Korumalı yaptığınızda, Yangın düğmesini kullanıktan sonra da oturumunuz açık kalır.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Oturumun açık tutulması için %@ korumalı hâle getirilsin mi?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Korumalı yap";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ artık Korumalı";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Şimdi Değil";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Korumayı Kaldır";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Bu Siteyi Korumalı Yap";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Koruma kaldırıldı";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Tümünü Kaldır";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "Tamam";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritma";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bit";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Sertifika ayıklanırken hata oluştu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Ortak Ad";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Geçerli Boyut";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "E-posta";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Şifreli Bağlantı";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Zorunlu Şifreleme";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Bu siteyi şifreli bir bağlantı kullanmaya zorladık. Bu sayede, siteye gönderdiğiniz kişisel bilgiler kaydedilemeyecek.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Şifreli bağlantı, web sitelerine gönderdiğiniz kişisel bilgilerin ele geçirilmesini önler.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Konu Anahtarı Tanımlayıcısı";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Sertifikayı Veren";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Ortak Anahtar";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Anahtar Boyutu";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Karışık Şifreleme";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Bazı içerikler şifrelenmemiş bağlantılar üzerinden sunulduğu için bu sitede karışık şifreleme kullanılıyor.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Hayır";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Kalıcı";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Ortak Anahtar";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Şifreli bağlantı, web sitelerine gönderdiğiniz kişisel bilgilerin ele geçirilmesini önler.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Konu Adı";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Özet";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Bu siteye kişisel bilgiler girerken dikkatli olun.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Şifrelenmemiş Bağlantı";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Bilinmiyor";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Kullanım";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Şifre çözme";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Türev";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Şifreleme";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "İmzala";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Paket açma";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Doğrulama";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Paketleme";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Evet";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "SİTE KORUMASI KAPATILDI";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "YÜKSELTİLDİ: $1 -> $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "GİZLİLİK DERECESİ";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "%2$@ yılından beri ziyaret ettiğiniz web sitelerinin %%%1$@ kadarında izleyici ağları bulundu.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Kaç izleyiciyi engellediğimizi göstermek için\nhâlâ veri topluyoruz.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Gizlilik Uygulamaları: ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Gizlilik uygulamaları, bir web sitesiyle paylaştığınız kişisel bilgilerin ne kadar korunduğunu gösterir.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Bu web sitesi, birleşme veya satın alma durumunda bilgilerinizi aktarmadan önce sizi bilgilendirecektir";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Bu web sitesinin gizlilik uygulamaları gözden geçirilmemiştir.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Gizlilik derecesi %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Gizlilik Koruması ekranını açmak için basın";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Bu istatistikler yalnızca cihazınızda depolanır ve hiçbir yere gönderilmez. Asla.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Öne Çıkan Gizlilik Uygulamaları";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Karma Gizlilik Uygulamaları";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Kötü Gizlilik Uygulamaları";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Bilinmeyen Gizlilik Uygulamaları";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "İzleyici ağları, web geçmişinizi sizinle ilgili bir veri profilinde toplar. Büyük izleyici ağları daha zararlıdır, çünkü sizi İnternet'te izleyebilir ve hedefleyebilirler.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "İptal";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Aç";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Bu içeriği görüntülemek için Mangala Wallet'dan ayrılmak ister misiniz?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Başka Bir Uygulamada Açılsın mı?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Anonim olarak hatalı site raporu göndermeniz, bu sorunları ayıklamamıza ve uygulamayı geliştirmemize yardımcı olur.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Adres ara veya gir";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Yer İmleri";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Favoriler";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "Mangala Wallet'da, internet için yeni güven standardını belirliyoruz.\n\nMangala Wallet Gizlilik Tarayıcısı izleyici engelleme, akıllı şifreleme ve Mangala Wallet gizli arama da dâhil olmak üzere web'de arama ve göz atma sırasında kendinizi korumak için ihtiyacınız olan tüm gizlilik özelliklerini sağlar.\n\nNe de olsa, internet sizi korkutmamalı ve internette hakkınız olan gizliliği elde etmek panjurları kapatmak kadar basit olmalı.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Rapor Gönder";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Bozuk Sitenin Alan Adı:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Hangi içerik veya işlevsellik bozuk?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Bozuk site raporlama tamamen anonimdir ve uygulamayı geliştirmemize yardımcı olur!";
+
+/* This is a form title */
+"siteFeedback.title" = "Hatalı Bir Siteyi Bildirin";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Hangi web sitesi hatalı?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Ana sekmeyi kapat";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "%2$@ adresindeki \"%1$@\" sitesini kapat";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Ana sekmeyi aç";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "%2$@ adresindeki \"%1$@\" sitesini aç";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Sekme Değiştirici";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Tercih ettiğiniz metin boyutunu seçin. Mangala Wallet'da görüntülediğiniz web siteleri bu boyuta ayarlanır.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Metin Boyutu - %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Karanlık";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Sistem";
+
+/* Light Theme entry */
+"theme.acc.light" = "Açık";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Karanlık";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Sistem Varsayılanı";
+
+/* Light Theme entry */
+"theme.name.light" = "Açık";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Gizlilik Koruması %@ için devre dışı";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Gizlilik Koruması %@ için etkinleştirildi";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Bilinmeyen bir hata oluştu.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Ayarlar";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Ses özelliklerini kullanmak istiyorsanız iOS Sistem Ayarları'ndan Mangala Wallet için Mikrofon erişimine izin verin.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Mikrofon Erişimi Gerekli";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "Tamam";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "İptal";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet söylediklerinizi asla dinlemez. Özel Sesli Arama için tüm konuşma verilerinin işlenmesi cihazınızda gerçekleşir.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Özel Sesli Arama için Mikrofon Erişimi Gerekli";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "İptal";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Ses cihazda işlenir. Saklanmaz ve Mangala Wallet da dâhil olmak üzere kimseyle paylaşılmaz.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Favori kaldırıldı";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Yer imi eklendi";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Yer imi zaten kaydedilmiş";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Yer imi eklenecek web sayfası yok";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Favori eklendi";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Uyarıları Engelle";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "İptal";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "Tamam";
+

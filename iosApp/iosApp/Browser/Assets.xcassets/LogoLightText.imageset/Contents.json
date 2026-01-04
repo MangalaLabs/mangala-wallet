@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "MangalaLogo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

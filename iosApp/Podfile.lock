@@ -1,0 +1,545 @@
+PODS:
+  - Alamofire (5.6.4)
+  - AlphaWalletAddress (1.0.2):
+    - AlphaWalletCore
+    - AlphaWalletWeb3
+    - EthereumAddress
+    - TrustKeystore
+  - AlphaWalletAttestation (0.0.1):
+    - AlphaWalletFoundation
+    - AlphaWalletWeb3
+    - BigInt
+    - GzipSwift
+  - AlphaWalletCore (1.0.2):
+    - Alamofire (= 5.6.4)
+    - PromiseKit
+  - AlphaWalletENS (1.0.0):
+    - AlphaWalletAddress
+    - AlphaWalletCore
+    - AlphaWalletWeb3
+    - PromiseKit
+  - AlphaWalletFoundation (1.0.0):
+    - AlphaWalletAddress
+    - AlphaWalletCore
+    - AlphaWalletENS
+    - AlphaWalletGoBack
+    - AlphaWalletHardwareWallet
+    - AlphaWalletLogger
+    - AlphaWalletOpenSea
+    - AlphaWalletShareExtensionCore
+    - AlphaWalletTrustWalletCoreExtensions
+    - AlphaWalletWeb3
+    - AlphaWalletWeb3Provider
+    - APIKit (= 5.1.0)
+    - Apollo (= 0.53.0)
+    - BigInt (~> 3.1)
+    - BlockiesSwift
+    - CombineExt (= 1.8.0)
+    - CryptoSwift (~> 1.4)
+    - EthereumABI
+    - JSONRPCKit (~> 2.0.0)
+    - Kanna
+    - PaperTrailLumberjack/Swift
+    - PromiseKit/CorePromise
+    - RealmSwift (= 10.36.0)
+    - SwiftProtobuf (~> 1.18.0)
+    - SwiftyJSON (= 5.0.0)
+    - TrezorCrypto
+    - TrustKeystore
+  - AlphaWalletGoBack (1.0.0)
+  - AlphaWalletHardwareWallet (1.0.0):
+    - AlphaWalletAddress
+    - AlphaWalletTrustWalletCoreExtensions
+    - AlphaWalletWeb3
+    - TrustKeystore
+  - AlphaWalletLogger (1.0.0):
+    - CocoaLumberjack (= 3.7.0)
+  - AlphaWalletNotifications (1.0.1):
+    - AlphaWalletCore
+    - AlphaWalletFoundation
+    - Firebase/Messaging
+    - FirebaseCrashlytics
+    - SwiftyJSON
+  - AlphaWalletOpenSea (1.0.0):
+    - AlphaWalletAddress
+    - AlphaWalletCore
+    - PromiseKit
+    - SwiftyJSON (= 5.0.0)
+  - AlphaWalletShareExtensionCore (1.0.0)
+  - AlphaWalletTrackAPICalls (1.0.0)
+  - AlphaWalletTrustWalletCoreExtensions (1.0.0):
+    - BigInt
+    - TrustWalletCore (= 2.6.34)
+  - AlphaWalletWeb3 (0.0.1):
+    - BigInt
+    - CryptoSwift
+    - PromiseKit (~> 6.3.0)
+    - secp256k1_ios (~> 0.1.3)
+  - AlphaWalletWeb3Provider (0.3.0)
+  - APIKit (5.1.0)
+  - Apollo (0.53.0):
+    - Apollo/Core (= 0.53.0)
+  - Apollo/Core (0.53.0)
+  - AppCheckCore (11.2.0):
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - PromisesObjC (~> 2.4)
+  - BigInt (3.1.0):
+    - SipHash (~> 1.2)
+  - BlockiesSwift (0.1.2)
+  - CocoaAsyncSocket (7.6.5)
+  - CocoaLumberjack (3.7.0):
+    - CocoaLumberjack/Core (= 3.7.0)
+  - CocoaLumberjack/Core (3.7.0)
+  - CocoaLumberjack/Swift (3.7.0):
+    - CocoaLumberjack/Core
+  - CombineExt (1.8.0)
+  - composeApp (1.0-SNAPSHOT):
+    - FirebaseCore
+    - FirebaseRemoteConfig
+  - CryptoSwift (1.8.3)
+  - EthereumABI (1.3.0):
+    - BigInt (~> 3.1)
+    - CryptoSwift (~> 1.0)
+    - EthereumAddress (~> 1.3)
+  - EthereumAddress (1.3.0):
+    - CryptoSwift (~> 1.0)
+  - Firebase/CoreOnly (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+  - Firebase/Messaging (11.6.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 11.6.0)
+  - FirebaseABTesting (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+  - FirebaseAnalytics (11.6.0):
+    - FirebaseAnalytics/AdIdSupport (= 11.6.0)
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseAnalytics/AdIdSupport (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleAppMeasurement (= 11.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - FirebaseAppCheck (11.6.0):
+    - AppCheckCore (~> 11.0)
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseCore (~> 11.6.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+  - FirebaseAppCheckInterop (11.6.0)
+  - FirebaseAuthInterop (11.6.0)
+  - FirebaseCore (11.6.0):
+    - FirebaseCoreInternal (~> 11.6.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/Logger (~> 8.0)
+  - FirebaseCoreExtension (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+  - FirebaseCoreInternal (11.6.0):
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+  - FirebaseCrashlytics (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - FirebaseRemoteConfigInterop (~> 11.0)
+    - FirebaseSessions (~> 11.0)
+    - GoogleDataTransport (~> 10.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - nanopb (~> 3.30910.0)
+    - PromisesObjC (~> 2.4)
+  - FirebaseFunctions (11.6.0):
+    - FirebaseAppCheckInterop (~> 11.0)
+    - FirebaseAuthInterop (~> 11.0)
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseCoreExtension (~> 11.6.0)
+    - FirebaseMessagingInterop (~> 11.0)
+    - FirebaseSharedSwift (~> 11.0)
+    - GTMSessionFetcher/Core (< 5.0, >= 3.4)
+  - FirebaseInstallations (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - PromisesObjC (~> 2.4)
+  - FirebaseMessaging (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleDataTransport (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/Reachability (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - nanopb (~> 3.30910.0)
+  - FirebaseMessagingInterop (11.6.0)
+  - FirebaseRemoteConfig (11.6.0):
+    - FirebaseABTesting (~> 11.0)
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - FirebaseRemoteConfigInterop (~> 11.0)
+    - FirebaseSharedSwift (~> 11.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+  - FirebaseRemoteConfigInterop (11.6.0)
+  - FirebaseSessions (11.6.0):
+    - FirebaseCore (~> 11.6.0)
+    - FirebaseCoreExtension (~> 11.6.0)
+    - FirebaseInstallations (~> 11.0)
+    - GoogleDataTransport (~> 10.0)
+    - GoogleUtilities/Environment (~> 8.0)
+    - GoogleUtilities/UserDefaults (~> 8.0)
+    - nanopb (~> 3.30910.0)
+    - PromisesSwift (~> 2.1)
+  - FirebaseSharedSwift (11.6.0)
+  - GoogleAppMeasurement (11.6.0):
+    - GoogleAppMeasurement/AdIdSupport (= 11.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/AdIdSupport (11.6.0):
+    - GoogleAppMeasurement/WithoutAdIdSupport (= 11.6.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleAppMeasurement/WithoutAdIdSupport (11.6.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 8.0)
+    - GoogleUtilities/MethodSwizzler (~> 8.0)
+    - GoogleUtilities/Network (~> 8.0)
+    - "GoogleUtilities/NSData+zlib (~> 8.0)"
+    - nanopb (~> 3.30910.0)
+  - GoogleDataTransport (10.1.0):
+    - nanopb (~> 3.30910.0)
+    - PromisesObjC (~> 2.4)
+  - GoogleUtilities/AppDelegateSwizzler (8.0.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Environment (8.0.2):
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Logger (8.0.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/MethodSwizzler (8.0.2):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Network (8.0.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Privacy
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (8.0.2)":
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/Privacy (8.0.2)
+  - GoogleUtilities/Reachability (8.0.2):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GoogleUtilities/UserDefaults (8.0.2):
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Privacy
+  - GTMSessionFetcher/Core (4.1.0)
+  - GzipSwift (5.1.1)
+  - JSONRPCKit (2.0.3):
+    - Result (~> 3.0)
+  - Kanna (5.3.0)
+  - Kingfisher (7.6.2)
+  - nanopb (3.30910.0):
+    - nanopb/decode (= 3.30910.0)
+    - nanopb/encode (= 3.30910.0)
+  - nanopb/decode (3.30910.0)
+  - nanopb/encode (3.30910.0)
+  - PaperTrailLumberjack/Core (0.1.9):
+    - CocoaAsyncSocket (~> 7.6)
+    - CocoaLumberjack (~> 3.4)
+  - PaperTrailLumberjack/Swift (0.1.9):
+    - CocoaLumberjack/Swift (~> 3.4)
+    - PaperTrailLumberjack/Core
+  - PromiseKit (6.3.5):
+    - PromiseKit/CorePromise (= 6.3.5)
+    - PromiseKit/Foundation (= 6.3.5)
+    - PromiseKit/UIKit (= 6.3.5)
+  - PromiseKit/CorePromise (6.3.5)
+  - PromiseKit/Foundation (6.3.5):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.3.5):
+    - PromiseKit/CorePromise
+  - PromisesObjC (2.4.0)
+  - PromisesSwift (2.4.0):
+    - PromisesObjC (= 2.4.0)
+  - R.swift (7.8.0)
+  - Realm (10.36.0):
+    - Realm/Headers (= 10.36.0)
+  - Realm/Headers (10.36.0)
+  - RealmSwift (10.36.0):
+    - Realm (= 10.36.0)
+  - Result (3.2.4)
+  - secp256k1_ios (0.1.3)
+  - SipHash (1.2.2)
+  - StatefulViewController (3.0)
+  - SwiftProtobuf (1.18.0)
+  - SwiftyJSON (5.0.0)
+  - TrezorCrypto (0.0.9)
+  - TrustKeystore (0.1.3):
+    - CryptoSwift (~> 1.0)
+    - secp256k1_ios (~> 0.1.0)
+    - TrezorCrypto
+  - TrustWalletCore (2.6.34):
+    - TrustWalletCore/Core (= 2.6.34)
+  - TrustWalletCore/Core (2.6.34):
+    - TrustWalletCore/Types
+  - TrustWalletCore/Types (2.6.34):
+    - SwiftProtobuf
+  - WalletConnectSwift (1.7.0):
+    - CryptoSwift (~> 1.5)
+  - Wormholy (1.7.0)
+
+DEPENDENCIES:
+  - AlphaWalletAddress (from `.`)
+  - AlphaWalletAttestation (from `.`)
+  - AlphaWalletCore (from `.`)
+  - AlphaWalletENS (from `.`)
+  - AlphaWalletFoundation (from `.`)
+  - AlphaWalletGoBack (from `.`)
+  - AlphaWalletHardwareWallet (from `.`)
+  - AlphaWalletLogger (from `.`)
+  - AlphaWalletNotifications (from `.`)
+  - AlphaWalletOpenSea (from `.`)
+  - AlphaWalletShareExtensionCore (from `.`)
+  - AlphaWalletTrackAPICalls (from `.`)
+  - AlphaWalletTrustWalletCoreExtensions (from `.`)
+  - AlphaWalletWeb3 (from `.`)
+  - AlphaWalletWeb3Provider (from `https://github.com/AlphaWallet/AlphaWallet-web3-provider`, commit `bdb38b06eeedeb4ca1e32d3ecd81783b5116ae68`)
+  - BigInt (~> 3.1)
+  - composeApp (from `../composeApp`)
+  - EthereumABI (from `https://github.com/AlphaWallet/EthereumABI.git`, commit `877b77e8e7cbc54ab0712d509b74fec21b79d1bb`)
+  - FirebaseAnalytics
+  - FirebaseAppCheck
+  - FirebaseCore
+  - FirebaseCrashlytics
+  - FirebaseFunctions
+  - FirebaseInstallations
+  - FirebaseMessaging
+  - FirebaseRemoteConfig
+  - Kingfisher (~> 7.6.2)
+  - R.swift
+  - Result (from `https://github.com/trainingdeveloperpro/Result`, commit `2770f7ffe73107a896ece0c15dbd7b98169b8770`)
+  - StatefulViewController
+  - TrezorCrypto (from `https://github.com/trainingdeveloperpro/trezor-crypto-ios`, commit `b48a18d86f1e16ab8bc532e2b63bceece81b6512`)
+  - TrustKeystore (from `https://github.com/trainingdeveloperpro/latest-keystore-snapshot`, commit `72389a7ade614e6cf53fde51d7b2dbe50b2795ae`)
+  - WalletConnectSwift (from `https://github.com/AlphaWallet/WalletConnectSwift.git`, branch `alphaWallet`)
+  - Wormholy
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - APIKit
+    - Apollo
+    - AppCheckCore
+    - BigInt
+    - BlockiesSwift
+    - CocoaAsyncSocket
+    - CocoaLumberjack
+    - CombineExt
+    - CryptoSwift
+    - EthereumAddress
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseAppCheck
+    - FirebaseAppCheckInterop
+    - FirebaseAuthInterop
+    - FirebaseCore
+    - FirebaseCoreExtension
+    - FirebaseCoreInternal
+    - FirebaseCrashlytics
+    - FirebaseFunctions
+    - FirebaseInstallations
+    - FirebaseMessaging
+    - FirebaseMessagingInterop
+    - FirebaseRemoteConfig
+    - FirebaseRemoteConfigInterop
+    - FirebaseSessions
+    - FirebaseSharedSwift
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleUtilities
+    - GTMSessionFetcher
+    - GzipSwift
+    - JSONRPCKit
+    - Kanna
+    - Kingfisher
+    - nanopb
+    - PaperTrailLumberjack
+    - PromiseKit
+    - PromisesObjC
+    - PromisesSwift
+    - R.swift
+    - Realm
+    - RealmSwift
+    - secp256k1_ios
+    - SipHash
+    - StatefulViewController
+    - SwiftProtobuf
+    - SwiftyJSON
+    - TrustWalletCore
+    - Wormholy
+
+EXTERNAL SOURCES:
+  AlphaWalletAddress:
+    :path: "."
+  AlphaWalletAttestation:
+    :path: "."
+  AlphaWalletCore:
+    :path: "."
+  AlphaWalletENS:
+    :path: "."
+  AlphaWalletFoundation:
+    :path: "."
+  AlphaWalletGoBack:
+    :path: "."
+  AlphaWalletHardwareWallet:
+    :path: "."
+  AlphaWalletLogger:
+    :path: "."
+  AlphaWalletNotifications:
+    :path: "."
+  AlphaWalletOpenSea:
+    :path: "."
+  AlphaWalletShareExtensionCore:
+    :path: "."
+  AlphaWalletTrackAPICalls:
+    :path: "."
+  AlphaWalletTrustWalletCoreExtensions:
+    :path: "."
+  AlphaWalletWeb3:
+    :path: "."
+  AlphaWalletWeb3Provider:
+    :commit: bdb38b06eeedeb4ca1e32d3ecd81783b5116ae68
+    :git: https://github.com/AlphaWallet/AlphaWallet-web3-provider
+  composeApp:
+    :path: "../composeApp"
+  EthereumABI:
+    :commit: 877b77e8e7cbc54ab0712d509b74fec21b79d1bb
+    :git: https://github.com/AlphaWallet/EthereumABI.git
+  Result:
+    :commit: 2770f7ffe73107a896ece0c15dbd7b98169b8770
+    :git: https://github.com/trainingdeveloperpro/Result
+  TrezorCrypto:
+    :commit: b48a18d86f1e16ab8bc532e2b63bceece81b6512
+    :git: https://github.com/trainingdeveloperpro/trezor-crypto-ios
+    :submodules: true
+  TrustKeystore:
+    :commit: 72389a7ade614e6cf53fde51d7b2dbe50b2795ae
+    :git: https://github.com/trainingdeveloperpro/latest-keystore-snapshot
+  WalletConnectSwift:
+    :branch: alphaWallet
+    :git: https://github.com/AlphaWallet/WalletConnectSwift.git
+
+CHECKOUT OPTIONS:
+  AlphaWalletWeb3Provider:
+    :commit: bdb38b06eeedeb4ca1e32d3ecd81783b5116ae68
+    :git: https://github.com/AlphaWallet/AlphaWallet-web3-provider
+  EthereumABI:
+    :commit: 877b77e8e7cbc54ab0712d509b74fec21b79d1bb
+    :git: https://github.com/AlphaWallet/EthereumABI.git
+  Result:
+    :commit: 2770f7ffe73107a896ece0c15dbd7b98169b8770
+    :git: https://github.com/trainingdeveloperpro/Result
+  TrezorCrypto:
+    :commit: b48a18d86f1e16ab8bc532e2b63bceece81b6512
+    :git: https://github.com/trainingdeveloperpro/trezor-crypto-ios
+    :submodules: true
+  TrustKeystore:
+    :commit: 72389a7ade614e6cf53fde51d7b2dbe50b2795ae
+    :git: https://github.com/trainingdeveloperpro/latest-keystore-snapshot
+  WalletConnectSwift:
+    :commit: cb8dfc428ec70499a585c43e33a5e5c695b135a2
+    :git: https://github.com/AlphaWallet/WalletConnectSwift.git
+
+SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  AlphaWalletAddress: 7249cd4f820d2b33ed6146df4b24094fe28636c2
+  AlphaWalletAttestation: 3b9a68be5ec5d62a35b0974086b83c0bf6f944ae
+  AlphaWalletCore: 5f79762f703e23ace0f67142caee54b1fdc81443
+  AlphaWalletENS: 918f0841ec4638638bf9a454ff04049519b003f3
+  AlphaWalletFoundation: 7151153f3184dbc8ab238afbef5acdbc884099f8
+  AlphaWalletGoBack: 8e615083e19ca77ca849b99bd490855c2a3f34ed
+  AlphaWalletHardwareWallet: 91d2e857dba874cd041c5d31adce7c50a75e98aa
+  AlphaWalletLogger: d27c1f461ca58ca7efc10ff3b0473056c4d9804b
+  AlphaWalletNotifications: f28ece71191eb74e767cf8456f952223a307d185
+  AlphaWalletOpenSea: 1890a9de2ffae819a8a10e66c89aa5b3810e5bbb
+  AlphaWalletShareExtensionCore: 2daeac7a584417d549166d9dadc5fb7ec663113a
+  AlphaWalletTrackAPICalls: 189feb311c90f1fd806eb6f1c9d6e1301973abe1
+  AlphaWalletTrustWalletCoreExtensions: 382729508ffcc948fbefa2a851b5a87ad63f2ae4
+  AlphaWalletWeb3: 67b47edbc3c60b46fd147c835a1f618cd5eca4fe
+  AlphaWalletWeb3Provider: 7ca1e1c1dc841dc1915f970daace48bf34931655
+  APIKit: 9e1a4069608bf0ae5238811e6cfc26928ad4d01e
+  Apollo: 204819ea82022fbc59ad05056820df867f19bd02
+  AppCheckCore: cc8fd0a3a230ddd401f326489c99990b013f0c4f
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  BlockiesSwift: 22d8d56dd187e6bfd16cb8c8fbd4fd4896c3e65d
+  CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
+  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
+  composeApp: cd0579cd1dcbf4779bb33e2b4d0c40b3a7e1f0d4
+  CryptoSwift: 967f37cea5a3294d9cce358f78861652155be483
+  EthereumABI: c021720744d260b87def6aa45d94554d260cb5a9
+  EthereumAddress: 39fe8e11cf04e4e9902b55ae653dbc4e0aee5f30
+  Firebase: 374a441a91ead896215703a674d58cdb3e9d772b
+  FirebaseABTesting: 663ece168d2d65a31f71603d71937e326020a887
+  FirebaseAnalytics: 7114c698cac995602e3b1b96663473e50d54d6e7
+  FirebaseAppCheck: 44803909e253d677481e9e16eb719b0f58a7ddc2
+  FirebaseAppCheckInterop: 347aa09a805219a31249b58fc956888e9fcb314b
+  FirebaseAuthInterop: a919d415797d23b7bfe195a04f322b86c65020ef
+  FirebaseCore: 48b0dd707581cf9c1a1220da68223fb0a562afaa
+  FirebaseCoreExtension: 2d77d6430c16cf43ca2b04608302ed02b3598361
+  FirebaseCoreInternal: d98ab91e2d80a56d7b246856a8885443b302c0c2
+  FirebaseCrashlytics: b21c665fb50138766480bce73ebdb1aa30f7f300
+  FirebaseFunctions: 6c4f1d143d3dc6ca1b5d9f4e042408ede2eb1016
+  FirebaseInstallations: efc0946fc756e4d22d8113f7c761948120322e8c
+  FirebaseMessaging: e1aca1fcc23e8b9eddb0e33f375ff90944623021
+  FirebaseMessagingInterop: d768073b71144b7bceadfec019d3dc49c743d53e
+  FirebaseRemoteConfig: ee5161282c4e857ad81c0197cd8baec9d5dfef0e
+  FirebaseRemoteConfigInterop: e75e348953352a000331eb77caf01e424248e176
+  FirebaseSessions: 9529d14180868e29a8da164b3a729c036204918b
+  FirebaseSharedSwift: a4e5dfca3e210633bb3a3dfb94176c019211948b
+  GoogleAppMeasurement: 6a9e6317b6a6d810ad03d4a66564ca6c4c5818a3
+  GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
+  GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
+  GTMSessionFetcher: 923b710231ad3d6f3f0495ac1ced35421e07d9a6
+  GzipSwift: 893f3e48e597a1a4f62fafcb6514220fcf8287fa
+  JSONRPCKit: b2991f2f242d72022083f9d869140dabd26d65c7
+  Kanna: 6ecbd674bcbef2766a2acf80e99d1174440c5b9c
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
+  PaperTrailLumberjack: 449587968d5aeb3eab2d4de041ffc61ee2d49f25
+  PromiseKit: 32c36425387e9cfc7f1206f27bfd906d0b53c0d6
+  PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
+  PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
+  R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
+  Realm: 3fd136cb4c83a927482a7f1612496d37beed3cf5
+  RealmSwift: 513d4dcbf5bfc4d573454088b592685fc48dd716
+  Result: 6cf204046fa88d33a079691dddc97aeb9566722f
+  secp256k1_ios: ac9ef04e761f43c58012b28548afa91493761f17
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
+  StatefulViewController: 4803bf900d44de26074344998e10e041113b5931
+  SwiftProtobuf: c3c12645230d9b09c72267e0de89468c5543bd86
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TrezorCrypto: 302829d214be68dd708a0b96509865aca339c8db
+  TrustKeystore: dc559b08a6971749456635c09594d4240c255755
+  TrustWalletCore: a92d85baa15932279cce925559e93695558cafdd
+  WalletConnectSwift: 6309bf3011b0b30e3e9d1e7449535302a9240f71
+  Wormholy: ab1c8c2f02f58587a0941deb0088555ffbf039a1
+
+PODFILE CHECKSUM: 98d799d4a96844e2c4e43d684cc5328f12884d15
+
+COCOAPODS: 1.16.2

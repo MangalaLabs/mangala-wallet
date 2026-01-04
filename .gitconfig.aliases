@@ -1,0 +1,27 @@
+[alias]
+    co-all = "!f() { \
+        git checkout \"$1\" && \
+        git submodule foreach --quiet \"git checkout '$1' 2>/dev/null || echo 'Branch $1 not found in ' \\$name\"; \
+    }; f"
+
+    branch-all = "!git branch --show-current && git submodule foreach --quiet 'echo \"  $name: $(git branch --show-current)\"'"
+
+    sync-branches = "!git submodule foreach --quiet 'git checkout $(git -C $toplevel rev-parse --abbrev-ref HEAD)'"
+
+    create-branch-all = "!f() { \
+        if [ -z \"$1\" ]; then \
+            echo 'Usage: git create-branch-all <branch-name>'; \
+            return 1; \
+        fi; \
+        echo 'Creating branch \"'$1'\" in main repository...'; \
+        git checkout -b \"$1\" && \
+        echo 'Creating branch \"'$1'\" in submodules...'; \
+        git submodule foreach --quiet \"git checkout -b '$1' && echo '  Created branch $1 in ' \\$name || echo '  Failed to create branch $1 in ' \\$name\"; \
+    }; f"
+
+    push-all = "!f() { \
+        echo 'Pushing changes in submodules...'; \
+        git submodule foreach --quiet 'git push && echo \"  Pushed changes in $name\" || echo \"  Failed to push in $name (no upstream branch?)\"'; \
+        echo 'Pushing changes in main repository...'; \
+        git push; \
+    }; f"

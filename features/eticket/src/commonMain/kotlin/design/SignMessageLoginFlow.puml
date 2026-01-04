@@ -1,0 +1,19 @@
+@startuml
+actor User as user
+participant "Front End" as frontend
+participant "Blockchain" as blockchain
+participant "Back End" as backend
+
+user -> frontend ++: click login on Onboard screen
+frontend -> frontend: create show sign message function
+frontend --> user --++: show sign message dialog
+user -> frontend --++: click sign message
+frontend --> user --++: show screen input pin to validate
+user -> frontend --++: input pin
+frontend -> frontend: check pin
+frontend -> blockchain --++: sign message
+blockchain --> frontend --++: return sign message transaction hash
+frontend -> backend --++: call api login
+backend --> frontend --++: response token
+frontend --> user --: login success
+@enduml

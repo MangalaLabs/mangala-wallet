@@ -1,0 +1,256 @@
+@startuml Mangala Wallet Use Case Diagram
+
+!theme plain
+skinparam actor {
+    BackgroundColor lightblue
+    BorderColor darkblue
+}
+skinparam usecase {
+    BackgroundColor lightgray
+    BorderColor black
+}
+
+' Actors
+:User: as User
+:Cold Wallet User: as ColdUser
+:DApp User: as DAppUser
+:System: as System
+
+' Authentication & Setup Use Cases
+rectangle "Authentication & Setup" {
+    (Authenticate with PIN/Biometrics) as UC1
+    (Setup New PIN) as UC2
+    (Enable Biometric Authentication) as UC3
+    (Recover Forgotten PIN) as UC4
+    (Create New Wallet) as UC5
+    (Backup Wallet with Recovery Phrase) as UC6
+    (Restore Wallet from Recovery Phrase) as UC7
+}
+
+' Wallet Management Use Cases
+rectangle "Wallet Management" {
+    (View Portfolio Overview) as UC8
+    (Manage Multiple Accounts) as UC9
+    (Add New Account) as UC10
+    (Import Account via Private Key) as UC11
+    (View Account Details) as UC12
+    (Sync Accounts Between Devices) as UC13
+    (View Transaction History) as UC14
+    (Filter Transaction History) as UC15
+}
+
+' Token Operations Use Cases
+rectangle "Token Operations" {
+    (Send Cryptocurrency) as UC16
+    (Receive Cryptocurrency) as UC17
+    (Swap Tokens) as UC18
+    (Select Token for Operations) as UC19
+    (Set Transaction Amount) as UC20
+    (Configure Transaction Fees) as UC21
+    (Verify and Confirm Transaction) as UC22
+    (View Transaction Success) as UC23
+}
+
+' NFT Management Use Cases
+rectangle "NFT Management" {
+    (View NFT Collection) as UC24
+    (Import New NFT) as UC25
+    (Send NFT to Another Address) as UC26
+    (View NFT Details) as UC27
+    (Filter NFTs by Chain) as UC28
+}
+
+' Antelope Blockchain Features Use Cases
+rectangle "Antelope Blockchain Features" {
+    (Manage Antelope Account Resources) as UC29
+    (Stake/Unstake CPU and NET) as UC30
+    (Buy/Sell RAM) as UC31
+    (Transfer RAM) as UC32
+    (Rent Resources via REX) as UC33
+    (Power Up Resources) as UC34
+    (Manage Account Permissions) as UC35
+    (Create/Update Permissions) as UC36
+    (Link/Unlink Authorizations) as UC37
+    (Create Multisig Proposals) as UC38
+    (Approve/Reject Multisig Proposals) as UC39
+    (Backup Antelope Account) as UC40
+    (Create EOS Account via EVM) as UC41
+    (Import EOS Account via EVM) as UC42
+}
+
+' Settings & Configuration Use Cases
+rectangle "Settings & Configuration" {
+    (Change App Theme) as UC43
+    (Select Language) as UC44
+    (Set Default Currency) as UC45
+    (Manage Custom Networks) as UC46
+    (Configure Notifications) as UC47
+    (Manage Security Settings) as UC48
+    (Manage Contacts) as UC49
+    (Add/Edit Contacts) as UC50
+    (View App Information) as UC51
+}
+
+' Browser & DApp Integration Use Cases
+rectangle "Browser & DApp Integration" {
+    (Browse Web3 Sites) as UC52
+    (Connect to DApps) as UC53
+    (Sign Messages for DApps) as UC54
+    (Confirm DApp Transactions) as UC55
+    (Switch Blockchain Networks) as UC56
+    (Manage WalletConnect Sessions) as UC57
+    (Sign ESR Requests) as UC58
+}
+
+' Cold Wallet Features Use Cases
+rectangle "Cold Wallet Features" {
+    (Generate Transaction QR Code) as UC59
+    (Scan Transaction QR Code) as UC60
+    (Sign Transactions Offline) as UC61
+    (Display Signed Transaction QR) as UC62
+    (Sync Account Data via QR) as UC63
+}
+
+' Crypto Payments Use Cases
+rectangle "Crypto Payments" {
+    (Pay with Cryptocurrency) as UC64
+    (Select Payment Method) as UC65
+    (Select Payment Network) as UC66
+    (Configure Token Allowance) as UC67
+    (Review Payment Details) as UC68
+    (Handle Payment Errors) as UC69
+}
+
+' Account Creation Use Cases
+rectangle "Account Creation" {
+    (Create Antelope Account) as UC70
+    (Select Account Type) as UC71
+    (Choose Account Name) as UC72
+    (Pay for Account Creation) as UC73
+    (Create Account for Friend) as UC74
+    (Purchase Account via IAP) as UC75
+}
+
+' User Relationships
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+User --> UC10
+User --> UC11
+User --> UC12
+User --> UC13
+User --> UC14
+User --> UC15
+User --> UC16
+User --> UC17
+User --> UC18
+User --> UC19
+User --> UC20
+User --> UC21
+User --> UC22
+User --> UC23
+User --> UC24
+User --> UC25
+User --> UC26
+User --> UC27
+User --> UC28
+User --> UC29
+User --> UC30
+User --> UC31
+User --> UC32
+User --> UC33
+User --> UC34
+User --> UC35
+User --> UC36
+User --> UC37
+User --> UC38
+User --> UC39
+User --> UC40
+User --> UC41
+User --> UC42
+User --> UC43
+User --> UC44
+User --> UC45
+User --> UC46
+User --> UC47
+User --> UC48
+User --> UC49
+User --> UC50
+User --> UC51
+User --> UC70
+User --> UC71
+User --> UC72
+User --> UC73
+User --> UC74
+User --> UC75
+
+' Cold Wallet User Relationships
+ColdUser --> UC59
+ColdUser --> UC60
+ColdUser --> UC61
+ColdUser --> UC62
+ColdUser --> UC63
+ColdUser --> UC1
+ColdUser --> UC8
+ColdUser --> UC12
+
+' DApp User Relationships
+DAppUser --> UC52
+DAppUser --> UC53
+DAppUser --> UC54
+DAppUser --> UC55
+DAppUser --> UC56
+DAppUser --> UC57
+DAppUser --> UC58
+DAppUser --> UC64
+DAppUser --> UC65
+DAppUser --> UC66
+DAppUser --> UC67
+DAppUser --> UC68
+DAppUser --> UC69
+
+' System Relationships
+System --> UC13
+System --> UC23
+System --> UC63
+
+' Include Relationships
+UC16 ..> UC19 : <<include>>
+UC16 ..> UC20 : <<include>>
+UC16 ..> UC21 : <<include>>
+UC16 ..> UC22 : <<include>>
+UC18 ..> UC19 : <<include>>
+UC18 ..> UC22 : <<include>>
+UC26 ..> UC22 : <<include>>
+UC5 ..> UC6 : <<include>>
+UC10 ..> UC71 : <<include>>
+UC38 ..> UC22 : <<include>>
+UC64 ..> UC65 : <<include>>
+UC64 ..> UC66 : <<include>>
+UC49 ..> UC50 : <<include>>
+UC70 ..> UC71 : <<include>>
+UC70 ..> UC72 : <<include>>
+UC70 ..> UC73 : <<include>>
+
+' Extend Relationships
+UC4 ..> UC1 : <<extend>>
+UC7 ..> UC6 : <<extend>>
+UC61 ..> UC22 : <<extend>>
+UC59 ..> UC55 : <<extend>>
+UC15 ..> UC14 : <<extend>>
+UC28 ..> UC24 : <<extend>>
+UC30 ..> UC29 : <<extend>>
+UC31 ..> UC29 : <<extend>>
+UC33 ..> UC29 : <<extend>>
+UC34 ..> UC29 : <<extend>>
+UC36 ..> UC35 : <<extend>>
+UC37 ..> UC35 : <<extend>>
+UC69 ..> UC68 : <<extend>>
+
+@enduml

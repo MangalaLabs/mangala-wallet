@@ -1,0 +1,119 @@
+graph TB
+    subgraph "Function Calling System"
+        subgraph "Function Registry"
+            FR[Function Registry]
+            FD1[GetContactsFunction]
+            FD2[CreateContactFunction]
+            FD3[UpdateContactFunction]
+            FD4[DeleteContactFunction]
+            FD5[ValidateAddressFunction]
+            FDC[... Custom Functions]
+        end
+        
+        subgraph "Function Definition"
+            FDef[FunctionDefinition]
+            FName[name: String]
+            FDesc[description: String]
+            FParams[parameters: JsonObject]
+            FConfirm[requiresConfirmation: Boolean]
+        end
+        
+        subgraph "Function Handler"
+            FH[FunctionHandler Interface]
+            FHDef[definition: FunctionDefinition]
+            FHExec[execute: suspend fun]
+            FHResult[FunctionResult]
+        end
+        
+        subgraph "Confirmation System"
+            CR[ConfirmationRenderer Interface]
+            CRRender[@Composable render]
+            CRDialog[Confirmation Dialog]
+            CRApprove[User Approves]
+            CRCancel[User Cancels]
+        end
+        
+        subgraph "Configuration"
+            FC[FunctionConfigSource]
+            FCLocal[LocalConfigSource]
+            FCRemote[RemoteConfigSource]
+            FCRefresh[Auto Refresh]
+        end
+        
+        subgraph "Execution Flow"
+            AI[AI Provider]
+            FCMsg[FunctionCallMessage]
+            FExec[Function Executor]
+            FResult[Function Result]
+            AIResp[AI Response]
+        end
+    end
+    
+    %% Registry connections
+    FR --> FD1
+    FR --> FD2
+    FR --> FD3
+    FR --> FD4
+    FR --> FD5
+    FR --> FDC
+    
+    %% Function definition structure
+    FDef --> FName
+    FDef --> FDesc
+    FDef --> FParams
+    FDef --> FConfirm
+    
+    %% Handler implementation
+    FH --> FHDef
+    FH --> FHExec
+    FHExec --> FHResult
+    FHDef -.-> FDef
+    
+    %% Confirmation flow
+    FConfirm -->|true| CR
+    CR --> CRRender
+    CRRender --> CRDialog
+    CRDialog --> CRApprove
+    CRDialog --> CRCancel
+    
+    %% Configuration
+    FC --> FCLocal
+    FC --> FCRemote
+    FCRemote --> FCRefresh
+    FC --> FR
+    
+    %% Execution flow
+    AI -->|detects function| FCMsg
+    FCMsg --> FExec
+    FExec -->|lookup| FR
+    FExec -->|get handler| FH
+    
+    FH -->|check confirmation| FConfirm
+    
+    CRApprove -->|continue| FHExec
+    CRCancel -->|abort| AI
+    
+    FHExec --> FResult
+    FResult --> AI
+    AI --> AIResp
+    
+    %% Function examples with details
+    note over FD1: Get all contacts
+    note over FD2: Create new contact<br/>Requires: name, network, address
+    note over FD3: Update existing contact<br/>Requires: contactId, fields
+    note over FD4: Delete contact<br/>Requires confirmation
+    note over FD5: Validate blockchain address
+    
+    classDef registry fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    classDef definition fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    classDef handler fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef confirmation fill:#fce4ec,stroke:#e91e63,stroke-width:2px
+    classDef config fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef flow fill:#e0f2f1,stroke:#009688,stroke-width:2px
+    
+    class FR,FD1,FD2,FD3,FD4,FD5,FDC registry
+    class FDef,FName,FDesc,FParams,FConfirm definition
+    class FH,FHDef,FHExec,FHResult handler
+    class CR,CRRender,CRDialog,CRApprove,CRCancel confirmation
+    class FC,FCLocal,FCRemote,FCRefresh config
+    class AI,FCMsg,FExec,FResult,AIResp flow

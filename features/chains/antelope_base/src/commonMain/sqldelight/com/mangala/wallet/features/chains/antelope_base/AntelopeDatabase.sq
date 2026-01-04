@@ -1,0 +1,716 @@
+import app.cash.paging.LoadType;
+import com.mangala.wallet.features.chains.antelope_base.domain.model.cache.AntelopeRemoteKeyTargetEntity;
+import kotlin.Long;
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE IF NOT EXISTS AntelopeAccountEntity (
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    is_active INTEGER NOT NULL,
+--     Account create flags
+    create_account_state TEXT NOT NULL,
+    is_temp INTEGER NOT NULL,
+    purchase_token TEXT,
+    purchase_id TEXT,
+--     Balances cache
+    core_liquid_balance TEXT,
+    cpu_limit_max INTEGER,
+    cpu_limit_available INTEGER,
+    cpu_limit_current_used INTEGER,
+    net_limit_max INTEGER,
+    net_limit_available INTEGER,
+    net_limit_current_used INTEGER,
+    ram_quota INTEGER,
+    ram_usage INTEGER,
+    rex_balance TEXT,
+    self_delegated_bandwidth_cpu_weight TEXT,
+    self_delegated_bandwidth_net_weight TEXT,
+    total_resources_net_weight TEXT,
+    total_resources_cpu_weight TEXT,
+    last_updated INTEGER NOT NULL,
+    is_notification_registered INTEGER NOT NULL,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (account_name, blockchain_uid)
+);
+
+selectAllPermanentAccounts:
+SELECT *
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND is_temp = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+selectAllPermanentAccountsBasicInfo:
+SELECT account_name, blockchain_uid
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND is_temp = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+selectAllAccounts:
+SELECT *
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+selectAllAccountsBasicInfo:
+SELECT account_name, blockchain_uid
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+countAllAccounts:
+SELECT COUNT(account_name)
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+countAllPermanentAccounts:
+SELECT COUNT(account_name)
+FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND is_deleted = 0
+  AND is_temp = 0
+  AND (create_account_state != :exclude_create_account_state OR :exclude_create_account_state IS NULL);
+
+selectAccountByName:
+SELECT * FROM AntelopeAccountEntity WHERE is_deleted = 0 AND account_name = ? AND blockchain_uid = ?;
+
+insertAccount:
+INSERT OR IGNORE INTO AntelopeAccountEntity(account_name, blockchain_uid, is_active, is_temp, create_account_state, purchase_token, last_updated, is_notification_registered) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+insertOrReplaceAccount:
+INSERT OR REPLACE INTO AntelopeAccountEntity(account_name, blockchain_uid, is_active, is_temp, create_account_state, purchase_token, last_updated, is_notification_registered, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0);
+
+resetDeletedFlag:
+UPDATE AntelopeAccountEntity SET is_deleted = 0 WHERE account_name = ? AND blockchain_uid = ?;
+
+deleteAccount:
+DELETE FROM AntelopeAccountEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+deleteAccounts:
+DELETE FROM AntelopeAccountEntity
+WHERE blockchain_uid = ?
+  AND create_account_state = ?
+  AND last_updated <= ?;
+
+updateAccountBalance:
+UPDATE AntelopeAccountEntity SET
+core_liquid_balance = ?,
+cpu_limit_max = ?,
+cpu_limit_available = ?,
+cpu_limit_current_used = ?,
+net_limit_max = ?,
+net_limit_available = ?,
+net_limit_current_used = ?,
+ram_quota = ?,
+ram_usage = ?,
+rex_balance = ?,
+self_delegated_bandwidth_cpu_weight = ?,
+self_delegated_bandwidth_net_weight = ?,
+total_resources_net_weight = ?,
+total_resources_cpu_weight = ?,
+last_updated = ?
+WHERE account_name = ? AND blockchain_uid = ?;
+
+updateAccountStatus:
+UPDATE AntelopeAccountEntity SET is_temp = ?, create_account_state = ? WHERE account_name = ? AND blockchain_uid = ?;
+
+updateAccountStatusAndPurchaseToken:
+UPDATE AntelopeAccountEntity SET is_temp = ?, create_account_state = ?, purchase_token = ?, purchase_id = ? WHERE account_name = ? AND blockchain_uid = ?;
+
+updateNotificationRegistered:
+UPDATE AntelopeAccountEntity SET is_notification_registered = ? WHERE account_name = ? AND blockchain_uid = ?;
+
+selectAccountsFailedToRegisterNotification:
+SELECT * FROM AntelopeAccountEntity WHERE is_deleted = 0 AND is_notification_registered = 0 AND is_temp = 0 AND blockchain_uid = ?;
+
+softDeleteAccount:
+UPDATE AntelopeAccountEntity SET is_deleted = 1 WHERE account_name = ? AND blockchain_uid = ?;
+
+selectSoftDeletedAccounts:
+SELECT * FROM AntelopeAccountEntity WHERE is_deleted = 1 AND blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeAccountPermissionEntity (
+    account_name TEXT NOT NULL,
+    permission_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    parent TEXT NOT NULL,
+    PRIMARY KEY (account_name, permission_name, blockchain_uid),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+selectAccountPermissionByAccountAndPermissionName:
+SELECT * FROM AntelopeAccountPermissionEntity WHERE account_name = ? AND permission_name = ? AND blockchain_uid = ?;
+
+selectAccountPermissionsByAccountName:
+SELECT * FROM AntelopeAccountPermissionEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+insertAccountPermission:
+INSERT OR REPLACE INTO AntelopeAccountPermissionEntity(account_name, permission_name, blockchain_uid, parent) VALUES (?, ?, ?, ?);
+
+CREATE TABLE IF NOT EXISTS AntelopeAccountKeyEntity (
+    id TEXT PRIMARY KEY,
+    public_key TEXT NOT NULL,
+    weight INTEGER NOT NULL,
+    account_name TEXT NOT NULL,
+    permission_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    is_synced INTEGER NOT NULL,
+    FOREIGN KEY (account_name, permission_name, blockchain_uid) REFERENCES AntelopeAccountPermissionEntity(account_name, permission_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertAccountKey:
+INSERT OR REPLACE INTO AntelopeAccountKeyEntity(id, public_key, weight, account_name, permission_name, blockchain_uid, is_synced) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectAccountKeyByAccountNameAndPermissionName:
+SELECT * FROM AntelopeAccountKeyEntity WHERE account_name = ? AND permission_name = ? AND blockchain_uid = ?;
+
+selectSyncedAccountKeysByAccountNameAndPermissionName:
+SELECT * FROM AntelopeAccountKeyEntity WHERE account_name = ? AND permission_name = ? AND is_synced = 1 AND blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeRexPoolEntity(
+    blockchain_uid TEXT PRIMARY KEY,
+    total_lent TEXT NOT NULL,
+    total_unlent TEXT NOT NULL,
+    total_rent TEXT NOT NULL,
+    total_lendable TEXT NOT NULL,
+    total_rex TEXT NOT NULL,
+    namebid_proceeds TEXT NOT NULL,
+    loan_num INTEGER NOT NULL,
+    last_updated INTEGER NOT NULL
+);
+
+insertRexPool:
+INSERT OR REPLACE INTO AntelopeRexPoolEntity(blockchain_uid, total_lent, total_unlent, total_rent, total_lendable, total_rex, namebid_proceeds, loan_num, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectRexPool:
+SELECT * FROM AntelopeRexPoolEntity WHERE blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeRexFundEntity(
+    account_name TEXT PRIMARY KEY,
+    blockchain_uid TEXT NOT NULL,
+    balance TEXT NOT NULL,
+    last_updated INTEGER NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertRexFund:
+INSERT OR REPLACE INTO AntelopeRexFundEntity(account_name, blockchain_uid, balance, last_updated) VALUES (?, ?, ?, ?);
+
+selectRexFund:
+SELECT * FROM AntelopeRexFundEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeRexQueueEntity(
+    id TEXT PRIMARY KEY,
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    rex_requested TEXT NOT NULL,
+    proceeds TEXT NOT NULL,
+    stake_change TEXT NOT NULL,
+    order_time INTEGER NOT NULL,
+    last_updated INTEGER NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertRexQueue:
+INSERT OR REPLACE INTO AntelopeRexQueueEntity(id, account_name, blockchain_uid, rex_requested, proceeds, stake_change, order_time, last_updated) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+selectRexQueueByAccountNameAndBlockchainUid:
+SELECT * FROM AntelopeRexQueueEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+deleteRexQueueByAccountNameAndBlockchainUid:
+DELETE FROM AntelopeRexQueueEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeRamMarketEntity (
+    blockchain_uid TEXT PRIMARY KEY,
+    supply TEXT NOT NULL,
+    base_balance TEXT NOT NULL,
+    base_weight TEXT NOT NULL,
+    quote_balance TEXT NOT NULL,
+    quote_weight TEXT NOT NULL,
+    last_updated INTEGER NOT NULL
+);
+
+insertRamMarket:
+INSERT OR REPLACE INTO AntelopeRamMarketEntity (blockchain_uid, supply, base_balance, base_weight, quote_balance, quote_weight, last_updated)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectRamMarketRow:
+SELECT * FROM AntelopeRamMarketEntity WHERE blockchain_uid = ? LIMIT 1;
+
+CREATE TABLE IF NOT EXISTS AntelopeAccountTokenBalanceEntity (
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    key TEXT NOT NULL,
+    currency TEXT NOT NULL,
+    amount REAL NOT NULL,
+    contract TEXT NOT NULL,
+    decimals INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    website TEXT,
+    logo TEXT,
+    token_created_at TEXT NOT NULL,
+    exchange_name TEXT NOT NULL,
+    exchange_price REAL NOT NULL,
+    last_updated INTEGER NOT NULL,
+    PRIMARY KEY (account_name, blockchain_uid, key),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertAccountTokenBalance:
+INSERT OR REPLACE INTO AntelopeAccountTokenBalanceEntity (
+    account_name, blockchain_uid, key, currency, amount, contract, decimals,
+    name, website, logo, token_created_at, exchange_name, exchange_price, last_updated
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectAccountTokenBalance:
+SELECT * FROM AntelopeAccountTokenBalanceEntity
+WHERE account_name = ? AND blockchain_uid = ?;
+
+deleteAccountTokenBalanceByAccount:
+DELETE FROM AntelopeAccountTokenBalanceEntity
+WHERE account_name = ? AND blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeTableRowsPowerUpEntity (
+    blockchain_uid TEXT NOT NULL,
+    cpu_weight TEXT NOT NULL,
+    net_weight TEXT NOT NULL,
+    cpu_utilization TEXT NOT NULL,
+    net_utilization TEXT NOT NULL,
+    cpu_adjusted_utilization TEXT NOT NULL,
+    net_adjusted_utilization TEXT NOT NULL,
+    cpu_decay_secs INTEGER NOT NULL,
+    net_decay_secs INTEGER NOT NULL,
+    cpu_min_price TEXT NOT NULL,
+    net_min_price TEXT NOT NULL,
+    cpu_max_price TEXT NOT NULL,
+    net_max_price TEXT NOT NULL,
+    cpu_exponent TEXT NOT NULL,
+    net_exponent TEXT NOT NULL,
+    cpu_utilization_timestamp TEXT NOT NULL,
+    net_utilization_timestamp TEXT NOT NULL,
+    powerup_days INTEGER NOT NULL,
+    min_powerup_fee TEXT NOT NULL,
+    last_updated INTEGER NOT NULL,
+    PRIMARY KEY (blockchain_uid)
+);
+
+insertTableRowsPowerUp:
+INSERT OR REPLACE INTO AntelopeTableRowsPowerUpEntity (
+    blockchain_uid, cpu_weight, net_weight, cpu_utilization, net_utilization, cpu_adjusted_utilization, net_adjusted_utilization, cpu_decay_secs, net_decay_secs, cpu_min_price, net_min_price, cpu_max_price, net_max_price, cpu_exponent, net_exponent, cpu_utilization_timestamp, net_utilization_timestamp, powerup_days, min_powerup_fee, last_updated
+) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectTableRowsPowerUp:
+SELECT * FROM AntelopeTableRowsPowerUpEntity
+WHERE blockchain_uid = ?;
+
+deleteTableRowsPowerUp:
+DELETE FROM AntelopeTableRowsPowerUpEntity
+WHERE blockchain_uid = ?;
+
+CREATE TABLE IF NOT EXISTS AntelopeAnchorLinkSessionEntity(
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    session_name TEXT NOT NULL,
+    session_url TEXT NOT NULL,
+    session_receive_public_key TEXT NOT NULL,
+    session_request_public_key TEXT NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertAnchorLinkSession:
+INSERT OR REPLACE INTO AntelopeAnchorLinkSessionEntity(account_name, blockchain_uid, session_name, session_url, session_receive_public_key, session_request_public_key) VALUES (?, ?, ?, ?, ?, ?);
+
+selectAnchorLinkSession:
+SELECT * FROM AntelopeAnchorLinkSessionEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+selectAnchorLinkSessionByUrl:
+SELECT * FROM AntelopeAnchorLinkSessionEntity WHERE session_url = ?;
+
+selectAnchorLinkSessionsByBlockchainUid:
+SELECT * FROM AntelopeAnchorLinkSessionEntity WHERE blockchain_uid = ?;
+
+deleteAnchorLinkSession:
+DELETE FROM AntelopeAnchorLinkSessionEntity WHERE account_name = ? AND blockchain_uid = ?;
+
+-- TABLE ANTELOPE ACTIONS
+CREATE TABLE IF NOT EXISTS AntelopeActionsEntity (
+    trxId TEXT PRIMARY KEY,
+    actionTrace TEXT AS List<String> NOT NULL,
+    accountActionSeq TEXT AS List<Long> NOT NULL,
+    blockNum TEXT AS List<Long> NOT NULL,
+    accountName TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    FOREIGN KEY (accountName, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+countActions:
+SELECT COUNT(*)
+FROM AntelopeActionsEntity
+WHERE accountName = :accountName AND blockchain_uid = :blockchain_uid;
+
+getAntelopeActionsByAccountNamePaged:
+SELECT * FROM AntelopeActionsEntity
+WHERE accountName = :accountName AND blockchain_uid = :blockchain_uid
+ORDER BY blockNum DESC
+LIMIT :limit OFFSET :offset;
+
+insertAntelopeAction:
+INSERT OR REPLACE INTO AntelopeActionsEntity(
+    trxId,
+    actionTrace,
+    accountActionSeq,
+    blockNum,
+    accountName,
+    blockchain_uid
+) VALUES (?, ?, ?, ?, ?, ?);
+
+
+-- TABLE ANTELOPE ACTION ABI
+CREATE TABLE IF NOT EXISTS AntelopeActionAbiEntity (
+    action_name TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    field_name TEXT NOT NULL,
+    field_type TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    stt INTEGER NOT NULL,
+    is_variant INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (action_name, account_name, field_name)
+);
+
+insertActionsAbi:
+INSERT OR REPLACE INTO AntelopeActionAbiEntity(action_name, account_name, field_name, field_type, created_at, stt, is_variant)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+
+getActionAbiByAccountNameAndActionName:
+SELECT * FROM AntelopeActionAbiEntity
+WHERE account_name = ? AND action_name = ?
+ORDER BY stt ASC;
+
+
+getActionAbiByAccountName:
+SELECT * FROM AntelopeActionAbiEntity
+WHERE account_name = ?;
+
+getActionAbiByActionName:
+SELECT * FROM AntelopeActionAbiEntity
+WHERE action_name = ?;
+
+deleteActionAbiByAccountName:
+DELETE FROM AntelopeActionAbiEntity
+WHERE account_name = ?;
+
+
+
+-- TABLE ANTELOPE ACTIONS
+CREATE TABLE IF NOT EXISTS AntelopeActionEntity (
+    actionName TEXT NOT NULL,
+    accountName TEXT NOT NULL,
+    lastTimeUpdatedCode INTEGER NOT NULL,
+    PRIMARY KEY (actionName, accountName)
+);
+
+
+insertActions:
+INSERT OR REPLACE INTO AntelopeActionEntity(actionName, accountName, lastTimeUpdatedCode)
+VALUES (?, ?, ?);
+
+
+deleteActionsByAccountName:
+DELETE FROM AntelopeActionEntity
+WHERE accountName = ?;
+
+
+getActionsByAccountName:
+SELECT * FROM AntelopeActionEntity
+WHERE accountName = ?;
+
+getActionTraceFromAntelopeActionByTrxId:
+SELECT actionTrace FROM AntelopeActionsEntity WHERE trxId = ?;
+
+-- TABLE ANTELOPE ACTION TRACE
+CREATE TABLE IF NOT EXISTS AntelopeActionTraceEntity (
+    trx_id TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    timestamp TEXT NOT NULL,
+    block_num INTEGER NOT NULL,
+    block_id TEXT NOT NULL,
+    act TEXT NOT NULL,
+    receipts TEXT NOT NULL,
+    global_sequence INTEGER NOT NULL,
+    producer TEXT NOT NULL,
+    action_ordinal INTEGER NOT NULL,
+    creator_action_ordinal INTEGER NOT NULL,
+    cpu_usage_us INTEGER NOT NULL,
+    net_usage_words INTEGER NOT NULL,
+    signatures TEXT NOT NULL,
+    account_action_seq INTEGER NOT NULL,
+    action_trace TEXT NOT NULL,
+    block_time TEXT NOT NULL,
+    global_action_sequence INTEGER NOT NULL,
+    irreversible INTEGER NOT NULL,
+    transaction_type TEXT NOT NULL,
+    PRIMARY KEY (trx_id, account_name, blockchain_uid, global_sequence),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertAntelopeActionTrace:
+INSERT OR REPLACE INTO AntelopeActionTraceEntity(
+    trx_id,
+    account_name,
+    blockchain_uid,
+    timestamp,
+    block_num,
+    block_id,
+    act,
+    receipts,
+    global_sequence,
+    producer,
+    action_ordinal,
+    creator_action_ordinal,
+    cpu_usage_us,
+    net_usage_words,
+    signatures,
+    account_action_seq,
+    action_trace,
+    block_time,
+    global_action_sequence,
+    irreversible,
+    transaction_type
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+selectAntelopeActionTraceByType:
+SELECT * FROM AntelopeActionTraceEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND transaction_type = :transactionType;
+
+-- TABLE ANTELOPE ACTION TRACE CACHE METADATA
+CREATE TABLE IF NOT EXISTS AntelopeActionTraceCacheMetadataEntity(
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    transaction_type TEXT NOT NULL,
+    last_updated INTEGER NOT NULL,
+    lookup_before_timestamp TEXT NOT NULL,
+    past_data_load_finished INTEGER NOT NULL,
+    PRIMARY KEY (account_name, blockchain_uid, transaction_type),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+insertAntelopeActionTraceCacheMetadata:
+INSERT OR REPLACE INTO AntelopeActionTraceCacheMetadataEntity(
+    account_name,
+    blockchain_uid,
+    transaction_type,
+    last_updated,
+    lookup_before_timestamp,
+    past_data_load_finished
+) VALUES (?, ?, ?, ?, ?, ?);
+
+selectAntelopeActionTraceCacheMetadata:
+SELECT * FROM AntelopeActionTraceCacheMetadataEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND transaction_type = :transactionType;
+
+-- TABLE ANTELOPE RAM OHLC
+CREATE TABLE IF NOT EXISTS AntelopeRamOhlcEntity (
+    blockchain_uid TEXT NOT NULL,
+    sampling_interval TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    open REAL NOT NULL,
+    high REAL NOT NULL,
+    low REAL NOT NULL,
+    close REAL NOT NULL,
+    usd REAL NOT NULL,
+    volume INTEGER NOT NULL,
+    last_updated INTEGER NOT NULL,
+    PRIMARY KEY (blockchain_uid, sampling_interval, timestamp)
+);
+
+insertRamOhlc:
+INSERT OR REPLACE INTO AntelopeRamOhlcEntity (blockchain_uid, sampling_interval, timestamp, open, high, low, close, usd, volume, last_updated)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteRamOhlcByBlockchainUidAndSamplingInterval:
+DELETE FROM AntelopeRamOhlcEntity WHERE blockchain_uid = ? AND sampling_interval = ?;
+
+selectRamOhlcByBlockchainUidAndSamplingInterval:
+SELECT * FROM AntelopeRamOhlcEntity WHERE blockchain_uid = ? AND sampling_interval = ?;
+
+-- TABLE ANTELOPE PROPOSAL
+CREATE TABLE IF NOT EXISTS AntelopeProposalEntity (
+    proposal_name TEXT NOT NULL,
+    proposer TEXT NOT NULL,
+    requested_approvals TEXT AS List<String> DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL,
+    actionsName TEXT AS List<String> NOT NULL,
+    is_draft INTEGER NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE,
+    PRIMARY KEY (proposal_name, blockchain_uid, account_name)
+);
+
+countProposals:
+SELECT COUNT(*)
+FROM AntelopeProposalEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND proposer = :accountName;
+
+getAntelopeProposalsByAccountNamePaged:
+SELECT * FROM AntelopeProposalEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND proposer = :accountName
+LIMIT :limit OFFSET :offset;
+
+upsertProposal {
+    UPDATE AntelopeProposalEntity
+    SET proposer = :proposer,
+        blockchain_uid = :blockchain_uid,
+        created_at = :created_at,
+        expires_at = :expires_at,
+        actionsName = :actionsName,
+        account_name = :accountName,
+        is_draft = :isDraft
+    WHERE proposal_name = :proposal_name AND blockchain_uid = :blockchain_uid AND created_at < :created_at;
+
+    INSERT OR IGNORE INTO AntelopeProposalEntity(proposal_name, proposer, blockchain_uid, account_name, created_at, expires_at, actionsName, is_draft)
+    VALUES (:proposal_name, :proposer, :blockchain_uid, :accountName, :created_at, :expires_at, :actionsName, :isDraft);
+}
+
+insertOrReplaceProposal:
+INSERT OR REPLACE INTO AntelopeProposalEntity(
+    proposal_name, proposer, blockchain_uid, account_name, created_at, expires_at, actionsName, is_draft, requested_approvals
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteProposal:
+DELETE FROM AntelopeProposalEntity WHERE proposal_name = ? AND blockchain_uid = ? AND account_name = ?;
+
+invalidateCachedProposals:
+DELETE FROM AntelopeProposalEntity
+WHERE is_draft = 0 AND account_name = :accountName
+AND blockchain_uid = :blockchainUid AND proposer = :accountName;
+
+-- Approval
+countApprovals:
+SELECT COUNT(*)
+FROM AntelopeProposalEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND proposer != :accountName;
+
+getAntelopeApprovalsByAccountNamePaged:
+SELECT * FROM AntelopeProposalEntity
+WHERE account_name = :accountName AND blockchain_uid = :blockchain_uid AND proposer != :accountName
+LIMIT :limit OFFSET :offset;
+
+invalidateCachedApprovals:
+DELETE FROM AntelopeProposalEntity
+WHERE is_draft = 0 AND account_name = :accountName
+AND blockchain_uid = :blockchainUid AND proposer != :accountName;
+
+CREATE TABLE IF NOT EXISTS AntelopeRemoteKey (
+    query TEXT NOT NULL,
+    last_requested_key INTEGER DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    target_cache_entity TEXT AS AntelopeRemoteKeyTargetEntity NOT NULL,
+    last_updated_at INTEGER NOT NULL,
+    end_of_pagination_reached INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (query, blockchain_uid, target_cache_entity)
+);
+
+insertAntelopeRemoteKey:
+INSERT OR REPLACE INTO AntelopeRemoteKey(query, last_requested_key, blockchain_uid, target_cache_entity, last_updated_at, end_of_pagination_reached)
+VALUES (?, ?, ?, ?, ?, ?);
+
+getAntelopeRemoteKey:
+SELECT * FROM AntelopeRemoteKey
+WHERE query = :query AND blockchain_uid = :blockchain_uid AND target_cache_entity = :target_cache_entity;
+
+deleteAntelopeRemoteKey:
+DELETE FROM AntelopeRemoteKey
+WHERE query = :query AND blockchain_uid = :blockchain_uid AND target_cache_entity = :target_cache_entity;
+
+getLastUpdateTimeStamp:
+SELECT last_updated_at FROM AntelopeRemoteKey
+WHERE query = :query AND blockchain_uid = :blockchain_uid AND target_cache_entity = :target_cache_entity
+ORDER BY last_updated_at ASC
+LIMIT 1;
+
+CREATE TABLE IF NOT EXISTS AntelopeMsigProposalDraftEntity(
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- use this as primary key to allow changing the proposal name on save
+    proposal_name TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    proposer_permission_name TEXT NOT NULL,
+    actions_detail_json TEXT NOT NULL,
+    approvers_detail_json TEXT NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE,
+    FOREIGN KEY (proposal_name, blockchain_uid, account_name) REFERENCES AntelopeProposalEntity(proposal_name, blockchain_uid, account_name) ON DELETE CASCADE
+);
+
+insertMsigProposalDraft:
+INSERT OR REPLACE INTO AntelopeMsigProposalDraftEntity(
+    id,
+    proposal_name,
+    account_name,
+    blockchain_uid,
+    proposer_permission_name,
+    actions_detail_json,
+    approvers_detail_json
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectMsigProposalDraftByAccountName:
+SELECT
+    d.id AS id,
+    p.proposal_name AS proposal_name,
+    p.account_name AS account_name,
+    p.proposer AS proposer,
+    p.requested_approvals AS requested_approvals,
+    p.blockchain_uid AS blockchain_uid,
+    p.created_at AS created_at,
+    p.expires_at AS expires_at,
+    p.actionsName AS actions_name,
+    d.proposer_permission_name AS draft_proposer_permission_name,
+    d.actions_detail_json AS draft_actions_detail_json,
+    d.approvers_detail_json AS draft_approvers_detail_json
+FROM
+    AntelopeProposalEntity p
+INNER JOIN
+    AntelopeMsigProposalDraftEntity d
+ON
+    p.account_name = d.account_name
+    AND p.proposal_name = d.proposal_name
+    AND p.blockchain_uid = d.blockchain_uid
+WHERE d.proposal_name = ? AND d.account_name = ? AND d.blockchain_uid = ?;
+
+getDraftProposalExists:
+SELECT COUNT(*) FROM AntelopeMsigProposalDraftEntity WHERE proposal_name = ? AND account_name = ? AND blockchain_uid = ?;
+
+deleteProposalDraft:
+DELETE FROM AntelopeMsigProposalDraftEntity WHERE proposal_name = ? AND account_name = ? AND blockchain_uid = ?;
+
+-- Clear all Antelope cache and global data (non-CASCADE tables)
+clearAllAntelopeRexPools:
+DELETE FROM AntelopeRexPoolEntity;
+
+clearAllAntelopeRamMarkets:
+DELETE FROM AntelopeRamMarketEntity;
+
+clearAllAntelopeTableRowsPowerUp:
+DELETE FROM AntelopeTableRowsPowerUpEntity;
+
+clearAllAntelopeActionAbi:
+DELETE FROM AntelopeActionAbiEntity;
+
+clearAllAntelopeActions:
+DELETE FROM AntelopeActionEntity;
+
+clearAllAntelopeRamOhlc:
+DELETE FROM AntelopeRamOhlcEntity;
+
+clearAllAntelopeRemoteKeys:
+DELETE FROM AntelopeRemoteKey;

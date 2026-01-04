@@ -1,0 +1,67 @@
+{
+  "tools": [
+    {
+      "type": "function",
+      "name": "edit_contact",
+      "description": "Edit an existing contact in the address book",
+      "securityLevel": "require_confirmation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string",
+            "description": "The ID of the contact to edit"
+          },
+          "name": {
+            "type": "string",
+            "description": "Updated contact name"
+          },
+          "blockchain_address_or_account_name": {
+            "type": "string",
+            "description": "Updated blockchain address or blockchain account name for the contact"
+          },
+          "blockchain_network": {
+            "type": "string",
+            "description": "Updated blockchain network corresponding to the address or account name"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Updated notes about the contact"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      }
+    },
+    {
+      "type": "function",
+      "name": "list_contacts",
+      "securityLevel": "none",
+      "description": "List all contacts in the address book",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    },
+    {
+      "type": "function",
+      "name": "delete_contact",
+      "description": "Delete a contact from the address book",
+      "securityLevel": "require_confirmation",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "string",
+            "description": "The ID of the contact to delete"
+          }
+        },
+        "required": [
+          "contact_id"
+        ]
+      }
+    }
+  ]
+}

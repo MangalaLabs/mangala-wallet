@@ -1,0 +1,49 @@
+[
+  {
+    "@timestamp": "2024-09-19T15:18:41.000",
+    "timestamp": "2024-09-19T15:18:41.000",
+    "block_num": 161874725,
+    "block_id": "09a60325d920c03de97692d83524c4473cc8b3024f26a1974cc6148fe33f66c3",
+    "trx_id": "332563de511666596396b4d42165d3eb2abb6cb56ecb5d694a98cc4e2a985aca",
+    "act": {
+      "account": "eosio",
+      "name": "updateauth",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "permission": "createaccound",
+        "parent": "active",
+        "auth": {
+          "threshold": 1,
+          "keys": [
+            {
+              "key": "PUB_K1_8YA8toaEFt6dLEuySPqNtzyPY2PZE9BdcGHoc6qb4gp2JMWSD9",
+              "weight": 1
+            }
+          ]
+        },
+        "account": "harkonnenmgl"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 127,
+    "net_usage_words": 19,
+    "account_ram_deltas": [
+      {
+        "account": "harkonnenmgl",
+        "delta": 338
+      }
+    ],
+    "global_sequence": 222909687,
+    "producer": "alohaeostest",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KVoKbC3qvgJci75xWP9SuKJTNEX7ArHkJtaLuyojbVwNexf9dQnQkJKD4LujYnZtfdXMVCeVUs4Mtzh8CCPiCGB4ZaDWPP"
+    ]
+  }
+]

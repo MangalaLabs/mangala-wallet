@@ -1,0 +1,22 @@
+{
+  "image_url": "ipfs://bafybeicpqw7y6h7uarvjxgxeefd4o4ze5kolw2lxxhggoezolldcvxlvyu/image",
+  "name": "Test",
+  "external_url": "https://testnets.opensea.io/",
+  "properties": [
+    {
+      "trait_type": "Character",
+      "value": "Male"
+    },
+    {
+      "trait_type": "Speed",
+      "value": 3,
+      "max_value": 5
+    },
+    {
+      "trait_type": "Speed",
+      "value": 3,
+      "display_type": "number",
+      "max_value": 5
+    }
+  ]
+}

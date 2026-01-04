@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant Client
+    participant FunctionRegistry
+    participant FunctionHandlerRegistry
+    participant ConfirmationRendererRegistry
+    participant FunctionHandler
+    participant ConfirmationRenderer
+    
+    Note over Client: Function Call Flow
+    
+    Client->>FunctionRegistry: getFunctionByName("create_contact")
+    FunctionRegistry-->>Client: FunctionDefinition
+    
+    alt Function requires confirmation
+        Client->>ConfirmationRendererRegistry: getRenderer("create_contact")
+        ConfirmationRendererRegistry-->>Client: ConfirmationRenderer
+        Client->>ConfirmationRenderer: render(parameters)
+        ConfirmationRenderer-->>Client: Confirmation UI
+        
+        Note over Client: User confirms action
+    end
+    
+    Client->>FunctionHandlerRegistry: getHandlerByName("create_contact")
+    FunctionHandlerRegistry-->>Client: FunctionHandler
+    Client->>FunctionHandler: execute(parameters)
+    FunctionHandler-->>Client: Result
+    
+    Note over Client: Function executed successfully

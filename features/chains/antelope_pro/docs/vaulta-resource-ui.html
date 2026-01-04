@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaulta - Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .mobile-container {
+            max-width: 428px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            background: #0a0a0f;
+        }
+
+        /* Background với RPG style */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(66, 153, 225, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Header RPG Style */
+        .header {
+            padding: 20px;
+            background: linear-gradient(180deg, rgba(15, 15, 25, 0.95) 0%, rgba(15, 15, 25, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .avatar::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(4px);
+            animation: rotate-border 3s linear infinite;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .player-details {
+            flex: 1;
+        }
+
+        .player-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .wallet-address {
+            font-size: 12px;
+            opacity: 0.6;
+            font-family: 'SF Mono', monospace;
+        }
+
+        .currency-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .currency-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .currency-amount {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Main Resources Panel - RPG Stats Style */
+        .resources-panel {
+            padding: 24px 20px;
+            position: relative;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .power-level {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .power-level-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .power-level-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #8b5cf6;
+        }
+
+        /* Resource Cards - RPG Equipment Style */
+        .resources-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.8), rgba(20, 20, 30, 0.8));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+            transform: rotate(45deg) translate(20px, 20px);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Rarity Glow Effects */
+        .resource-card.epic {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .resource-card.legendary {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+            border-color: rgba(255, 215, 0, 0.3);
+            animation: legendary-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes legendary-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+        }
+
+        .resource-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .resource-icon-wrapper {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .resource-icon-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            opacity: 0.2;
+        }
+
+        .cpu-bg {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .net-bg {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .ram-bg {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .resource-icon {
+            font-size: 32px;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .resource-details {
+            flex: 1;
+        }
+
+        .resource-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .resource-type {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-bottom: 8px;
+        }
+
+        .resource-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        /* RPG Style Progress Bar */
+        .resource-bar-container {
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .resource-bar-bg {
+            height: 24px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .resource-bar-fill {
+            height: 100%;
+            border-radius: 12px;
+            position: relative;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+        }
+
+        .cpu-fill {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            width: 75%;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .net-fill {
+            background: linear-gradient(90deg, #10b981, #34d399);
+            width: 45%;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .ram-fill {
+            background: linear-gradient(90deg, #fbbf24, #fcd34d);
+            width: 25%;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .resource-bar-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Resource Actions */
+        .resource-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .action-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .action-button.primary {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+        }
+
+        .action-button.primary:hover {
+            background: rgba(139, 92, 246, 0.3);
+        }
+
+        /* Bottom Quick Actions - RPG Skill Bar */
+        .skill-bar {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 428px;
+            padding: 20px;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .skill-bar-content {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .skill-button {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9), rgba(20, 20, 30, 0.9));
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .skill-button::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(45deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .skill-button:hover::before {
+            opacity: 1;
+            animation: skill-glow 1.5s linear infinite;
+        }
+
+        @keyframes skill-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .skill-button:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .skill-icon {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .skill-label {
+            font-size: 10px;
+            opacity: 0.8;
+        }
+
+        .skill-button.boost {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1));
+        }
+
+        .skill-button.trade {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.1));
+        }
+
+        .skill-button.optimize {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+        }
+
+        /* Status Effects */
+        .status-effects {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .status-effect {
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .buff {
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        .debuff {
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+
+        /* Floating combat text style numbers */
+        @keyframes float-up {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <div class="bg-pattern"></div>
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="player-info">
+                <div class="avatar">⚔️</div>
+                <div class="player-details">
+                    <div class="player-name">VaultaHero</div>
+                    <div class="wallet-address">vault...4k2j</div>
+                </div>
+                <div class="currency-display">
+                    <div class="currency-icon">💰</div>
+                    <div class="currency-amount">1,337</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Panel -->
+        <div class="resources-panel">
+            <div class="panel-header">
+                <div class="panel-title">⚔️ Battle Resources</div>
+                <div class="power-level">
+                    <span class="power-level-label">Power</span>
+                    <span class="power-level-value">8,420</span>
+                </div>
+            </div>
+
+            <div class="resources-grid">
+                <!-- CPU Resource Card -->
+                <div class="resource-card epic">
+                    <div class="resource-top">
+                        <div class="resource-icon-wrapper">
+                            <div class="resource-icon-bg cpu-bg"></div>
+                            <div class="resource-icon">⚡</div>
+                        </div>
+                        <div class="resource-details">
+                            <div class="resource-name">Lightning Core</div>
+                            <div class="resource-type">CPU • Processing Power</div>
+                            <div class="resource-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Power</span>
+                                    <span class="stat-value">7.5k μs</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Max</span>
+                                    <span class="stat-value">10k μs</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Regen</span>
+                                    <span class="stat-value">14h 23m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-bar-container">
+                        <div class="resource-bar-bg">
+                            <div class="resource-bar-fill cpu-fill"></div>
+                            <div class="resource-bar-text">75% • 7,500 / 10,000</div>
+                        </div>
+                    </div>
+
+                    <div class="resource-actions">
+                        <button class="action-button">⚡ Recharge</button>
+                        <button class="action-button primary">⬆️ Upgrade</button>
+                    </div>
+
+                    <div class="status-effects">
+                        <div class="status-effect buff">✨ Well Rested</div>
+                    </div>
+                </div>
+
+                <!-- NET Resource Card -->
+                <div class="resource-card epic">
+                    <div class="resource-top">
+                        <div class="resource-icon-wrapper">
+                            <div class="resource-icon-bg net-bg"></div>
+                            <div class="resource-icon">🌐</div>
+                        </div>
+                        <div class="resource-details">
+                            <div class="resource-name">Data Stream</div>
+                            <div class="resource-type">NET • Network Bandwidth</div>
+                            <div class="resource-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Usage</span>
+                                    <span class="stat-value">450 KB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Limit</span>
+                                    <span class="stat-value">1 MB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Regen</span>
+                                    <span class="stat-value">20h 15m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-bar-container">
+                        <div class="resource-bar-bg">
+                            <div class="resource-bar-fill net-fill"></div>
+                            <div class="resource-bar-text">45% • 450 / 1,000 KB</div>
+                        </div>
+                    </div>
+
+                    <div class="resource-actions">
+                        <button class="action-button">🌐 Refresh</button>
+                        <button class="action-button primary">⬆️ Upgrade</button>
+                    </div>
+
+                    <div class="status-effects">
+                        <div class="status-effect buff">✨ Network Stable</div>
+                    </div>
+                </div>
+
+                <!-- RAM Resource Card -->
+                <div class="resource-card legendary">
+                    <div class="resource-top">
+                        <div class="resource-icon-wrapper">
+                            <div class="resource-icon-bg ram-bg"></div>
+                            <div class="resource-icon">💎</div>
+                        </div>
+                        <div class="resource-details">
+                            <div class="resource-name">Memory Crystal</div>
+                            <div class="resource-type">RAM • Permanent Storage</div>
+                            <div class="resource-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Owned</span>
+                                    <span class="stat-value">12.5 KB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Price</span>
+                                    <span class="stat-value">₹5.2/KB</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">24h</span>
+                                    <span class="stat-value" style="color: #10b981;">↑12%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="resource-bar-container">
+                        <div class="resource-bar-bg">
+                            <div class="resource-bar-fill ram-fill"></div>
+                            <div class="resource-bar-text">25% • 12.5 / 50 KB</div>
+                        </div>
+                    </div>
+
+                    <div class="resource-actions">
+                        <button class="action-button">💰 Buy</button>
+                        <button class="action-button">💸 Sell</button>
+                        <button class="action-button primary">📊 Market</button>
+                    </div>
+
+                    <div class="status-effects">
+                        <div class="status-effect buff">✨ Legendary</div>
+                        <div class="status-effect debuff">⚠️ Low Storage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Bar -->
+        <div class="skill-bar">
+            <div class="skill-bar-content">
+                <div class="skill-button boost">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-label">Boost</div>
+                </div>
+                <div class="skill-button trade">
+                    <div class="skill-icon">💎</div>
+                    <div class="skill-label">Trade</div>
+                </div>
+                <div class="skill-button optimize">
+                    <div class="skill-icon">🎯</div>
+                    <div class="skill-label">Auto</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

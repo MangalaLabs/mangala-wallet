@@ -1,0 +1,61 @@
+classDiagram
+    class FunctionRegistry {
+        <<interface>>
+        +registerFunction(function FunctionDefinition)
+        +getFunctions() List~FunctionDefinition~
+        +getFunctionsByModule(moduleId String) List~FunctionDefinition~
+        +getFunctionByName(name String) FunctionDefinition
+    }
+    
+    class FunctionDefinition {
+        +name String
+        +description String
+        +moduleId String
+        +requiresConfirmation Boolean
+        +parameters Map
+    }
+    
+    class FunctionHandlerRegistry {
+        <<interface>>
+        +registerPlugin(plugin FunctionHandlerPlugin)
+        +registerHandler(handler FunctionHandler)
+        +getHandlers() List~FunctionHandler~
+        +getHandlerByName(functionName String) FunctionHandler
+        +hasHandler(functionName String) Boolean
+    }
+    
+    class FunctionHandler {
+        <<interface>>
+        +functionName String
+        +execute(parameters Map) Any
+    }
+    
+    class FunctionHandlerPlugin {
+        <<interface>>
+        +getHandlers() List~FunctionHandler~
+    }
+    
+    class ConfirmationRendererRegistry {
+        <<interface>>
+        +registerPlugin(plugin ConfirmationRendererPlugin)
+        +registerRenderer(renderer ConfirmationRenderer)
+        +getRenderer(functionName String) ConfirmationRenderer
+        +getAllRenderers() List~ConfirmationRenderer~
+    }
+    
+    class ConfirmationRenderer {
+        <<interface>>
+        +functionName String
+        +render(parameters Map) ConfirmationUI
+    }
+    
+    class ConfirmationRendererPlugin {
+        <<interface>>
+        +getRenderers() List~ConfirmationRenderer~
+    }
+    
+    FunctionRegistry --> FunctionDefinition : manages
+    FunctionHandlerRegistry --> FunctionHandler : manages
+    FunctionHandlerRegistry --> FunctionHandlerPlugin : uses
+    ConfirmationRendererRegistry --> ConfirmationRenderer : manages
+    ConfirmationRendererRegistry --> ConfirmationRendererPlugin : uses

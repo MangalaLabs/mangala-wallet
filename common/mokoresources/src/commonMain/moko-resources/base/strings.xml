@@ -1,0 +1,1253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <!--    Set up PIN Screen -->
+    <string name="title_setUpPin">Pick a PIN</string>
+    <string name="description_setUpPin">So no one else but you can unlock your wallet.</string>
+    <string name="tip_setUpPin">PINs are just as secure as long passwords, but easier to use and remember.</string>
+
+    <!--    Confirm PIN Screen -->
+    <string name="title_confirmPin">Type your PIN again</string>
+    <string name="description_confirmPin">There will be NO Restore PIN button. Make sure you remember it.</string>
+    <string name="tip_confirmPin">Since you are going to be your own bank, we wont be able to help if you lose your PIN.</string>
+
+    <!--    Home Screen -->
+    <string name="label_wallet">Wallet</string>
+    <string name="label_dapps">DApps</string>
+    <string name="label_swap">Swap</string>
+    <string name="label_browser">Browser</string>
+    <string name="label_scan">Scan</string>
+    <string name="label_msig">MultiSig</string>
+    <string name="label_conversation_ui">AI</string>
+    <string name="label_setting">Setting</string>
+    <string name="label_resource">Resource</string>
+
+    <!--    Unlock PIN Screen -->
+    <string name="message_exceeded_attempts_lock_pin">Too many attempts, please wait for %s</string>
+
+    <!--    Forgot PIN Screen -->
+    <string name="forgot_pin">FORGOT PIN?</string>
+    <string name="message_forgot_pin">Unfortunately, as we mentioned when you created your PIN, there is no Restore PIN button. However, if you created a backup of your wallet, you can restore it using your recovery phrase. You can also set another PIN once it is restored.</string>
+    <string name="reset_wallet">Reset wallet</string>
+    <string name="button_restore_wallet">RESTORE WALLET</string>
+    <string name="button_continue">CONTINUE</string>
+
+    <!--    Reset Wallet Screen -->
+    <string name="title_reset_wallet">Warning: you can lose your account and assets forever</string>
+    <string name="message_reset_wallet">DO NOT reset if you didn\'t make a backup, as there will be NO WAY to restore your account after you reset.</string>
+    <string name="confirm_reset_wallet">I have read and am sure about the wallet reset.</string>
+
+    <!--    Restore Wallet Screen -->
+    <string name="message_restore_wallet">To restore a wallet you must memorize the content and order of the phrase words. Make sure you remember the codeword sequence when starting the wallet reset.</string>
+    <string name="message_restore_wallet_private_key">To restore a wallet you must have your private key saved securely. Make sure you have the correct private key before starting the wallet restoration.</string>
+    <string name="restore">Restore</string>
+
+    <!--    Recovery Phrase Screen For Restore -->
+    <string name="all_import_wallet">Import Wallet</string>
+    <string name="title_recovery_phrase">Your recovery phrase</string>
+    <string name="description_recovery_phrase">Consists of 24 single words separated by spaces. If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.</string>
+    <string name="button_recoverty_phrase_secret_phrase_info">What is Secret Phrase</string>
+    <string name="next">Next</string>
+    <string name="all_paste">Paste</string>
+
+    <!--    Create wallet guide Screen -->
+    <string name="title_create_wallet_guide">Start your crypto wallet journey</string>
+    <string name="description_create_wallet_guide">In Mangala wallet you are your own bank. With that great power comes great responsibility.</string>
+    <string name="subtitle_create_wallet_guide1">Back it up, and keep your backup safe</string>
+    <string name="description_create_wallet_guide1">If you lose your wallet backup information, no one can recover it, and you will lose your assets.</string>
+    <string name="subtitle_create_wallet_guide2">Always double-check everything</string>
+    <string name="description_create_wallet_guide2">If you send assets to the wrong address, no one can reverse or recover that transaction, and you will lose your funds.</string>
+    <string name="subtitle_create_wallet_guide3">Be wary of phishing and scams</string>
+    <string name="description_create_wallet_guide4">If someone offers you something that is too good to be true, it probably is.</string>
+    <string name="description_create_wallet_guide4">Stay safe out there!</string>
+    <string name="description_create_wallet_guide3">Stay safe out there!</string>
+    <string name="mangala_team">~ Team Mangala Wallet</string>
+    <string name="create_a_wallet">Create a wallet</string>
+    <string name="using_mangala_wallet">Start using Mangala wallet</string>
+
+    <!--    Backup wallet guide Screen -->
+    <string name="title_backup_wallet_alert">Backup your wallet, keep your assets safe</string>
+    <string name="message_backup_wallet_alert">With no backup, losing your device will result in the loss of access forever. In some extremely rare cases, hardware issues with your device can result in corrupted keys, which lead to permanent loss of access too. \nThe only way to guard against losses is to back up your wallet.</string>
+    <string name="backup_now">Backup now</string>
+    <string name="i_will_risk_it">I will risk it</string>
+    <string name="title_backup_wallet_guide1">Backup your wallet</string>
+    <string name="description_backup_wallet_guide1">With Mangala wallet you are your own bank. No one but you has access to your private key. Not even Mangala force. \nWithout a backup, if you lose your device, or even simply delete the app, you will lose your funds forever.</string>
+    <string name="back_up_now">Back up now</string>
+    <string name="title_backup_wallet_guide2">Prepare to write down your recovery phrase</string>
+    <string name="description_backup_wallet_guide2">If your device gets lost or stolen, you can restore your wallet using your recovery phrase. \nGet pen and paper before you start.</string>
+    <string name="start">Start</string>
+
+    <!--    Show Recovery Phrase Screen -->
+    <string name="title_show_recovery_phrase">Here is your recovery phrase</string>
+    <string name="description_show_recovery_phrase">Write it down on paper. Resist temptation to email it to yourself or screenshot it.</string>
+    <string name="button_keep_it_safe">I have kept it somewhere safe</string>
+    <string name="finish">Finish</string>
+
+    <!--    Verify Recovery Phrase Screen -->
+    <string name="title_verify_recovery_phrase">Let\'s double check it</string>
+    <string name="select_word">Select word #%s</string>
+
+    <!--    Notify Backed up wallet Screen -->
+    <string name="title_backed_up_wallet_done">Your wallet is now backed up</string>
+    <string name="message_backed_up_wallet_done">DO NOT show your recovery phrase to anyone. Protect it like the ten millions dollars it will one day be worth (probably).</string>
+    <string name="done">Done</string>
+
+    <!--    Import wallet Screen -->
+    <string name="title_import_wallet">Import your wallet</string>
+    <string name="message_import_wallet">You can restore an existing wallet by using the recovery phrase. A recovery phrase is a 12 - 24 words phrase that you wrote down when you backed up your wallet.</string>
+
+    <!--   Biometry Screen -->
+    <string name="title_biometry_android">Enable fingerprint unlock</string>
+    <string name="title_biometry_ios">Face ID or Touch ID unlock</string>
+    <string name="message_biometry">Access Mangala wallet with your biometry. \nQuick, easy and secure.</string>
+    <string name="button_biometry">Enable Biometry Unlock</string>
+    <string name="button_biometry_skip">Skip</string>
+    <string name="title_request_biometry_sign_in">Open App</string>
+    <string name="title_request_biometry_reason">Open App</string>
+    <string name="title_request_biometry_button">Cancel</string>
+
+    <!--    SCREEN LOCK-->
+    <string name="os_screen_lock">Mangala Wallet app requires that phone has the passcode (screen lock) enabled.\n\n You may enable it in Android settings.\n\nPlease note that when you disabled the PIN on the OS level the security measures in safe storage of your phonе made the previously stored data invalid. You will need to Restore your wallet keys to get back to your wallet.</string>
+
+    <!--    Portfolio-->
+    <string name="title_wallet_details_total_amount">Total Portfolio Value</string>
+    <string name="title_wallet_details_pnl">Today\'s PNL</string>
+    <string name="button_wallet_details_swap">Swap</string>
+    <string name="title_wallet_details_balances">Balances</string>
+    <string name="message_wallet_details_hide_zero_balances">Hide zero balances</string>
+    <string name="message_wallet_details_search_tokens_hint">Search token...</string>
+
+    <string name="all_menu">Menu</string>
+    <string name="all_add_new_account">Add new account</string>
+    <string name="all_send">Send</string>
+    <string name="all_receive">Receive</string>
+    <string name="all_swap">Swap</string>
+    <string name="all_smart_contract_call">Smart Contract Call</string>
+    <string name="all_contract_deployment">Contract Deployment</string>
+    <string name="all_manage_accounts">Manage accounts</string>
+    <string name="all_edit">Edit</string>
+    <string name="all_save">Save</string>
+    <string name="all_network">Network</string>
+    <string name="all_wallet">Wallet</string>
+    <string name="all_delete">Delete</string>
+    <string name="all_security">Security</string>
+    <string name="all_message_copied_address">The address has been copied successfully</string>
+    <string name="all_address">Address</string>
+    <string name="all_address">Address</string>
+    <string name="all_contacts">Contacts</string>
+    <string name="all_add_contact">Add contact</string>
+    <string name="all_select_network">Select network</string>
+    <string name="all_wallets">Wallets</string>
+    <string name="all_hidden">Hidden</string>
+    <string name="all_preferences">Preferences</string>
+    <string name="all_notifications">Notifications</string>
+    <string name="all_help_center">Help Center</string>
+    <string name="all_about_us">About us</string>
+    <string name="all_share_app">Share app</string>
+    <string name="all_connect_with_us">Connect with us</string>
+    <string name="all_version">Version %1$s</string>
+    <string name="all_transaction_completed">Completed</string>
+    <string name="all_transaction_failed">Failed</string>
+    <string name="all_transaction_pending">Pending</string>
+    <string name="all_date">Date</string>
+    <string name="all_status">Status</string>
+    <string name="all_continue">Continue</string>
+    <string name="all_copy">Copy</string>
+    <string name="all_share">Share</string>
+    <string name="all_nft">NFT</string>
+    <string name="all_my_nft">My NFT</string>
+    <string name="all_send_new_recipient">new recipient</string>
+    <string name="all_cancel">Cancel</string>
+    <string name="all_ok">OK</string>
+    <string name="title_transaction_error">Transaction Error</string>
+    <string name="action_buy_ram">Buy RAM</string>
+    <string name="action_power_up">Power Up</string>
+    <string name="all_theme">Theme</string>
+    <string name="all_antelope_cpu">CPU</string>
+    <string name="all_antelope_net">NET</string>
+    <string name="all_antelope_ram">RAM</string>
+    <string name="all_antelope_export_private_key">Export Private Key</string>
+    <string name="all_select">Select</string>
+    <string name="all_rex">REX</string>
+    <string name="all_antelope_power_up">Power up</string>
+    <string name="all_rent_via_rex">Rent via REX</string>
+    <string name="all_total">Total</string>
+    <string name="all_used">Used %s</string>
+    <string name="all_memo">Memo</string>
+    <string name="all_back_to_home">Back to Home</string>
+    <string name="all_view_on_block_explorer">View on Block Explorer</string>
+    <string name="all_contact_support">Contact Support</string>
+    <string name="all_buy">Buy</string>
+    <string name="all_retry">Retry</string>
+    <string name="all_submit">Submit</string>
+    <string name="all_done">Done</string>
+    <string name="all_confirm">Confirm</string>
+    <string name="all_discard">Discard</string>
+    <string name="all_private_key">Private key</string>
+    <string name="all_cancel">Cancel</string>
+    <string name="all_copy">Copy</string>
+    <string name="all_back">Back</string>
+    <string name="all_error">Error: %1$s</string>
+    <string name="all_unit_eos">%1$s EOS</string>
+    <string name="all_close">Close</string>
+    <string name="all_proposer">Proposer</string>
+    <string name="all_proposal">Proposal</string>
+    <string name="all_loading_normal">Loading</string>
+    <string name="all_account_name_custom">Account name: %1$s</string>
+    <string name="all_error_no_params">Error</string>
+    <string name="all_public_key_not_match">Public keys do not match</string>
+    <string name="all_delete">Delete</string>
+    <string name="dialog_delete_contact_title">Delete contact?</string>
+    <string name="dialog_delete_contact_message">Are you sure you want to delete this contact? This action cannot be undone.</string>
+    <string name="dialog_delete_group_title">Delete group permanently?</string>
+    <string name="dialog_delete_group_message">Are you sure you want to delete the group \"%s\"? This action cannot be undone.</string>
+
+    <!--    Components-->
+    <string name="label_save_recipient_switch">Save recipient</string>
+    <string name="label_select_recipient_or">or</string>
+    <string name="label_select_recipient_saved_recipient">saved recipient?</string>
+    <string name="label_select_recipient_contact_name">Name</string>
+    <string name="label_select_recipient_contact_name_placeholder">recipient?</string>
+    <string name="button_fee_option_change">Change</string>
+    <string name="message_select_address_to">to</string>
+    <string name="hint_select_address_address">address?</string>
+    <string name="hint_select_address_account">account?</string>
+    <string name="button_send_to_contact">Send to my contact</string>
+
+    <!--    Common screens-->
+    <string name="title_verify_transaction">Confirm Transferring</string>
+    <string name="message_verify_transaction">Double check the information and confirm your transaction.</string>
+    <string name="label_verify_transaction_check_network">Check network</string>
+    <string name="label_verify_transaction_check_address">Check the address</string>
+    <string name="label_verify_transaction_check_account">Check the account</string>
+    <string name="label_verify_transaction_check_amount">Check the amount</string>
+    <string name="label_verify_transaction_check_memo">Check memo</string>
+    <string name="button_verify_transaction_confirm_and_send">Confirm and send</string>
+    <string name="button_verify_transaction_memo">Memo</string>
+    <string name="title_transaction_fee">Transaction Fee</string>
+    <string name="button_transaction_fee_select">Select</string>
+    <string name="label_transaction_fee_economy">Economy</string>
+    <string name="label_transaction_fee_regular">Regular</string>
+    <string name="label_transaction_fee_fast">Fast</string>
+    <string name="message_transaction_fee_transaction_time">%s mins</string>
+    <string name="sign_transaction">Sign transaction</string>
+
+
+    <!--    Wallet main-->
+    <string name="title_wallet_main">Wallet</string>
+    <string name="title_wallet_main_total_amount">Total amount</string>
+    <string name="button_wallet_main_create_wallet">Create a wallet</string>
+    <string name="button_wallet_main_import_wallet">Import existing wallet</string>
+    <string name="title_wallet_main_add_account">Add more accounts</string>
+    <string name="message_wallet_main_add_account">Use accounts to manage your asset stacks separately.</string>
+    <string name="message_wallet_main_card_pnl_description"> in 24h</string>
+    <string name="button_wallet_main_add_account">Add new account</string>
+    <string name="button_wallet_main_add_watch_only_account">Import a watch-only account</string>
+    <string name="button_wallet_main_account_card_portfolio">Portfolio</string>
+    <string name="button_wallet_main_account_card_buy">Buy</string>
+    <string name="button_wallet_main_import_account">Import account</string>
+    <string name="title_wallet_main_antelope_resources">Resources</string>
+    <string name="title_wallet_main_antelope_card_powerup">PowerUp</string>
+    <string name="label_wallet_main_antelope_card_powerup">CPU and NET</string>
+    <string name="all_used">Used %s</string>
+    <string name="button_wallet_main_retry_create">Continue creating</string>
+    <string name="sync">Sync</string>
+
+    <!--    Add Account-->
+    <string name="message_add_account_account_nickname">Account nickname</string>
+    <string name="message_add_account_account_guide">Example: Private funds, Savings account, dApp account, Work funds, Airdrops</string>
+
+    <!--    Manage accounts-->
+    <string name="message_manage_accounts_accounts_count">All accounts</string>
+
+    <!--    Account details-->
+    <string name="message_account_details_saved_successfully">Account details have been updated successfully</string>
+    <string name="message_account_details_account_name">Account name</string>
+    <string name="message_account_details_hide_account">Hide this account</string>
+    <string name="message_account_details_hide_account_description">Lorem ipsum dolor sit amet, consectetur adipiscing.</string>
+    <string name="title_account_details_address_index">Address index: </string>
+
+    <!--    Network-->
+    <string name="message_network_hint">Search network</string>
+    <string name="message_network_no_networks_found">No matching networks found</string>
+
+    <!--    Wallet-->
+    <string name="message_wallet_no_wallets_found">You don\'t have a wallet</string>
+    <string name="message_wallet_no_accounts_found">You don\'t have an account</string>
+    <string name="message_wallet_add_wallet">Add Wallet</string>
+    <string name="message_wallet_add_account">Add Account</string>
+    <!--    Security-->
+    <string name="title_security_face_id">Face ID</string>
+    <string name="title_security_advanced_settings">Advanced settings</string>
+
+    <!--    Select recipient type-->
+    <string name="title_select_recipient_type">Send token</string>
+    <string name="label_select_recipient_existing_contact">Send to your contact</string>
+    <string name="label_select_recipient_new_contact">Send to new contact</string>
+
+    <!--    Send tokens-->
+    <string name="message_send_token_send_token">Send token</string>
+    <string name="message_send_token_you_want_to_transfer_token">You want to transfer token</string>
+    <string name="message_send_token_on">on</string>
+    <string name="hint_send_token_network">network?</string>
+    <string name="message_send_token_transferring">You are transferring </string>
+    <string name="message_send_token_to">to</string>
+    <string name="message_send_token_from">From</string>
+    <string name="message_send_token_no_matching_accounts">No matching accounts found</string>
+    <string name="message_send_token_token">Token</string>
+    <string name="message_send_token_amount">Amount</string>
+    <string name="hint_send_token_token_name">Token name?</string>
+    <string name="hint_send_token_account_name">select account</string>
+    <string name="message_send_token_max">Max</string>
+    <string name="message_send_token_confirm_transferring">Confirm transferring </string>
+    <string name="message_send_token_confirm_transferring_from">From %s</string>
+    <string name="message_send_token_confirm_transferring_to">To %s</string>
+    <string name="message_send_token_estimate_gas_error">We were not able to estimate gas. There might be an error in the contract and this transaction may fail</string>
+    <string name="button_send_token_confirm_transferring_authentication">Authentication</string>
+    <string name="title_send_token_transfer_to_self_alert_dialog">Can\'t transfer to self</string>
+    <string name="message_send_token_transfer_to_self_alert_dialog">You can\'t transfer to yourself</string>
+    <string name="title_send_token_no_imported_account">Choose a Sending Wallet</string>
+    <string name="message_send_token_no_imported_account">You need a wallet to hold your assets before you can send them. Add your first wallet and we\'ll get you right back here to complete your transaction.</string>
+
+    <string name="message_receive_token_on">on</string>
+    <!--    Receive token-->
+    <string name="title_receiveToken">Receive %s token</string>
+    <string name="subtitle_receiveToken">Scan the QR code or copy the address:</string>
+    <string name="button_receiveToken_addAmount">Add amount</string>
+    <string name="title_receiveToken_warningBanner">Only send %s via the %s</string>
+    <string name="spannedPart_receiveToken_warningBanner_title_tokenPart">%s token</string>
+    <string name="spannedPart_receiveToken_warningBanner_title_networkPart">%s network</string>
+    <string name="subtitle_receiveToken_warningBanner">Other tokens/networks %s</string>
+    <string name="spannedPart_receiveToken_warningBanner_subtitle">risk lose them forever</string>
+    <string name="message_receiveToken_addAmountBottomSheet">I want to receive</string>
+    <string name="placeholder_receiveToken_addAmountBottomSheet">token amount</string>
+    <string name="message_receiveToken_editAmount_editAmountOption">Change amount</string>
+    <string name="message_receiveToken_editAmount_removeAmountOption">Remove amount</string>
+
+    <!--    Contacts-->
+    <string name="message_contacts_no_contacts">No contacts yet</string>
+    <string name="message_contacts_search_contact">Search contacts</string>
+    <string name="message_contacts_no_search_result">No matching contact found</string>
+
+    <!--    Add contact-->
+    <string name="message_add_contact_enter_address">Enter address</string>
+    <string name="message_add_contact_address_error">This address does not match the selected network</string>
+    <string name="message_add_contact_name_label">Name</string>
+    <string name="message_add_contact_name_hint">Enter name</string>
+
+    <!--    Edit contact-->
+    <string name="title_edit_contacts_top_app_bar">Edit contact</string>
+
+    <!--  Wallet details-->
+    <string name="message_label_wallet_name">Wallet\'s name</string>
+    <string name="message_label_wallet_account">Accounts</string>
+    <string name="message_label_view_my_recovery_phrase">View my recovery phrase</string>
+    <!--    Confirm Transaction-->
+    <string name="title_confirm_transaction_dapp">Verify transaction via</string>
+    <string name="message_from">From</string>
+    <string name="fee">Fee</string>
+    <string name="decline">Decline</string>
+    <string name="confirm">Confirm</string>
+    <string name="message_refer_detail">Please refer to %s for additional details.</string>
+
+    <string name="title_sign_personal_message">Sign message for</string>
+    <string name="sign">Sign</string>
+
+    <string name="message_sign_transaction_fail">Verify transaction failure. Please try again.</string>
+    <string name="message_estimate_gas_fail">We were not able to estimate gas. There might be an error in the contract and this transaction may fail.</string>
+
+    <!--    QR Code-->
+    <string name="message_scan_qr_code">Scan QR code to login, send, receive and pay</string>
+    <string name="button_scan_qr_code_album">Album</string>
+    <string name="message_scan_qr_code_not_found">QR code not found</string>
+    <string name="all_save_qr_success">Saved QR image successfully</string>
+    <string name="all_save_qr_fail">Saved QR image fail</string>
+
+    <!--    Add wallet Screen -->
+    <string name="message_add_wallet">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
+
+    <!--    Language-->
+    <string name="all_language">Language</string>
+    <string name="message_language_search_language">Search language</string>
+    <string name="message_language_search_language_not_found">No matching language found</string>
+
+    <!--    Theme-->
+    <string name="title_theme_light">Light</string>
+
+    <!--    Currency screen    -->
+    <string name="all_currency">Currency</string>
+    <string name="message_currency_search_currency">Search currency</string>
+    <string name="message_currency_search_currency_not_found">No matching currency found</string>
+
+    <string name="all_language_usd_name">United States Dollar</string>
+    <string name="all_language_aed_name">United Arab Emirates Dirham</string>
+    <string name="all_language_ars_name">Argentine Peso</string>
+    <string name="all_language_aud_name">Australian Dollar</string>
+    <string name="all_language_bdt_name">Bangladeshi Taka</string>
+    <string name="all_language_bhd_name">Bahraini Dinar</string>
+    <string name="all_language_bmd_name">Bermudian Dollar</string>
+    <string name="all_language_brl_name">Brazilian Real</string>
+    <string name="all_language_cad_name">Canadian Dollar</string>
+    <string name="all_language_chf_name">Swiss Franc</string>
+    <string name="all_language_clp_name">Chilean Peso</string>
+    <string name="all_language_cny_name">Chinese Yuan</string>
+    <string name="all_language_czk_name">Czech Koruna</string>
+    <string name="all_language_dkk_name">Danish Krone</string>
+    <string name="all_language_eur_name">Euro</string>
+    <string name="all_language_gbp_name">British Pound</string>
+    <string name="all_language_hkd_name">Hong Kong Dollar</string>
+    <string name="all_language_huf_name">Hungarian Forint</string>
+    <string name="all_language_idr_name">Indonesian Rupiah</string>
+    <string name="all_language_ils_name">Israeli New Shekel</string>
+    <string name="all_language_inr_name">Indian Rupee</string>
+    <string name="all_language_jpy_name">Japanese Yen</string>
+    <string name="all_language_krw_name">South Korean Won</string>
+    <string name="all_language_kwd_name">Kuwaiti Dinar</string>
+    <string name="all_language_lkr_name">Sri Lankan Rupee</string>
+    <string name="all_language_mmk_name">Myanmar Kyat</string>
+    <string name="all_language_mxn_name">Mexican Peso</string>
+    <string name="all_language_myr_name">Malaysian Ringgit</string>
+    <string name="all_language_ngn_name">Nigerian Naira</string>
+    <string name="all_language_nok_name">Norwegian Krone</string>
+    <string name="all_language_nzd_name">New Zealand Dollar</string>
+    <string name="all_language_php_name">Philippine Peso</string>
+    <string name="all_language_pkr_name">Pakistani Rupee</string>
+    <string name="all_language_pln_name">Polish Zloty</string>
+    <string name="all_language_rub_name">Russian Ruble</string>
+    <string name="all_language_sar_name">Saudi Riyal</string>
+    <string name="all_language_sek_name">Swedish Krona</string>
+    <string name="all_language_sgd_name">Singapore Dollar</string>
+    <string name="all_language_thb_name">Thai Baht</string>
+    <string name="all_language_try_name">Turkish Lira</string>
+    <string name="all_language_twd_name">New Taiwan Dollar</string>
+    <string name="all_language_uah_name">Ukrainian Hryvnia</string>
+    <string name="all_language_vef_name">Venezuelan Bolívar</string>
+    <string name="all_language_vnd_name">Vietnamese Dong</string>
+    <string name="all_language_zar_name">South African Rand</string>
+    <string name="all_language_btc_name">Bitcoin</string>
+
+    <!--    Create wallet screen-->
+    <string name="message_create_wallet_animation">Generating Mangala wallet.\nEncrypting your
+        private key using your PIN.\nSaving your encrypted keys to a local secure vault on this
+        device.\nAll done! Your wallet is now ready.
+    </string>
+
+    <!--    Transaction history-->
+    <string name="title_transaction_history">Transaction history</string>
+    <string name="title_history_transaction">History Transaction</string>
+    <string name="title_transaction_history_no_transactions">No transactions yet</string>
+    <string name="message_transaction_history_date_today">Today</string>
+    <string name="message_transaction_history_date_yesterday">Yesterday</string>
+    <string name="message_transaction_history_to">To: %s</string>
+    <string name="message_transaction_history_from">From: %s</string>
+    
+    <!-- Bitcoin Transaction Info -->
+    <string name="all_confirmed">Confirmed</string>
+    <string name="all_pending">Pending</string>
+    <string name="title_transaction_hash">Transaction Hash</string>
+    <string name="title_transaction_date">Date</string>
+    <string name="title_block_height">Block Height</string>
+    <string name="title_block_hash">Block Hash</string>
+    <string name="action_open_in_explorer">View in Explorer</string>
+    <string name="title_transaction_details">Transaction Details</string>
+
+    <!--    Transaction history transaction-->
+    <string name="title_transaction_history_transaction">Transaction History</string>
+    <string name="message_transaction_history_transaction_account">Account: %s </string>
+    <string name="message_transaction_history_transaction_amount_label">%s: </string>
+    <string name="message_transaction_history_transaction_amount_value"> %s </string>
+    <string name="message_transaction_history_transaction_from_to"> %s </string>
+    <string name="message_transaction_history_transaction_next_account"> %s</string>
+    <string name="message_transaction_history_transaction_memo">Memo: %s</string>
+    <string name="message_transaction_history_transaction_message">Message: %s</string>
+    <string name="message_transaction_history_transaction_ram_fee">Ram fee: %s</string>
+    <string name="message_transaction_history_transaction_name">Name: %s</string>
+    <string name="message_transaction_history_transaction_trxId">TrxId: %s</string>
+    <string name="message_transaction_history_transaction_ram_amount">Ram amount: %s kb</string>
+    <string name="message_transaction_history_transaction_total_ram">Total ram: %s kb</string>
+    <string name="message_transaction_history_transaction_pay_for">Account: %s pay %s kb for you</string>
+
+
+    <!--    Transaction info-->
+    <string name="title_transaction_info">Transaction information</string>
+    <string name="message_transaction_info_transaction_id">Transaction ID</string>
+    <string name="message_transaction_info_address">Address</string>
+    <string name="message_transaction_info_gas_fee">Gas fee</string>
+    <string name="button_transaction_info_more_details">More details</string>
+
+    <!--    Filter transactions-->
+    <string name="title_filter_transactions">Filter</string>
+    <string name="message_filter_transactions_type">Type</string>
+    <string name="message_filter_transactions_all">All</string>
+    <string name="message_filter_transactions_date_to">to</string>
+    <string name="button_filter_transactions_reset">Reset</string>
+    <string name="button_filter_transactions_confirm">Confirm</string>
+
+    <!--    Date picker-->
+    <string name="title_date_picker">Choose Your Date</string>
+
+    <!--    Notification Screen   -->
+    <string name="title_push_notifications">Push notifications</string>
+    <string name="note_title_push_notifications">Lorem ipsum dolor sit amet, consectetur adipiscing.</string>
+    <string name="title_product_announcement">Product announcement</string>
+    <string name="note_title_product_announcement">Lorem ipsum dolor sit amet, consectetur adipiscing.</string>
+
+    <!--    Swap Screen-->
+    <string name="button_swap_preview_swap">Preview Swap</string>
+    <string name="button_swap_error_low_liquidity">Not enough liquidity for this swap</string>
+    <string name="message_swap_price">Price</string>
+    <string name="title_swap_from_token">You pay</string>
+    <string name="title_swap_to_token">You receive</string>
+    <string name="message_swap_balance">Balance: %s</string>
+    <string name="title_preview_swap_selected_account">From</string>
+    <string name="title_preview_swap_selected_dex">Supplier</string>
+    <string name="title_preview_swap_max_slippage">Maximum price slippage</string>
+    <string name="title_preview_swap_gas_fee">Network fee</string>
+    <string name="button_preview_swap_confirm_swap">Swap confirmation</string>
+    <string name="button_preview_swap_error_not_enough_pay_gas">Not enough %s to pay the network fee</string>
+    <string name="button_preview_swap_approve">Approve</string>
+    <string name="title_preview_swap_approve">Spending cap request for you</string>
+    <string name="message_preview_swap_approve">This allows the third party to spend all your token balance until it reaches the cap or you revoke the spending cap. If this is not intended, consider setting a lower spending cap.</string>
+    <string name="message_preview_swap_approve_error_approve_less_than_swap">Spending cap must bigger or equal swap amount</string>
+
+    <!--    NFT Screen-->
+    <string name="label_eticket_tab">E Ticket</string>
+    <string name="label_favorite_nfts">Favorites</string>
+
+    <!--    NFT Details Screen-->
+    <string name="label_nft_details_token_standard">Token Standard</string>
+    <string name="label_nft_details_asset_contract">Asset Contract</string>
+
+    <!--    NFT Send Screen-->
+    <string name="title_nft_send">Send NFT</string>
+    <string name="message_nft_send_you_want_to_transfer">You want to transfer this NFT</string>
+
+    <!--    DELETE dialog contact-->
+    <string name="title_delete_contact">Delete contact</string>
+    <string name="message_delete_contact">Are you sure you want to delete this contact. You can\'t undo this action.</string>
+
+    <!--    DELETE dialog wallet-->
+    <string name="title_delete_wallet">Warning: you can lose your account and funds forever</string>
+    <string name="message_delete_wallet">Don\'t reset if you didn\'t make a backup, as there will be NO WAY to restore your account after you reset.</string>
+
+    <!--    Browser Screen-->
+    <string name="title_recommend_dapp">Recommend</string>
+    <string name="all_yes">Yes</string>
+
+    <!--    SyncAccountScreen-->
+    <string name = "sync_qr_code_prompt">Please scan this QR code to sync your account with the UI wallet app</string>
+    <string name="reconnect_later">Reconnect later</string>
+    <string name="error_generating_QR">Error generating QR</string>
+    <string name = "account_address">Account address</string>
+    <string name = "account_name">Account name</string>
+    <string name = "sync_account">Sync account</string>
+    <string name = "about_wallet_information">About wallet information</string>
+
+    <!--    Ram Screen-->
+    <string name="label_buy_ram_guide_user_enter">Enter the amount</string>
+    <string name="title_buy_ram_calculate_ram">RAM Calculator</string>
+    <string name="title_buy_ram_introduction_ram">Introduction to RAM</string>
+    <string name="title_buy_ram_eos">EOS</string>
+    <string name="title_buy_ram_ram">RAM</string>
+    <string name="title_buy_ram_unit_ram">KB</string>
+    <string name="bottom_buy_ram">Buy Ram</string>
+
+    <!--    ConfirmQrScreen-->
+    <string name="sync_transaction">Sync transaction</string>
+    <string name="alert_for_user_confirm">To ensure safety, you must enter your wallet\'s password before activating the Face ID face unlock feature</string>
+
+    <!--    TransactionQrScreen-->
+    <string name = "scan_qr_code">"Scan QR code in Cold wallet"</string>
+
+    <!--    RAM detail-->
+    <string name="title_ram_detail">RAM Detail</string>
+    <string name="title_ram">RAM</string>
+    <string name="total_buy">Total Buy</string>
+    <string name="total_sell">Total Sell</string>
+    <string name="total_profit">Total Profit</string>
+    <string name="total_fee">Total Fee</string>
+    <string name="profit_and_loss">PNL</string>
+    <string name="buy_ram">Buy</string>
+    <string name="sell_ram">Sell</string>
+    <string name="transfer_ram">Transfer</string>
+    <string name="gift_ram">Gift</string>
+    <string name="Wram">WRAM</string>
+    <string name="title_ramDetail_dca">Dollar Cost Average</string>
+
+    <!-- Buy and Sell RAM -->
+    <string name="title_sell_ram">Sell RAM</string>
+    <string name="title_buy_ram">Buy RAM</string>
+    <string name="quota_used">Quota used</string>
+    <string name="current_ram_prices">Current RAM prices</string>
+    <string name="available_balance">Available balance</string>
+    <string name="amount_of_kb_to_sell">Amount of kb to sell</string>
+    <string name="fail_message">Fail Message</string>
+    <string name="message_buy_sell_ram_insufficient">Not enough %1$s</string>
+    <string name="message_error_from_node">Error occurred: %1$s</string>
+    <string name="buy_for_others">Buy for others</string>
+    <string name="hint_buy_sell_ram_buy_for_other_account_name">Enter account name</string>
+    <string name="amount_of_native_token_want_to_buy">Amount of RAM to buy in %1$s</string>
+    <string name="amount_of_ram_want_to_buy">Amount of RAM to buy</string>
+    <string name="amount_of_ram_want_to_sell">Amount of RAM to sell</string>
+    <string name="native_token_divided_to_kb">%1$s/kb</string>
+    <string name="buy_kb_for_native_token">Buy %1$s kb with %2$s %3$s</string>
+    <string name="sell_kb_for_native_token">Sell %1$s kb for ~%2$s %3$s</string>
+    <string name="message_buy_sell_ram_minimum_buy_error">Minimum buy amount is %2$s</string>
+    <string name="message_buy_sell_ram_minimum_sell_error">Minimum sell amount is %2$s</string>
+    <string name="eos">EOS</string>
+    <string name="buy_ram_success">Buy RAM Successfully</string>
+    <string name="sell_ram_success">Sell RAM Successfully</string>
+    <string name="continue_buy_ram">Continue Buy RAM</string>
+    <string name="continue_sell_ram">Continue Sell RAM</string>
+
+    <!--    Step 1 select account type-->
+    <string name="title_step_1_select_account_type_start_journey">Start your EOS wallet journey</string>
+    <string name="label_step_1_select_account_type_start_journey_description">An EOS account name is your passport to the EOS blockchain, allowing you to send, receive, and manage digital assets securely.</string>
+    <string name="label_step_1_select_account_type_start_journey_prompt">So you want to create a?</string>
+    <string name="label_step_1_select_account_type_example">Example: %s</string>
+    <string name="all_antelope_standard_account_name">Standard Account Name</string>
+    <string name="label_step_1_select_account_type_standard_account_description">A full 12-character name. Ideal for those who prefer traditional identifiers.</string>
+    <string name="all_antelope_premium_account_name">Premium Account Name</string>
+    <string name="label_step_1_select_account_type_premium_account_description">Under 12 characters with a .man suffix for a perfect personalized touch. Easy to remember and share.</string>
+    <string name="title_step_1_select_account_type_create_for_friend">Create an account for your friend</string>
+    <string name="label_step_1_select_account_type_create_for_friend_description">You must import an account first.</string>
+
+    <!--    Step 2 select account name-->
+    <string name="title_step_2_select_account_name">Pick your account name</string>
+    <string name="label_step_2_select_account_name_account_type">You\'re creating a </string>
+    <string name="label_step_2_select_account_name_account_name">Account name</string>
+    <string name="hint_step_2_select_account_name_account_name">Enter account name</string>
+    <string name="label_step_2_select_account_name_character_limit">%s/%s characters</string>
+    <string name="button_step_2_select_account_name_character_suggest">Suggest</string>
+    <string name="label_step_2_select_account_name_premium_account_length">Length can be shorter than 12 characters</string>
+    <string name="label_step_2_select_account_name_standard_account_length">Must be exactly 12 characters</string>
+    <string name="label_step_2_select_account_name_account_name_start_end">Cannot begin or end with a period, cannot begin with a number</string>
+    <string name="label_step_2_select_account_name_valid_characters">Use only letters (a-z), numbers 1-5</string>
+    <string name="label_step_2_select_account_name_checking_existence">Checking account existence...</string>
+    <string name="label_step_2_select_account_name_name_not_taken">Account name not taken</string>
+    <string name="button_step_2_select_account_name_account_create_premium_account">Create Mangala Account</string>
+    <string name="button_step_2_select_account_name_account_create_account">Create Account</string>
+
+    <!--    Step 3 Antelope Create Account-->
+    <string name="label_step_3_create_account_payment_account_type">You\'re creating an account of type</string>
+    <string name="label_step_3_create_account_payment_account_name">with account name</string>
+    <string name="label_step_3_create_account_payment_account_fee">with fee</string>
+    <string name="label_step_3_create_account_payment_account_payment_method">Which payment method do you want to use?</string>
+    <string name="button_step_3_create_account_payment_pay_with_account">Pay with account</string>
+    <string name="button_step_3_create_account_payment_in_app_purchase">In App Purchase</string>
+    <string name="button_step_3_create_account_payment_ask_a_friend">Ask a friend to create</string>
+    <string name="button_step_3_create_account_payment_free">Free</string>
+    <string name="button_step_3_create_account_payment_with_crypto">Pay with crypto</string>
+    <string name="button_step_3_create_account_payment_create">Create Mangala Account</string>
+    <string name="button_step_3_create_account_payment_retry_iap_create_account">Retry creating
+        account
+    </string>
+    <string name="message_step_3_create_account_payment_introduction">Thank you for creating account! \n\nYour %s account is being created and will be ready for you to explore soon.</string>
+    <string name="message_step_3_create_account_payment_done">You\'re all set! 🎉\n\nYour %s account is created successfully, and we’re thrilled to have you join us.</string>
+    <string name="message_step_3_create_account_payment_setup_pin">Your %s account was created successfully! 🎉\n\nFor added security, please set up a PIN to protect your account. It only takes a moment!</string>
+    <string name="message_step_3_create_account_payment_introduction_premium_account_name">Mangala Premium %s</string>
+    <string name="message_step_3_create_account_payment_step_create">Create Account</string>
+    <string name="message_step_3_create_account_payment_step_creating">Creating Account</string>
+    <string name="message_step_3_create_account_payment_step_payment">Payment</string>
+    <string name="message_step_3_create_account_payment_step_payment_processing">Payment Processing</string>
+    <string name="message_step_3_create_account_payment_step_explore">Explore Mangala</string>
+    <string name="message_step_3_create_account_payment_step_setup_pin">Set up PIN</string>
+    <string name="message_step_3_create_account_payment_failed_payment">Your payment for account creation was successful, but we encountered a minor issue during the setup process. We’re working on it and will notify you as soon as possible. Rest assured, your payment is valid, and no further charges are required. We’ll complete your account setup shortly.</string>
+
+    <!--    Antelope create account errors -->
+    <string name="message_antelope_create_account_already_exist">Account already exists</string>
+    <string name="message_antelope_create_account_error">Error creating Antelope account</string>
+    <string name="message_antelope_create_account_iap_error">Your payment is successful, but we
+        encountered a minor issue during the account creation process. Rest assured, your payment is
+        valid, and no further charges are required
+    </string>
+    <string name="message_antelope_create_account_payment_network_error">A network error occurred
+        while creating your account, please try again
+    </string>
+    <string name="message_antelope_create_account_payment_unknown_error">An unknown error occurred
+        while creating your account, please try again or contact support
+    </string>
+    <string name="message_antelope_create_account_payment_pending_error">Your payment is still
+        processing, please try again later
+    </string>
+    <string name="message_antelope_create_account_payment_cannot_process">We couldn\'t process your payment. Please try again later</string>
+    <string name="message_antelope_create_account_payment_consumed">You have already created an
+        account with this payment
+    </string>
+    <string name="message_antelope_create_account_payment_cancelled">Your payment was cancelled or
+        refunded
+    </string>
+    <string name="message_antelope_create_account_payment_issue">There was some issue processing your payment, please try again later</string>
+
+    <!--    Select account type screen-->
+    <string name="title_select_account_type">Change account type</string>
+
+    <!--    Import EOS Account -->
+    <string name="title_import_eos_account">Import your EOS account</string>
+    <string name="message_guide_import_eos_account">Enter or scan the private key for the account you wish to import.</string>
+    <string name="message_enter_private_key">Enter private key</string>
+    <string name="title_select_account_import_account">Select account</string>
+    <string name="title_EOS_import_account">EOS</string>
+    <string name="title_loading_account">Looking for account</string>
+    <string name="message_loading_account">Hold on for a sec...</string>
+
+    <!--    Select payment account-->
+    <string name="title_select_payment_account">Change account</string>
+    <string name="title_select_payment_account_pick">Pick an account to pay fee</string>
+    <string name="label_select_payment_account_balance_available">Available</string>
+
+    <!--    Create by friend-->
+    <string name="title_create_by_friend">Payment QR code</string>
+    <string name="title_create_by_friend_content">Scan QR code to pay fee</string>
+    <string name="label_create_by_friend_description">Ask a friend to scan and pay for your account creation. Don\'t worry if your friend created the account successfully but you haven\'t saved it yet. You can still active it later</string>
+    <string name="button_create_by_friend_share_qr">Share QR</string>
+    <string name="button_create_by_friend_save_qr">Save QR</string>
+    <string name="button_create_by_friend_save_account">Save QR</string>
+
+    <!--    CPU and NET screen -->
+    <string name="title_net_and_cpu_screen_introduce">Resource Provider Costs for %s</string>
+    <string name="message_net_and_cpu_screen_introduce">Select a Resource Provider from the choices below to increase your %s.</string>
+
+    <string name="title_net_and_cpu_screen_unit">EOS PER %s</string>
+    <string name="message_net_and_cpu_screen_description_power_up">Usable for up to 24 hours</string>
+    <string name="bottom_net_and_cpu_screen_power_up">RENT VIA POWERUP</string>
+
+    <string name="title_net_and_cpu_screen_rex">REX</string>
+    <string name="message_net_and_cpu_screen_description_rex">Usable each day for the next 30 days.</string>
+    <string name="bottom_net_and_cpu_screen_rex">RENT VIA REX</string>
+
+    <string name="title_net_and_cpu_screen_staking">Staking</string>
+    <string name="title_net_and_cpu_screen_un_staking">Unstaking</string>
+    <string name="message_net_and_cpu_screen_description_staking">Usable each day until they are unstaked.</string>
+    <string name="message_net_and_cpu_screen_description_un_staking">Return staked tokens to your
+        account\nafter 72-hour wait period.\n
+        Resources obtained from staking\nwill no longer be available.
+    </string>
+    <string name="bottom_net_and_cpu_screen_staking">STAKE TOKENS</string>
+    <string name="bottom_net_and_cpu_screen_unstaking">UNSTAKE TOKENS</string>
+    <string name="message_stake_cpu">Stake CPU</string>
+    <string name="message_stake_net">Stake NET</string>
+    <string name="message_un_stake_cpu">Unstake CPU</string>
+    <string name="message_un_stake_net">Unstake NET</string>
+    <string name="message_fail_un_stake">Insufficient balance to unstake.</string>
+    <string name="message_fail_stake">Insufficient balance to stake.</string>
+
+    <!--    REX screen -->
+    <string name="button_stake_token">Stake</string>
+    <string name="button_un_stake_token">Unstake</string>
+    <string name="message_rex_net_stake_amount">Amount of EOS to stake as NET</string>
+    <string name="message_rex_rent_amount_kb">Amount of KB to rent to REX</string>
+    <string name="button_continue_stake">Continue to Stake Tokens</string>
+    <string name="button_continue_un_stake">Continue to Unstake Tokens</string>
+    <string name="message_stake_successfully">Stake tokens successfully</string>
+    <string name="message_un_stake_successfully">Unstake tokens successfully</string>
+
+    <!--    Power up-->
+    <string name="message_power_up_net_stake_amount">Amount of kb to rent from Power Up</string>
+    <string name="message_power_up_cpu_stake_amount">Amount of ms to rent from Power Up</string>
+    <string name="message_power_up_net_prices">Current NET prices</string>
+    <string name="message_power_up_cpu_prices">Current CPU prices</string>
+    <string name="button_power_up_rent">Rent</string>
+    <string name="button_power_up_continue">Continue to Power Up</string>
+    <string name="message_power_up_successfully">Power up successfully</string>
+
+    <!--    Rent via Rex-->
+    <string name="message_rent_via_rex_net_amount">Amount of eos to rent via REX</string>
+    <string name="message_rent_via_rex_cpu_amount">Amount of ms to rent via REX</string>
+    <string name="button_rent_via_rex_continue">Continue to Rent via REX</string>
+    <string name="message_rent_via_rex_successfully">Rent via REX successfully</string>
+    <string name="message_not_enough_eos_to_rent">Not enough EOS to rent</string>
+
+    <!--    Export Private Key-->
+    <string name="title_guide_export_private_key">Start export your private key now</string>
+    <string name="title_guide_export_private_key_guide1">Backup Your EOS Account</string>
+    <string name="message_guide_export_private_key_guide1">To ensure you can recover your EOS account in case you lose your device, securely back up your Private Key. This is essential to protect your assets.</string>
+    <string name="title_guide_export_private_key_guide2">Store Private Key</string>
+    <string name="message_guide_export_private_key_guide2">Do not share your Private Key with anyone. Store it in a secure place, such as a cold wallet or write it down and keep it safe. If you lose your Private Key, you will not be able to access your account.</string>
+    <string name="title_guide_export_private_key_guide3">Security Warning</string>
+    <string name="message_guide_export_private_key_guide3">Never copy your Private Key into messaging apps, email, or store it on online services. These methods are vulnerable to attacks and may put your account at risk.</string>
+    <string name="button_guide_export_private_key_startBackup">Start backup</string>
+    <string name="button_guide_export_private_key_skip">Skip</string>
+    <string name="title_export_private_key_select_permission_selected_account">Account Selected</string>
+    <string name="title_export_private_key_select_permission_choose_permission">Choose permission</string>
+    <string name="title_export_private_key_show_private_key_top_bar">Handwritten backup</string>
+    <string name="message_export_private_key_show_private_key">The private key is not encrypted, please export it carefully and make a safe backup! When backing up the private key, please make sure that no one is around!</string>
+    <string name="button_export_private_key_copy">Copy private key</string>
+    <string name="button_export_private_key_show">Show key</string>
+    <string name="button_export_private_key_hide">Hide key</string>
+
+    <!--    Manage antelope account-->
+    <string name="title_manage_antelope_account_bottomsheet_delete_account">Delete account</string>
+
+    <!--    DELETE dialog antelope account-->
+    <string name="title_delete_antelope_account_confirm_dialog">Warning: you can lose your account and funds forever</string>
+    <string name="message_delete_antelope_account_confirm_dialog">Don\'t delete if you didn\'t make a backup, as there will be NO WAY to restore your account after you delete.</string>
+
+    <!--    Alert power up dialog antelope resource-->
+    <string name="title_power_up_antelope_resource_dialog">Transact</string>
+    <string name="message_power_up_antelope_resource_dialog_question">Accept Transaction Fee?</string>
+    <string name="message_power_up_antelope_resource_dialog_description">Additional resources %s are required for your account to perform this transaction. Would you like to automatically purchase these resources and proceed?</string>
+    <string name="button_power_up_antelope_resource_dialog_accept">Accept</string>
+    <string name="button_power_up_antelope_resource_dialog_decline">Decline</string>
+    <string name="message_power_up_antelope_resource_dialog_spoken_words">and</string>
+
+    <!--    HANDLE create EOS account notification from FCM-->
+    <string name="title_create_eos_account_failed_notification">Eos Account was created failed</string>
+    <string name="title_create_eos_account_default_notification">Notification</string>
+
+    <!--    Transfer ram -->
+    <string name="title_transfer_ram">Transfer RAM</string>
+    <string name="message_transfer_ram_success">Transfer Successful</string>
+    <string name="label_transfer_ram_recipient">Recipient</string>
+    <string name="hint_transfer_ram_enter_account_name">Enter account name</string>
+    <string name="label_transfer_ram_invalid_account_name">Invalid account name</string>
+    <string name="label_transfer_ram_memo">Memo</string>
+    <string name="hint_transfer_ram_enter_memo">Enter memo</string>
+    <string name="button_transfer_ram_continue">Continue transfer RAM</string>
+    <string name="button_transfer_ram_back_to_home"> Back to home</string>
+    <string name="message_transfer_ram_min_amount_error">Minimum transfer amount is %s</string>
+
+    <!--    CREATE EOS account paid with crypto-->
+    <string name="title_create_eos_account_paid_with_crypto">Pay with Crypto</string>
+    <string name="title_paying_with_crypto_content">You are paying with crypto</string>
+    <string name="label_paying_with_crypto_description_first">You are selecting the Network to Pay for Creating Account </string>
+    <string name="label_paying_with_crypto_description_second">. Please select the network you\'d like to use for payment of this account. We are supporting some network below for payment.</string>
+    <string name="label_paying_with_crypto_network">Network</string>
+    <string name="label_paying_with_crypto_wallet">Wallet</string>
+    <string name="label_paying_with_crypto_account">Account</string>
+    <string name="title_select_network">Network</string>
+    <string name="place_holder_search_network_description">Search network</string>
+    <string name="label_pay_with_crypto_detail_description_first">You are selecting the token to Pay for Creating Account</string>
+    <string name="label_pay_with_crypto_detail_description_second">Below is your account information and our service fee that you need to pay to create account.</string>
+    <string name="label_select_token_to_pay">Choose token to Pay</string>
+    <string name="label_pay_with_crypto_account_name_confirmation">Your account name is</string>
+    <string name="label_pay_with_crypto_total_need_to_paid_description">You need to pay us total</string>
+    <string name="payment_details_title">Payment details</string>
+    <string name="payment_details_account_resources">Your account %s is</string>
+    <string name="payment_details_our_service_fee">Our service fee is</string>
+    <string name="title_pay_with_crypto_error">Pay with crypto error</string>
+    <string name="title_pay_with_crypto_error_content">There was a problem with payment</string>
+    <string name="button_payment_error_back_to_home_content">Back to home</string>
+    <string name="label_pay_with_crypto_description">We are processing a %s payment to create your account name using cryptocurrency. Please review and confirm the transaction.</string>
+    <string name="label_pay_with_crypto_account_detail">Account details</string>
+    <string name="label_pay_with_crypto_account_detail_account_type">Account type</string>
+    <string name="label_pay_with_crypto_account_detail_account_name">Account name</string>
+    <string name="label_pay_with_crypto_payment_detail">Payment details</string>
+    <string name="label_pay_with_crypto_payment_detail_total_cost">Total cost</string>
+    <string name="label_pay_with_crypto_payment_detail_payment_token">Payment token</string>
+    <string name="label_pay_with_crypto_payment_detail_equivalent">Equivalent</string>
+    <string name="label_pay_with_crypto_payment_detail_select_payment_token_place_holder">Select payment token</string>
+    <string name="label_pay_with_crypto_payment_detail_equivalent_default_value">---</string>
+    <string name="label_pay_with_crypto_requested_success_description">Your requesting to create new eos account was executed successfully. We will create account for you and notify you when it is done.</string>
+    <string name="title_allowance_content">Allow Access to Tokens</string>
+    <string name="label_allowance_first_description">To perform this action, you need to let the smart contract use a specific amount of %s tokens.</string>
+    <string name="label_allowance_second_description">You are always in control, and only the approved amount can be accessed.</string>
+    <string name="label_allowance_amount">Amount</string>
+    <string name="button_allowance_approve_content">Approve</string>
+    <string name="label_allowance_invalid_amount">You need to allow greater than %s</string>
+    <string name="error_change_network_can_not_get_selected_account">You don't have any account for payment.</string>
+    <string name="error_change_network_not_supported_for_payment">The network is not supported for payment.</string>
+    <string name="error_pay_with_crypto_can_not_get_token_decimals">Unable to get decimals data of the Token you selected for payment.</string>
+    <string name="error_approve_allowance_failed">Approve Token allowance failed.</string>
+    <string name="error_pay_with_crypto_calculate_evm_failed">Calculate total EVM token that you need to pay failed.</string>
+    <string name="error_pay_with_crypto_call_send_sign_message_api_failed">Send sign message to pay for new account failed.</string>
+    <string name="error_pay_with_crypto_estimate_gas_failed">Can not estimate gas for payment.</string>
+    <string name="error_pay_with_crypto_sign_payment_transaction_failed">Sign transaction payment failed.</string>
+    <string name="error_pay_with_crypto_get_device_id_failed">Can not get deviceId.</string>
+    <string name="error_pay_with_crypto_save_account_failed">Can not save new account.</string>
+    <string name="error_pay_with_crypto_change_back_to_original_network_failed">Can not change back to original network.</string>
+    <string name="title_select_payment_method">Select Payment Method</string>
+    <string name="place_holder_search_payment_method">Search payment method</string>
+    <string name="place_holder_search_wallet_description">Search wallet</string>
+    <string name="place_holder_search_account_description">Search account</string>
+    <string name="label_notification_account_created_successfully">Create account %s success</string>
+    <string name="label_notification_account_created_successfully_description">Congratulations! Your new %s account %s was created successfully.</string>
+    <string name="error_pay_with_crypto_can_not_get_native_token_of_account">We can not find your token %s in your account.</string>
+    <string name="error_pay_with_crypto_account_do_not_have_enough_native_token">You do not have enough %s to pay for this account or for transaction fees.</string>
+    <string name="label_notification_account_created_failure">Create account %s failed</string>
+    <string name="label_notification_account_created_failure_description">We couldn't create your %s account %s. Please try again later. If the problem persist, contact support.</string>
+
+    <!--    Multisign Screen-->
+    <string name="label_proposal_item_executable">Executable</string>
+    <string name="label_proposal_item_pending">Pending</string>
+    <string name="label_proposal_item_draft">Draft</string>
+    <string name="label_proposal_item_expired">Expired</string>
+
+    <string name="label_proposal_tab_my_proposal">My Proposal</string>
+    <string name="label_proposal_tab_approvals">Approvals</string>
+
+    <string name="button_proposal_create_proposal">Create new</string>
+    <string name="place_holder_proposal_search_bar">Enter proposal name</string>
+    <string name="label_proposal_open_state">Open</string>
+    <string name="label_proposal_done_state">Done</string>
+
+    <!--    EVM snap account-->
+    <string name="title_import_from_evm_wallet">Import from EVM wallet</string>
+    <string name="label_import_evm_snap_account_description">You are securely importing your EOS account into Mangala Wallet. This process uses the existing EVM wallet you have already imported into Mangala Wallet. Please select an EVM wallet to proceed. Rest assured, your private information is handled securely, and no additional seed phrases are required for this operation.</string>
+    <string name="label_not_have_any_evm_wallet">Warning: You currently do not have any EVM wallets imported into Mangala Wallet. To import your EOS account, you must first add an EVM wallet to Mangala Wallet.</string>
+    <string name="error_evm_wallet_not_link_eos_account">Your wallet is not linked to any EOS account. Please verify that your wallet corresponds to an EOS-linked account and try again or choose another wallet.</string>
+    <string name="label_import_with_new_evm_wallet">Don’t have a wallet linked to an EOS account? Import a new EVM wallet to continue</string>
+    <string name="error_get_account_from_private_key_failed">We encountered an issue while fetching the EOS account linked to your private key. Please check your network connection and try again. If the problem persists, verify that the private key is correct or contact support for assistance.</string>
+    <string name="title_choose_imported_eos_account_with_private_key">Select EOS Private Key to Import</string>
+    <string name="label_choose_imported_eos_account_with_private_key_description">Below are the EOS private keys extracted from your Evm wallet. The Owner Key provides full control over your EOS account, while the Active Key is typically used for everyday transactions and operations. Please select the key you wish to import into your wallet.</string>
+    <string name="title_choose_permission_private_key_to_import">%s permission private key</string>
+    <string name="label_warning_when_choose_owner_permission_description">* Grants full control, including the ability to recover accounts and manage permissions. Use only in secure, trusted environments.</string>
+    <string name="label_warning_when_choose_active_permission_description">* Used for day-to-day transactions. Ideal for most users to minimize risk.</string>
+    <string name="title_choose_imported_eos_account_with_private_key_error">Import with Evm error</string>
+    <string name="all_loading">Loading...</string>
+    <string name="error_evm_wallet_link_eos_account">Your wallet was already linked to an EOS account. Please verify that your wallet does not correspond to an EOS-linked account and try again or choose another wallet.</string>
+    <string name="title_create_from_evm">Create from EVM</string>
+    <string name="button_import_with_evm_snap">Import with EVM snap</string>
+    <string name="title_import_evm_snap_account">Import Account</string>
+
+
+    <!--    Antelope multisig create new proposal-->
+    <string name="title_create_new_proposal">Create new proposal</string>
+    <string name="title_create_new_proposal_update_draft">Edit proposal draft</string>
+    <string name="label_create_new_proposal_proposal_name">Proposal name</string>
+    <string name="hint_create_new_proposal_proposal_name">E.g. groupfund25</string>
+    <string name="label_create_new_proposal_expiration_date">Expiration date</string>
+    <string name="label_create_new_proposal_account_and_permission">Account &amp; permission</string>
+    <string name="hint_create_new_proposal_account_and_permission">Choose submitting account &amp; permission</string>
+    <string name="label_create_new_proposal_action">Action</string>
+    <string name="hint_create_new_proposal_action">Setup your action</string>
+    <string name="label_create_new_proposal_approver">Approver</string>
+    <string name="hint_create_new_proposal_approver">Choose approver</string>
+    <string name="message_create_new_proposal_error_proposal_with_same_name">Proposal with name %1$s already exists</string>
+    <string name="message_create_new_proposal_error_unknown">An unknown error occurred when submitting your proposal, please try again later</string>
+    <string name="message_create_new_proposal_error_input">There was an issue writing your proposal data. Check your proposal data input and try again</string>
+    <string name="title_create_new_proposal_error">Error submitting new proposal</string>
+    <string name="message_create_new_proposal_error">An error occurred when submitting your proposal\n%1$s</string>
+    <string name="message_multisig_proposal_action_error_invalid_contract_name">Use up to 12 characters: only a-z and 1-5 and comma '.'</string>
+    <string name="title_multisig_proposal_action_delete_confirmation">Delete action?</string>
+    <string name="title_multisig_proposal_delete_draft_confirmation">Delete draft proposal?</string>
+    <string name="message_multisig_proposal_delete_draft_confirmation_description">Your entered data will be deleted and cannot be recovered. Are you sure you want to delete this draft proposal?</string>
+    <string name="title_multisig_proposal_overwrite_draft_confirmation">Overwrite existing draft?</string>
+    <string name="message_multisig_proposal_overwrite_draft_confirmation_description">A draft for proposal %1$s already exists. Do you want to overwrite it?</string>
+    <string name="button_multisig_proposal_overwrite_draft">Overwrite</string>
+    <string name="title_multisig_proposal_update_draft_confirmation">Save changes?</string>
+    <string name="message_multisig_proposal_update_draft_confirmation_description">Save changes to the draft of proposal %1$s?</string>
+    <string name="title_multisig_proposal_save_draft_confirmation">Save draft?</string>
+    <string name="message_multisig_proposal_save_draft_confirmation_description">Save your progress as a draft for this proposal?</string>
+    <string name="button_multisig_proposal_save_draft_negative">Don\'t save</string>
+    <string name="message_multisig_proposal_action_delete_confirmation_description">Your entered data will be deleted and cannot be recovered. Are you sure you want to delete this action?</string>
+    <string name="message_multisig_proposal_action_error_contract_name_not_exists">Contract does not exists</string>
+    <string name="message_multisig_proposal_action_error_contract_name_load_error">Error searching for contract</string>
+    <string name="message_multisig_proposal_action_no_action">No actions found for this account</string>
+    <string name="message_multisig_proposal_action_error_loading_action">Error loading actions</string>
+    <string name="message_multisig_proposal_action_error_authorization_name_load_error">Error loading authorizations</string>
+    <string name="message_multisig_proposal_action_error_authorization_no_authorization">No account found</string>
+    <string name="message_multisig_proposal_action_error_authorization_permission_loading_error">Error loading account permission</string>
+    <string name="message_multisig_proposal_action_name_error">Use up to 12 characters, and in some rare cases, 13. Only a-z and 1-5 and comma '.'</string>
+    <string name="message_multisig_proposal_permission_name_error">Use up to 13 characters. Only a-z and 1-5 and comma '.'</string>
+    <string name="message_multisig_proposal_name_length_error">Use up to %1$s characters only</string>
+    <string name="message_multisig_proposal_name_invalid_character_error">Only English letters a-z, numbers 1-5 and comma '.' allowed</string>
+    <string name="message_multisig_proposal_name_serialization_does_not_match_error">Invalid name. Due to system encoding, your entry will be changed to “%1$s”</string>
+    <string name="message_multisig_proposal_action_name_invalid_number">Invalid number. Enter number from %1$s to %2$s</string>
+    <string name="message_multisig_proposal_action_name_invalid_hex_string_with_length">Enter a valid %1$s bytes (%2$s characters) hexadecimal string e.g. 01abcdef</string>
+    <string name="message_multisig_proposal_action_name_invalid_hex_string">Enter a valid hexadecimal string e.g. 01abcdef</string>
+    <string name="message_multisig_proposal_action_name_invalid_public_key">Enter a valid public key (starts with PUB_K1_ or EOS)</string>
+    <string name="message_multisig_proposal_action_name_invalid_signature">Enter a valid public key (starts with SIG_K1_)</string>
+    <string name="message_multisig_proposal_action_name_invalid_asset">Enter a valid asset</string>
+    <string name="message_multisig_proposal_action_name_invalid_extended_symbol">Enter a valid extended symbol</string>
+    <string name="message_multisig_proposal_action_name_invalid_string">String contains invalid character</string>
+    <string name="message_multisig_proposal_action_name_invalid_asset_code">Enter up to 7 all uppercase letters A-Z</string>
+    <string name="message_multisig_proposal_action_name_invalid_symbol">Invalid symbol</string>
+    <string name="message_multisig_proposal_action_name_invalid_symbol_precision">Precision must be number from 0-18</string>
+    <string name="message_multisig_proposal_action_name_missing_symbol_precision">Enter a precision number from 0-18</string>
+    <string name="message_multisig_proposal_action_name_missing_symbol_name">Enter symbol name</string>
+    <string name="message_multisig_proposal_action_name_invalid_symbol_name">Invalid symbol name</string>
+    <string name="message_multisig_proposal_action_name_invalid_symbol_format">Invalid symbol format</string>
+    <string name="message_multisig_proposal_action_name_missing_asset_symbol">Enter asset name</string>
+    <string name="message_multisig_proposal_action_name_missing_asset_value">Enter asset value</string>
+    <string name="message_multisig_proposal_action_name_missing_contract_name">Enter contract name</string>
+    <string name="message_multisig_proposal_action_name_missing_symbol">Enter symbol info</string>
+    <string name="message_multisig_proposal_action_name_invalid_asset_value_format">Invalid value format</string>
+    <string name="message_multisig_proposal_action_name_invalid_asset_value_precision">Use up to %1$s decimal place(s) for value</string>
+    <string name="label_multisig_proposal_action_symbol_precision">Precision</string>
+    <string name="hint_multisig_proposal_action_symbol_precision">Number of decimal places</string>
+    <string name="hint_multisig_proposal_action_symbol_name">Name of symbol</string>
+    <string name="label_multisig_proposal_action_symbol_name">Symbol name</string>
+    <string name="label_multisig_proposal_action_asset_amount">Amount</string>
+    <string name="hint_multisig_proposal_action_asset_amount">Amount e.g. 1.2345</string>
+    <string name="label_multisig_proposal_action_asset_name">Asset name</string>
+    <string name="hint_multisig_proposal_action_asset_name">Symbol e.g. EOS</string>
+    <string name="label_multisig_proposal_action_extended_contract_name">Contract name</string>
+    <string name="hint_multisig_proposal_action_name_type">Letters (a-z), numbers 0-5 and period (.), 1-13 characters long. E.g. user.man</string>
+    <string name="hint_multisig_proposal_action_bool_type">true or false</string>
+    <string name="hint_multisig_proposal_action_int_type">Number from %1$s to %2$s</string>
+    <string name="hint_multisig_proposal_action_float_type">Number with decimal points</string>
+    <string name="hint_multisig_proposal_action_time_point_type">Date time in milliseconds</string>
+    <string name="hint_multisig_proposal_action_time_point_sec_type">Date time</string>
+    <string name="hint_multisig_proposal_action_hex_string_type">Hex string</string>
+    <string name="hint_multisig_proposal_action_string_type">Text</string>
+    <string name="hint_multisig_proposal_action_checksum160_type">RIPEMD-160 hash string, e.g. 8a73c5438c28e79e696144fa869886f240cfaddb</string>
+    <string name="hint_multisig_proposal_action_checksum256_type">SHA256 hash string, e.g. 936a185caaa266bb9cbe981e9e05cb78cd732b0b3280eb944412bb6f8f8f07af</string>
+    <string name="hint_multisig_proposal_action_checksum512_type">SHA512 hash string, e.g. 1594244d52f2d8c12b142bb61f47bc2eaf503d6d9ca8480cae9fcf112f66e4967dc5e8fa98285e36db8af1b8ffa8b84cb15e0fbcf836c3deb803c13f37659a60</string>
+    <string name="hint_multisig_proposal_action_public_key_type">Public key, starts with EOS or PUB_K1_</string>
+    <string name="hint_multisig_proposal_action_signature_type">Signature, starts with SIG_K1_</string>
+    <string name="hint_multisig_proposal_action_symbol_code_type">e.g EOS</string>
+    <string name="message_multisig_proposal_action_name_invalid_asset_symbol">Invalid asset name</string>
+    <string name="message_multisig_proposal_action_name_asset_symbol_not_found">Asset symbol not found</string>
+    <string name="message_multisig_proposal_field_name_header">%1$s (%2$s)</string>
+    <string name="message_multisig_proposal_field_name_header_optional">%1$s (%2$s) (optional)</string>
+    <string name="message_multisig_proposal_authorization_threshold">Threshold %1$s</string>
+    <string name="message_multisig_proposal_permission_name_not_found">Account %1$s does not have permission %2$s</string>
+    <string name="message_multisig_proposal_no_permission_name_not_found">Please enter a permission name</string>
+
+    <!--    Antelope multisig edit actions-->
+    <string name="title_multisig_action">Action</string>
+    <string name="title_multisig_action_smart_contract_name_and_action_section">Smart contract and Action</string>
+    <string name="label_multisig_action_smart_contract_name_and_action_section">Smart contract and Action</string>
+    <string name="label_multisig_action_smart_contract_name">Smart contract name</string>
+    <string name="hint_multisig_action_smart_contract_name">Select or type a smart contract name</string>
+    <string name="label_multisig_action_action_name">Action</string>
+    <string name="hint_multisig_action_action_name">Search or type an action</string>
+    <string name="label_multisig_action_authorization_name_and_permission_section">Authorization name and Permission</string>
+    <string name="title_multisig_action_authorization_name_and_permission_section">Authorization name and Permission</string>
+
+    <!--    Proposals detail-->
+    <string name="title_proposal_detail_proposal">My proposal detail</string>
+    <string name="title_proposal_details_approval_proposal_detail">Proposal detail</string>
+    <string name="button_proposal_details_execute">Execute</string>
+    <string name="button_proposal_details_confirm">Confirm</string>
+    <string name="button_proposal_details_approve">Approve</string>
+    <string name="button_proposal_details_unapprove">Unapprove</string>
+    <string name="message_proposal_details_waiting_approval_1">Waiting for approval. Your proposal has been sent to the designated approval.</string>
+    <string name="message_proposal_details_waiting_approval_2">Once approved, your proposal can be executed.</string>
+    <string name="message_proposal_details_execute_approval">Your proposal can be execute.</string>
+    <string name="message_proposal_details_expired_approval">Proposal expired, please ignore.</string>
+    <string name="message_proposal_details_list_approver">List approver: %1$s/%2$s</string>
+    <string name="label_proposal_details_only_list_approval">List approver</string>
+    <string name="label_proposals_detail_detail_proposal">Proposals detail</string>
+    <string name="message_proposal_details_approved">Approved %1$s/%2$s</string>
+    <string name="label_proposals_detail_action_detail">Action detail</string>
+    <string name="label_proposals_detail_authorization">Authorizations</string>
+    <string name="message_proposal_details_approval_request">Approval request from</string>
+    <string name="label_proposal_details_see_detail">See detail</string>
+    <string name="message_proposal_details_confirm_approve_proposal">Are you sure you want to approve this proposal?</string>
+    <string name="message_proposal_details_confirm_unapprove_proposal">Are you sure you want to unapprove this proposal?</string>
+    <string name="message_proposal_details_confirm_cancel_proposal">Are you sure you want to cancel this proposal?</string>
+    <string name="message_proposal_details_confirm_execute_proposal">Are you sure you want to execute this proposal?</string>
+    <string name="title_proposal_details_approve_proposal">Approve confirm</string>
+    <string name="title_proposal_details_unapprove_proposal">Unapprove confirm</string>
+    <string name="title_proposal_details_cancel_proposal">Cancel confirm</string>
+    <string name="title_proposal_details_execute_proposal">Execute confirm</string>
+
+    <string name="title_proposal_detail_proposal">Detail Proposal</string>
+
+    <!--    Antelope multisig account & permission-->
+    <string name="title_multisig_account_and_permission_screen_top_bar">Account &amp; Permission</string>
+    <string name="title_multisig_account_and_permission_screen_account_name">Account name</string>
+    <string name="title_multisig_account_and_permission_screen_permission">Permission</string>
+
+    <!--    Evm create eos account-->
+    <string name="title_create_eos_account_from_evm_wallet">Create EOS account from EVM</string>
+    <string name="label_create_eos_account_from_evm_wallet_description">You are selecting the Network to Pay for Creating Account %s. Please select the network you'd like to use for payment of this account. We are supporting some network below for payment</string>
+    <string name="label_choose_evm_wallet_to_create_eos_account">Select an EVM wallet from the list below to create your EOS account. Only wallets not currently linked to an EOS account are shown.</string>
+
+    <string name="label_my_proposal_card_unnamed">Unnamed proposal</string>
+    <!--    Antelope multisig approver-->
+    <string name="title_multisig_approver_screen_top_bar">Approver</string>
+    <string name="title_multisig_approver_screen_text_underline">Add new approver</string>
+
+    <string name="button_close_all">Close</string>
+    <string name="title_proposal_details_error_popup">An error occurred</string>
+    <string name="message_proposal_details_transaction_executed">Transaction executed.</string>
+    <string name="message_proposal_details_error_message">An error occurred, please try again.</string>
+    <string name="label_proposal_details_account_weight">Weight %s</string>
+
+
+    <!--    Basic antelop verify and send -->
+    <string name="message_basic_verify_and_send_screen_error_loading_token_info">Error loading token info</string>
+
+    <!--    Create account for friend screen -->
+    <string name="title_create_account_for_friend_screen">Create account for friend</string>
+    <string name="message_create_account_for_friend_screen_account_created_txHash">Account created txHash %1$s</string>
+    <string name="message_create_account_for_friend_screen_account_name_to_create">Account name to create %1$s</string>
+    <string name="message_create_account_for_friend_screen_active_public_key">Active public key %1$s</string>
+    <string name="message_create_account_for_friend_screen_owner_public_key">Owner public key %1$s</string>
+    <string name="button_create_account_for_friend_screen_account_selected">Account selected %1$s</string>
+    <string name="button_create_account_for_friend_screen_create_account">Create account</string>
+    <string name="message_create_account_for_friend_screen_no_have_account">You have no accounts. Please create or import an account to create account for your friend</string>
+
+    <!--    Import account screen -->
+    <string name="label_import_account_screen_public_key">Public key %1$s</string>
+    <string name="button_import_account_screen_import_account">Import account</string>
+    <string name="button_import_account_screen_sync_account_name">Sync account name</string>
+
+    <!--   net and cpu screen -->
+    <string name="total_net_and_cpu_screen_unit_cpu">MS</string>
+    <string name="total_net_and_cpu_screen_unit_net">KB</string>
+
+    <!--    permission screen    -->
+    <string name="button_permission_screen_list_permission">List permissions</string>
+    <string name="button_permission_screen_create_new_custom_permission">Create new custom permission</string>
+    <string name="button_permission_screen_link_auth">Link auth</string>
+    <string name="button_permission_screen_unlink_auth">Un-link auth</string>
+    <string name="message_permission_screen_load_account_failed">Load account failed</string>
+
+    <!--   Proposal Detail Screen -->
+    <string name="message_proposal_detail_screen_success">Success: %1$s</string>
+    <string name="message_proposal_detail_screen_proposal_name">Proposal Name</string>
+    <string name="message_proposal_detail_screen_approval_status">Approval Status</string>
+    <string name="label_proposal_detail_screen_account_execute">Account execute</string>
+    <string name="label_proposal_detail_screen_permission_execute">Permission execute</string>
+    <string name="button_proposal_detail_screen_approval">Approve</string>
+    <string name="button_proposal_detail_screen_execute">Execute</string>
+    <string name="button_proposal_detail_screen_unapprove">Unapprove</string>
+    <string name="message_proposal_detail_screen_multisig_tx">Multisig TX</string>
+    <string name="message_proposal_detail_screen_expiration">Expiration %1$s</string>
+    <string name="message_proposal_detail_screen_requested_approvals">Requested Approvals</string>
+    <string name="message_proposal_detail_screen_action">%1$s (%2$s)</string>
+    <string name="message_proposal_detail_screen_value">Value: (%1$s)</string>
+    <string name="message_proposal_detail_screen_n_a">N/A</string>
+    <string name="message_proposal_detail_screen_array_size">Array size %1$s</string>
+
+    <!--    Create Account Screen-->
+    <string name="message_create_account_screen_owner_public_key">Owner public key: %1$s</string>
+    <string name="message_create_account_screen_active_public_key">Active public key: %1$s</string>
+    <string name="label_create_account_screen_account_name">Account name</string>
+    <string name="message_create_account_screen_contains_only_valid_characters">Contains only valid characters (Lowercase letters a-z, digits 1-5): %1$s</string>
+    <string name="message_create_account_screen_exactly_length">Is exactly 12 characters in length: %1$s</string>
+    <string name="button_create_account_screen_generate_random_account_name">Generate random account name</string>
+    <string name="button_create_account_screen_confirm_account_name">Confirm account name</string>
+    <string name="message_create_account_screen_account_name_available">Account name is available: %1$s</string>
+    <string name="message_create_account_screen_pay_for_resource">To create account on EOS, you need to pay for resources</string>
+    <string name="message_create_account_screen_how_to_pay">How would you like to pay it</string>
+    <string name="message_create_account_screen_in_app_purchase">In-app purchase</string>
+    <string name="message_create_account_screen_from_own_account">From own account</string>
+    <string name="message_create_account_screen_buy_ram">Buy RAM</string>
+    <string name="message_create_account_screen_transfer_ram">Transfer RAM</string>
+    <string name="message_create_account_screen_create_account">Create account</string>
+    <string name="message_create_account_screen_account_created">Account created: %1$s</string>
+
+    <!-- Gift ram -->
+    <string name="title_gift_ram">Gift RAM</string>
+    <string name="message_gift_ram_success">Gift ram Successful</string>
+    <string name="label_gift_ram_recipient">Recipient</string>
+    <string name="hint_gift_ram_enter_account_name">Enter account name</string>
+    <string name="label_gift_ram_invalid_account_name">Invalid account name</string>
+    <string name="label_gift_ram_memo">Memo</string>
+    <string name="hint_gift_ram_enter_memo">Enter memo</string>
+    <string name="button_gift_ram_continue">Continue gift RAM</string>
+    <string name="button_gift_ram_back_to_home"> Back to home</string>
+    <string name="message_gift_ram_min_amount_error">Minimum gift ram amount is %s</string>
+    <string name="button_gift_ram_content">Gift</string>
+    <string name="gift_total_ram">%s kb</string>
+    <string name="gift_ram_input_selection_percent">RAM Amount</string>
+
+    <!-- Backup with key cert screen   -->
+    <string name="message_backup_with_key_cert_screen_permission_name">Permission Name: %1$s</string>
+    <string name="message_backup_with_key_cert_screen_encryption_words">Encryption Words: %1$s</string>
+
+    <!-- Import Account By Key Cert Screen   -->
+    <string name="title_import_account_by_key_cert_screen_import_key_from_cert">Import key from cert</string>
+    <string name="message_import_account_by_key_cert_screen_account_imported_successfully">Account imported successfully</string>
+    <string name="message_import_account_by_key_cert_screen_ask_create_new_active_key">Do you want to create a new active key?</string>
+    <string name="message_import_account_by_key_cert_screen_warning">Warning: this will make a transaction on the network</string>
+    <string name="button_import_account_by_key_cert_screen_create">Create</string>
+    <string name="message_import_account_by_key_cert_screen_account_name">Account name %1$s</string>
+    <string name="message_import_account_by_key_cert_screen_permission_name">Permission name %1$s</string>
+    <string name="message_import_account_by_key_cert_screen_network">Network %1$s</string>
+    <string name="message_import_account_by_key_cert_screen_mnemonic">Mnemonic</string>
+    <string name="button_import_account_by_key_cert_screen_import">Import</string>
+    <string name="button_import_account_by_key_cert_screen_create_and_save_new_permission_success">Create and save new permission success</string>
+    <string name="button_import_account_by_key_cert_screen_setup_pin">Setup PIN</string>
+
+    <!--    Proposals By Proposer Screen -->
+    <string name="message_proposals_by_proposer_screen_proposals">Proposals of %1$s</string>
+
+    <!--    Proposals table screen-->
+    <string name="label_proposals_by_proposer_screen_search_by_proposer">Search by proposer or proposal name...</string>
+    <string name="message_proposals_by_proposer_screen_of_proposals"># of Proposals</string>
+    <string name="message_proposals_by_proposer_screen_view">View</string>
+
+    <!--   Receive Token Pick Account Screen -->
+    <string name="message_receive_token_pick_account_screen_error_loading_accounts_list">Error loading accounts list</string>
+
+
+    <!--    Theme Screen-->
+    <string name="message_theme_screen_device_settings">Upon activation, Day or Night mode will be followed by device settings.</string>
+
+    <!--    Transaction Fee Screen-->
+    <string name="message_transaction_fee_screen_lorem_ipsum_dolor">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed dolabore et dolore magna aliqua.</string>
+
+    <!--    Transaction Qr Screen-->
+    <string name="title_transaction_qr_screen">Transaction QR screen</string>
+
+    <!--    Base Antelope Step4 Verify And Send Screen Model-->
+    <string name="message_base_antelope_step4_verify_and_send_screen_model_error_loading_token_data">Error loading token data</string>
+    <string name="message_base_antelope_step4_verify_and_send_screen_model_failed_to_buy_sell_ram">Failed to buy sell RAM</string>
+    <string name="message_base_antelope_step4_verify_and_send_screen_model_failed_to_send_transaction">Failed to send transaction</string>
+    <string name="message_base_antelope_step4_verify_and_send_screen_model_insufficient_ram">Insufficient RAM. You need to buy at least %.2f KB more RAM to complete this transaction.</string>
+
+
+    <!--    Create Account Screen Model-->
+    <string name="message_create_account_screen_model_account_already_exists">Account already exists</string>
+
+    <!--    Chart Ram Screen Model-->
+    <string name="message_chart_ram_screen_model_failed_to_load_data">Failed to load data</string>
+
+    <!--    Event Detail Screen Model-->
+    <string name="message_event_detail_screen_model_failed_to_load_event_details">Failed to load event details</string>
+    <string name="message_event_detail_screen_model_unknown_error">Unknown error</string>
+
+    <!--    Import Account Screen Model-->
+    <string name="message_import_account_screen_model_missing_account_name">Invalid import request (missing account name). Please scan the QR generated in the UI app instead</string>
+
+    <!--    Nft Details Screen-->
+    <string name="message_nft_details_screen_error_loading_nft_details">Error loading NFT details</string>
+
+    <!--    Nft Screen Model-->
+    <string name="message_nft_screen_model_error_fetching_nft_balance">Error fetching NFT balance</string>
+
+    <!--    Ram Transfer Screen Model-->
+    <string name="message_ram_transfer_screen_model_failed_to_transfer_ram">Failed to transfer RAM</string>
+    <string name="message_ram_transfer_screen_model_failed_to_buy_sell_ram">Failed to buy/sell RAM</string>
+
+    <!--    Swap Token Screen Model-->
+    <string name="message_swap_token_screen_no_account_found">No account found</string>
+
+    <!--    Wallet Main Screen Model-->
+    <string name="message_wallet_main_screen_model_mangala_copy">Mangala copy</string>
+    
+    <!-- Create Group Screen -->
+    <string name="label_create_group">Create Group</string>
+    <string name="label_edit_group">Edit Group</string>
+    <string name="label_enter_group_name">Enter group name</string>
+    <string name="label_choose_network">Choose network</string>
+    <string name="label_blockchain_network">Blockchain Network</string>
+    <string name="label_choose_group_color">Choose group color</string>
+    <string name="label_choose_group_icon">Choose group icon</string>
+    <string name="label_privacy_security">Privacy &amp; Security</string>
+    <string name="label_privacy_level">Privacy level</string>
+    <string name="label_security_level">Security Level</string>
+    <string name="label_contact_list">Contact list</string>
+    <string name="label_add_contact">Add contact</string>
+    <string name="button_save_group">Save group</string>
+    <string name="message_select_blockchain_first">Please select a blockchain network first</string>
+    <string name="label_select_network">Select network</string>
+    <string name="hint_search_network">Search network</string>
+    <string name="label_address_list">Address list</string>
+    <string name="label_add_address">Add Address</string>
+    <string name="label_no_addresses">No addresses yet</string>
+
+    <!--    Onboarding Screen -->
+    <string name="onboarding_page_1_title">Welcome to Mangala</string>
+    <string name="onboarding_page_1_description">To get started, create a new wallet or import an existing one.</string>
+    <string name="onboarding_page_2_title">Bank-grade security for Vaulta &amp; beyond</string>
+    <string name="onboarding_page_2_description">Biometric access, hardware encryption, and Al threat detection.</string>
+    <string name="onboarding_page_3_title">Your AI-powered crypto companion</string>
+    <string name="onboarding_page_3_description">Smart insights, automated security, and intelligent portfolio management.</string>
+    <string name="onboarding_page_4_title">One wallet for all your assets</string>
+    <string name="onboarding_page_4_description">Native Vaulta, full EVM support, and Bitcoin - all in one place.</string>
+    <string name="onboarding_button_create_wallet">Create a new wallet</string>
+    <string name="onboarding_button_import_wallet">I already have a wallet</string>
+    <string name="onboarding_fallback_emoji">🚀</string>
+
+    <!--    Addressbook recent transaction-->
+    <string name="title_addressbook_recent_transaction_no_imported_account">Start Your Web3 Journey</string>
+    <string name="message_addressbook_recent_transaction_no_imported_account">Your secure gateway to crypto. Create a new wallet or import one you already trust.</string>
+    <string name="button_addressbook_recent_transaction_create">Create a new wallet</string>
+    <string name="button_addressbook_recent_transaction_import">I Already Have a Wallet</string>
+</resources>

@@ -1,0 +1,40 @@
+[
+  {
+    "@timestamp": "2024-08-14T16:22:49.500",
+    "timestamp": "2024-08-14T16:22:49.500",
+    "block_num": 155721236,
+    "block_id": "09481e141d78828e05a87e86b584f1a991c507d1753ddddb2d3a122767950473",
+    "trx_id": "ccdc4a08b71af8bc3288c8c305c25ce24cdde86b4746e306a3edb5fdccc431ef",
+    "act": {
+      "account": "eosio.msig",
+      "name": "exec",
+      "authorization": [
+        {
+          "actor": "accpartner11",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "proposer": "accpartner11",
+        "proposal_name": "buyram123",
+        "executer": "accpartner11"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 1263,
+    "net_usage_words": 15,
+    "account_ram_deltas": [
+      {
+        "account": "accpartner11",
+        "delta": -383
+      }
+    ],
+    "global_sequence": 216231899,
+    "producer": "lioninjungle",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KmE7FEeodKeM2hV1rAAt9wwzWmMSqHuPRoLPob6TDKJ1BLsMw4oL2jq7rcTVNUZNRLywcLdmqCDipz24oLudYNr1zDGFpy"
+    ]
+  }
+]

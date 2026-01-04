@@ -1,0 +1,25 @@
+stateDiagram-v2
+    [*] --> FunctionRegistered: Register Function Definition
+    FunctionRegistered --> HandlerRegistered: Register Function Handler
+    HandlerRegistered --> RendererRegistered: Register Confirmation Renderer
+    
+    RendererRegistered --> Ready: All Components Registered
+    
+    Ready --> FunctionCall: AI requests function
+    FunctionCall --> CheckConfirmation: Check requiresConfirmation
+    
+    CheckConfirmation --> NeedsConfirmation: requiresConfirmation = true
+    CheckConfirmation --> DirectExecution: requiresConfirmation = false
+    
+    NeedsConfirmation --> ShowConfirmation: Get ConfirmationRenderer
+    ShowConfirmation --> UserDecision: Display confirmation UI
+    
+    UserDecision --> Confirmed: User confirms
+    UserDecision --> Cancelled: User cancels
+    
+    Confirmed --> DirectExecution: Proceed with execution
+    DirectExecution --> ExecuteFunction: Get FunctionHandler
+    ExecuteFunction --> FunctionResult: Execute function
+    
+    FunctionResult --> [*]: Complete
+    Cancelled --> [*]: Cancelled

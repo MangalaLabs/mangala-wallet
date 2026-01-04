@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Uredi";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Prikaži";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Poništi";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Dodaj";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Knjižna oznaka";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Knjižne oznake";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Otkaži";
+
+/* Copy action */
+"action.title.copy" = "Kopiraj";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL je kopiran";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Onemogući zaštitu privatnosti";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Preuzimanja";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Uredi knjižnu oznaku";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Omogući zaštitu privatnosti";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Zatvori kartice i obriši podatke";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Kartice i podaci su obrisani";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Otvori u pozadini";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Novo";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Otvori u novoj kartici";
+
+/* Open action */
+"action.title.open" = "Otvori";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Zalijepi i nastavi";
+
+/* Print action */
+"action.title.print" = "Ispis";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Osvježi";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Ukloni omiljeno";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Prijavi neispravno web-mjesto";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Mjesto radne površine";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Mobilno mrežno mjesto";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Spremi";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Dodaj knjižnu oznaku";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Dodaj omiljenu stavku";
+
+/* Settings action */
+"action.title.settings" = "Postavke";
+
+/* Share action */
+"action.title.share" = "Podijeli";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Dodaj widget";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Čeka vas brzi pristup privatnom pretraživanju i omiljenim mrežnim mjestima.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Duže zadržite prst na početnom zaslonu za ulaz u način tresenja.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Dodirnite gumb plus %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Pronađite i odaberite Mangala Wallet. Zatim odaberite widget.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Jednim dodirom do vaših omiljenih stranica.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Postojeće knjižne oznake neće se duplicirati.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Označi sve kartice?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Dodaj u Nezaštićena web-mjesta";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Sačuvaj knjižnu oznaku";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Spremi u Omiljeno";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Otključaj Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Prijava";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Prijavi se na %@. Tvoji podaci za prijavu bit će sigurni.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Prijavljivanje na %@. Tvoja će zaporka biti poslana nesigurnim protokolom jer veza nije kriptirana.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Lozinka";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Potrebna je provjera";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Korisničko ime";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Isključeno";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Uključeno";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Dodaj knjižnu oznaku";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Dodaj omiljenu stavku";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Dodaj mapu";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Dodaj mapu";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Izbriši";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Jeste li sigurni da želite izbrisati ovu mapu i %i stavki?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Jeste li sigurni da želite izbrisati ovu mapu i %i stavku?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "Izbrisati %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Uredi knjižnu oznaku";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Uredi Favorite";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Uredi mapu";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Lokacija";
+
+/* More options button text */
+"bookmark.moreButton" = "Više";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Naslov web-mjesta";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Knjižne oznake";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Za sve kartice su dodane nove knjižne oznake";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Sve su kartice označene";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Knjižne oznake";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Nismo uspjeli izvesti vaše oznake, pokušajte ponovno.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Vaše su oznake izvezene.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Vaše su oznake podijeljene.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "Izvezi HTML datoteku";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Nažalost, ne možemo uvesti ovu datoteku.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Vaše su oznake izvezene.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "Uvezi HTML datoteku";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Uvezite datoteku oznaka iz drugog preglednika";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Uvezite HTML datoteku oznaka iz drugog preglednika ili izvezite postojeće oznake.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Komentari se nisu učitali";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Nedostaje sadržaj";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Slike se nisu učitale";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Poveznice ili gumbi ne funkcioniraju";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Ne mogu se prijaviti";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Nešto drugo";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Web-mjesto zatražilo je da onemogućim";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Preglednik nije kompatibilan";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Videozapis se nije reproducirao";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "OPIŠITE ŠTO SE DOGODILO";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Prošli mjesec";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Prošli tjedan";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Danas";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Jučer";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Sakrij savjete zauvijek";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Otkaži";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Ima ih samo nekoliko, a pokušali smo ih učiniti što informativnijima.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Sakriti preostale savjete?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Tvoja su Mangala Wallet pretraživanja anonimna. Uvijek. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Uf!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Daj pet!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* te je pokušao pratiti ovdje.\n\nJa sam ih blokirao!\n\n☝️ Na traci koja sadrži adresu možeš provjeriti tko te pokušava pratiti kad posjetiš novo web-mjesto.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Daj pet!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Pažnja! Ne mogu spriječiti %1$@ da vidi tvoju aktivnost na %2$@. \n\nAli pretražuj sa mnom i mogu umanjiti ono što %1$@ može saznati o tebi tako što ću blokirati te tragače na mnogim drugim mrežnim mjestima.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Shvatio/la sam";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Pažnja! Budući da je %2$@ vlasnik %1$@, ne mogu ga spriječiti da ovdje vidi tvoju aktivnost.\n\nAli pretražuj sa mnom i mogu umanjiti ono što %2$@ može saznati o tebi tako što ću blokirati te tragače na mnogim drugim web-mjestima.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Shvatio/la sam";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Dok dodiruješ i pomičeš se na zaslonu, blokirat ću neugodne tragače.\n\nSamo naprijed - nastavi pretraživati!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Shvatio/la sam";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Osobni podaci mogu se nakupljati u tvojem pregledniku. Fuj. Koristite gumb Vatre da bi ih sve spalio/la. Pokušaj sada! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Otkaži";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Zatvori kartice i obriši podatke";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Brzo posjeti svoja omiljena web-mjesta!\n\nPosjeti web-mjesto koje voliš. Zatim dodirni ikonu \"⋯\" i odaberite *Dodaj u omiljene*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Brzo posjeti svoja omiljena web-mjesta! Posjeti jedno od svojih omiljenih web-mjesta. Zatim dodirni gumb za otvaranje izbornika i odaberi Dodaj u omiljene.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "Zatim, pokušaj posjetiti jedno od svojih omiljenih web-mjesta!\n\nBlokirat ću tragače kako te ne bi mogli špijunirati. Nadogradit ću i sigurnost tvoje veze ako to bude moguće. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Možeš ti to!\n\nZapamtite: svaki put kada pregledavate sa mnom jeziva reklama gubi krila. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Internet može biti pomalo neugodan.\n\nNe brini! Privatno pretraživanje i pregledavanje lakše je nego što misliš.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Onemogućeno";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Saznajte više";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Omogućeno";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet automatski blokira mnoge alate za indeksiranje. S globalnom kontrolom privatnosti (GPC) također možete tražiti od web-mjesta koja sudjeluju u programu da ograniče prodaju ili dijeljenje vaših osobnih podataka drugim tvrtkama.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Spremi u Preuzimanja";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Otkaži";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Jeste li sigurni da želite otkazati ovo preuzimanje?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Nastavi";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Otkazati preuzimanje?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Izbriši sve";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Još nema preuzetih datoteka";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Preuzimanje: %1$@ od %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Preuzimanje - %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Preuzimanja";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Ovo će također otkazati preuzimanja u tijeku";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Sve su datoteke izbrisane";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "Preuzimanje je dovršeno za %@";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "Izbrisano: %@";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "Preuzimanje nije uspjelo. Provjerite internetsku vezu.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "Preuzimanje je počelo za %@";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Otkaži";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Generirajte privatnu adresu";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Blokirajte praćenje e-pošte s Duck adresom";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Koristite %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Nova adresa kopirana je u međuspremnik";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Izradite Duck adresu";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Omogućeno";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Uklanjanjem zaštite e-pošte s ovog uređaja uklanja se i mogućnost popunjavanja polja vaše osobne ili novogenerirane privatne Duck adrese dok pregledavate web.\n\nŽelite li u cijelosti izbrisati svoje Duck adrese te imate li pitanja ili povratne informacije, pišite nam na support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Isključeno";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Otkaži";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Napomena: uklanjanjem zaštite e-pošte s ovog uređaja neće se izbrisati vaša Duck adresa.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Ukloni";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Ukloniti zaštitu e-pošte?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Došlo je do pogreške prilikom pridruživanja listi čekanja; pokušajte ponovo kasnije";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Započnite";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Imam pozivnu šifru";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Pozvani ste!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Pridružite se privatnoj listi čekanja";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Na listi ste čekanja!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Vaša pozivnica pojavit će se ovdje kad budemo spremni za vas. Želite li %1$@ kad stigne? %2$@ o zaštiti e-pošte.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "primite obavijest";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Poslat ćemo vam obavijest kad zaštita e-pošte bude spremna za vas. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Saznajte više";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Poslat ćemo vam obavijest kad možete početi koristiti zaštitu e-pošte.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Želite li da vas obavijestimo kada dođete na red?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Pridružili ste se listi čekanja i zatražili da vas obavijestimo kada dođete na red za isprobavanje naše značajke zaštite e-pošte.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Ne, hvala";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "OBAVIJESTI ME";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Vaša pozivnica za zaštitu e-pošte je stigla!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Ne čuvamo vašu e-poštu. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "Zaštita privatnosti e-pošte, na jednostavan način.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Blokirajte programe za praćenje e-pošte i sakrijte svoju adresu bez promjene pružatelja usluga e-pošte. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Još nema dodanih knjižnih oznaka";
+
+/* Empty list state placholder */
+"empty.favorites" = "Još uvijek nema omiljenih stavki";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Nema pronađenih rezultata";
+
+/* No comment provided by engineer. */
+"favorite" = "Omiljeno";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Izbriši";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Uredi";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Blokiranje oglasa i skočnih prozora";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Stvaranje knjižnih oznaka i upravljanje oznakama";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Koju značajku pregledavanja možemo dodati ili poboljšati?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Problemi sa značajkama preglednika";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Značajke za pregledavanje nedostaju ili me frustriraju";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Interakcija sa slikama";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Kretanje naprijed, natrag i/ili osvježavanje";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Ništa od navedenog";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Stvaranje kartica i upravljanje karticama";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Gledanje videozapisa";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Kako se prikazuju knjižne oznake";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Koju opciju prilagodbe možemo dodati ili poboljšati?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Problemi s prilagođavanjem";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Nema dovoljno načina za prilagodbu aplikacije";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Konfiguracija početnog zaslona";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Ništa od navedenog";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Kako se prikazuju kartice";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Kako izgleda aplikacija";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Koji su podaci obrisani";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Kada se obrišu podaci";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Bolje automatsko ispunjavanje";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Koju značajku pretraživanja možemo dodati ili poboljšati?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Problemi s pretraživanjem u Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Pretraživanje u Mangala Wallet nije dovoljno dobro";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Pretraživanje na određenom jeziku ili području";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Izgled bi trebao biti više nalik Googleu";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Brže vrijeme učitavanja";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Ništa od navedenog";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programiranje/tehničko pretraživanje";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Reci nam što možemo poboljšati";
+
+/* Confirmation button */
+"feedback.form.submit" = "Pošalji";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Budi što precizniji/a";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Postoje li neke specifičnosti koje želiš dodati?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Žao nam je što to čujemo";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "Zbog čega si najviše frustriran/a?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Ostali problemi";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Ništa od navedenog";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Koji problem imate?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Aplikacija se ruši ili zamrzava";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Problemi s izvedbom";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Aplikacija je spora, neispravna, ili se ruši";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Ništa od navedenog";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Pogreške u reprodukciji videozapisa ili medija";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Web-stranice ili rezultati pretraživanja učitavaju se sporo";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Podijeli pojedinosti";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Što ti se sviđalo?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Želiš li s našim timom podijeliti neke pojedinosti?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Divno je to čuti!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Ne, hvala! Završio/la sam";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Podijeli pojedinosti";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Tvoje anonimne povratne informacije važne za su nas.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Započnimo!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Kamo bi svrstao/la svoje povratne informacije?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Hvala! Povratne informacije su poslane.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Problemi s učitavanjem web-mjesta";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Određena web-mjesta ne učitavaju se ispravno";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Na kakav se sadržaj to odnosi?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Gdje vidite te probleme?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "Koje web-mjesto ima problema?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d od %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Pronađi na stranici";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Zračna struja";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Pakao";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Nijedno";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Vrtlog";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Dodaj Mangala Wallet na svoj početni zaslon!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Dodaj Mangala Wallet na svoju traku izbornika za jednostavan pristup!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Pronađi gdje ćeš smjestiti Mangala Wallet";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Pretraži ili unesi adresu";
+
+/* Home tab title */
+"homeTab.title" = "Početni zaslon";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Dodaj knjižnu oznaku";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Dodaj omiljenu stavku";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Pretraži unazad";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Pretraži unaprijed";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Zatvori";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Zatvori kartica";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Pronađi na stranici";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Pronađi sljedeće";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Pronađi prethodno";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Obriši sve kartice i podatke";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Pretraži ili unesi adresu";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Nova kartica";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Nova kartica";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Otvori poveznicu u pozadini";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Otvori poveznicu u novoj kartici";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Prethodna kartica";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Ispis";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Ponovno učitaj";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Odabir";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Prikaži sve kartice";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Dobro došao/la u\nMangala Wallet!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Izbornik pregledavanja";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Gotovo";
+
+/* Edit button */
+"navigation.title.edit" = "Uredi";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Dodaj widget";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Korištenje Mangala Wallet pretraživača upravo je postalo jednostavnije.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Možda kasnije";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Nastaviti";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Možda kasnije";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Postavi Mangala Wallet kao svoj zadani preglednik.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Postavi kao zadani preglednik";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Preskoči";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Započni pretraživanje";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Dobro došao/la u Mangala Wallet!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Nije moguće pronaći aplikaciju koja je potrebna za otvaranje te poveznice";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Web-mjesta oslanjaju se na kolačiće kako bi te zadržala prijavljenim/om. Kada je web-mjesto označeno kao zaštićeno, kolačići neće biti izbrisani i ostat ćeš prijavljen/a čak i nakon upotrebe gumba Fire. I dalje blokiramo alate za praćenje trećih strana koje pronađemo na mrežnim mjestima označenim kao Fireproof.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Zaštićena web-mjesta";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Postavljanjem Fireproof za ovo web-mjesto i dalje ćete ostati prijavljeni nakon korištenja gumba Fire.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Označiti %@ kao zaštićenu adresu kao biste ostali prijavljeni?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Fireproof";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ je sada sigurno web-mjesto!";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Ne sada";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Ukloni oznaku sigurnog web-mjesta";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Uključi oznaku da je ovo web-mjesto sigurno";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Oznaka sigurnog web-mjesta je uklonjena";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Odstrani sve";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "U redu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritam";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bita";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Pogreška pri izdvajanju certifikata";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Uobičajeno ime";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Efektivna veličina";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "E-pošta";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Šifrirana veza";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Prisilna enkripcija";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Prisilili smo ovo web-mjesto da koristi kriptiranu vezu, sprečavajući prisluškivanje bilo kakvih osobnih podataka koje mu pošalješ.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Kriptirana veza sprječava prisluškivanje bilo kakvih osobnih podataka koje šalješ web-mjestu.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Identifikator subjektovog ključa";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Izdavatelj";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Javni ključ";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Veličina ključa";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Mješovita enkripcija";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Ovo web-mjesto ima mješovitu enkripciju, jer se neki sadržaj poslužuje preko nekriptiranih veza.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Ne";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Trajno";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Javni ključ";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Kriptirana veza sprječava prisluškivanje bilo kakvih osobnih podataka koje šalješ web-mjestu.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Ime subjekta";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Sažetak";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Budi oprezan/na prilikom unošenja osobnih podataka na ovo mjesto.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Nešifrirana veza";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Nepoznato";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Upotreba";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Dekriptiranje";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Derivacija";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Enkripcija";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Potpis";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Odmotavanje";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Provjera";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Zamotavanje";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Da";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "ZAŠTITA WEB-MJESTA ISKLJUČENA JE";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "POBOLJŠANO S $1 NA $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "OCJENA ZAŠTITE PRIVATNOSTI";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "Mreže za praćenje pronađene su na %1$@%% web-mjesta koje ste posjetili od %2$@.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Još uvijek prikupljamo podatke kako bismo pokazali koliko\nsmo tragača blokirali.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Prakse zaštite privatnosti iz ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Prakse zaštite privatnosti pokazuju koliko su zaštićeni osobni podaci koje dijelite s web-mjestom.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Ovo web-mjesto obavijestit će te prije prijenosa tvojih podataka u slučaju spajanja ili preuzimanja";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Prakse zaštite privatnosti na ovom web-mjestu nisu provjerene.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Ocjena privatnosti %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Pritisnite za otvaranje zaslona za zaštitu privatnosti";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Te se statistike pohranjuju samo na tvom uređaju i nikada se nikamo ne šalju.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Dobre prakse zaštite privatnosti";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Miješane prakse zaštite privatnosti";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Loše prakse zaštite privatnosti";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Nepoznate prakse zaštite privatnosti";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Mreže za praćenje tvoju povijest pregledavanja internetskih stranica objedinjuju u obliku podatkovnog profila o tebi. Velike mreže za praćenje štetnije su jer te mogu ciljano pratiti na većem dijelu interneta.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Otkaži";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Otvori";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Želiš li napustiti Mangala Wallet da bi predledao/la ovaj sadržaj?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Otvori u drugoj aplikaciji?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Slanje anonimnog izvješća o neispravnom web-mjestu pomaže nam da ispravimo te probleme i poboljšamo aplikaciju.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Pretraži ili unesi adresu";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Knjižne oznake";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Omiljeno";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "U Mangala Walletu postavljamo novi standard povjerenja na internetu.\n\nMangala Wallet anonimni je preglednik koji pruža sve što ti je potrebno da se zaštitiš dok pretražuješ i pregledavaš internet, uključujući blokiranje alata za praćenje, pametnije šifriranje i privatno pretraživanje uz pomoć Mangala Walleta.\n\nUostalom, internet ne bi trebao biti neugodno mjesto, a zaštita privatnosti na internetu koju zaslužuješ trebala bi biti jednostavna poput spuštanja roleta.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Pošalji izvješće";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Domena neispravnog web-mjesta:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Koji su sadržaj ili funkcionalnost neispravni?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Izvješćivanje o neispravnim web-mjestima potpuno je anonimno i pomaže nam u poboljšanju aplikacije!";
+
+/* This is a form title */
+"siteFeedback.title" = "Prijavi neispravno web-mjesto";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Koje je web-mjesto neispravno?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Zatvori početnu karticu";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Zatvorite „%1$@” na %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Otvori početnu karticu";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Otvorite „%1$@” na %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Mjenjač kartica";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Odaberite željenu veličinu teksta. Web stranice koje pregledavate u Mangala Walletu prilagodit će se ovoj postavci.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Veličina teksta: %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Tamna";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Zadana";
+
+/* Light Theme entry */
+"theme.acc.light" = "Svijetla";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Tamna";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Zadana";
+
+/* Light Theme entry */
+"theme.name.light" = "Svijetla";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Zaštita privatnosti je onemogućena za %@";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Zaštita privatnosti je omogućena za %@";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Došlo je do nepoznate pogreške.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Postavke";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Dopustite pristup mikrofonu u postavkama sustava iOS kako bi Mangala Wallet mogao koristiti glasovne funkcije.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Potreban je pristup mikrofonu";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "U redu";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Otkaži";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet nikad ne sluša što govorite. Sva obrada glasovnih podataka za Privatno glasovno pretraživanje odvija se na vašem uređaju.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Potreban je pristup mikrofonu za Privatno glasovno pretraživanje";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Otkaži";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Zvuk se obrađuje na uređaju. Ne pohranjuje se i ne dijeli ni s kim, uključujući Mangala Wallet.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Omiljena je stavka uklonjena";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Knjižna oznaka je dodana";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Oznaka je već spremljena";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Nema web-mjesta za označavanje";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Dodano u Omiljeno";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Blokiraj upozorenja";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Otkaži";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "U redu";
+

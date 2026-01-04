@@ -1,0 +1,15 @@
+@startuml
+
+user -> eticket: click to eticket
+eticket -> eticket: does user has account?
+
+alt user don't have account
+eticket --> user: show button: Start
+user -> eticket: click button Start
+eticket --> user: show register account: publickey read only, fullname, button register
+user -> eticket: input name, click register
+eticket -> eticket: create new user
+eticket --> user: show message success, show login view.
+end
+
+@enduml

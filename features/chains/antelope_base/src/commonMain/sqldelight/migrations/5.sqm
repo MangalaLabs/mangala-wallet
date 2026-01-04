@@ -1,0 +1,1 @@
+ALTER TABLE AntelopeAccountEntity ADD COLUMN purchase_id TEXT;

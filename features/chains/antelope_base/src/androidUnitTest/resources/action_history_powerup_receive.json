@@ -1,0 +1,58 @@
+[
+  {
+    "@timestamp": "2024-10-19T11:25:28.000",
+    "timestamp": "2024-10-19T11:25:28.000",
+    "block_num": 400205730,
+    "block_id": "17daa7a26f692c0e287d21ef318f48762121a56d312ea0a8028dc235998939f0",
+    "trx_id": "01725c79397b447315a094ad9642d069220f5fc930330b22821974e1ed579b32",
+    "act": {
+      "account": "eospowerupio",
+      "name": "logpowerup",
+      "authorization": [
+        {
+          "actor": "eospowerupio",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "message": "Try the new seamless IBC service from the team behind Boid and EOSPowerup. https://antelopex.io",
+        "action": "dopowerup",
+        "payer": "eospowerupio",
+        "receiver": "vwmnsagsadgk",
+        "cost": "0.0003 EOS",
+        "fee": "0.0000 EOS",
+        "total_billed": "0.0003 EOS",
+        "received_cpu_ms": 1.085018277168274,
+        "received_net_kb": 20.112728118896484
+      }
+    },
+    "receipts": [
+      {
+        "receiver": "eospowerupio",
+        "global_sequence": 361978940090,
+        "recv_sequence": 9892932,
+        "auth_sequence": [
+          {
+            "account": "eospowerupio",
+            "sequence": 21796587
+          }
+        ]
+      },
+      {
+        "receiver": "vwmnsagsadgk",
+        "global_sequence": 361978940091,
+        "recv_sequence": 162,
+        "auth_sequence": [
+          {
+            "account": "eospowerupio",
+            "sequence": 21796588
+          }
+        ]
+      }
+    ],
+    "global_sequence": 361978940090,
+    "producer": "eosflytomars",
+    "action_ordinal": 9,
+    "creator_action_ordinal": 3
+  }
+]

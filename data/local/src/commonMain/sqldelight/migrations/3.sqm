@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS TokenExchangeRateEntity(
+    coin_uid TEXT NOT NULL,
+    quote_currency TEXT NOT NULL,
+    rate TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (coin_uid, quote_currency)
+);
+
+CREATE TABLE IF NOT EXISTS TokenExchangeRateMetadataEntity(
+    coin_uid TEXT PRIMARY KEY,
+    updated_at INTEGER NOT NULL
+);

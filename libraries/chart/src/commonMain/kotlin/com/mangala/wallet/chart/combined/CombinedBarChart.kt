@@ -1,0 +1,217 @@
+/*
+ * Copyright 2022 Himanshu Singh
+ * Copyright 2023-2024 Mangala Wallet
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This file has been modified from the original Charty library.
+ */
+package com.mangala.wallet.chart.combined
+
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.input.pointer.pointerInput
+import com.mangala.wallet.chart.combined.common.calculations.getTopLeft
+import com.mangala.wallet.chart.combined.common.calculations.getTopRight
+import com.mangala.wallet.chart.combined.common.component.drawCombinedBarLabel
+import com.mangala.wallet.chart.combined.common.component.drawLineLabels
+import com.mangala.wallet.chart.combined.config.CombinedBarConfig
+import com.mangala.wallet.chart.combined.config.CombinedBarConfigDefaults
+import com.mangala.wallet.chart.combined.model.CombinedBarData
+import com.mangala.wallet.chart.combined.model.maxYValue
+import com.mangala.wallet.chart.common.axis.AxisConfig
+import com.mangala.wallet.chart.common.axis.AxisConfigDefaults
+import com.mangala.wallet.chart.common.axis.drawYAxisWithLabels
+import com.mangala.wallet.chart.common.calculations.dataToOffSet
+import com.mangala.wallet.chart.common.dimens.ChartDimens
+import com.mangala.wallet.chart.common.dimens.ChartDimensDefaults
+
+@Composable
+fun CombinedBarChart(
+    combinedBarData: List<CombinedBarData>,
+    onClick: (CombinedBarData) -> Unit,
+    barColors: List<Color>,
+    lineColors: List<Color>,
+    modifier: Modifier = Modifier,
+    axisConfig: AxisConfig = AxisConfigDefaults.axisConfigDefaults(isSystemInDarkTheme()),
+    chartDimens: ChartDimens = ChartDimensDefaults.chartDimesDefaults(),
+    combinedBarConfig: CombinedBarConfig = CombinedBarConfigDefaults.barConfigDimesDefaults()
+) {
+    val maxYValueState = rememberSaveable { mutableStateOf(combinedBarData.maxYValue()) }
+    val clickedBar = remember { mutableStateOf(Offset(-10F, -10F)) }
+
+    val maxYValue = maxYValueState.value
+    val chartBound = remember { mutableStateOf(0F) }
+
+    Canvas(
+        modifier = modifier
+            .drawBehind {
+                if (axisConfig.showAxis) {
+                    drawYAxisWithLabels(axisConfig, maxYValue, textColor = axisConfig.textColor)
+                }
+            }
+            .padding(horizontal = chartDimens.padding)
+            .pointerInput(Unit) {
+                detectTapGestures(onPress = { offset ->
+                    clickedBar.value = offset
+                })
+            }
+    ) {
+        chartBound.value = size.width.div(combinedBarData.count().times(1.2F))
+        val scaleFactor = size.height.div(maxYValue)
+        val brush = Brush.linearGradient(lineColors)
+        val radius = size.width.div(70)
+        val strokeWidth = size.width.div(100)
+        val path = Path().apply {
+            moveTo(0f, size.height)
+        }
+        val lastIndex = combinedBarData.size.minus(1)
+
+        combinedBarData.forEachIndexed { index, data ->
+            val topLeft = getTopLeft(index, chartBound, size, data, scaleFactor)
+            val topRight = getTopRight(index, chartBound, size, data, scaleFactor)
+            val barHeight = data.yBarValue.times(scaleFactor)
+//
+            if (clickedBar.value.x in (topLeft.x..topRight.x)) {
+                onClick(data)
+            }
+            drawRoundRect(
+                cornerRadius = CornerRadius(if (combinedBarConfig.hasRoundedCorner) barHeight else 0F),
+                topLeft = topLeft,
+                brush = Brush.linearGradient(barColors),
+                size = Size(chartBound.value, barHeight)
+            )
+            val centerOffset =
+                dataToOffSet(index, chartBound.value, size, data.yLineValue, scaleFactor)
+            val drawnPath = path.lineTo(centerOffset.x, centerOffset.y)
+            if (combinedBarConfig.hasLineLabel) {
+                drawLineLabels(centerOffset, data, combinedBarConfig.lineLabelColor)
+            }
+
+            when (index) {
+                lastIndex -> drawnPath.also {
+                    path.lineTo(size.width, size.height)
+                }
+                else -> drawnPath
+            }
+            if (combinedBarConfig.hasDotMarker) {
+                drawCircle(
+                    center = centerOffset, radius = radius, brush = brush
+                )
+            }
+
+            if (axisConfig.showXLabels) {
+                drawCombinedBarLabel(
+                    data,
+                    chartBound.value,
+                    barHeight,
+                    topLeft,
+                    axisConfig.textColor
+                )
+            }
+            val pathEffect =
+                if (combinedBarConfig.hasSmoothCurve) PathEffect.cornerPathEffect(strokeWidth) else null
+
+            drawPath(
+                path = path,
+                brush = brush,
+                style = Stroke(width = strokeWidth, pathEffect = pathEffect),
+            )
+        }
+    }
+}
+
+@Composable
+fun CombinedBarChart(
+    combinedBarData: List<CombinedBarData>,
+    onClick: (CombinedBarData) -> Unit,
+    barColors: List<Color>,
+    lineColor: Color,
+    modifier: Modifier = Modifier,
+    axisConfig: AxisConfig = AxisConfigDefaults.axisConfigDefaults(isSystemInDarkTheme()),
+    chartDimens: ChartDimens = ChartDimensDefaults.chartDimesDefaults(),
+    combinedBarConfig: CombinedBarConfig = CombinedBarConfigDefaults.barConfigDimesDefaults()
+) {
+    CombinedBarChart(
+        combinedBarData = combinedBarData,
+        onClick = onClick,
+        barColors = barColors,
+        lineColors = listOf(lineColor, lineColor),
+        modifier = modifier,
+        axisConfig = axisConfig,
+        chartDimens = chartDimens,
+        combinedBarConfig = combinedBarConfig
+    )
+}
+
+@Composable
+fun CombinedBarChart(
+    combinedBarData: List<CombinedBarData>,
+    onClick: (CombinedBarData) -> Unit,
+    barColor: Color,
+    lineColors: List<Color>,
+    modifier: Modifier = Modifier,
+    axisConfig: AxisConfig = AxisConfigDefaults.axisConfigDefaults(isSystemInDarkTheme()),
+    chartDimens: ChartDimens = ChartDimensDefaults.chartDimesDefaults(),
+    combinedBarConfig: CombinedBarConfig = CombinedBarConfigDefaults.barConfigDimesDefaults()
+) {
+    CombinedBarChart(
+        combinedBarData = combinedBarData,
+        onClick = onClick,
+        barColors = listOf(barColor, barColor),
+        lineColors = lineColors,
+        modifier = modifier,
+        axisConfig = axisConfig,
+        chartDimens = chartDimens,
+        combinedBarConfig = combinedBarConfig
+    )
+}
+
+@Composable
+fun CombinedBarChart(
+    combinedBarData: List<CombinedBarData>,
+    onClick: (CombinedBarData) -> Unit,
+    barColor: Color,
+    lineColor: Color,
+    modifier: Modifier = Modifier,
+    axisConfig: AxisConfig = AxisConfigDefaults.axisConfigDefaults(isSystemInDarkTheme()),
+    chartDimens: ChartDimens = ChartDimensDefaults.chartDimesDefaults(),
+    combinedBarConfig: CombinedBarConfig = CombinedBarConfigDefaults.barConfigDimesDefaults()
+) {
+    CombinedBarChart(
+        combinedBarData = combinedBarData,
+        onClick = onClick,
+        barColors = listOf(barColor, barColor),
+        lineColors = listOf(lineColor, lineColor),
+        modifier = modifier,
+        axisConfig = axisConfig,
+        chartDimens = chartDimens,
+        combinedBarConfig = combinedBarConfig
+    )
+}

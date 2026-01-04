@@ -1,0 +1,41 @@
+[
+  {
+    "@timestamp": "2024-09-19T15:32:29.000",
+    "timestamp": "2024-09-19T15:32:29.000",
+    "block_num": 161876375,
+    "block_id": "09a60997a90a231e3b970f9328647827542c9468bee553d70b88a2a18821a3bc",
+    "trx_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "act": {
+      "account": "eosio",
+      "name": "linkauth",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "account": "harkonnenmgl",
+        "code": "eosio",
+        "type": "ramtransfer",
+        "requirement": "createaccound"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 162,
+    "net_usage_words": 15,
+    "account_ram_deltas": [
+      {
+        "account": "harkonnenmgl",
+        "delta": 144
+      }
+    ],
+    "global_sequence": 222911473,
+    "producer": "eosriobrazil",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KghDKVfp5K1mcXaiaFx4dA62LFKTepxPJ4Vt9MXVjTNJvmuCPuPtE9sTU46nm8tR99bzPc9w9c5KBJ5KomCwAMgeMk8RAh"
+    ]
+  }
+]

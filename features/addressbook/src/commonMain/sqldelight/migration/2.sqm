@@ -1,0 +1,40 @@
+-- Version 2: Add address_tags table for direct tag-address relationship
+-- This migration adds support for tagging individual addresses instead of just contacts
+
+-- Create new table for address-tag relationships
+CREATE TABLE address_tags (
+    address_id TEXT NOT NULL,
+    tag_id TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    PRIMARY KEY (address_id, tag_id),
+    FOREIGN KEY (address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Create index for faster lookups by tag_id
+CREATE INDEX address_tags_tag_id ON address_tags(tag_id);
+
+-- Create index for faster lookups by address_id
+CREATE INDEX address_tags_address_id ON address_tags(address_id);
+
+-- Migration step: Move existing tag associations from contact level to address level
+-- For each contact-tag pair, find all addresses of the contact and create address-tag entries
+INSERT INTO address_tags (address_id, tag_id, created_at)
+SELECT 
+    wallet_addresses.id AS address_id,
+    contact_tags.tag_id,
+    contact_tags.created_at
+FROM 
+    contact_tags
+JOIN 
+    wallet_addresses ON wallet_addresses.contact_id = contact_tags.contact_id
+WHERE
+    wallet_addresses.is_deleted = 0 AND
+    NOT EXISTS (
+        SELECT 1 FROM address_tags 
+        WHERE address_tags.address_id = wallet_addresses.id 
+        AND address_tags.tag_id = contact_tags.tag_id
+    );
+
+-- Note: We're keeping the contact_tags table for backward compatibility
+-- In the future, we might want to deprecate it when all code is migrated to use address_tags

@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS BitcoinAccountEntity (
+  account_id TEXT NOT NULL,
+  blockchain_uid TEXT NOT NULL,
+  bip_44_address TEXT NOT NULL, -- Legacy address (P2PKH)
+  bip_49_address TEXT NOT NULL, -- SegWit compatible address (P2SH-P2WPKH)
+  bip_84_address TEXT NOT NULL, -- Native SegWit address (P2WPKH)
+  PRIMARY KEY (account_id, blockchain_uid)
+);
+
+insertBitcoinAccount:
+INSERT INTO BitcoinAccountEntity(account_id, blockchain_uid, bip_44_address, bip_49_address, bip_84_address)
+VALUES (?, ?, ?, ?, ?);
+
+getBitcoinAccountsByIds:
+SELECT *
+FROM BitcoinAccountEntity
+WHERE account_id IN ? AND blockchain_uid = ?;
+
+getBitcoinAccountById:
+SELECT * FROM BitcoinAccountEntity WHERE account_id = ? AND blockchain_uid = ?;
+
+getAllBitcoinAccounts:
+SELECT * FROM BitcoinAccountEntity;
+
+deleteBitcoinAccount:
+DELETE FROM BitcoinAccountEntity
+WHERE account_id = ?;
+
+clearAllBitcoinAccounts:
+DELETE FROM BitcoinAccountEntity;

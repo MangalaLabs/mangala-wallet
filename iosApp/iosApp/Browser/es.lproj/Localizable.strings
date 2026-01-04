@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Editar";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Mostrar";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Deshacer";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Añadir";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Añadir a marcadores";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Marcadores";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Cancelar";
+
+/* Copy action */
+"action.title.copy" = "Copiar";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL copiada";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Desactivar la protección de privacidad";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Descargas";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Editar marcador";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Activar la protección de privacidad";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Cerrar pestañas y borrar datos";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Pestañas y datos borrados";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Abrir en segundo plano";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Nuevo";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Abrir en una nueva pestaña";
+
+/* Open action */
+"action.title.open" = "Abrir";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Pegar e ir";
+
+/* Print action */
+"action.title.print" = "Imprimir";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Actualizar";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Eliminar favorito";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Informar de sitio web dañado";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Versión de escritorio del sitio web";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Sitio móvil";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Guardar";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Añadir marcador";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Añadir favorito";
+
+/* Settings action */
+"action.title.settings" = "Ajustes";
+
+/* Share action */
+"action.title.share" = "Compartir";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Añadir widget";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Obtén acceso rápido a búsquedas privadas y a los sitios que más te gustan.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Mantén pulsada la pantalla de inicio para entrar en el modo jiggle.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Pulsa el botón más %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Busca y selecciona Mangala Wallet. A continuación, elige un widget.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Visita tus sitios favoritos con un toque.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Los marcadores existentes no se duplicarán.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "¿Añadir todas las pestañas a marcadores?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Añadir a sitios desprotegidos";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.ejemplo.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Guardar marcador";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Guardar favorito";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Desbloquear Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Iniciar sesión";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Iniciar sesión en %@. Tu información de inicio de sesión se enviará de forma segura.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Iniciar sesión en %@. Tu contraseña se enviará de forma no segura porque la conexión no está cifrada.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Contraseña";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Autenticación requerida";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Nombre de usuario";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Desactivado";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Activado";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Añadir marcador";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Añadir favorito";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Añadir carpeta";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Añadir carpeta";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.ejemplo.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Eliminar";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "¿Seguro que deseas eliminar esta carpeta y %i elementos?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "¿Seguro que deseas eliminar esta carpeta y %i elemento?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "¿Eliminar %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Editar marcador";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Editar favorito";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Editar carpeta";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Ubicación";
+
+/* More options button text */
+"bookmark.moreButton" = "Más";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Título del sitio web";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Marcadores";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Marcadores añadidos para todas las pestañas";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Se han añadido a marcadores todas las pestañas";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Marcadores";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "No hemos podido exportar tus favoritos, inténtalo de nuevo.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Tus marcadores han sido exportados.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Tus marcadores se han compartido.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "Exportar archivo HTML";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Lo sentimos, no podemos importar este archivo.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Tus marcadores han sido importados.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "Importar archivo HTML";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Importar archivo de marcador desde otro navegador";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Importa un archivo HTML de marcadores desde otro navegador o exporta tus marcadores existentes.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "No se han cargado los comentarios";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Falta contenido";
+
+/* Broken Site Category */
+"brokensite.category.images" = "No se han cargado las imágenes";
+
+/* Broken Site Category */
+"brokensite.category.links" = "No funcionan los enlaces o botones";
+
+/* Broken Site Category */
+"brokensite.category.login" = "No puedo iniciar sesión";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Otro problema";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "El sitio me pidió que desactivara";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "El navegador es incompatible";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "No se ha reproducido el vídeo";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "DESCRIBE QUÉ PASÓ";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Mes pasado";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Semana pasada";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Hoy";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Ayer";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Ocultar consejos para siempre";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Cancelar";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Solo hay unos cuantos, e intentamos que sean informativos.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "¿Ocultar los consejos restantes?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Tus búsquedas en Mangala Wallet son anónimas. Siempre. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "¡Uf!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "¡Choca esos cinco!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* ha intentado rastrearte aquí.\n\nLo he bloqueado.\n\n☝️ Puedes consultar la barra de navegación para ver quién trata de rastrearte cuando visitas un nuevo sitio.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "¡Choca esos cinco!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "¡Advertencia! No puedo evitar que %1$@ vea tu actividad en %2$@.\n\nPero si navegas conmigo, puedo reducir lo que %1$@ sabe de ti en general bloqueando sus rastreadores en muchos otros sitios web.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Entendido";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "¡Advertencia! Ya que %2$@ es el dueño de %1$@, no puedo evitar que vea tu actividad aquí.\n\nPero si navegas conmigo, puedo reducir lo que %2$@ sabe de ti en general bloqueando sus rastreadores en muchos otros sitios web.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Entendido";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "A medida que navegues y te desplaces, bloquearé rastreadores molestos.\n\nAdelante, ¡sigue navegando!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Entendido";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Los datos personales se pueden acumular en tu navegador. ¡Puaj! Utiliza el botón Fuego para quemarlos. ¡Pruébalo! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Cancelar";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Cerrar pestañas y borrar datos";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "¡Visita tus sitios web favoritos en un instante!\n\nVe a un sitio que te guste. Y luego pulsa el icono \"...\" y selecciona *Añadir a Favoritos*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "¡Visita tus sitios web favoritos en un instante! Visita uno de tus sitios favoritos. Luego pulsa el botón Abrir menú y selecciona Añadir a favoritos.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "A continuación, intenta visitar uno de tus sitios favoritos.\n\nBloquearé los rastreadores para que no puedan espiarte. También mejoraré la seguridad de tu conexión, si es posible. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "¡Lo estás haciendo muy bien!\n\nRecuerda: cada vez que navegas conmigo corto las alas a un anuncio horrible. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Internet puede ser un lugar horrible.\n\nNo te preocupes. Buscar y navegar de forma privada es más fácil de lo que piensas.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Desactivado";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Más información";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Activado";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet bloquea automáticamente muchos rastreadores. Con el Control Global de Privacidad (GPC), también puedes solicitar a los sitios web participantes que restrinjan la venta o el uso compartido de tus datos personales con otras empresas.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Guardar en descargas";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Cancelar";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "¿Seguro que quieres cancelar esta descarga?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Reanudar";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "¿Cancelar descarga?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Eliminar todo";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Todavía no se han descargado archivos";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Descargando - %1$@ de %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Descargando - %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Descargas";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Esto también cancelará las descargas en curso";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Todos los archivos eliminados";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "Descarga de %@ finalizada";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "%@ eliminado";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "No se ha podido descargar. Comprueba la conexión a internet.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "Descarga de %@ iniciada";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Cancelar";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Generar una dirección privada";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Bloquea los rastreadores de correo electrónico con una dirección de Duck";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Usar %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Nueva dirección copiada en el portapapeles";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Crear dirección Duck";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Activado";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Eliminar la protección de correo electrónico de este dispositivo elimina la opción de completar tu dirección Duck personal o una dirección Duck privada recién generada en los campos de correo electrónico mientras navegas por internet.<br/><br/>Para eliminar por completo tus direcciones Duck, o para cualquier otra pregunta o comentario, ponte en contacto con nosotros en support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Desactivado";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Cancelar";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Nota: Eliminar la protección de correo electrónico de este dispositivo no eliminará tu dirección Duck.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Eliminar";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "¿Eliminar la protección de correo electrónico?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Se ha producido un error al unirte a la lista de espera, inténtalo de nuevo más tarde";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Empezar";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Tengo un código de invitación";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "¡Te han invitado!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Unirse a la lista de espera privada";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "¡Estás en la lista de espera!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Tu invitación aparecerá aquí cuando estemos listos para ti. ¿Quieres %1$@ cuando llegue? %2$@ sobre la protección de correo electrónico.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "recibir una notificación";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Te enviaremos una notificación cuando la protección de correo electrónico esté lista para ti. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Más información";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Te enviaremos una notificación cuando puedas empezar a usar la protección de correo electrónico.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "¿Quieres que te enviemos una notificación cuando te toque?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Te has unido a la lista de espera y nos has pedido que te avisemos cuando te toque probar nuestra protección de correo electrónico.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "No, gracias";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "NOTIFICARME";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "¡Tu invitación de protección de correo electrónico ya está aquí!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "No guardamos tus correos electrónicos. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "Privacidad de correo electrónico, simplificada.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Bloquea los rastreadores de correo electrónico y oculta tu dirección sin cambiar de proveedor de correo electrónico. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Aún no se han añadido marcadores";
+
+/* Empty list state placholder */
+"empty.favorites" = "Todavía no se han añadido favoritos";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "No se han encontrado coincidencias";
+
+/* No comment provided by engineer. */
+"favorite" = "Favorito";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Eliminar";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Editar";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Bloquear anuncios y mensajes emergentes";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Crear y gestionar marcadores";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "¿Qué opción de navegación podemos añadir o mejorar?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Problemas con las opciones de navegación";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Faltan opciones de navegación o no funcionan correctamente";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Interactuar con imágenes";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Avanzar, retroceder o actualizar";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Ninguna de las anteriores";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Crear y gestionar pestañas";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Ver vídeos";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Cómo se muestran los marcadores";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "¿Qué opción de personalización podemos añadir o mejorar?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Problemas de personalización";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "No hay suficientes opciones para personalizar la aplicación";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "La configuración de la pantalla de inicio";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Ninguna de las anteriores";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Cómo se muestran las pestañas";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "El diseño de la aplicación";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Qué datos se borran";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Cuándo se borran los datos";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Mejora del autocompletado";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "¿Qué opción de búsqueda podemos añadir o mejorar?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Problemas al buscar con Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "La búsqueda de Mangala Wallet no es lo suficientemente buena";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Buscar en un idioma o región específicos";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "El diseño debería parecerse más al de Google";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Carga más rápida";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Ninguna de las anteriores";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programación o búsqueda técnica";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Dinos cómo podemos mejorar";
+
+/* Confirmation button */
+"feedback.form.submit" = "Enviar";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Concreta lo máximo posible";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "¿Hay algún detalle que quieras incluir?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Sentimos que opines así";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "¿A qué se debe principalmente tu frustración?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Otros problemas";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Ninguna de las anteriores";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "¿Qué problema estás experimentando?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "La aplicación se bloquea o deja de funcionar";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Problemas de funcionamiento";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "La aplicación va lenta, contiene errores o se bloquea";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Ninguna de las anteriores";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Problemas al reproducir vídeos o contenido multimedia";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Los resultados de búsqueda o las páginas web tardan en cargarse";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Compartir detalles";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "¿Qué te ha gustado?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "¿Hay algún detalle que quieras compartir con el equipo?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "¡Es fantástico oír eso!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "No, gracias He terminado";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Compartir detalles";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Tu opinión anónima nos importa.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "¡Empecemos!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "¿En qué categoría incluirías tu opinión?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Gracias, se han enviado tus opiniones.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Problemas con la carga de los sitios web";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Algunos sitios web no cargan correctamente";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "¿Qué contenido parece estar afectado?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "¿Dónde surgen estos problemas?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "¿Qué sitio web no funciona correctamente?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d de %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Buscar en la página";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Corriente de aire";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Infierno";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Ninguno";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Remolino";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Añade Mangala Wallet a tu pantalla de inicio.";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Añade Mangala Wallet a tu inicio para acceder más fácilmente.";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Lleva Mangala Wallet contigo";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Buscar o introducir dirección";
+
+/* Home tab title */
+"homeTab.title" = "Inicio";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Añadir marcador";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Añadir favorito";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Retroceder";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Avanzar";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Cerrar";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Cerrar pestaña";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Buscar en la página";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Buscar siguiente";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Buscar anterior";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Borrar todos los datos y pestañas";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Buscar o introducir dirección";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Nueva pestaña";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Siguiente pestaña";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Abrir enlace en segundo plano";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Abrir enlace en nueva pestaña";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Pestaña anterior";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Imprimir";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Volver a cargar";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Seleccionar";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Mostrar todas las pestañas";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "¡Bienvenido a\nMangala Wallet!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Menú de navegación";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Hecho";
+
+/* Edit button */
+"navigation.title.edit" = "Editar";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Añadir widget";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Utilizar Mangala Wallet ahora es más fácil.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Quizá más tarde";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Continuar";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Quizá más tarde";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Establece Mangala Wallet como tu navegador predeterminado.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Definir como navegador predeterminado";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Omitir";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Empezar a navegar";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "¡Bienvenido a Mangala Wallet!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "No se puede encontrar la aplicación necesaria para abrir ese enlace";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Los sitios web dependen de cookies para mantener tu sesión iniciada. Cuando marcas una web como «a prueba de fuego» no se borrarán las cookies y tu sesión permanecerá iniciada, incluso después de utilizar el botón Fuego. Seguiremos bloqueando rastreadores de terceros que se encuentren en sitios web a prueba de fuego.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Sitios web a prueba de fuego";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Marcar esta página como a prueba de fuego hará que la sesión se mantenga iniciada después de usar el botón Fuego.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "¿Marcar %@ como a prueba de fuego para mantener la sesión abierta?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "A prueba de fuego";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ ya está a prueba de fuego";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Ahora no";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Desactivar a prueba de fuego";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Activar a prueba de fuego para este sitio";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "A prueba de fuego desactivado";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Eliminar todo";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "De acuerdo";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritmo";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bits";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Error al extraer el certificado";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Nombre común";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Tamaño efectivo";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "Correo electrónico";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Conexión cifrada";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Cifrado forzado";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Hemos obligado a este sitio a usar una conexión cifrada, evitando que espíen cualquier información personal que envíes.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Una conexión cifrada evita que se espíe cualquier información personal que envíes a un sitio web.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Identificador clave del sujeto";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Emisor";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Clave pública";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Tamaño de la clave";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Cifrado mixto";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Este sitio tiene cifrado mixto porque algunos contenidos se proporcionan mediante conexiones no cifradas.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "No";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Permanente";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Clave pública";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Una conexión cifrada evita que se espíe cualquier información personal que envíes a un sitio web.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Nombre del sujeto";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Resumen";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Ten cuidado al introducir información personal en este sitio.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Conexión no cifrada";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Desconocido";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Uso";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Descifrar";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Derivar";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Cifrar";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Firmar";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Desenvolver";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Verificar";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Envolver";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Sí";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "PROTECCIÓN DEL SITIO WEB DESHABILITADA";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "MEJORADA DE $1 A $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "GRADO DE PRIVACIDAD";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "Se han encontrado redes de rastreadores en el %1$@%% de sitios web que has visitado desde %2$@.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Continuamos recopilando datos que demuestran\ncuántos rastreadores hemos bloqueado.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Prácticas de privacidad de ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Las prácticas de privacidad indican el nivel de protección de los datos personales que compartes con un sitio web.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Este sitio web te notificará antes de transferir tu información en caso de fusión o adquisición";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "No se han revisado las prácticas de privacidad de este sitio web.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Grado de privacidad %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Pulsa para abrir la pantalla de protección de privacidad";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Estas estadísticas solo se almacenan en tu dispositivo y no se envían a ningún lado. Nunca.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Buenas prácticas de privacidad";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Prácticas de privacidad mixtas";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Prácticas de privacidad deficientes";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Prácticas de privacidad desconocidas";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Las redes de rastreadores agregan tu historial web para crear un perfil de datos sobre ti. Las principales redes de rastreadores suponen una mayor amenaza, ya que abarcan una mayor parte de Internet para rastrearte e identificarte.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Cancelar";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Abrir";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "¿Deseas salir de Mangala Wallet para visualizar este contenido?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "¿Abrir en otra aplicación?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Enviar un informe anónimo del sitio dañado nos ayuda a depurar estos problemas y mejorar la aplicación.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Buscar o introducir dirección";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Marcadores";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Favoritos";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "En Mangala Wallet, estamos estableciendo el nuevo estándar de confianza en línea.\n\nEl navegador privado de Mangala Wallet ofrece todos los Privacy Essentials que necesitas para protegerte mientras realizas búsquedas y navegas en Internet, incluyendo bloqueo de rastreadores, cifrado más inteligente y búsquedas privadas de Mangala Wallet.\n\nDespués de todo, Internet no tiene por qué ser tan horrible y disfrutar de la privacidad en línea que mereces debería ser lo más fácil posible.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Enviar informe";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Domino del sitio web dañado:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "¿Qué contenido o funcionalidad no funciona?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "La notificación de sitios web dañados es completamente anónima y nos ayuda a mejorar la aplicación.";
+
+/* This is a form title */
+"siteFeedback.title" = "Notificar un sitio web dañado";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "¿Qué sitio web no funciona?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Cerrar la pestaña inicio";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Cerrar \"%1$@\" en %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Abrir la pestaña inicio";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Abrir \"%1$@\" en %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Cambiar pestañas";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Elige tu tamaño de texto preferido. Los sitios web que veas en Mangala Wallet se ajustarán a él.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Tamaño del texto - %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Oscuro";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Sistema";
+
+/* Light Theme entry */
+"theme.acc.light" = "Claro";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Oscuro";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Predeterminado del sistema";
+
+/* Light Theme entry */
+"theme.name.light" = "Claro";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Protección de privacidad desactivada para %@";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Protección de privacidad activada para %@";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Se ha producido un error desconocido.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Ajustes";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Permite el acceso al micrófono en la configuración del sistema de iOS para que Mangala Wallet use las funciones de voz.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Se requiere acceso al micrófono";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "De acuerdo";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Cancelar";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet nunca escucha lo que dices. Todo el procesamiento de datos de voz para la búsqueda por voz privada se realiza en tu dispositivo.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Se requiere acceso al micrófono para la búsqueda por voz privada";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Cancelar";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "El audio se procesa en el dispositivo. No se almacena ni comparte con nadie, incluyendo Mangala Wallet.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Favorito eliminado";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Marcador añadido";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Marcador ya guardado";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "No hay ninguna página web para añadir a marcadores";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Favorito añadido";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Bloquear alertas";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Cancelar";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "De acuerdo";
+

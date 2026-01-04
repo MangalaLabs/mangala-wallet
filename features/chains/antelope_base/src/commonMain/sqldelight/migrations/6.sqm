@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS AntelopeProposalEntity (
+    proposal_name TEXT NOT NULL,
+    proposer TEXT NOT NULL,
+    requested_approvals TEXT AS List<String> DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL,
+    actionsName TEXT AS List<String> NOT NULL,
+    last_updated_at INTEGER NOT NULL,
+    PRIMARY KEY (proposal_name, blockchain_uid)
+);

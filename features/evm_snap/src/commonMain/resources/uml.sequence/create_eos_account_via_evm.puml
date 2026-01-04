@@ -1,0 +1,7 @@
+@startuml
+actor User
+User -> HomeScreen ++: click 'Create Account with EVM'
+HomeScreen -> CreateEosAccountViaEvmScreen --++: navigate to Create Account
+User <-- CreateEosAccountViaEvmScreen --: display CreateEosAccountViaEvmScreen
+User -> CreateEosAccountViaEvmScreen: Choose
+@enduml

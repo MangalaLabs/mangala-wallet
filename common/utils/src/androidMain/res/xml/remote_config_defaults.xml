@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>blockAccountName</key>
+    <value>{"data":["support.man","sale.man","ceo.man","mangala.man","man.man","coo.man","cto.man","dev.man","cmo.man","cpo.man","cdo.man","chro.man","ico.man","manager.man","ido.man"]}</value>
+  </entry>
+</defaults>

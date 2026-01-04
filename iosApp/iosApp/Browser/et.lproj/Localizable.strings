@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Redigeeri";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Kuva";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Võta tagasi";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Lisa";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Järjehoidja";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Järjehoidjad";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Tühista";
+
+/* Copy action */
+"action.title.copy" = "Kopeeri";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL on kopeeritud";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Keela privaatsuse kaitse";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Allalaadimised";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Redigeeri järjehoidjat";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Luba privaatsuse kaitse";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Sulge vahekaardid ja kustuta andmed";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Vahekaardid ja andmed kustutatud";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Ava taustal";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Uus";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Ava uuel vahelehel";
+
+/* Open action */
+"action.title.open" = "Avatud";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Kleebi ja mine";
+
+/* Print action */
+"action.title.print" = "Prindi";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Värskenda";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Eemalda lemmik";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Teata mittetoimivast saidist";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Töölaua sait";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Mobiilisait";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Salvesta";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Lisa järjehoidja";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Lisa lemmik";
+
+/* Settings action */
+"action.title.settings" = "Seaded";
+
+/* Share action */
+"action.title.share" = "Jaga";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Lisa vidin";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Kasuta kiiret juurdepääsu privaatsele otsingule ja lemmiksaitidele.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Pikk vajutus avaekraanile rakenduse ümberkorraldusrežiimi sisenemiseks.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Vajutage plussnupule %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Leidke ja valige Mangala Wallet. Seejärel valige vidin.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Ühe puudutusega oma lemmiksaitidele.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Olemasolevaid järjehoidjaid ei dubleerita.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Kas lisada kõik vahekaardid järjehoidjasse?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Lisa kaitsmata saitidele";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Salvesta järjehoidjasse";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Salvesta lemmikusse";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Vabasta Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Sisselogimine";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Logige sisse kontole% @. Sinu logimisandmed saadetakse turvaliselt.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Logi sisse %@. Sinu parool saadetakse ebaturvaliselt, sest ühendus on krüpteerimata.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Parool";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Autentimine on vajalik";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Kasutajanimi";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Väljas";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Sees";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Lisa järjehoidja";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Lisa lemmik";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Lisa kaust";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Lisa kaust";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Kustuta";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Kas soovid kindlasti kustutada selle kausta ja %i üksust?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Kas soovid kindlasti kustutada selle kausta ja %i üksuse?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "Kustutada %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Redigeeri järjehoidjat";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Redigeeri lemmikut";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Redigeeri kausta";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Asukoht";
+
+/* More options button text */
+"bookmark.moreButton" = "Rohkem";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Veebisaidi pealkiri";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Järjehoidjad";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Lisati uued järjehoidjad kõigile vahekaartidele";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Kõik vahekaardid on järjehoidjatesse lisatud";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Järjehoidjad";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Järjehoidjate eksport ei õnnestunud, palun proovi uuesti.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Sinu järjehoidjad on eksporditud.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Sinu järjehoidjad on jagatud.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "HTML-faili eksport";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Kahjuks ei saa me seda faili importida.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Sinu järjehoidjad on imporditud.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "HTML-faili import";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Järjehoidja faili importimine teisest brauserist";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Impordi järjehoidjate HTML-fail teisest brauserist või ekspordi oma olemas olevad järjehoidjad.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Kommentaare ei laaditud";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Sisu puudub";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Pilte ei laaditud";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Lingid või nupud ei töötanud";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Ma ei saa sisse logida";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Midagi muud";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Sait palus mul välja lülitada";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Brauser ei ühildu";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Videot ei esitatud";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "KIRJELDAGE TOIMUNUT";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Viimane kuu";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Viimane nädal";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Täna";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Eile";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Peida näpunäited igaveseks";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Tühista";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Neid on üsna vähe ja püüdsime muuta need informatiivseks.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Kas peita allesjäänud näpunäited?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Sinu Mangala Wallet otsingud on anonüümsed. Alati. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Huh!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Viska viis!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* üritas sind siin jälitada.\n\nMa blokeerisin nad!\n\n☝️ Võid vaadata aadressiriba, et näha, kes üritab sind jälitada, kui külastad uut saiti.️";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Viska viis!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Ettevaatust! Ma ei saa takistada %1$@ nägemast sinu tegevust %2$@.\n\nKuid sirvi koos minuga ja ma saan vähendada seda, mida %1$@ sinust üldiselt teab, blokeerides tema jälitajad paljudel teistel lehtedel.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Sain aru";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Ettevaatust! Kuna %2$@ on %1$@ omanik, ei saa ma takistada teda jälgimast sinu tegevust siin.\n\nKuid sirvi koos minuga ja ma saan vähendada seda, mida %2$@ sinust üldiselt teab, blokeerides tema jälgijad paljudel teistel lehtedel.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Sain aru";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Kui puudutad ja kerid, siis mina blokeerin tüütud jälgijad.\n\nHakka sirvima!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Sain aru";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Sinu brauserisse võivad koguneda isikuandmed. Õudne. Kasuta tule nuppu, et see kõik ära põletada. Proovi kohe! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Tühista";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Sulge vahekaardid ja kustuta andmed";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Külasta oma lemmiksaite hetkega!\n\nMine saidile, mis sulle meeldib. Seejärel puuduta ikooni „⋯“ ja vali *Lisa lemmikutesse*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Külasta oma lemmiksaite hetkega! Külasta ühte oma lemmiksaitidest. Seejärel puuduta menüünuppu ja vali Lisa lemmikutesse.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "Järgmisena proovi külastada ühte oma lemmiksaitidest!\n\nMina aga blokeerin jälgijaid, et nad ei saaks sind luurata. Võimaluse korral parandan ka sinu ühenduse turvalisust. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Said selle!\n\nPea meeles: iga kord, kui minuga sirvid, kaotab jube reklaam tiivad. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Internet võib olla üsna jube.\n\nÄra muretse! Privaatselt otsimine ja sirvimine on lihtsam kui arvad.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Keelatud";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Loe edasi";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Lubatud";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet blokeerib automaatselt paljud jälitajad. Üleilmse privaatsuskontrolli (GPC) abil saate paluda osalevatel veebisaitidel piirata teie isikuandmete müümist või jagamist teiste ettevõtetega.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Salvesta allalaadimistesse";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Tühista";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Kas soovid kindlasti selle allalaadimise tühistada?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Taasta";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Kas tühistada allalaadimine?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Kustuta kõik";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Ühtegi faili pole veel alla laaditud";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Allalaadimine - %1$@/%2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Allalaadimine: %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Allalaadimised";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "See tühistab ka pooleliolevad allalaadimised";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Kõik failid kustutatud";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "%@ allalaadimine on lõpetatud";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "%@ kustutatud";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "Allalaadimine ebaõnnestus. Kontrolli internetiühendust.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "%@ allalaadimine algas";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Tühista";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Looge privaatne aadress";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Blokeerige e-posti jälgijad Ducki aadressiga";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Kasutage %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Uus aadress kopeeriti teie lõikelauale";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Looge Ducki aadress";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Lubatud";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "E-posti kaitse eemaldamine sellest seadmest eemaldab veebis sirvimise ajal võimaluse sisestada oma isiklik Ducki aadress või äsja loodud isiklik Ducki aadress e-posti väljadele.\n\nOma Ducki aadresside täielikuks kustutamiseks või muude küsimuste või tagasiside saamiseks pöörduge meie poole aadressil support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Väljas";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Tühista";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Märkus. E-posti kaitsete eemaldamine sellest seadmest ei kustuta teie Ducki aadressi.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Eemaldage";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Kas eemaldada e-posti kaitsed?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Ooteloendiga liitumisel tekkis tõrge, proovige hiljem uuesti";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Alustage";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Mul on kutse kood";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Olete kutsutud!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Liituge privaatse ootenimekirjaga";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Te olete ootenimekirjas!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Teie kutse kuvatakse siin, kui oleme teie jaoks valmis. Soovite %1$@, kui see saabub? %2$@ e-posti kaitse kohta.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "telli teavitus";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Saadame teile teate, kui E-posti kaitse on teie jaoks valmis. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Loe edasi";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Saadame teile teatise, kui saate e-posti kaitset kasutama hakata.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Kas soovite, et me saadame teile teavituse, kui on teie kord?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Liitusite ootenimekirjaga ja palusite meid teavitada, kui on teie kord proovida meie e-posti kaitset.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Ei aitäh";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "TEAVITAGE MIND";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Teie e-posti kaitse kutse on siin!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Me ei salvesta teie e-kirju. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "E-posti privaatsus, lihtsustatud.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Blokeerige e-posti jälgijad ja peitke oma aadress ilma oma e-posti teenuse pakkujat vahetamata. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Järjehoidjaid pole veel lisatud";
+
+/* Empty list state placholder */
+"empty.favorites" = "Lemmikuid pole veel lisatud";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Ühtegi vastet ei leitud";
+
+/* No comment provided by engineer. */
+"favorite" = "Lemmik";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Kustuta";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Redigeeri";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Reklaami ja hüpikakende blokeerimine";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Järjehoidjate loomine ja haldamine";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Millist brauseri funktsiooni saame lisada või täiustada?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Brauseri funktsioonide probleemid";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Sirvimisfunktsioonid puuduvad või valmistavad pettumust";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Piltidega suhtlemine";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Edasi, tagasi liikumine ja/või värskendamine";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Mitte ükski neist";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Vahelehtede loomine ja haldamine";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Videote vaatamine";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Kuidas järjehoidjaid kuvatakse";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Millist kohandamise valikut saame lisada või täiustada?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Kohandamise probleemid";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Rakenduse kohandamiseks pole piisavalt võimalusi";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Avaekraani konfiguratsioon";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Mitte ükski neist";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Kuidas vahekaarte kuvatakse";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Kuidas rakendus välja näeb";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Millised andmed kustutatakse";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Andmete kustutamise aeg";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Parem automaatne täitmine";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Millist otsingufunktsiooni saame lisada või täiustada?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Mangala Wallet otsingu probleemid";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Mangala Wallet otsing pole piisavalt hea";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Otsimine konkreetses keeles või piirkonnas";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Paigutus peaks olema rohkem nagu Google";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Kiirem laadimisaeg";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Mitte ükski neist";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programmeerimine / tehniline otsing";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Ütle meile, mida saaksime parandada";
+
+/* Confirmation button */
+"feedback.form.submit" = "Esita";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Palun ole võimalikult konkreetne";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Kas on mingeid üksikasju, mida soovid lisada?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Meil on kahju seda kuulda";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "Millega on teie pettumus kõige rohkem seotud?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Teised probleemid";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Mitte ükski neist";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Milline probleem teil on?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Rakendus jookseb kokku või külmub";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Toimivusega seotud probleemid";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Rakendus on aeglane, vigane või jookseb kokku";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Mitte ükski neist";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Video või meedia taasesituse vead";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Veebilehed või otsingutulemid laaditakse aeglaselt";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Jagage üksikasju";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Mida olete nautinud?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Kas on mingeid üksikasju, mida soovid meeskonnaga jagada?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Vinge kuulda!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Tänan, ei! Olen lõpetanud";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Jagage üksikasju";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Teie anonüümne tagasiside on meile oluline.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Alustame!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Kuidas liigitate oma tagasiside?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Aitäh! Tagasiside on esitatud.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Veebisaidi laadimisega seotud probleemid";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Mõned veebisaidid ei laadi õigesti";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Milline sisu näib olevat mõjutatud?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Kus te neid probleeme näete?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "Millisel veebisaidil on probleeme?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d / %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Otsi lehel";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Airstream";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Inferno";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Puudub";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Whirlpool";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Lisa Mangala Wallet oma avaekraanile!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Lisa Mangala Wallet oma dokki hõlpsaks juurdepääsuks!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Pane Mangala Wallet avalehele";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Otsi või sisesta aadress";
+
+/* Home tab title */
+"homeTab.title" = "Avaleht";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Lisa järjehoidja";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Lisa lemmik";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Sirvi tagasi";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Sirvi edasi";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Sulge";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Sulge vaheleht";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Otsi lehel";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Otsi järgmine";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Otsi eelmine";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Kustuta kõik vahekaardid ja andmed";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Otsi või sisesta aadress";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Uus vaheleht";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Järgmine vahekaart";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Ava link taustal";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Ava link uuel vahekaardil";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Eelmine vahekaart";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Prindi";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Laadi uuesti";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Vali";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Kuva kõik vahekaardid";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Tere tulemast\nMangala Wallet kasutajaks!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Sirvimismenüü";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Valmis";
+
+/* Edit button */
+"navigation.title.edit" = "Redigeeri";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Lisa vidin";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Mangala Wallet kasutamine on nüüd lihtsam.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Võib-olla hiljem";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Jätka";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Võib-olla hiljem";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Muutke Mangala Wallet oma vaikimisi brauseriks.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Määra vaikebrauseriks";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Jäta vahele";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Alusta sirvimist";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Tere tulemast Mangala Wallet kasutajaks!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Selle lingi avamiseks vajalikku rakendust ei leitud";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Veebisaidid kasutavad küpsiseid, et hoida sind sisse logitud. Kui teed saidi tulekindlaks, ei kustutata küpsiseid ja sa jääd sisse logituks isegi pärast tulenupu kasutamist. Me blokeerime endiselt kolmanda poole jälitajad, kelle me tulekindlatelt lehtedelt leiame.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Tulekindlad veebisaidid";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Selle lehe muutmine tulekindaks hoiab sind sisse logitud pärast tulenupu kasutamist.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Tagada %@ tulekindlus, et jääda sisselogituks?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Tulekindel";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ on nüüd tulekindel";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Mitte praegu";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Eemalda tulekindlus";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Muuda see sait tulekindlaks";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Tulekindlus on eemaldatud";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Eemalda kõik";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "OK";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritm";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bitti";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Tõrge sertifikaadi ekstraktimisel";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Üldine nimi";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Efektiivne suurus";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "E-post";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Krüptitud ühendus";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Sunnitud krüpteerimine";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Sundisime seda saiti kasutama krüpteeritud ühendust, vältides sellele saadetud isikuandmete pealtkuulamist.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Krüpteeritud ühendus takistab veebisaidile saadetud isikuandmete pealtkuulamist.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Teema võtme identifikaator";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Väljaandja";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Avalik võti";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Võtme suurus";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Segatud krüpteerimine";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Sellel saidil on segatud krüpteerimine, kuna mõnda sisu pakutakse krüpteerimata ühenduste kaudu.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Ei";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Püsiv";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Avalik võti";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Krüpteeritud ühendus takistab veebisaidile saadetud isikuandmete pealtkuulamist.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Teema nimi";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Kokkuvõte";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Ole ettevaatlik, kui sisestad isikuandmeid sellele saidile.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Krüptimata ühendus";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Tundmatu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Kasutamine";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Dekrüpteeri";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Tuleta";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Krüpteeri";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Logi sisse";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Paki lahti";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Kinnita";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Paki";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Jah";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "SAIDI KAITSE ON KEELATUD";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "ÜLENDATUD $1-lt $2-le";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "PRIVAATSUSASTE";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "Jälgija võrgud leiti %1$@%% veebisaitidest, mida sa oled külastanud alates %2$@.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Kogume endiselt andmeid, et näidata, kui\npalju jälgijaid oleme blokeerinud.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Privaatsustava tuleneb ToS; DR-ist.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Privaatsustavad näitavad, kui palju on veebisaidiga jagatav isiklik teave kaitstud.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "See veebisait teavitab sind enne sinu andmete edastamist ühinemise või omandamise korral";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Selle veebisaidi privaatsustavasid ei ole üle vaadatud.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Privaatsusaste %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Vajuta, et avada privaatsuse kaitse aken";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "See statistika salvestatakse ainult sinu seadmesse ja seda ei saadeta kuhugi. Mitte kunagi.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Hea privaatsustava";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Erinevad privaatsustavad";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Kehv privaatsustava";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Teadmata privaatsustava";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Jälgimisvõrgud koondavad teie veebiajaloo teie kohta andmeprofiiliks. Suuremad jälgimisvõrgud on kahjulikumad, kuna need saavad teid jälgida ja sihtida suuremas Internetis.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Tühista";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Avatud";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Kas soovite selle sisu vaatamiseks lahkuda Mangala Wallet'st?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Avada teises rakenduses?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Anonüümse katkise saidi aruande esitamine aitab meil neid probleeme siluda ja rakendust täiustada.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Otsi või sisesta aadress";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Järjehoidjad";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Lemmikud";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "Mangala Wallet on veebi usaldusväärsuse uus standard.\n \nMangala Wallet privaatsusbrauser pakub kõiki privaatsuse põhifunktsioone, mida peate enda kaitsmiseks veebist otsides ja sirvides kasutama, sealhulgas jälgijate blokeerimist, nutikamat krüptimist ja Mangala Wallet privaatset otsingut.\n\nLõppude lõpuks ei tohiks Internet nii jube olla ja Internetis väärilise privaatsuse saavutamine peaks olema sama lihtne kui ruloo alla tõmbamine.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Saada aruanne";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Mittetoimiva saidi domeen";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Milline sisu või funktsioon ei toimi?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Mittetoimivast saidist teatamine on täiesti anonüümne ja aitab meil parandada rakendust!";
+
+/* This is a form title */
+"siteFeedback.title" = "Teatage katkisest saidist";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Milline veebisait on katki?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Sulge avalehe vahekaart";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Sulge \"%1$@\" aadressil %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Ava avalehe vahekaart";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Ava \"%1$@\" aadressil %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Vahekaardi vahetaja";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Valige soovitud teksti suurus. Veebisaidid, mida Mangala Wallets vaatate, kohanduvad sellega.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Teksti suurus - %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Tume";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Süsteem";
+
+/* Light Theme entry */
+"theme.acc.light" = "Hele";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Tume";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Süsteem vaikimisi";
+
+/* Light Theme entry */
+"theme.name.light" = "Hele";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "%@ privaatsuse kaitse on keelatud";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "%@ privaatsuse kaitse on lubatud";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Tekkis tundmatu tõrge.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Seaded";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Häälfunktsioonide kasutamiseks lubage Mangala Wallet jaoks juurdepääs mikrofonile iOS-i süsteemiseadetes.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Vajalik juurdepääs mikrofonile";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "OK";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Tühista";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet ei kuula kunagi pealt, mida te ütlete. Kogu kõneandmete töötlemine privaatse häälotsingu jaoks toimub teie seadmes.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Privaatse häälotsingu jaoks on vajalik juurdepääs mikrofonile";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Tühista";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Heli töödeldakse seadmes. Seda ei salvestata ega jagata kellegagi, sealhulgas Mangala Walletga.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Lemmik on eemaldatud";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Järjehoidja lisatud";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Järjehoidja on juba salvestatud";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Puuduvad veebisaidid, mida järjehoidjaks panna";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Lemmik lisatud";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Blokeerige märguanded";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Tühista";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "OK";
+

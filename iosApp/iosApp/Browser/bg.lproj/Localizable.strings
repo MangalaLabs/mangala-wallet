@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Редактиране";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Показване";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Отмяна";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Добавяне";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Отметка";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Отметки";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Отмени";
+
+/* Copy action */
+"action.title.copy" = "Копиране";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL адресът е копиран";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Деактивиране на защита на поверителността";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Изтеглени файлове";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Редактиране на отметка";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Активиране на защита на поверителността";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Затваряне на разделите и изчистване на данните";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Разделите и данните са изчистени";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Отваряне във фонов режим";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Нов";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Отваряне в нов раздел";
+
+/* Open action */
+"action.title.open" = "Отваряне";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Поставяне и отваряне";
+
+/* Print action */
+"action.title.print" = "Отпечатване";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Опресняване";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Премахване от любими";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Подаване на сигнал за повреден сайт";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Сайт на работния плот";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Мобилна версия на сайта";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Запази";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Добави отметка";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Добавяне в любими";
+
+/* Settings action */
+"action.title.settings" = "Настройки";
+
+/* Share action */
+"action.title.share" = "Споделяне";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Добави приспособлението";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Получете бърз достъп до поверително търсене и до любимите си сайтове.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Натиснете продължително началния екран, за да влезете в режим за пренареждане.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Натиснете бутона плюс %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Открийте и изберете Mangala Wallet. След това изберете приспособление.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "На едно докосване от любимите уебсайтове.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Съществуващите отметки няма да бъдат дублирани.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Поставяне на всички раздели в отметки?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Добавяне към незащитени сайтове";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Запазване на отметка";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Запазване в любими";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Отключване на Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Влизане";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Вход в %@. Вашите данни за вход ще бъдат изпратени по сигурен начин.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Вход в %@. Вашата парола ще бъде изпратена по несигурен начин, тъй като връзката не е криптирана.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Парола";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Изисква се удостоверяване";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Потребителско име";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Изключено";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Включено";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Добави отметка";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Добавяне в любими";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Добавяне на папка";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Добавяне на папка";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Изтриване";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Сигурни ли сте, че искате да изтриете тази папка и %i елемента?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Сигурни ли сте, че искате да изтриете тази папка и %i елемент?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "Изтриване на %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Редактиране на отметка";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Редактиране на Предпочитан";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Редактиране на папка";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Местоположение";
+
+/* More options button text */
+"bookmark.moreButton" = "Повече";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Заглавие на уебсайт";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Отметки";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Добавени са нови отметки за всички раздели";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Всички раздели са поставени в отметки";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Отметки";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Не успяхме да експортираме вашите отметки, моля, опитайте отново.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Вашите отметки са експортирани.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Вашите отметки са споделени.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "Експортиране на HTML файл";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "За съжаление не успяхме да импортираме този файл.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Вашите отметки са импортирани.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "Импортиране на HTML файл";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Импортиране на файл с отметки от друг браузър";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Импортирайте HTML файл с отметки от друг браузър или експортирайте съществуващите отметки.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Коментарите не се зареждат";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Липсва съдържание";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Изображенията не се зареждат";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Връзките или бутоните не работят";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Не мога да вляза";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Нещо друго";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Сайтът ме помоли да деактивирам";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Браузърът е несъвместим";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Видеото не се възпроизвежда";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "ОПИШЕТЕ ПРОБЛЕМА";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Миналия месец";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Миналата седмица";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Днес";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Вчера";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Скрий съветите за постоянно";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Отмени";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Само няколко са и се постарахме да са информативни.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Скрий оставащите съвети?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Търсенето в Mangala Wallet е анонимно. Винаги. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Слава Богу!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Дай пет!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* се опитва да ви проследи тук.\n\nБлокирах ги!\n\n☝️ Вижте адресната лента, за да разберете кой се опитва да ви проследи, когато посещавате нов сайт.️";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Дай пет!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Внимание! Не мога да направя така, че %1$@ да не вижда вашата активност на %2$@.\n\nНо ако сърфирате с мен, като цяло мога да намаля информацията, която %1$@ научава за вас, като блокирам неговите тракери на много други сайтове.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Разбрах";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Внимание! Тъй като %2$@ притежава %1$@, той вижда какво правите тук.\n\nНо ако сърфирате с мен, като цяло мога да намаля информацията, която %2$@ научава за вас, като блокирам неговите тракери на много други сайтове.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Разбрах";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Докато докосвате и превъртате, аз ще блокирам досадните тракери.\n\nПродължавайте да сърфирате спокойно!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Разбрах";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Личните данни могат да се натрупват в браузъра. Много неприятно. Използвайте огнения бутон, за да изгорите всичко. Опитайте сега! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Отмени";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Затваряне на разделите и изчистване на данните";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Отварянето на любимите ви сайтове става светкавично!\n\nОтворете сайт, който харесвате. След това докоснете иконата \"⋯\" и изберете *Добавяне към любими*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Отварянето на любимите ви сайтове става светкавично! Посетете някой от любимите си сайтове. След това докоснете бутона за отваряне на меню и изберете \"Добавяне към любими\".";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "Сега опитайте да отворите някой от любимите си сайтове!\n\nЩе блокирам тракерите, за да не ви шпионират. Освен това ще подобря сигурността на вашата връзка, ако това е възможно. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Нали разбрахте!\n\nЗапомнете: Всеки път, когато сърфирате с мен, аз подрязвам крилцата на някоя досадна реклама. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Интернет може да бъде и доста опасно място.\n\nНе се притеснявайте! Поверителното търсене и сърфиране е много по-лесно, отколкото си мислите.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Деактивирано";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Научете повече";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Активирано";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet блокира автоматично много тракери. С настройката \"Глобален контрол на поверителността\" (GPC) можете също да поискате от участващите уебсайтове да ограничат продажбата или споделянето на Вашите лични данни на/с други компании.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Запазване в Изтеглени файлове";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Отмени";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Сигурни ли сте, че искате да отмените изтеглянето на този файл?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Възобновяване";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Отмяна на изтеглянето?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Изтриване на всички";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Все още няма изтеглени файлове";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Изтегляне - %1$@ от %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Изтегляне - %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Изтеглени файлове";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Това действие ще отмени също и файловете, които се изтеглят в момента";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Всички файлове са изтрити";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "Завършено изтегляне на %@";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "Файл %@ е изтрит";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "Неуспешно изтегляне. Проверете интернет връзката.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "Стартирано изтегляне на %@";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Отмени";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Генериране на личен адрес";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Блокирайте имейл тракерите с Duck адрес";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Използване на %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Новият адрес е копиран в клипборда";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Създаване на Duck адрес";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Активирано";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Когато защитата на имейли бъде премахната от това устройство, ще бъде премахната и опцията за попълване на вашия личен Duck адрес или генериран нов личен Duck адрес в полетата за имейл при сърфиране в мрежата.\n\nАко искате да изтриете напълно своите Duck адреси или имате други въпроси или обратна връзка, свържете се с нас на support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Изключено";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Отмени";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Забележка: При премахване на защитата на имейла от устройството, вашият Duck адрес няма да бъде изтрит.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Премахване";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Да се премахне ли защитата на имейла?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Възникна грешка при включване в списъка с чакащи. Моля, опитайте отново по-късно.";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Първи стъпки";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Имам код за покана";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Получихте покана!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Включване в списък с чакащи за личен адрес";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "В списъка с чакащи сте!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Вашата покана ще се покаже, когато сме готови. Искате ли %1$@, когато пристигне? %2$@ за защитата на имейли.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "да получите известие";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Ще ви изпратим известие, когато вашата защита на имейли е готова. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Научете повече";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Ще ви изпратим известие, когато можете да започнете да използвате защитата на имейла.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Искате ли да Ви изпратим известие, когато дойде Вашият ред?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Присъединихте се към списъка с чакащи и поискахте да ви уведомим, когато дойде вашият ред да изпробвате нашата функция за защита на имейл.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Не, благодаря";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "УВЕДОМЕТЕ МЕ";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Вашата покана за защита на имейл пристигна!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Ние не запазваме вашите имейли. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "Поверителност на имейла с две думи.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Блокирайте имейл тракерите и скрийте своя адрес, без да променяте имейл доставчика си. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Все още няма добавени отметки";
+
+/* Empty list state placholder */
+"empty.favorites" = "Все още няма добавени любими";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Няма намерени съвпадения";
+
+/* No comment provided by engineer. */
+"favorite" = "Любим";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Изтриване";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Редактиране";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Блокиране на реклами и изскачащи прозорци";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Създаване и управление на отметки";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Коя функция за сърфиране можем да добавим или да подобрим?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Проблеми с функция на браузъра";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Някои функции за сърфиране липсват или са объркващи";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Интерактивно гледане на изображения";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Придвижване напред, назад и/или опресняване";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Никое от тези";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Създаване и управление на раздели";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Гледане на видео";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Как са изобразени отметките";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Коя опция за персонализиране можем да добавим или да подобрим?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Проблеми с персонализирането";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Няма достатъчно възможности за персонализиране на приложението";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Конфигурацията на началния екран";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Никое от тези";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Как са изобразени разделите";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Как изглежда приложението";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Кои данни са изчистени";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Кога са изчистени данните";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "По-добро автозавършване";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Коя функция за търсене можем да добавим или да подобрим?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Проблеми при търсенето с Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Търсенето с Mangala Wallet не е достатъчно добро";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Търсене на специфичен език или в специфичен район";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Оформлението трябва да бъде повече като Google";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "По-бързо зареждане";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Никое от тези";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Програмиращо/техническо търсене";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Моля, кажете ни какво можем да подобрим";
+
+/* Confirmation button */
+"feedback.form.submit" = "Изпрати";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Моля, бъдете колкото може по-конкретни";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Искате ли да споделите нещо по-конкретно?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Съжаляваме да чуем това";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "С какво най-вече са свързани отрицателните Ви впечатления?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Други проблеми";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Никое от тези";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Кой проблем имате?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Срив или замръзване на приложението";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Проблеми с работата";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Приложението е бавно, има бъгове или се срива";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Никое от тези";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Бъгове при възпроизвеждане на видео или мултимедийни файлове";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Уеб страниците или резултатите от търсене се зареждат бавно";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Споделете подробности";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Кое Ви беше най-приятно?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Искате ли да споделите повече подробности с нашия екип?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Страхотно е да чуем това!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Не, благодаря! Готово";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Споделете подробности";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Вашите анонимни отзиви са важни за нас.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Да започваме!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Как бихте категоризирали отзивите си?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Благодарим ви! Отзивът ви е изпратен.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Проблеми със зареждането на уебсайтове";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Определени уебсайтове не се зареждат правилно";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Какво съдържание е засегнато?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Къде виждате тези проблеми?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "В кой уебсайт има проблеми?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d от %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Намери в страницата";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Въздушна струя";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Адски огън";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Няма";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Водовъртеж";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Добавете Mangala Wallet към началния си екран!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Добавете Mangala Wallet към панела за бърз и лесен достъп!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Вземете Mangala Wallet вкъщи";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Търсене или въвеждане на адрес";
+
+/* Home tab title */
+"homeTab.title" = "Начален екран";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Добави отметка";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Добавяне в любими";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Сърфиране назад";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Сърфиране напред";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Затваряне";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Затваряне на раздел";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Намери в страницата";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Намери следващ";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Намери предишен";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Изчистване на всички раздели и данни";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Търсене или въвеждане на адрес";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Нов раздел";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Следващ раздел";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Отваряне на връзка във фонов режим";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Отваряне на връзка в нов раздел";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Предишен раздел";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Отпечатване";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Презареждане";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Избор";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Показване на всички раздели";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Добре дошли в\nMangala Wallet!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Меню за сърфиране";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Готово";
+
+/* Edit button */
+"navigation.title.edit" = "Редактиране";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Добави приспособлението";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Вече е още по-лесно да използвате Mangala Wallet.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Може би по-късно";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Продължи";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Може би по-късно";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Направете Mangala Wallet браузър по подразбиране.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Задаване като браузър по подразбиране";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Пропускане";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Стартиране на сърфирането";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Добре дошли в Mangala Wallet!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Не е намерено приложението, необходимо за отваряне на тази връзка";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Уеб сайтовете разчитат на бисквитки, за да поддържат сесията ви активна. Когато направите сайта огнеустойчив, бисквитките няма да бъдат изтрити и ще останете вписани, дори след като използвате огнения бутон. Ние все пак блокираме тракери на трети страни, които се намират на огнеустойчиви сайтове.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Огнеустойчиви сайтове";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Ако направите този сайт огнеустойчив, ще останете вписани, след като използвате огнения бутон.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Направете %@ огнеустойчив, за да останете вписани?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Направи огнеустойчив";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ вече е огнеустойчив";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Не сега";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Премахване на огнеустойчивост";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Направи този сайт огнеустойчив";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Премахната огнеустойчивост";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Премахване на всички";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "ОК";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Алгоритъм";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d бита";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Грешка при извличане на сертификат";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Общоприето име";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Ефективен размер";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "Имейл";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Шифрована връзка";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Принудително криптиране";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Принудихме този сайт да използва криптирана връзка и така предотвратихме подслушването на личните данни, които изпращате към него.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Криптираната връзка предотвратява подслушването на личните данни, които изпращате към даден уебсайт.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Идентификатор на ключа за субекта";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Издател";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Публичен ключ";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Размер на ключа";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Смесено криптиране";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Този сайт използва смесено криптиране, тъй като част от съдържанието се предоставя чрез некриптирани връзки.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Не";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Постоянен";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Публичен ключ";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Криптираната връзка предотвратява подслушването на личните данни, които изпращате към даден уебсайт.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Име на субект";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Резюме";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Внимавайте, когато въвеждате лична информация на този сайт.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Нешифрована връзка";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Неизвестен";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Употреба";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Дешифриране";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Извличане";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Криптиране";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Подписване";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Разархивиране";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Проверка";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Архивиране";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Да";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "ЗАЩИТА НА САЙТА ДЕАКТИВИРАНА";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "ПОДОБРЕНО ОТ $1 НА $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "КЛАС НА ПОВЕРИТЕЛНОСТ";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "На %1$@%% от уебсайтовете, които сте посетили от %2$@ досега, са намерени мрежи за проследяване.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Все още събираме данни, за да покажем колко\nтракери сме блокирали.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Практики за защита на поверителността от ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Практиките за защита на поверителността показват каква част от личната информация, която споделяте с уебсайт, е защитена.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Този уебсайт ще ви уведоми, преди да прехвърли вашата информация в случай на сливане или придобиване";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Политиката за защита на поверителността на този уебсайт не е прегледана.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Клас на поверителност %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Натиснете, за да отворите екрана за защита на поверителността";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Тези статистики се съхраняват само на вашето устройство и не се изпращат никъде другаде. Никога.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Добри практики за защита на поверителността";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Смесени практики за защита на поверителността";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Лоши практики за защита на поверителността";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Неизвестни практики за защита на поверителността";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Проследяващите мрежи обединяват историята на мрежата ви в профил с данни за вас. Основните проследяващи мрежи са по-вредни, защото могат да ви проследяват и насочват през по-голяма част от интернет.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Отмени";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Отваряне";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Искате ли да напуснете Mangala Wallet, за да видите това съдържание?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Отваряне в друго приложение?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Изпращането на анонимен доклад за неработещ сайт ни помага да отстраним грешките и да подобрим приложението.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Търсене или въвеждане на адрес";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Отметки";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Любими";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "В Mangala Wallet задаваме новия стандарт на доверие онлайн.\n\nБраузърът за поверителност Mangala Wallet осигурява всички необходими елементи за защита на поверителността, докато търсите и сърфирате в мрежата, включително блокиране на тракери, по-интелигентно криптиране и поверително търсене с Mangala Wallet.\n\nВ крайна сметка интернет не трябва да създава чувство на страх, а получаването на поверителността, която заслужавате онлайн, трябва да е толкова просто, колкото пускането на щорите.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Изпращане на доклад";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Домейн на нефункциониращ сайт:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Кое съдържание или функция не функционира правилно?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Докладването на нефункциониращ сайт е напълно анонимно и ни помага да подобрим приложението!";
+
+/* This is a form title */
+"siteFeedback.title" = "Подаване на сигнал за повреден сайт";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Кой уебсайт е повреден?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Затваряне на началния раздел";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Затваряне на \"%1$@\" с адрес %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Отваряне на началния раздел";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Отваряне на \"%1$@\" с адрес %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Превключване на раздели";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Изберете предпочитания размер на текста. Уебсайтът, който разглеждате в Mangala Wallet, ще се регулира спрямо него.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Размер на текста - %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Тъмна";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Системна";
+
+/* Light Theme entry */
+"theme.acc.light" = "Светла";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Тъмна";
+
+/* Entry for Default System theme */
+"theme.name.default" = "По подразбиране за системата";
+
+/* Light Theme entry */
+"theme.name.light" = "Светла";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Деактивирана защита на поверителността за %@";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Активирана защита на поверителността за %@";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Възникна неизвестна грешка.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Настройки";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Разрешете достъп до микрофона в настройките на системата iOS, за да може Mangala Wallet да използва гласовите функции.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Изисква се достъп до микрофона";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "ОК";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Отмени";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet никога не слуша какво казвате. При поверително гласово търсене всички гласови данни се обработват на Вашето устройство.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "За поверително гласово търсене се изисква достъп до микрофона";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Отмени";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Аудиото се обработва на устройството. То не се съхранява или споделя с никого, включително Mangala Wallet.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Премахнато от любими";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Добавена е отметка";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Отметката вече е запазена";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Няма страница, за която да се постави отметка";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Добавено в любими";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Блокиране на предупрежденията";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Отмени";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "ОК";
+

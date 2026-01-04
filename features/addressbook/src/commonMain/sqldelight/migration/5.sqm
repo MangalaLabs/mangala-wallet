@@ -1,0 +1,8 @@
+-- Fix incorrect blockchain symbols for Arbitrum and Optimism
+UPDATE blockchain_types 
+SET symbol = 'ARB' 
+WHERE id = 'arbitrum-one' AND symbol = 'ETH';
+
+UPDATE blockchain_types 
+SET symbol = 'OP' 
+WHERE id = 'optimistic-ethereum' AND symbol = 'ETH';

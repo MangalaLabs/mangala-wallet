@@ -1,0 +1,76 @@
+name: Pull Request Build & SonarQube Analysis
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build-pro:
+    if: ${{ github.actor != 'renovate' }}
+    runs-on: self-hosted
+
+    permissions: read-all
+
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Decode secret properties, Firebase Admin Credential, Play Store Credential
+        run: sh ./scripts/decode.sh
+        env:
+          PLAY_CREDENTIAL: ${{ secrets.PLAY_CREDENTIAL_PKG_CONTENT }}
+          FIREBASE_CREDENTIAL: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          USERNAME: ${{ secrets.ACT }}
+          TOKEN: ${{ secrets.TOK }}
+          REVENUECATANDROID: ${{ secrets.REVENUECATANDROID }}
+          REVENUECATIOS: ${{ secrets.REVENUECATIOS }}
+          INFURASECRET: ${{ secrets.INFURASECRET }}
+          INFURAAPI: ${{ secrets.INFURAAPI }}
+          COVALENTAPI: ${{ secrets.COVALENTAPI }}
+          MORALISAPI: ${{ secrets.MORALISAPI }}
+
+      - name: 📝 Create keystore file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE }}
+
+      - name: 📝 Create signing config secrets file
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore.properties'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE_PROPERTIES }}
+
+      - name: 📝 Create google-services file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'google-services.json'
+          fileDir: './composeApp/src/proDevRelease'
+          encodedString: ${{ secrets.GOOGLESERVICES }}
+
+      - run: echo "RELEASE_VERSION=$(sed -e s:refs/heads/::g -e s:/:-:g -e s:v::g -e 's/\-canary.*$//' -e 's/\-update.*$//' -e 's/\-pre-alpha.*$//' -e 's/\-patch.*$//' <<< ${GITHUB_REF#refs/*/})" >> $GITHUB_ENV
+
+#      - name: SonarQube Analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#        run: |
+#          ./gradlew sonar -Dsonar.projectKey=trainingdeveloperpro_mangala-wallet_b17072b2-5f18-4535-933d-a76e6d4cc151 -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+
+      - name: 🐘 Execute Gradle Pro variant APK build
+        run: ./gradlew composeApp:assembleProDevRelease

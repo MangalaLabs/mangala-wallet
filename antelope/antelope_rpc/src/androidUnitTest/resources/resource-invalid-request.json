@@ -1,0 +1,46 @@
+{
+  "code": 400,
+  "message": "Unable to process and sample transaction",
+  "data": {
+    "error": {
+      "path": "/v1/chain/compute_transaction",
+      "response": {
+        "headers": {
+          "access-control-allow-headers": "X-Requested-With,Accept,Content-Type,Origin",
+          "access-control-allow-methods": "GET, POST, OPTIONS, GET, POST, OPTIONS",
+          "access-control-allow-origin": "*",
+          "connection": "close",
+          "content-length": "438",
+          "content-type": "application/json",
+          "date": "Wed, 10 Jul 2024 06:53:03 GMT",
+          "server": "nginx"
+        },
+        "status": 500,
+        "json": {
+          "code": 500,
+          "message": "Internal Service Error",
+          "error": {
+            "code": 3050003,
+            "name": "eosio_assert_message_exception",
+            "what": "eosio_assert_message assertion failure",
+            "details": [
+              {
+                "message": "assertion failure with message: must buy ram with core token",
+                "file": "cf_system.cpp",
+                "line_number": 14,
+                "method": "eosio_assert"
+              },
+              {
+                "message": "eosio <= eosio::buyram pending console output: ",
+                "file": "apply_context.cpp",
+                "line_number": 134,
+                "method": "exec_one"
+              }
+            ]
+          }
+        },
+        "text": "{\"code\":500,\"message\":\"Internal Service Error\",\"error\":{\"code\":3050003,\"name\":\"eosio_assert_message_exception\",\"what\":\"eosio_assert_message assertion failure\",\"details\":[{\"message\":\"assertion failure with message: must buy ram with core token\",\"file\":\"cf_system.cpp\",\"line_number\":14,\"method\":\"eosio_assert\"},{\"message\":\"eosio <= eosio::buyram pending console output: \",\"file\":\"apply_context.cpp\",\"line_number\":134,\"method\":\"exec_one\"}]}}"
+      }
+    }
+  }
+}

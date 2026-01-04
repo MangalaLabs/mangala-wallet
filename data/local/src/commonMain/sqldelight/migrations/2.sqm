@@ -1,0 +1,1 @@
+INSERT INTO TokenEntity VALUES(0, 'ethereum','bsc-testnet','',18,'0xd18f8441b276ddd42e621870e4fabd6230837ebb');

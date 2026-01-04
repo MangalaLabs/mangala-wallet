@@ -1,0 +1,78 @@
+-- Login data
+CREATE TABLE IF NOT EXISTS AuthenticationEntity (
+    publicKey TEXT PRIMARY KEY NOT NULL,
+    accessToken TEXT NOT NULL,
+    tokenExpiration INTEGER NOT NULL,
+    refreshToken TEXT NOT NULL,
+    refreshTokenExpiration INTEGER NOT NULL,
+    tokenType TEXT NOT NULL
+);
+
+insertOrReplaceUserLogin:
+INSERT OR REPLACE INTO AuthenticationEntity(publicKey, accessToken, tokenExpiration, refreshToken, refreshTokenExpiration, tokenType)
+VALUES (?, ?, ?, ?, ?, ?);
+
+findUserLogin:
+SELECT * FROM AuthenticationEntity WHERE publicKey = ?;
+
+deleteUserLogin:
+DELETE FROM AuthenticationEntity WHERE publicKey = ?;
+
+
+CREATE TABLE IF NOT EXISTS RemotePagingKeyEntity (
+    id TEXT PRIMARY KEY NOT NULL,
+    lastRequestedPage INTEGER NOT NULL,
+    lastSyncedTimestamp INTEGER NOT NULL
+);
+
+insertRemotePagingKeyEntity:
+INSERT OR REPLACE INTO RemotePagingKeyEntity(id, lastRequestedPage, lastSyncedTimestamp)
+VALUES (?, ?, ?);
+
+findRemotePagingKeyEntity:
+SELECT * FROM RemotePagingKeyEntity WHERE id = ?;
+
+deleteRemotePagingKeyEntity:
+DELETE FROM RemotePagingKeyEntity WHERE id = ?;
+
+-- Event list entity
+CREATE TABLE IF NOT EXISTS EventListEntity (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT,
+    startTime INTEGER,
+    endTime INTEGER,
+    venue TEXT,
+    thumb TEXT,
+    categoriesId TEXT -- json catgegories id
+);
+
+insertOrReplaceEvents:
+INSERT OR REPLACE INTO EventListEntity(id, title, startTime, endTime, venue, thumb, categoriesId)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+countEvents:
+SELECT COUNT(*)
+FROM EventListEntity
+WHERE (title = :title OR :title IS NULL)
+AND (startTime >= :startTime OR :startTime IS NULL)
+AND (venue = :venue OR :venue IS NULL)
+AND (categoriesId = :categoriesId OR :categoriesId IS NULL);
+
+searchEvents:
+SELECT *
+FROM EventListEntity
+WHERE (title = :title OR :title IS NULL)
+AND (startTime >= :startTime OR :startTime IS NULL)
+AND (venue = :venue OR :venue IS NULL)
+AND (categoriesId = :categoriesId OR :categoriesId IS NULL)
+LIMIT :limit OFFSET :offset;
+
+-- Clear all ETicket data
+clearAllAuthenticationEntities:
+DELETE FROM AuthenticationEntity;
+
+clearAllRemotePagingKeyEntities:
+DELETE FROM RemotePagingKeyEntity;
+
+clearAllEventListEntities:
+DELETE FROM EventListEntity;

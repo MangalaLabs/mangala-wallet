@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Upravit";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Zobrazit";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Vrátit";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Přidat";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Záložka";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Záložky";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Zrušit";
+
+/* Copy action */
+"action.title.copy" = "Kopírovat";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "Adrese URL zkopírována";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Zakázat ochranu soukromí";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Stahování";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Upravit záložku";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Povolit ochranu soukromí";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Zavřít karty a vymazat data";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Karty a data vymazány";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Otevřít na pozadí";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Nová";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Otevřít v nové kartě";
+
+/* Open action */
+"action.title.open" = "Otevřít";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Vložit a jít";
+
+/* Print action */
+"action.title.print" = "Vytisknout";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Obnovit";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Odebrat oblíbenou položku";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Nahlásit nefunkční webové stránky";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Stránka plochy";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Mobilní režim";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Uložit";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Přidat záložku";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Přidat oblíbené";
+
+/* Settings action */
+"action.title.settings" = "Nastavení";
+
+/* Share action */
+"action.title.share" = "Sdílet";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Přidat widget";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Získejte rychlý přístup k soukromému vyhledávání a oblíbeným webům.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Podržením prstu na ploše aktivuj režim úprav plochy.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Klepni na tlačítko plus %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Najdi aplikaci Mangala Wallet a vyber ji. Pak zvol widget.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Jedním klepnutím se dostaneš na svoje oblíbené stránky.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Existující záložky nebudou duplikovány.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Dát do záložek všechny karty?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Přidat na nechráněné stránky";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Uložit záložku";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Uložit oblíbené";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Odemkněte Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Přihlásit";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Přihlaste se k%@. Vaše přihlašovací údaje vám budou bezpečně zaslány.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Přihlaste se do %@. Vaše heslo bude odesláno nezabezpečeným způsobem, protože připojení není šifrované.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Heslo";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Je vyžadována autentizace";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Uživatelské jméno";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Vypnout";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Aktivní";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Přidat záložku";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Přidat oblíbené";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Přidat složku";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Přidat složku";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Smazat";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Opravdu chceš odstranit tuto složku a položky (%i)?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Opravdu chceš odstranit tuto složku a %i položku?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "Odstranit %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Upravit záložku";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Upravit oblíbené";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Upravit složku";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Poloha";
+
+/* More options button text */
+"bookmark.moreButton" = "Více";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Název webové stránky";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Záložky";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Přidány nové záložky pro všechny karty";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Všechny karty v záložkách";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Záložky";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Záložky se nám nepodařilo vyexportovat, zkus to prosím znovu.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Záložky vyexportovány.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Záložky nasdíleny.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "Export souboru HTML";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Omlouváme se, ale tenhle soubor nejde naimportovat.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Záložky naimportovány.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "Import souboru HTML";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Import souboru se záložkami z jiného prohlížeče";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Naimportuj soubor HTML se záložkami z jiného prohlížeče nebo vyexportuj svoje existující záložky.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Komentáře se nenačetly";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Chybí obsah";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Obrázky se nenačetly";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Odkazy nebo tlačítka nefungují";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Nemohu se přihlásit";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Něco jiného";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Tato stránka mě požádala o deaktivaci";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Prohlížeč je nekompatibilní";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Video se nepřehrálo";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "POPIŠTE, CO SE STALO";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Minulý měsíc";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Minulý týden";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Dnes";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Včera";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Navždy skrýt tipy";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Zrušit";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Je jich jen pár a snažili jsme se udělat je informativní.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Skrýt zbývající tipy?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Tvoje vyhledávání v Mangala Wallet je anonymní. Vždycky. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Pche!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Plácnutí!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* se vás snažili tady vysledovat.\n\nZablokovali jsme je!\n\n☝️ Můžete zkontrolovat panel s adresou a zjistit, kdo se vás snaží sledovat, když navštívíte novou webovou stránku. ️";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Plácnutí!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Upozornění! Nedokážeme zabránit, aby %1$@ viděli vaši aktivitu na %2$@.\n\nAle procházejte s námi a budeme moci omezit, co o vás celkově %1$@ ví zablokováním jejich trackerů na mnoha jiných stránkách.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Mám to";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Upozornění! Vzhledem k tomu, že %2$@ vlastní %1$@, nemůžeme jim zabránit, aby tady viděli vaši aktivitu.\n\nAle projděte se se mnou a společně omezíme, co o vás celkově %2$@ ví zablokováním jejich trackerů na mnoha jiných stránkách.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Mám to";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Zatímco poklepete a přejedete, my budeme blokovat otravné trackery.\n\nDo toho — pokračujte v prohlížení!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Mám to";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Osobní údaje se mohou vytvářet ve vašem prohlížeči. Fuj. Použijte tlačítko pro mazání a všechno smažte. Vyzkoušejte to hned teď! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Zrušit";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Zavřít karty a vymazat data";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Navštivte v mžiku své oblíbené stránky!\n\nPřejděte na stránky, které máte rádi. Pak klepněte na ikonu „⋯“ a zvolte *Přidat do oblíbených*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Navštivte v mžiku své oblíbené stránky! Navštivte jedny z vašich oblíbených stránek. Pak klepněte na tlačítko otevřené nabídky a zvolte Přidat do oblíbených.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "Dále zkuste navštívit jednu z vašich oblíbených stránek!\n\nZablokujeme trackery, aby vás nemohli špehovat. Pokud to bude možné, upgradujeme také zabezpečení vašeho připojení. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Máte to!\n\nPamatujte: Pokaždé, když internet procházíte s námi, příšerným reklamám přistřihneme křídla. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Internet může být trochu strašidelný.\n\nNebojte se! Anonymní vyhledávání a procházení je jednodušší, než si myslíte.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Zakázáno";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Více informací";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Povoleno";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet automaticky blokuje mnoho trackerů. Pomocí Globální kontroly ochrany osobních údajů (GPC) můžete také požádat zúčastněné webové stránky, aby omezily prodej nebo sdílení vašich osobních údajů s jinými společnostmi.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Uložit do Stahování";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Zrušit";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Opravdu chcete stahování zrušit?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Pokračovat";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Zrušit stahování?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Smazat vše";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Zatím žádný stažený soubor";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Stahování %1$@ z %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Stahování – %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Stahování";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Tím se taky zruší probíhající stahování";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Všechny soubory smazány";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "Stahování souboru %@ bylo dokončeno";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "Soubor %@ smazán";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "Stahování se nezdařilo. Zkontrolujte připojení k internetu.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "Stahování souboru %@ bylo zahájeno";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Zrušit";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Vygenerovat soukromou adresu";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Blokování e-mailových trackerů pomocí adresy Duck";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Použit %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Nová adresa zkopírovaná do vaší schránky";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Vytvořit adresu Duck";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Povoleno";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Odebráním ochrany e-mailů z tohoto zařízení se při procházení webu odstraní možnost vyplnit osobní adresu Duck nebo nově vygenerovanou soukromou adresu Duck do e-mailových polí.\n\nPokud chcete úplně vymazat vaše adresy Duck nebo máte jakékoli další dotazy nebo zpětnou vazbu, obraťte se na nás na adrese support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Vypnout";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Zrušit";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Poznámka: Když odeberete ochranu e-mailů z tohoto zařízení, vaše adresa Duck zůstane zachovaná.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Odstranit";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Odebrat ochranu e-mailů?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Při zařazování do pořadníku došlo k chybě, zkuste to znovu později";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Začínáme";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Mám zvací kód";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Přišla vám pozvánka";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Připojte se k soukromému pořadníku";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Jste v pořadníku";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Vaše pozvánka se tu objeví, až na vás budeme připravení. Chcete %1$@, až dorazí? %2$@ o ochraně e-mailů.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "dostat oznámení";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Pošleme vám oznámení, až pro vás bude ochrana e-mailů připravená. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Více informací";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Pošleme vám oznámení, až budete moct začít používat ochrana e-mailů.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Máme tě upozornit, až budeš na řadě?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Zapsali jste se do pořadníku a požádali nás, abychom vás upozornili, až budete moct vyzkoušet naši ochranu e-mailů.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Ne, děkuji";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "UPOZORNĚTE MĚ";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Vaše pozvánka k ochraně e-mailů je zde!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Vaše e-maily neukládáme. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "E-mailové soukromí, zjednodušené.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Blokujte e-mailové trackery a skryjte svou adresu bez nutnosti měnit poskytovatele e-mailu. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Zatím nebyly přidány žádné záložky.";
+
+/* Empty list state placholder */
+"empty.favorites" = "Zatím nebyly přidány žádné oblíbené položky";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Nenalezeny žádné shody";
+
+/* No comment provided by engineer. */
+"favorite" = "Oblíbené";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Smazat";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Upravit";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Blokování reklam a vyskakovacích oken";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Tvorba a správa záložek";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Kterou funkci prohlížení můžeme přidat nebo vylepšit?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Problémy s funkcemi prohlížeče";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Funkce prohlížení chybí nebo jsou nepohodlné.";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Interakce s obrázky";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Navigace dopředu, dozadu nebo obnovení";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Žádné z výše uvedených";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Tvorba a správa karet";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Při přehrávání videí";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Jak se záložky zobrazují";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Kterou možnost přizpůsobení můžeme přidat nebo vylepšit?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Potíže při přizpůsobování";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Není dostatek možností, jak aplikaci přizpůsobit";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Konfigurace domovské obrazovky";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Žádné z výše uvedených";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Jak se zobrazují karty";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Jak aplikace vypadá";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Která data jsou vymazána";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Kdy jsou data vymazána";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Lepší automatické doplňování";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Kterou funkci vyhledávání můžeme přidat nebo vylepšit?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Potíže s vyhledáváním Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Vyhledávání Mangala Wallet není dostatečně dobré";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Vyhledávání v určitém jazyce nebo regionu";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Rozložení by mělo být více podobné Googlu.";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Rychlejší načtení";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Žádné z výše uvedených";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programování/technické vyhledávání";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Řekněte nám prosím, co můžeme zlepšit";
+
+/* Confirmation button */
+"feedback.form.submit" = "Odeslat";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Buďte co nejkonkrétnější.";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Máte něco konkrétního, co byste chtěli zahrnout?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Je nám líto, že nejste spokojení";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "S čím souvisí vaše frustrace nejvíce?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Další problémy";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Žádné z výše uvedených";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Který problém zažíváte?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Aplikace se hroutí nebo zamrzne";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Potíže s výkonností";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Aplikace je pomalá, chybná nebo se hroutí";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Žádné z výše uvedených";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Chyby při přehrávání videa nebo médií";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Webové stránky nebo výsledky vyhledávání se načítají pomalu.";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Podělte se o podrobnosti.";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Co se vám líbilo?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Máte nějaké podrobnosti, o které byste se chtěli podělit s týmem?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "To rádi slyšíme!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Ne, díky! Skončil(a) jsem";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Podělte se o podrobnosti.";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Vaše anonymní zpětná vazba je pro nás důležitá.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Tak se do toho pustíme!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Do jaké kategorie byste zařadili svou zpětnou vazbu?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Děkujeme! Zpětná vazba odeslána.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Potíže při načítání webu";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Určité webové stránky se nenačítají správně";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Jaký obsah se zdá být postižen?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Kde jste narazili na tyto problémy?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "Které webové stránky mají problémy?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d z %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Vyhledávání na stránce";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Vzdušný proud";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Inferno";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Žádný";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Vodní vír";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Přidejte Mangala Wallet na svou domovskou obrazovku!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Přidejte Mangala Wallet do svého docku pro snadný přístup!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Přidejte Mangala Wallet na domovskou stránku";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Vyhledejte nebo zadejte adresu";
+
+/* Home tab title */
+"homeTab.title" = "Domů";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Přidat záložku";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Přidat oblíbené";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Procházet zpátky";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Procházet dopředu";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Zavřít";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Zavřít karta";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Vyhledávání na stránce";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Najít další";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Najít předchozí";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Vymazat všechny karty a data";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Vyhledejte nebo zadejte adresu";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Nová karta";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Další karta";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Otevřít odkaz na pozadí";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Otevřít odkaz na nové kartě";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Předchozí karta";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Vytisknout";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Načíst znovu";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Zvolit";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Zobrazit všechny karty";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Vítejte na\nMangala Wallet!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Procházení nabídky";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Hotovo";
+
+/* Edit button */
+"navigation.title.edit" = "Upravit";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Přidat widget";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Používání Mangala Wallet je nyní snadnější.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Možná později";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Pokračovat";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Možná později";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Nastavte si Mangala Wallet jako výchozí prohlížeč.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Nastavit jako výchozí prohlížeč";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Přeskočit";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Spustit procházení";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Vítejte v Mangala Wallet!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Aplikaci nutnou k otevření tohoto odkazu nelze nalézt";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Webové stránky spoléhají na soubory cookie, aby vás udržely přihlášené. Když na webu zapnete ochranu, soubory cookie se nevymažou a zůstanete přihlášeni, a to i po použití tlačítka pro mazání. Stále přitom blokujeme sledovací programy třetích stran nalezené na webových stránkách s ochranou.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Stránky s ochranou";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Když na těchto stránkách zapnete ochranu, zůstanete přihlášeni i po použití tlačítka pro mazání.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Aktivovat ochranu stránky %@, abyste zůstali přihlášeni?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Ochrana";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "Adresa %@ je nyní chráněná";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Teď ne";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Odstranit ochranu";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Ochránit tento web";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Ochrana odstraněna";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Odstranit vše";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "DOBŘE";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritmus";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bitů";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Chyba při vyjímání certifikátu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Obecný název";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Efektivní velikost";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "Emailová adresa";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Šifrované připojení";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Nucené šifrování";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Pro tento web jsme vynutili používat šifrované připojení, které brání odposlouchávání jakýchkoli osobních údajů, které na něj posíláte.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Šifrované připojení zabraňuje odposlouchávání jakýchkoli osobních údajů, které odesíláte na web.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Identifikátor klíče subjektu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Vydavatel";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Veřejný klíč";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Velikost klíče";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Smíšené šifrování";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Tento web má smíšené šifrování, protože určitý obsah je doručován přes nešifrovaná připojení.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Ne";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Trvale";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Veřejný klíč";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Šifrované připojení zabraňuje odposlouchávání jakýchkoli osobních údajů, které odesíláte na web.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Název subjektu";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Shrnutí";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Buďte opatrní při zadávání osobních údajů na tomto webu.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Nešifrované připojení";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Neznámé";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Využití";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Dešifrujte";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Odvoďte";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Zašifrujte";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Podepište";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Rozbalte";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Ověřte";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Zabalte";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Ano";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "OCHRANA STRÁNKY VYPNUTA";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "VYLEPŠENO Z $ 1 NA $ 2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "HODNOCENÍ OCHRANY SOUKROMÍ";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "Sledovací sítě byly nalezeny na webových stránkách %1$@%%, které jste navštívili od roku %2$@.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Stále shromažďujeme data, abychom zjistili,\nkolik trackerů jsme zablokovali.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Zásady ochrany osobních údajů od ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Postupy ochrany soukromí ukazují, do jaké míry jsou osobní údaje, které sdílíte s webovými stránkami, chráněny.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Tato webová stránka vás upozorní před přenosem vašich údajů v případě fúze nebo akvizice";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Postupy na ochranu osobních údajů na této webové stránce nebyly přezkoumány.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Ochrana osobních údajů stupeň %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Stisknutím otevřete obrazovku Ochrany osobních údajů";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Tyto statistiky se ukládají pouze na vašem zařízení a nikam se neodesílají. Nikdy.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Správné postupy ochrany soukromí";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Smíšené postupy ochrany soukromí";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Nesprávné postupy ochrany soukromí";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Neznámé postupy ochrany soukromí";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Sledovací sítě agregují vaši webovou historii do datového profilu o vás. Hlavní sledovací sítě jsou nebezpečnější, protože vás mohou sledovat a zaměřit přes více internetových stránek.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Zrušit";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Otevřít";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Chtěl/a byste opustit Mangala Wallet a zobrazit si tento obsah?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Otevřít v jiné aplikaci?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Odeslání anonymní zprávy o nefunkčním webu nám pomůže tyto problémy řešit a vylepšovat aplikaci.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Vyhledejte nebo zadejte adresu";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Záložky";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Oblíbené";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "V Mangala Wallet přinášíme nový standard důvěry online.\n\nMangala Wallet Privacy Browser poskytuje všechny základní prvky ochrany osobních údajů, které potřebujete k ochraně při vyhledávání a prohlížení webu, včetně blokování sledovacích zařízení, chytřejšího šifrování a soukromého vyhledávání Mangala Wallet.\n\nInternet by v konečném důsledku neměl být tak nebezpečný a získat ochranu osobních údajů, kterou si zasloužíte online, by mělo být stejně jednoduché jako zatáhnout žaluzie.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Odešlete zprávu";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Doména nefunkční stránky:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Který obsah nebo funkce jsou poškozené?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Nahlášení nefunkční stránky je zcela anonymní a pomáhá nám vylepšit aplikaci!";
+
+/* This is a form title */
+"siteFeedback.title" = "Nahlásit poškozenou stránku";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Které webové stránky jsou poškozené?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Zavřít kartu Domů";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Zavřít \"%1$@\" na %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Otevřít kartu Domů";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Otevřít \"%1$@\" na %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Přepínač karet";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Vyberte preferovanou velikost textu. Webové stránky, které zobrazíte v Mangala Wallet, se tomu přizpůsobí.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Velikost textu – %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Tmavé";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Systém";
+
+/* Light Theme entry */
+"theme.acc.light" = "Světlo";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Tmavý";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Výchozí nastavení systému";
+
+/* Light Theme entry */
+"theme.name.light" = "Světlo";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Ochrana deaktivována u domény %@";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Ochrana aktivována u domény %@";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Vyskytla se neznámá chyba.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Nastavení";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Pro používání hlasových funkcí Mangala Wallet je potřeba v Nastaveních iOS povolit přístup k mikrofonu.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Je nutný přístup k mikrofonu";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "DOBŘE";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Zrušit";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet nikdy neposlouchá, co říkáš. Veškeré zpracování dat řeči při soukromém hlasovém vyhledávání probíhá přímo v zařízení.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Pro soukromé hlasové vyhledávání je nutný přístup k mikrofonu";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Zrušit";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Zvuk se zpracovává na zařízení. Nikde ho neukládáme a s nikým ho nesdílíme. Ani Mangala Wallet se k němu nedostane.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Oblíbená položka odstraněna";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Záložka přidána";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Záložky již uloženy";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Žádná webová stránka pro vytvoření záložky";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Oblíbené položky uloženy";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Blokovat výstrahy";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Zrušit";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "DOBŘE";
+

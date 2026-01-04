@@ -1,0 +1,8 @@
+INSERT INTO BlockchainEntity VALUES('bitcoin-testnet4','Bitcoin','https://mempool.space/testnet4/');
+
+INSERT INTO Coin VALUES('bitcoin-testnet4','Bitcoin','BTC',1,'bitcoin');
+
+INSERT INTO TokenEntity (coin_uid, blockchain_uid, type, decimals, reference)
+VALUES('bitcoin-testnet4','bitcoin-testnet4','native',8,'BTC');
+
+UPDATE BlockchainEntity SET eip3091url = 'https://mempool.space/' WHERE uid = 'bitcoin';

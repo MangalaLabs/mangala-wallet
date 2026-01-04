@@ -1,0 +1,43 @@
+[
+  {
+    "@timestamp": "2024-10-14T11:46:21.000",
+    "timestamp": "2024-10-14T11:46:21.000",
+    "block_num": 166168590,
+    "block_id": "09e7880e7789189398bd4a791c21bbd36124926acd5706ca9bb3ad882a2597f1",
+    "trx_id": "a253f58b41af6b7ab2cb82356f7e5e05fa2857f8a7fa30c5b2e2cc04c97d5df6",
+    "act": {
+      "account": "eosio.msig",
+      "name": "unapprove",
+      "authorization": [
+        {
+          "actor": "accpartner12",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "proposer": "accmultisig1",
+        "proposal_name": "dxzr2g",
+        "level": {
+          "actor": "accpartner12",
+          "permission": "active"
+        }
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 171,
+    "net_usage_words": 15,
+    "account_ram_deltas": [
+      {
+        "account": "accmultisig1",
+        "delta": -8
+      }
+    ],
+    "global_sequence": 227724670,
+    "producer": "ivote4eosusa",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_Km99ogjWokjrhfvYR1vomDya7hrp6eRWsFmJkZzD2NuSiNsk4VsWkxHXtoLrMeShuZ1k2f3Lc3MYfjDfsHy1gQ66UeqKj7"
+    ]
+  }
+]

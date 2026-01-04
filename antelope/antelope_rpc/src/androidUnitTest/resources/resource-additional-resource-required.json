@@ -1,0 +1,86 @@
+{
+  "code": 402,
+  "message": "Fee required to complete transaction.",
+  "data": {
+    "costs": {
+      "cpu": "0.0074 EOS",
+      "net": "0.0023 EOS",
+      "ram": "0.0000 EOS"
+    },
+    "fee": "0.0097 EOS",
+    "request": [
+      "transaction",
+      {
+        "expiration": "2024-07-10T07:48:42",
+        "ref_block_num": 21008,
+        "ref_block_prefix": 3242403103,
+        "max_net_usage_words": 0,
+        "max_cpu_usage_ms": 0,
+        "delay_sec": 0,
+        "context_free_actions": [],
+        "actions": [
+          {
+            "account": "greymassnoop",
+            "name": "noop",
+            "authorization": [
+              {
+                "actor": "greymassfuel",
+                "permission": "cosign"
+              }
+            ],
+            "data": ""
+          },
+          {
+            "account": "eosio.token",
+            "name": "transfer",
+            "authorization": [
+              {
+                "actor": "myaccount.gm",
+                "permission": "active"
+              }
+            ],
+            "data": "0024035825a76e36000000403210955e610000000000000004454f5300000000274675656c205472616e73616374696f6e20466565207c207265663d7465616d677265796d617373"
+          },
+          {
+            "account": "drops",
+            "name": "destroy",
+            "authorization": [
+              {
+                "actor": "myaccount.gm",
+                "permission": "active"
+              }
+            ],
+            "data": "0024035825a76e368601b5012af8b745f170b4e7d0d9634fa1721ece9c3eb5122f6609efb5a97a924b4cd6009e29cbeba9ef69cf5f2fe47eaffc248d0559def6cc13708bbe34d08af55648434645011d295ee276ae22a138dad682eaf0d575477ac13d58a73fcafa9d5e9a967fc01e2c03a9e85cace82ed5b6a57327dae574dd1eb93b5cd32d6d850098e67f3b412816388c75c6a61b746ef3675a76651844aa1df6fb284ad5ea0a8875ff1b9b87221931c6ca8461c134c30733a31327f92d59900f8ce0c4bc4bf422e1d85f8f91549794a219b7432769d945d046a95760c39caee659e057c465e03a1e228ff90be47401556ba4b9335452a647e3c30c4570755b60088e56576ebba9d0b6d2499ddcd300979f702ee6f7fe7a9a5576ab3bf7412665b67a798cd187ab97cf73f8f1630fefcd3311d597fe519d44e2cc06e1dff0772cf9809002604447922fefec4cb6cb115600be6f8f886dd37d74702152ae3bbd823cd795aee25d9d8622ece4bb6661ad2f26758231fe5dfa5a471ce430a3268bc58cc609f68392ffcc3316fe8390790df28ae26c7b33dcf781782eb5c0a9a37874a22076cc8f8265d1afb5421e2fc6cb99df397a0b06379854e7d64c5ff203d55bdc49332eb9a0e4d1156fbf95daf6c4bee40dea109dd6ed7630c627cee46536f3cb2e72a555f6953c11caefde8cc9d473d2e885246de7caf5a4d4f8d2709c975dc2c430579c0b22347882853bd01bf76ae8e5e1a53a67b3f628e5225a9118398343b63749d768be7d22e3ca525c8e6c440f5470a7518881944a7413a09a5443a1716c1aba5a9b178ba06f013e778b9d4a21d750b4ae343fc7d74f6df9a613ede6a071a831a19ea19dbcc51c3ecf04d4d05ce3c0a90407350bdde559fbec4fcc4144c02eabcf0e2e14db9d8282480528d81805134146dbe69e0a47744b9ea05b63015183b18263bf8c6e347d1ebe292b905064a506459d57cc5a465eeb9cd284143ee5424b10d535c46374f8edd8eab3a734597082d05a5ee6730bfdd1774e5efa1ec94ceffa86f5be215016c447ee225f1a7dd13e6ac4ef609d578aafb65f8ef892cee274ac02df0e41efbeefe7072d5b8d3c409004cc3ba202d51aefdc24a509a2a284117ad9be04c23daa39fe621b29b2e864af1f896a4bcbf4e89c23a2423a4ac4410ca57b9c3342951fbe2d6b21dc216ab444c47689caa1de31b3dbb076d754bb764fa624a9ab95b6300aeae7add2f1dbb97915d8e6a06f6dfb55d2e7c3800c392b9caa8d189e30107a4479fdbcc6d97bd23aa7b995ac802adf1acd1f7d1ac1952a48941281c0f6b884f4be8d45b73d996995387703201874b5a6babe78b1ca3d5f8ee704285ba995310732c9194397a27b9a00d4f7d922e3e38e297fc844086ab7d952e40209e7a71472ec1c2c92ccc2b3dec1b4e726fe1967c883e3b4ffe8bf0f97538c0f7120154abe2d263cf5acb027a535f20ca6471d23e87d10ef229f6c48179cc028d6da5d5bb25d2aa1f71e5403c1b56877e001000100000000806a2ec2"
+          },
+          {
+            "account": "drops",
+            "name": "generate",
+            "authorization": [
+              {
+                "actor": "myaccount.gm",
+                "permission": "active"
+              }
+            ],
+            "data": "0024035825a76e36018500000040336134636631633131313666356562663934356230363563623538646532303037666435366231663866383233633566663033306532393233323837353065390000"
+          },
+          {
+            "account": "drops",
+            "name": "generate",
+            "authorization": [
+              {
+                "actor": "myaccount.gm",
+                "permission": "active"
+              }
+            ],
+            "data": "0024035825a76e36000100000040316231373862343333363037353336346337666335643838663632613136306563396534376435366438303235666631663338643761326538376262633635390000"
+          }
+        ],
+        "transaction_extensions": []
+      }
+    ],
+    "signatures": [
+      "SIG_K1_Kfy9EegSoTukiEHHJZM6sdZxNRWAmbgVK2jcK4p4UwHjHeTeRff4bj7t9YxNAiEFt9LDaNUSzBtKQRHabDkYXpysnm1Fgu"
+    ],
+    "version": null
+  }
+}

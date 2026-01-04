@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS BitcoinBalanceEntity (
+  account_id TEXT NOT NULL,
+  blockchain_type TEXT NOT NULL,
+  confirmed_balance INTEGER NOT NULL DEFAULT 0,
+  unconfirmed_balance INTEGER NOT NULL DEFAULT 0,
+  last_updated INTEGER NOT NULL,
+  PRIMARY KEY (account_id, blockchain_type)
+);
+
+insertOrUpdateBalance:
+INSERT OR REPLACE INTO BitcoinBalanceEntity(
+  account_id, 
+  blockchain_type, 
+  confirmed_balance, 
+  unconfirmed_balance, 
+  last_updated
+)
+VALUES (?, ?, ?, ?, ?);
+
+getBalanceByAccountAndBlockchain:
+SELECT * 
+FROM BitcoinBalanceEntity 
+WHERE account_id = ? AND blockchain_type = ?;
+
+getAllBalances:
+SELECT * 
+FROM BitcoinBalanceEntity;
+
+deleteBalance:
+DELETE FROM BitcoinBalanceEntity
+WHERE account_id = ? AND blockchain_type = ?;
+
+deleteAllBalances:
+DELETE FROM BitcoinBalanceEntity;

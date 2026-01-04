@@ -1,0 +1,67 @@
+[
+  {
+    "@timestamp": "2024-07-22T14:12:36.500",
+    "timestamp": "2024-07-22T14:12:36.500",
+    "block_num": 151740650,
+    "block_id": "090b60eae0a162e45981d244c41ad738a5ba12e00ef7b3a0634f53d189618881",
+    "trx_id": "e0fbfb221f85d95254a8c8b68189934d91a40a8df11b2f7823cf7a3d292a5992",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "eosio.stake",
+        "amount": 0.0529,
+        "symbol": "EOS",
+        "memo": "stake bandwidth",
+        "quantity": "0.0529 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 211754569,
+    "producer": "eosnationftw",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-07-22T14:12:36.500",
+    "timestamp": "2024-07-22T14:12:36.500",
+    "block_num": 151740650,
+    "block_id": "090b60eae0a162e45981d244c41ad738a5ba12e00ef7b3a0634f53d189618881",
+    "trx_id": "e0fbfb221f85d95254a8c8b68189934d91a40a8df11b2f7823cf7a3d292a5992",
+    "act": {
+      "account": "eosio",
+      "name": "delegatebw",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "amount": 0.0529,
+        "stake_cpu_quantity": 0,
+        "stake_net_quantity": 0.0529,
+        "from": "harkonnenmgl",
+        "receiver": "harkonnenmgl",
+        "transfer": false
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 186,
+    "net_usage_words": 18,
+    "global_sequence": 211754568,
+    "producer": "eosnationftw",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KhEdYXuk446qyLFeAqUp968vQB8zxjpLdksN2c2RnrPeEnEAvM4XwkC9nmXHCMZVe3wMocMjUdVpNiHzv8KNGHaR35sjLL"
+    ]
+  }
+]

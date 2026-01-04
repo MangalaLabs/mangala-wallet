@@ -1,0 +1,3 @@
+package com.mangala.wallet.model.provider
+
+abstract class BaseGetPaginatedTransactionsForAddressResponse

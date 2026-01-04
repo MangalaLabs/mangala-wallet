@@ -1,0 +1,147 @@
+name: 🤖 Build and publish iOS on TestFlight 🍎
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build-pro-ios:
+    runs-on: self-hosted
+
+    permissions: read-all
+
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Decode RevenueCat Android secret
+        env:
+          REVENUECATANDROID: ${{ secrets.REVENUECATANDROID }}
+        run: echo REVENUECAT_ANDROID_API_KEY="REVENUECATANDROID" >> ./local.properties
+
+      - name: Decode RevenueCat iOS secret
+        env:
+          REVENUECATIOS: ${{ secrets.REVENUECATIOS }}
+        run: echo REVENUECAT_IOS_API_KEY="REVENUECATIOS" >> ./local.properties
+
+      - name: Decode Infura secret
+        env:
+          INFURASECRET: ${{ secrets.INFURASECRET }}
+        run: echo INFURA_SECRET_KEY="INFURASECRET" >> ./local.properties
+
+      - name: Decode Infura API key
+        env:
+          INFURAAPI: ${{ secrets.INFURAAPI }}
+        run: echo INFURA_API_KEY="INFURAAPI" >> ./local.properties
+
+      - name: Decode Covalent API key
+        env:
+          COVALENTAPI: ${{ secrets.COVALENTAPI }}
+        run: echo COVALENTHQ_API_KEY="COVALENTAPI" >> ./local.properties
+
+      - name: Decode Alchemy API key
+        env:
+          ALCHEMYAPI: ${{ secrets.ALCHEMYAPI }}
+        run: echo ALCHEMY_API_KEY="ALCHEMYAPI" >> ./local.properties
+
+      - name: Decode Moralis API key
+        env:
+          MORALISAPI: ${{ secrets.MORALISAPI }}
+        run: echo MORALIS_API_KEY="MORALISAPI" >> ./local.properties
+
+      - name: Decode GoogleService-Info.plist
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'GoogleService-Info.plist'
+          fileDir: './iosApp/iosApp/Utils'
+          encodedString: ${{ secrets.GOOGLE_SERVICE_PLIST }}
+
+      - name: Decode GoogleService-Info.plist
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'GoogleService-Info.plist'
+          fileDir: './iosApp'
+          encodedString: ${{ secrets.GOOGLE_SERVICE_PLIST }}
+
+      - name: Caches Pods
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-  
+
+      - name: Decode Github username
+        env:
+          USERNAME: ${{ github.actor }}
+        run: echo GITHUB_ACTOR="$USERNAME" >> ./local.properties
+
+      - name: Decode Github token
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo GITHUB_TOKEN="$TOKEN" >> ./local.properties
+
+      - name: 📝 Create dummy keystore file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore'
+          fileDir: '.'
+          encodedString: 'S0VZX0FMSUFTPQpLRVlfUEFTU1dPUkQ9ClNUT1JFX0ZJTEU9Li4va2V5c3RvcmUKU1RPUkVfUEFTU1dPUkQ9'
+
+      - name: 📝 Create dummy signing config secrets file
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore.properties'
+          fileDir: '.'
+          encodedString: 'S0VZX0FMSUFTPQpLRVlfUEFTU1dPUkQ9ClNUT1JFX0ZJTEU9Li4va2V5c3RvcmUKU1RPUkVfUEFTU1dPUkQ9' # Dummy file content
+
+      - name: 🐘 Generate dummy framework before Pod
+        run: ./gradlew :composeApp:generateDummyFramework
+
+      - name: CocoaPods Install # Install CocoaPods dependencies
+        run: |
+          cd ${{ github.workspace }}/iosApp  
+          pod install  
+
+      - name: Set Gradle JVM args
+        run: export GRADLE_OPTS="-Xmx12g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:+UseParallelGC -XX:MaxMetaspaceSize=1g"
+
+      - name: Archive iOS ProDev
+        run: xcodebuild archive -workspace ${{ github.workspace }}/iosApp/iosApp.xcworkspace -scheme ProDev -destination 'generic/platform=iOS' -archivePath ${{ github.workspace }}/iosApp/archives/test.xcarchive
+
+      - name: Export archive iOS ProDev
+        run: xcodebuild -exportArchive -archivePath ${{ github.workspace }}/iosApp/archives/test.xcarchive -exportPath  ${{ github.workspace }}/iosApp/archives -exportOptionsPlist  ${{ github.workspace }}/iosApp/AdHocExportOptions.plist
+
+      - name: Rename ipa
+        run: mv ${{ github.workspace }}/iosApp/archives/Mangala\ Pro.ipa ${{ github.workspace }}/iosApp/archives/MangalaPro.ipa
+
+      - uses: Apple-Actions/upload-testflight-build@54dc215b4cd5529730db39f11c84efdb71414e07
+        with:
+          app-path: ${{ github.workspace }}/iosApp/archives/MangalaPro.ipa
+          issuer-id: ${{ secrets.ASC_ISSUER_ID }}
+          api-key-id: ${{ secrets.ASC_KEY_ID }}
+          api-private-key: ${{ secrets.ASK_PK }}
+
+      #      - name: 🔥 Release Pro variant build on Firebase App Distribution
+      #        uses: wzieba/Firebase-Distribution-Github-Action@a41b2f7ab3f7c2631b6a73fb2f660b517cef45a9
+      #        with:
+      #          appId: ${{secrets.FIREBASE_IOS_APP_ID }}
+      #          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+      #          groups: internal-test
+      #          file: MangalaPro.ipa
+      #          debug: true

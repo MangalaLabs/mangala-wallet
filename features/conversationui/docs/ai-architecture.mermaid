@@ -1,0 +1,111 @@
+graph TB
+    subgraph "Mangala AI Architecture"
+        subgraph "Core:AI Module"
+            AIRepo[AiRepository]
+            
+            subgraph "Providers"
+                OpenAI[OpenAI Provider]
+                Anthropic[Anthropic Provider]
+                Gemini[Gemini Provider]
+                Ollama[Ollama Provider]
+                Local[Local Provider]
+                Mangala[Mangala Provider]
+            end
+            
+            subgraph "Function System"
+                FuncReg[Function Registry]
+                FuncHandler[Function Handlers]
+                ConfirmRender[Confirmation Renderers]
+                FuncConfig[Function Config]
+            end
+            
+            subgraph "Processing"
+                PreProc[Preprocessors]
+                MsgProc[Message Processor]
+                RespProc[Response Processor]
+            end
+        end
+        
+        subgraph "Features:ConversationUI"
+            Screen[ConversationUiScreen]
+            ScreenModel[ConversationUiScreenModel]
+            ChatRepo[ChatRepository]
+            
+            subgraph "UI Components"
+                ChatBubble[Chat Bubble]
+                InputArea[Chat Input Area]
+                NetPicker[Network Picker]
+                AddrInput[Address Input]
+                FuncConfirm[Function Confirmation]
+            end
+            
+            subgraph "Validation"
+                AddrValid[Address Validators]
+                ValidReg[Validator Registry]
+            end
+        end
+        
+        subgraph "Data Layer"
+            SQLDelight[(SQLDelight DB)]
+            ChatSess[Chat Sessions]
+            ChatMsg[Chat Messages]
+        end
+    end
+    
+    %% Core AI connections
+    AIRepo --> OpenAI
+    AIRepo --> Anthropic
+    AIRepo --> Gemini
+    AIRepo --> Ollama
+    AIRepo --> Local
+    AIRepo --> Mangala
+    
+    AIRepo --> FuncReg
+    FuncReg --> FuncHandler
+    FuncHandler --> ConfirmRender
+    FuncConfig --> FuncReg
+    
+    AIRepo --> PreProc
+    PreProc --> MsgProc
+    MsgProc --> RespProc
+    
+    %% ConversationUI connections
+    Screen --> ScreenModel
+    ScreenModel --> AIRepo
+    ScreenModel --> ChatRepo
+    ScreenModel --> ValidReg
+    
+    Screen --> ChatBubble
+    Screen --> InputArea
+    Screen --> NetPicker
+    Screen --> AddrInput
+    Screen --> FuncConfirm
+    
+    ValidReg --> AddrValid
+    NetPicker --> ScreenModel
+    AddrInput --> AddrValid
+    
+    %% Data connections
+    ChatRepo --> SQLDelight
+    SQLDelight --> ChatSess
+    SQLDelight --> ChatMsg
+    
+    %% Function confirmation flow
+    FuncHandler -.->|requires confirmation| FuncConfirm
+    FuncConfirm -->|user approves| FuncHandler
+    
+    %% Message flow
+    InputArea -->|user message| ScreenModel
+    ScreenModel -->|AI request| AIRepo
+    AIRepo -->|response| ScreenModel
+    ScreenModel -->|display| ChatBubble
+    
+    classDef module fill:#e1f5e1,stroke:#4caf50,stroke-width:2px
+    classDef component fill:#e3f2fd,stroke:#2196f3,stroke-width:2px
+    classDef data fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef ui fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class AIRepo,FuncReg,ChatRepo module
+    class OpenAI,Anthropic,Gemini,Ollama,Local,Mangala,FuncHandler,PreProc,MsgProc,RespProc component
+    class SQLDelight,ChatSess,ChatMsg data
+    class Screen,ScreenModel,ChatBubble,InputArea,NetPicker,AddrInput,FuncConfirm ui

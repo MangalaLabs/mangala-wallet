@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "12345678-1234-1234-1234-123456789012",
+		"name": "Auth Gate API",
+		"description": "Authentication service API with WebAuthn/Passkey support",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Registration Flow",
+			"item": [
+				{
+					"name": "1. Start Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract session ID for next request",
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('sessionId', response.sessionId);",
+									"    pm.environment.set('challenge', response.publicKeyCredentialCreationOptions.challenge);",
+									"    pm.environment.set('userId', response.publicKeyCredentialCreationOptions.user.id);",
+									"    ",
+									"    pm.test('Registration initialized successfully', function () {",
+									"        pm.expect(response.status).to.eql('success');",
+									"        pm.expect(response.sessionId).to.be.a('string');",
+									"    });",
+									"} else {",
+									"    pm.test('Request failed', function () {",
+									"        pm.expect.fail('Registration initialization failed');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"username\": \"{{username}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Initialize user registration and get WebAuthn challenge"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Complete Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('registeredUserId', response.userId);",
+									"    pm.environment.set('credentialId', response.credentialId);",
+									"    ",
+									"    pm.test('Registration completed successfully', function () {",
+									"        pm.expect(response.status).to.eql('success');",
+									"        pm.expect(response.userId).to.be.a('string');",
+									"        pm.expect(response.credentialId).to.be.a('string');",
+									"    });",
+									"} else {",
+									"    pm.test('Registration completion failed', function () {",
+									"        pm.expect.fail('Registration completion failed');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Session-Id",
+								"value": "{{sessionId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"{{mockCredentialId}}\",\n  \"type\": \"public-key\",\n  \"rawId\": \"{{mockRawId}}\",\n  \"response\": {\n    \"clientDataJSON\": \"{{mockClientDataJSON}}\",\n    \"attestationObject\": \"{{mockAttestationObject}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register/credential",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register",
+								"credential"
+							]
+						},
+						"description": "Complete registration with WebAuthn credential"
+					},
+					"response": []
+				}
+			],
+			"description": "User registration flow with WebAuthn"
+		},
+		{
+			"name": "Authentication Flow",
+			"item": [
+				{
+					"name": "1. Initialize Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('loginChallenge', response.publicKeyCredentialRequestOptions.challenge);",
+									"    ",
+									"    pm.test('Login initialized successfully', function () {",
+									"        pm.expect(response.status).to.eql('success');",
+									"        pm.expect(response.publicKeyCredentialRequestOptions).to.be.an('object');",
+									"        pm.expect(response.publicKeyCredentialRequestOptions.challenge).to.be.a('string');",
+									"    });",
+									"} else {",
+									"    pm.test('Login initialization failed', function () {",
+									"        pm.expect.fail('Login initialization failed');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"{{registeredUserId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/initialize",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"initialize"
+							]
+						},
+						"description": "Initialize login process and get WebAuthn challenge"
+					},
+					"response": []
+				},
+				{
+					"name": "2. Complete Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    const response = pm.response.json();",
+									"    pm.environment.set('accessToken', response.access_token);",
+									"    pm.environment.set('refreshToken', response.refresh_token);",
+									"    pm.environment.set('keycloakAccessToken', response.keycloak_access_token);",
+									"    ",
+									"    pm.test('Login completed successfully', function () {",
+									"        pm.expect(response.status).to.eql('success');",
+									"        pm.expect(response.access_token).to.be.a('string');",
+									"        pm.expect(response.refresh_token).to.be.a('string');",
+									"        pm.expect(response.expires_in).to.be.a('number');",
+									"    });",
+									"} else {",
+									"    pm.test('Login completion failed', function () {",
+									"        pm.expect.fail('Login completion failed');",
+									"    });",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"{{mockCredentialId}}\",\n  \"type\": \"public-key\",\n  \"rawId\": \"{{mockRawId}}\",\n  \"response\": {\n    \"clientDataJSON\": \"{{mockClientDataJSON}}\",\n    \"authenticatorData\": \"{{mockAuthenticatorData}}\",\n    \"signature\": \"{{mockSignature}}\",\n    \"userHandle\": \"{{mockUserHandle}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login/complete",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login",
+								"complete"
+							]
+						},
+						"description": "Complete login with WebAuthn assertion"
+					},
+					"response": []
+				}
+			],
+			"description": "User authentication flow with WebAuthn"
+		},
+		{
+			"name": "JWT Operations",
+			"item": [
+				{
+					"name": "Decode Hanko JWT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('JWT decoded successfully', function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.expect(pm.response.text()).to.include('User ID:');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/decode-hanko-jwt",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"decode-hanko-jwt"
+							]
+						},
+						"description": "Decode and extract user information from Hanko JWT"
+					},
+					"response": []
+				}
+			],
+			"description": "JWT token operations"
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Service Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Service is healthy', function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						},
+						"description": "Check service health status"
+					},
+					"response": []
+				}
+			],
+			"description": "Service monitoring endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Set default values if not already set",
+					"if (!pm.environment.get('baseUrl')) {",
+					"    pm.environment.set('baseUrl', 'http://localhost:8089/api/v1');",
+					"}",
+					"",
+					"if (!pm.environment.get('userEmail')) {",
+					"    pm.environment.set('userEmail', 'test@example.com');",
+					"}",
+					"",
+					"if (!pm.environment.get('username')) {",
+					"    pm.environment.set('username', 'testuser');",
+					"}",
+					"",
+					"// Mock WebAuthn data for testing",
+					"if (!pm.environment.get('mockCredentialId')) {",
+					"    pm.environment.set('mockCredentialId', 'mock-credential-id-' + Math.random().toString(36).substr(2, 9));",
+					"    pm.environment.set('mockRawId', btoa('mock-raw-id-' + Math.random().toString(36).substr(2, 9)));",
+					"    pm.environment.set('mockClientDataJSON', btoa(JSON.stringify({",
+					"        type: 'webauthn.create',",
+					"        challenge: pm.environment.get('challenge') || 'mock-challenge',",
+					"        origin: 'http://localhost:8089'",
+					"    })));",
+					"    pm.environment.set('mockAttestationObject', 'mock-attestation-object-' + btoa(Math.random().toString()));",
+					"    pm.environment.set('mockAuthenticatorData', 'mock-authenticator-data-' + btoa(Math.random().toString()));",
+					"    pm.environment.set('mockSignature', 'mock-signature-' + btoa(Math.random().toString()));",
+					"    pm.environment.set('mockUserHandle', btoa('mock-user-handle'));",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Global test for all requests",
+					"pm.test('Response time is less than 5000ms', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+					"});",
+					"",
+					"// Log response for debugging",
+					"if (pm.response.code >= 400) {",
+					"    console.log('Response Status:', pm.response.code);",
+					"    console.log('Response Body:', pm.response.text());",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8089/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "userEmail",
+			"value": "test@example.com",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "testuser",
+			"type": "string"
+		}
+	]
+}

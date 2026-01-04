@@ -1,0 +1,103 @@
+[
+  {
+    "@timestamp": "2024-01-06T13:59:38.500",
+    "timestamp": "2024-01-06T13:59:38.500",
+    "block_num": 1,
+    "block_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "trx_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "acc.gm",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "acc.gm",
+        "to": "eosio.ramfee",
+        "amount": 0.3457,
+        "symbol": "EOS",
+        "memo": "ram fee",
+        "quantity": "0.3457 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 3,
+    "producer": "bp",
+    "action_ordinal": 4,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-01-06T13:59:38.500",
+    "timestamp": "2024-01-06T13:59:38.500",
+    "block_num": 2,
+    "block_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "trx_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "acc.gm",
+          "permission": "active"
+        },
+        {
+          "actor": "eosio.ram",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "acc.gm",
+        "to": "eosio.ram",
+        "amount": 68.7829,
+        "symbol": "EOS",
+        "memo": "buy ram",
+        "quantity": "68.7829 EOS"
+      }
+    },
+    "receipts": [],
+    "account_ram_deltas": [
+      {
+        "account": "gm",
+        "delta": -128
+      },
+      {
+        "account": "acc.gm",
+        "delta": 128
+      }
+    ],
+    "global_sequence": 2,
+    "producer": "bp",
+    "action_ordinal": 3,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-01-06T13:59:38.500",
+    "timestamp": "2024-01-06T13:59:38.500",
+    "block_num": 3,
+    "block_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "trx_id": "af5abbc33a6214333494d9d8a7576b4c755d89f16e194f95a9b1796adb370756",
+    "act": {
+      "account": "eosio",
+      "name": "buyrambytes",
+      "authorization": [
+        {
+          "actor": "acc.gm",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "bytes": 1000000,
+        "payer": "acc.gm",
+        "receiver": "acc.gm"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 1,
+    "producer": "bp",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 0
+  }
+]

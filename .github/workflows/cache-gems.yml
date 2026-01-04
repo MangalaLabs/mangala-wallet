@@ -1,0 +1,34 @@
+name: Cache Gems on PR Merge
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  cache-gems:
+    runs-on: self-hosted
+
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: Cache Gems
+        id: cache-gems
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ruby-
+
+      - name: Install Gems
+        if: steps.cache-gems.outputs.cache-hit != 'true'
+        run: |
+          bundle config set path 'vendor/bundle'
+          bundle install

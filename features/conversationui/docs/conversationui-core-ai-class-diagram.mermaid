@@ -1,0 +1,230 @@
+classDiagram
+    %% ConversationUI Feature - Presentation Layer
+    class ConversationUiScreen {
+        +isBottomBarVisible: Boolean
+        +screenName: String
+        +screenClassName: String
+        +Content()
+    }
+
+    class ConversationUiScreenModel {
+        +uiState: StateFlow~ConversationUiState~
+        +navigationEvents: SharedFlow~NavigationEvent~
+        +sendMessage(text: String, image: ByteArray?, mimeType: String?)
+        +validateAddress(address: String, networkName: String)
+        +sendAddress(address: String)
+        +handleUiTagAction(tag: UiTag)
+        +confirmFunctionCall(messageId: String)
+        +cancelFunctionCall(messageId: String)
+        +clearChatContext()
+        +exportChatLog()
+    }
+
+    class ConversationUiState {
+        +conversationSession: ConversationSession?
+        +messages: List~Message~
+        +isLoading: Boolean
+        +isRecording: Boolean
+        +selectedImage: ByteArray?
+        +imageMimeType: String?
+        +isImageLoading: Boolean
+        +processingMessageIds: Set~String~
+        +error: String?
+        +showDebugInfo: Boolean
+        +inputState: ConversationInputState
+    }
+
+    class ConversationInputState {
+        +mode: InputMode
+        +addressValidation: AddressValidationState?
+        +messageText: String
+    }
+
+    class InputMode {
+        <<sealed>>
+    }
+
+    class Normal {
+        <<object>>
+    }
+
+    class EnterAddress {
+        +networkName: String
+    }
+
+    %% ConversationUI Feature - Domain Layer
+    class ConversationSession {
+        +id: String
+        +userId: String
+        +startTime: Long
+        +lastUpdatedTime: Long
+        +title: String
+        +metadata: Map~String, String~
+        +isActive: Boolean
+        +messages: List~Message~
+        +withMessages(messages: List~Message~): ConversationSession
+        +addMessage(message: Message): ConversationSession
+        +withTitle(title: String): ConversationSession
+        +withActive(isActive: Boolean): ConversationSession
+        +addMetadata(key: String, value: String): ConversationSession
+    }
+
+    class ChatHistoryRepository {
+        <<interface>>
+        +getCurrentSession(userId: String): Flow~ConversationSession?~
+        +getSessionFlow(sessionId: String): Flow~ConversationSession?~
+        +getAllSessions(userId: String): Flow~List~ConversationSession~~
+        +createSession(userId: String): ConversationSession
+        +saveMessage(sessionId: String, message: Message)
+        +appendContentToMessage(sessionId: String, messageId: String, content: String)
+        +updateSession(session: ConversationSession)
+        +deleteSession(sessionId: String)
+        +clearAllSessions(userId: String)
+    }
+
+    class SendMessageUseCase {
+        +invoke(sessionId: String, text: String?, image: ByteArray?, mimeType: String?): Flow~Unit~
+    }
+
+    class AddressValidator {
+        <<interface>>
+        +validate(address: String): AddressValidationResult
+    }
+
+    class AddressValidatorRegistry {
+        +getValidator(networkName: String): AddressValidator?
+        +register(networkName: String, validator: AddressValidator)
+        +unregister(networkName: String)
+        +getAllValidators(): Map~String, AddressValidator~
+    }
+
+    %% Core:AI Module - Domain Layer
+    class AiRepository {
+        <<interface>>
+        +processConversation(userId: String, messages: List~Message~, isMultiModalEnabled: Boolean): Flow~AIResponse~
+    }
+
+    class Message {
+        <<interface>>
+        +id: String
+        +timestamp: Long
+        +senderId: String
+        +isFromUser: Boolean
+        +parentMessageId: String?
+        +getContentType(): String
+    }
+
+    class TextMessage {
+        +text: String
+        +uiTags: List~UiTag~
+    }
+
+    class ImageMessage {
+        +imageData: ByteArray
+        +mimeType: String
+        +caption: String?
+    }
+
+    class FunctionCallMessage {
+        +functionCall: FunctionCallRequest
+        +reasoning: String?
+    }
+
+    class AIResponse {
+        <<sealed>>
+    }
+
+    class TextResponse {
+        +text: String
+        +uiTags: List~UiTag~
+    }
+
+    class FunctionCallResponse {
+        +functionCall: FunctionCallRequest
+        +reasoning: String?
+    }
+
+    class ConfirmationRequiredResponse {
+        +functionCall: FunctionCallRequest
+        +message: String
+    }
+
+    class FunctionCallRequest {
+        +name: String
+        +parameters: Map~String, Any~
+        +callId: String
+    }
+
+    class FunctionRegistry {
+        <<interface>>
+        +getFunctionDefinition(name: String): FunctionDefinition?
+        +getAllFunctions(): List~FunctionDefinition~
+        +getModuleFunctions(moduleId: String): List~FunctionDefinition~
+        +register(definition: FunctionDefinition)
+        +unregister(name: String)
+    }
+
+    class FunctionHandlerRegistry {
+        <<interface>>
+        +register(functionName: String, handler: FunctionHandler)
+        +unregister(functionName: String)
+        +getHandler(functionName: String): FunctionHandler?
+        +execute(functionCall: FunctionCallRequest): FunctionResult
+    }
+
+    class UiTag {
+        <<sealed>>
+    }
+
+    class SelectNetwork {
+        <<object>>
+    }
+
+    class EnterAddressTag {
+        +networkName: String
+    }
+
+    %% Relationships
+    ConversationUiScreen ..> ConversationUiScreenModel : uses
+    ConversationUiScreenModel ..> ConversationUiState : manages
+    ConversationUiScreenModel ..> SendMessageUseCase : uses
+    ConversationUiScreenModel ..> AddressValidatorRegistry : uses
+    
+    ConversationUiState --> ConversationSession : contains
+    ConversationUiState --> Message : contains list
+    ConversationUiState --> ConversationInputState : contains
+    
+    ConversationInputState --> InputMode : has
+    InputMode <|-- Normal : extends
+    InputMode <|-- EnterAddress : extends
+    
+    SendMessageUseCase ..> ChatHistoryRepository : uses
+    SendMessageUseCase ..> AiRepository : uses
+    SendMessageUseCase ..> FunctionHandlerRegistry : uses
+    SendMessageUseCase ..> FunctionRegistry : uses
+    
+    ChatHistoryRepository ..> ConversationSession : manages
+    ChatHistoryRepository ..> Message : stores
+    
+    AddressValidatorRegistry --> AddressValidator : manages
+    
+    Message <|-- TextMessage : implements
+    Message <|-- ImageMessage : implements
+    Message <|-- FunctionCallMessage : implements
+    
+    TextMessage --> UiTag : contains list
+    
+    AIResponse <|-- TextResponse : extends
+    AIResponse <|-- FunctionCallResponse : extends
+    AIResponse <|-- ConfirmationRequiredResponse : extends
+    
+    FunctionCallResponse --> FunctionCallRequest : contains
+    ConfirmationRequiredResponse --> FunctionCallRequest : contains
+    FunctionCallMessage --> FunctionCallRequest : contains
+    
+    FunctionHandlerRegistry ..> FunctionCallRequest : processes
+    
+    UiTag <|-- SelectNetwork : extends
+    UiTag <|-- EnterAddressTag : extends
+    
+    TextResponse --> UiTag : contains list

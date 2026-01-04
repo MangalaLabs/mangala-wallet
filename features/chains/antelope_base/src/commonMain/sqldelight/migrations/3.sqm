@@ -1,0 +1,27 @@
+ALTER TABLE AntelopeAccountTokenBalanceEntity RENAME TO AntelopeAccountTokenBalanceEntity_old;
+
+CREATE TABLE AntelopeAccountTokenBalanceEntity (
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    key TEXT NOT NULL,
+    currency TEXT NOT NULL,
+    amount REAL NOT NULL,
+    contract TEXT NOT NULL,
+    decimals INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    website TEXT,
+    logo TEXT,
+    token_created_at TEXT NOT NULL,
+    exchange_name TEXT NOT NULL,
+    exchange_price REAL NOT NULL,
+    last_updated INTEGER NOT NULL,
+    PRIMARY KEY (account_name, blockchain_uid, key),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+INSERT INTO AntelopeAccountTokenBalanceEntity ( account_name, blockchain_uid, key, currency, amount, contract, decimals,
+name, website, logo, token_created_at, exchange_name, exchange_price, last_updated) SELECT account_name, blockchain_uid,
+key, currency, amount, contract, decimals, name, website, logo, token_created_at, exchange_name, exchange_price, last_updated
+FROM AntelopeAccountTokenBalanceEntity_old;
+
+DROP TABLE AntelopeAccountTokenBalanceEntity_old;

@@ -1,0 +1,122 @@
+{
+  "data": {
+    "address": "0x7876e46330faa0c305e50fb4ee6c52819868053f",
+    "updated_at": "2024-09-14T15:19:26.955386561Z",
+    "next_update_at": "2024-09-14T15:24:26.955387611Z",
+    "quote_currency": "USD",
+    "chain_id": 11155111,
+    "chain_name": "eth-sepolia",
+    "current_page": 0,
+    "links": {
+      "prev": null,
+      "next": null
+    },
+    "items": [
+      {
+        "block_signed_at": "2024-04-13T15:25:00Z",
+        "block_height": 5689969,
+        "block_hash": "0x7700a399236f0d8c7fe51e4ae39269b100ab63df5c978a4e452961e87ea62f36",
+        "tx_hash": "0x481355d825af794e6ef7ff61dbcdde8c7e95839bd0ba473b88333b6718c6cfbe",
+        "tx_offset": 82,
+        "successful": true,
+        "miner_address": "0xf24a01ae29dec4629dfb4170647c4ed4efc392cd",
+        "from_address": "0x7876e46330faa0c305e50fb4ee6c52819868053f",
+        "from_address_label": null,
+        "to_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+        "to_address_label": null,
+        "value": "0",
+        "value_quote": 0.0,
+        "pretty_value_quote": "$0.00",
+        "gas_metadata": {
+          "contract_decimals": 18,
+          "contract_name": "Ether",
+          "contract_ticker_symbol": "ETH",
+          "contract_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "supports_erc": [],
+          "logo_url": "https://www.datocms-assets.com/86369/1669653891-eth.svg"
+        },
+        "gas_offered": 49969,
+        "gas_spent": 30482,
+        "gas_price": 1372682,
+        "fees_paid": "41842092724",
+        "gas_quote": 1.2609531925438278E-4,
+        "pretty_gas_quote": "$0.00",
+        "gas_quote_rate": 3013.5997280570145,
+        "explorers": [
+          {
+            "label": null,
+            "url": "https://sepolia.etherscan.io/tx/0x481355d825af794e6ef7ff61dbcdde8c7e95839bd0ba473b88333b6718c6cfbe"
+          }
+        ],
+        "log_events": [
+          {
+            "block_signed_at": "2024-04-13T15:25:00Z",
+            "block_height": 5689969,
+            "tx_offset": 82,
+            "log_offset": 91,
+            "tx_hash": "0x481355d825af794e6ef7ff61dbcdde8c7e95839bd0ba473b88333b6718c6cfbe",
+            "raw_log_topics": [
+              "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+              "0x0000000000000000000000007876e46330faa0c305e50fb4ee6c52819868053f",
+              "0x0000000000000000000000007876e46330faa0c305e50fb4ee6c52819868053f"
+            ],
+            "sender_contract_decimals": 18,
+            "sender_name": "Uniswap",
+            "sender_contract_ticker_symbol": "UNI",
+            "sender_address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+            "sender_address_label": null,
+            "sender_logo_url": "https://logos.covalenthq.com/tokens/11155111/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984.png",
+            "supports_erc": [
+              "erc20"
+            ],
+            "sender_factory_address": null,
+            "raw_log_data": "0x0000000000000000000000000000000000000000000000000000065dd0837000",
+            "decoded": {
+              "name": "Transfer",
+              "signature": "Transfer(indexed address from, indexed address to, uint256 value)",
+              "params": [
+                {
+                  "name": "from",
+                  "type": "address",
+                  "indexed": true,
+                  "decoded": true,
+                  "value": "0x7876e46330faa0c305e50fb4ee6c52819868053f"
+                },
+                {
+                  "name": "to",
+                  "type": "address",
+                  "indexed": true,
+                  "decoded": true,
+                  "value": "0x7876e46330faa0c305e50fb4ee6c52819868053f"
+                },
+                {
+                  "name": "value",
+                  "type": "uint256",
+                  "indexed": false,
+                  "decoded": true,
+                  "value": "7000000000000"
+                },
+                {
+                  "name": "_amounts",
+                  "type": "uint256[]",
+                  "indexed": false,
+                  "decoded": true,
+                  "value": [
+                    {
+                      "value": "1",
+                      "bitSize": 256,
+                      "typeAsString": "uint256"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "error": false,
+  "error_message": null,
+  "error_code": null
+}

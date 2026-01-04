@@ -1,0 +1,92 @@
+plugins {
+    kotlin("multiplatform")
+    id("com.android.library")
+}
+
+kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "21"
+            }
+        }
+    }
+    jvm() {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "21"
+            }
+        }
+    }
+    iosArm64()
+    iosSimulatorArm64()
+    
+    listOf(
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "hdwallet"
+        }
+    }
+
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(projects.libraries.kmpnotifier)
+                implementation(libs.koin.core)
+                implementation(libs.rinku)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.androidx.startup.runtime)
+                implementation(libs.koin.android)
+            }
+        }
+        val androidUnitTest by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(commonMain)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+        val iosArm64Test by getting
+        val iosSimulatorArm64Test by getting
+        val iosTest by creating {
+            dependsOn(commonTest)
+            iosArm64Test.dependsOn(this)
+            iosSimulatorArm64Test.dependsOn(this)
+        }
+        val jvmMain by getting {
+            kotlin.srcDirs("src/jvmMain/kotlin")
+            dependencies {
+                implementation(kotlin("stdlib"))
+                implementation(libs.secp256k1.jvm)
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.mockk)
+            }
+        }
+    }
+}
+
+android {
+    namespace = "com.mangala.wallet.core.notification"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}

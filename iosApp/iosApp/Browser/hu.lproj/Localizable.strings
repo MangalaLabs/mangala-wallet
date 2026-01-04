@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Szerkesztés";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Megjelenítés";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Visszavonás";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Hozzáadás";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Könyvjelző";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Könyvjelzők";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Mégsem";
+
+/* Copy action */
+"action.title.copy" = "Másolás";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "URL lemásolva";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Adatvédelem letiltása";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Letöltések";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Könyvjelző szerkesztése";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Adatvédelem engedélyezése";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Lapok bezárása és adattörlés";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Lapok és adatok törölve";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Megnyitás a háttérben";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Új";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Megnyitás új lapon";
+
+/* Open action */
+"action.title.open" = "Megnyitás";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Beillesztés";
+
+/* Print action */
+"action.title.print" = "Nyomtatás";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Frissítés";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Kedvenc eltávolítása";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Hibás weboldal jelentése";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Weboldal asztali nézete";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Weboldal mobil nézete";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Mentés";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Könyvjelző mentése";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Kedvenc hozzáadása";
+
+/* Settings action */
+"action.title.settings" = "Beállítások";
+
+/* Share action */
+"action.title.share" = "Megosztás";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Minialkalmazás hozzáadása";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Gyors hozzáférés a privát kereséshez és kedvenc weboldalaidhoz.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Az ugráló ikonos üzemmódba lépéshez tartsd nyomva hosszan a kezdőképernyőt.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Koppints a plusz %@ gombra.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Keresd meg és jelöld ki a Mangala Wallet elemet. Ezután válassz egy minialkalmazást.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Egyetlen koppintással nyisd meg kedvenc oldalaidat.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "A meglévő könyvjelzők nem kettőződnek.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Az összes lapot könyvjelzőzöd?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Hozzáadás a védelem nélküli weboldalakhoz";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Könyvjelző mentése";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Kedvenc mentése";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Oldd fel a Mangala Wallet-t.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Bejelentkezés";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Jelentkezz be ide: %@. A bejelentkezési adataid biztonságosan lesznek elküldve.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Bejelentkezés ide: %@. A jelszavad nem biztonságosan lesz elküldve, mert a kapcsolat nem titkosított.";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Jelszó";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Hitelesítés szükséges";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Felhasználónév";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Ki";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Be";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Könyvjelző mentése";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Kedvenc hozzáadása";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Mappa hozzáadása";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Mappa hozzáadása";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Törlés";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Biztos, hogy törölni akarod ezt a mappát és annak %i elemét?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Biztos, hogy törölni akarod ezt a mappát és annak %i elemét?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "%@ törlése?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Könyvjelző szerkesztése";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Kedvenc szerkesztése";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Mappa szerkesztése";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Hely";
+
+/* More options button text */
+"bookmark.moreButton" = "többet";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Weboldal címe";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Könyvjelzők";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Hozzáadott új könyvjelzők az összes laphoz";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Összes lap könyvjelzőzve";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Könyvjelzők";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Nem sikerült exportálni a könyvjelzőket. Próbálkozz újra.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "A könyvjelzők exportálva lettek.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "A könyvjelzők meg lettek osztva.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "HTML-fájl exportálása";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "Nem sikerült importálni a fájlt.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "A könyvjelzők importálva lettek.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "HTML-fájl importálása";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Könyvjelzőfájl importálása másik böngészőből";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Könyvjelzőket tartalmazó HTML-fájl importálása másik gépről, vagy a meglévő könyvjelzők exportálása.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "A megjegyzések nem töltődtek be";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Hiányzik a tartalom";
+
+/* Broken Site Category */
+"brokensite.category.images" = "A képek nem töltődtek be";
+
+/* Broken Site Category */
+"brokensite.category.links" = "A hivatkozások vagy a gombok nem működnek";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Nem tudok bejelentkezni";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Valami más";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "A webhely kérte tőlem a letiltást";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "A böngésző nem kompatibilis";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "A videót nem játszotta le";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "ESEMÉNY LEÍRÁSA";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "Elmúlt hónapban";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "Elmúlt héten";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Ma";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Tegnap";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Ötletek elrejtése örökre";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Mégsem";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Csak néhány van, és megpróbáltuk őket informatívvá tenni.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Elrejti a többi tippet?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "A Mangala Wallet keresések névtelenek. Mindig. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Pfuj!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Pacsi!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "*%1$@* itt próbált követni.\n\nBlokkoltam!\n\n☝️ Ellenőrizheted a címsort, hogy megtudhasd, ki próbál nyomon követni, amikor új webhelyre látogatsz.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Pacsi!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Figyelem! Nem tudom megakadályozni, hogy %1$@ láthassa a tevékenységedet itt: %2$@.\n\nHa azonban velem böngészel, a sok más weboldalon is használt nyomkövetőjük blokkolásával korlátozni tudom azt, amit %1$@ megtudhat rólad.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Megvan";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Figyelem! Mivel %2$@ tulajdonában van a(z) %1$@, nem tudom megakadályozni, hogy lássák az itteni tevékenységedet.\n\nHa azonban velem böngészel, a sok más weboldalon is használt nyomkövetőjük blokkolásával korlátozni tudom azt, amit %2$@ megtudhat rólad.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Megvan";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Miközben koppintasz és görgetsz, blokkolni fogom a bosszantó nyomkövetőket.\n\nCsak folytasd a böngészést!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Megvan";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "Személyes adatok halmozódhatnak fel a böngésződben. Fúj. A Tűz gombbal mindet elégetheted. Próbáld ki most! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Mégsem";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Lapok bezárása és adattörlés";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Látogasd meg a kedvenc weboldalaidat egy pillanat alatt!\n\nLépj egy olyan weboldalra, amelyet szeretsz. Ezután koppints a(z) „⋯” ikonra, és válaszd a *Hozzáadás a kedvencekhez* elemet.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Látogasd meg a kedvenc weboldalaidat egy pillanat alatt! Látogass el az egyik kedvenc webhelyedre. Ezután koppints a menü megnyitása gombra, és válaszd a Hozzáadás a kedvencekhez elemet.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "A következő lépésben próbálj ellátogatni az egyik kedvenc webhelyedre!\n\nÉn blokkolom a nyomkövetőket, hogy ne tudjanak kémkedni utánad. Ha lehet, a kapcsolatod biztonságát is javítom. 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Megvan, ez az!\n\nNe feledd: minden alkalommal, amikor velem végzed a böngészést, egy hátborzongató hirdetés elveszíti az erejét. 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Az internet meglehetősen undok hely lehet.\n\nNe aggódj! A bizalmas keresés és böngészés egyszerűbb, mint hinnéd.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Letiltva";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "További részletek";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Engedélyezve";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "A Mangala Wallet számos nyomkövetőt automatikusan blokkol. A Global Privacy Control (GPC, Globális Adatvédelmi Ellenőrzés) segítségével arra is megkérheted a részt vevő webhelyeket, hogy korlátozzák személyes adataid eladását vagy megosztását más vállalatokkal.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Mentés a Letöltések közé";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Mégsem";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Biztos, hogy meg akarod szakítani ezt a letöltést?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Folytatás";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Megszakítod a letöltést?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Összes törlése";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Még nincsenek letöltött fájlok";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Letöltés – %1$@/%2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Letöltés – %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Letöltések";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Ez a folyamatban lévő letöltéseket is megszakítja";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Összes fájl törölve";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "A letöltés kész: %@";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "Törölve: %@";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "A letöltés sikertelen. Ellenőrizd az internetkapcsolatot.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "A letöltés elindult: %@";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Mégsem";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Privát cím létrehozása";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "E-mail nyomkövetők letiltása Duck-címmel";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "%@ használata";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Új cím a vágólapra másolva";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Duck-cím létrehozása";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Engedélyezve";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Az e-mail-védelem eltávolítása erről az eszközről megszünteti azt a lehetőséget, hogy a webböngészés során a rendszer automatikusan beírja a személyes Duck-címedet vagy egy újonnan létrehozott privát Duck-címet az e-mail-cím mezőkbe.\n\nA Duck-címeid teljes törléséhez, vagy bármilyen más kérdés vagy visszajelzés esetén fordulj hozzánk a support@duck.com címen.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Ki";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Mégsem";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Megjegyzés: az e-mail-védelem eltávolítása erről az eszközről nem törli a Duck-címedet.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Eltávolítás";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Eltávolítod az e-mail-védelmet?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "Hiba történt a várólistához való csatlakozás közben. Kérjük, próbálkozz újra később.";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Első lépések";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "Van meghívókódom";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Meghívót kaptál!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Csatlakozz a privát várólistához";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Felkerültél a várólistára!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "A meghívód itt fog megjelenni, amikor készen állunk. Szeretnél %1$@, amikor megérkezik? %2$@ az e-mail-védelemről.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "értesítést kapni";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Értesítést küldünk, amikor az e-mail-védelem készen áll számodra. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "További tudnivalók";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Értesítést küldünk, amikor megkezdheted az e-mail-védelem használatát.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Szeretnéd, hogy értesítsünk, amikor rád kerül a sor?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Feliratkoztál a várólistára, és arra kértél minket, hogy értesítsünk, amikor rád kerül a sor, hogy kipróbálhasd az e-mail-védelmet.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Nem, köszönöm";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "ÉRTESÍTSETEK";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Megérkezett az e-mail védelmi meghívód!";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Nem mentjük el az e-mailjeidet. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "E-mail adatvédelem, egyszerűsítve.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Tiltsd le az e-mail nyomkövetőket, és rejtsd el a címedet anélkül, hogy e-mail szolgáltatót váltanál. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Még nincsenek könyvjelzők hozzáadva";
+
+/* Empty list state placholder */
+"empty.favorites" = "Még nincsenek hozzáadva kedvencek.";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Nincs találat";
+
+/* No comment provided by engineer. */
+"favorite" = "Kedvenc";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Törlés";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Szerkesztés";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Hirdetések és felugró ablakok letiltása";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Könyvjelzők létrehozása és kezelése";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Melyik böngészési funkciót vezessük be, vagy melyik meglévőt javítsuk?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Böngésző funkció-problémái";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Hiányzó vagy zavaró böngészőfunkciók";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Képek más programokkal történő egyidejű kezelése";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Navigálás előre, hátra, és/vagy frissítés";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Ezek közül egyik sem";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Lapok létrehozása és kezelése";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Videók megtekintése";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "A könyvjelzők elrendezésének módja";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Melyik testreszabási lehetőséget vezessük be, vagy a meglévők közül melyiken javítsunk?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Testreszabási problémák";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Az alkalmazás testreszabásához nincs elegendő lehetőség";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "A kezdőképernyő kialakítása";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Ezek közül egyik sem";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "A lapok elrendezésének módja";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Az alkalmazás kinézete";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "A törlendő adatok kiválasztása";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Az adatok törlésének időzítése";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Jobb automatikus kiegészítés";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Melyik keresési funkciót vezessük be vagy javítsuk?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Mangala Wallet keresési problémák";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "A Mangala Wallet keresés nem elég jó";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Keresés egy adott nyelven vagy régióban";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Az elrendezés hasonlítson jobban a Google elrendezéséhez";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Gyorsabb betöltési idő";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Ezek közül egyik sem";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Programozás/műszaki keresés";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Kérjük, mondd el, min tudunk még javítani.";
+
+/* Confirmation button */
+"feedback.form.submit" = "Elküldés";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Kérjük, a lehető legpontosabban írj meg mindent";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Van valami olyan jellemző, amit szeretnél belefoglalni?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Sajnálattal halljuk.";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "Mi okozta a legtöbb problémát?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Egyéb problémák";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Ezek közül egyik sem";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Melyik problémával találkoztál?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Az alkalmazás összeomlik vagy lefagy";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Teljesítmény-problémák";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Az alkalmazás lassú, hibás, vagy sokszor összeomlik";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Ezek közül egyik sem";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Video- vagy médialejátszási hibák";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "A weboldalak vagy a keresési eredmények lassan töltődnek be";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Részletek megosztása";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Mi tetszett?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Szeretnél valamit megosztani a csapattal?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Örömmel halljuk!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Nem, köszönöm. Kész vagyok.";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Részletek megosztása";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Anonim visszajelzésed fontos számunkra.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Kezdjünk hozzá!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "Hogyan jellemeznéd a visszajelzésedet?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Köszönjük! Visszajelzés elküldve.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Weboldal betöltésével kapcsolatos problémák";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Bizonyos weboldalak nem töltődnek be megfelelően";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "Milyen tartalmat érint ez?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Hol látod ezeket a problémákat?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "Melyik weboldalon vannak problémák?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d/%2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Keresés az oldalon";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Levegő";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Lángnyelvek";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Nincs";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Örvény";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Add hozzá a Mangala Wallet-t a kezdőképernyődhöz!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "A könnyű hozzáférés érdekében add hozzá a dokkodhoz a Mangala Wallet-t!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Vidd haza a Mangala Wallet-t";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Keresés vagy cím megadása";
+
+/* Home tab title */
+"homeTab.title" = "Kezdőlap";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Könyvjelző mentése";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Kedvenc hozzáadása";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Böngészés vissza";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Böngészés előre";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Bezárás";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Lap bezárása";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Keresés az oldalon";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Következő keresése";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Előző keresése";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Összes lap és adat törlése";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Keresés vagy cím megadása";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Új lap";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Következő lap";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Hivatkozás megnyitása a háttérben";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Hivatkozás megnyitása új lapon";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Előző lap";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Nyomtatás";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Újratöltés";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Kiválasztás";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Összes lap megjelenítése";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Üdvözlünk a\nMangala Wallet-ban!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Tallózás a menüben";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Kész";
+
+/* Edit button */
+"navigation.title.edit" = "Szerkesztés";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Minialkalmazás hozzáadása";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "A Mangala Wallet használata még könnyebb lett.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Talán később";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Folytatás";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Talán később";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Tedd a DuckDuckGót az alapértelmezett böngésződdé.";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Beállítás alapértelmezett böngészőként";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Kihagyás";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Böngészés indítása";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Üdvözlünk a Mangala Wallet-ban!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "A link megnyitásához szükséges alkalmazás nem található.";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "A webhelyek sütik segítségével teszik lehetővé, hogy bejelentkezve maradhass. Ha tűzállóvá teszel egy weboldalt, a sütik nem törlődnek, és még a Tűz gomb használata után is bejelentkezve maradsz. A tűzálló webhelyeken a külső felek nyomkövetőit azonban blokkoljuk.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Tűzálló weboldalak";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Ha tűzállóvá teszel egy weboldalt, a Fire gomb használata után is bejelentkezve maradsz.";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Legyen a(z) %@ tűzálló, hogy bejelentkezve maradj?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Tűzálló";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "A(z) %@ most már tűzálló!";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Most nem";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Tűzállóság eltávolítása";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Weboldal tűzállóvá tétele";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Tűzállóság eltávolítva";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Összes eltávolítása";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "OK";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Algoritmus";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d bit";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Hiba a tanúsítvány kibontása közben";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Közhasználatú név";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Effektív méret";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "E-mail";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Titkosított kapcsolat";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Kényszerített titkosítás";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Ezt a webhelyet arra kényszerítettük, hogy titkosított kapcsolatot használjon, megakadályozva ezzel a részére küldött személyes adatok lehallgatását.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "A titkosított kapcsolat megakadályozza a webhelyre küldött személyes adatok lehallgatását.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Alany kulcs azonosítója";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Kibocsátó";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Nyilvános kulcs";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Kulcs mérete";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Vegyes titkosítás";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Ez a webhely vegyes titkosítással rendelkezik, mert bizonyos tartalmakat titkosítatlan kapcsolatokon keresztül szolgáltatnak.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Nem";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Állandó";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Nyilvános kulcs";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "A titkosított kapcsolat megakadályozza a webhelyre küldött személyes adatok lehallgatását.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Alany neve";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Összefoglalás";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Legyél óvatos, amikor személyes adatokat adsz meg ezen a weboldalon.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Titkosítatlan kapcsolat";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Ismeretlen";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Használat";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Dekódolás";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Származtatás";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Titkosítás";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Jel";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Kibontás";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Érvényesítés";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Becsomagolás";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Igen";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "WEBOLDAL VÉDELME LETILTVA";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "TOVÁBBFEJLESZTVE ERRŐL: $1, ERRE: $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "ADATVÉDELMI FOKOZAT";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "A %2$@ óta meglátogatott weboldalak %1$@%%-án lehetett nyomkövető hálózatokat találni.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Folyamatosan gyűjtjük az adatokat, hogy bemutathassuk, hány\nnyomkövetőt tiltottunk le.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Adatvédelmi gyakorlatok forrása: ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Az adatvédelmi gyakorlatok jelzik, hogy a weboldalakkal megosztott személyes adataid védelme mennyire garantált.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Ez a weboldal értesíteni fog téged, mielőtt egyesülés vagy felvásárlás esetén továbbítaná az adataidat.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "A weboldal adatvédelmi gyakorlatát nem vizsgálták felül.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Adatvédelmi fokozat: %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Nyomd meg az adatvédelmi képernyő megnyitásához";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Ezek a statisztikák csak az eszközödön tárolódnak, és sehová nem küldik el őket. Soha.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Jó adatvédelmi gyakorlatok";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Vegyes adatvédelmi gyakorlatok”";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "„Rossz adatvédelmi gyakorlatok”";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Ismeretlen adatvédelmi gyakorlatok";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "A nyomkövető hálózatok gyűjtik internetes előzményeidet egy rólad szóló adatprofilban. A nagy nyomkövető hálózatok károsabbak, mert az internet több területén képesek téged nyomon követni és megcélozni.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Mégsem";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Megnyitás";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Szeretnél kilépni a Mangala Wallet programból a tartalom megtekintéséhez?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Megnyitás másik alkalmazásban?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Egy hibás webhelyről szóló névtelen bejelentés segít a hibakeresésben és az alkalmazás fejlesztésében.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Keresés vagy cím megadása";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Könyvjelzők";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Kedvencek";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "A Mangala Wallet célja egy új online bizalmi szint megteremtése.\n\nA Mangala Wallet Adatvédelmi Böngésző minden olyan alapvető adatvédelmi elemet tartalmaz, amelyre szükséged lehet ahhoz, hogy megvédd magad az internetes keresés és böngészés során, beleértve a nyomkövetők letiltását, az intelligensebb titkosítást és a Mangala Wallet privát keresést.\n\nAz internet végső soron nem feltétlenül kell, hogy ellenséges közeg legyen, és hisszük, hogy az általad megérdemelt adatvédelem olyan egyszerű is lehet, mint a redőny lehúzása.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Jelentés beküldése";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Hibás weboldal tartománya:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "Melyik tartalom vagy funkció hibás?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "A hibás weboldalra vonatkozó jelentés teljes mértékben névtelen, és segít nekünk az alkalmazás fejlesztésében.";
+
+/* This is a form title */
+"siteFeedback.title" = "Hibás weboldal bejelentése";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "Melyik weboldal nem működik?”";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Kezdőlap bezárása";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "\"%1$@\" bezárása itt: %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Kezdőlap megnyitása";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "\"%1$@\" megnyitása itt: %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Lapváltó";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Válaszd ki a kívánt szövegméretet. A Mangala Wallet ennek használatával jeleníti meg a webhelyeket.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Szövegméret: %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Sötét";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Rendszer";
+
+/* Light Theme entry */
+"theme.acc.light" = "Világos";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Sötét";
+
+/* Entry for Default System theme */
+"theme.name.default" = "Rendszer alapértelmezés";
+
+/* Light Theme entry */
+"theme.name.light" = "Világos";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Adatvédelem letiltva a következőhöz: %@";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Adatvédelem engedélyezve a következőhöz: %@";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Ismeretlen hiba történt.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Beállítások";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "A beszédhangfunkciók használatához az iOS rendszerbeállításaiban engedélyezd a Mangala Wallet számára a Mikrofon-hozzáférést.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Mikrofon-hozzáférés szükséges";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "OK";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Mégsem";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "A Mangala Wallet soha nem hallgatja azt, amit mondasz. A Privát beszédhangalapú keresés működéséhez szükséges összes beszédhang-feldolgozási művelet a telefonodon zajlik.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "A Privát beszédhangalapú kereséshez Mikrofon-hozzáférés szükséges";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Mégsem";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "A hang feldolgozása az eszközön történik. Nem tároljuk és nem osztjuk meg senkivel, még a DuckDuckGóval sem.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Kedvenc eltávolítva";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Könyvjelző hozzáadva";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "A könyvjelző már el van mentve";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Nincs könyvjelzőzhető weboldal";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Kedvenc hozzáadva";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Figyelmeztetések blokkolása";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Mégsem";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "OK";
+

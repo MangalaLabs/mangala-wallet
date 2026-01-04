@@ -1,0 +1,4 @@
+[submodule "features/auth"]
+	path = features/auth
+	url = git@github.com:trainingdeveloperpro/features-auth.git
+	branch = develop

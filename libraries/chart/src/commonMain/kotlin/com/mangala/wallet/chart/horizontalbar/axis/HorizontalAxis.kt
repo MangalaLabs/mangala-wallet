@@ -1,0 +1,77 @@
+/*
+ * Copyright 2022 Himanshu Singh
+ * Copyright 2023-2024 Mangala Wallet
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * This file has been modified from the original Charty library.
+ */
+package com.mangala.wallet.chart.horizontalbar.axis
+
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
+import com.mangala.wallet.chart.utils.DrawingUtils
+import com.mangala.wallet.utils.DecimalFormat
+
+internal fun DrawScope.horizontalYAxis(
+    axisConfig: HorizontalAxisConfig,
+    maxValue: Float,
+    startAngle: Float
+) {
+    val xScaleFactor = size.width.div(4)
+    val pathEffect = PathEffect.dashPathEffect(floatArrayOf(40f, 20f), 0f)
+    val axisScaleFactor = maxValue.div(4)
+    val graphHeight = size.height
+
+    val list: List<String> = (0..5).toList().map {
+        getLabelText(axisScaleFactor.times(it))
+    }
+    val drawingUtils = DrawingUtils()
+    list.forEachIndexed { index, text ->
+        if (axisConfig.showUnitLabels) {
+            drawIntoCanvas {
+                it.nativeCanvas.apply {
+//                    drawText(
+//                        text,
+//                        getXValue(startAngle, xScaleFactor, index),
+//                        graphHeight.plus(50F),
+//                        Paint().apply {
+//                            textSize = size.width.div(30)
+//                            textAlign = Paint.Align.CENTER
+//                        }
+//                    )
+                    drawingUtils.drawText(
+                        text,
+                        getXValue(startAngle, xScaleFactor, index),
+                        graphHeight.plus(50F),
+                        size.width.div(30),
+                        textColor = Color.Black
+                    )
+                }
+            }
+        }
+    }
+}
+
+fun getXValue(startAngle: Float, xScaleFactor: Float, index: Int): Float {
+    return if (startAngle == 180F) {
+        xScaleFactor.times(index)
+    } else {
+        xScaleFactor.times(4.minus(index))
+    }
+}
+
+private fun getLabelText(value: Float) = DecimalFormat("#.##").format(value.toDouble()).toString()

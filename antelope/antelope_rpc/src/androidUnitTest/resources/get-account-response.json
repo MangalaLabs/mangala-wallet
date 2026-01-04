@@ -1,0 +1,100 @@
+{
+  "account_name": "vladimir.sus",
+  "head_block_num": 158725328,
+  "head_block_time": "2024-09-01T09:17:27.000",
+  "privileged": false,
+  "last_code_update": "1970-01-01T00:00:00.000",
+  "created": "2024-08-29T00:10:18.000",
+  "core_liquid_balance": "58.3052 EOS",
+  "ram_quota": 34026,
+  "net_weight": "13860000500",
+  "cpu_weight": "56118813614",
+  "net_limit": {
+    "used": 5734,
+    "available": "21365907638",
+    "max": "21365913372",
+    "last_usage_update_time": "2024-09-01T08:59:52.000",
+    "current_used": 5664
+  },
+  "cpu_limit": {
+    "used": 12457,
+    "available": "16085788939",
+    "max": "16085801396",
+    "last_usage_update_time": "2024-09-01T08:59:52.000",
+    "current_used": 12305
+  },
+  "ram_usage": 15024,
+  "permissions": [
+    {
+      "perm_name": "active",
+      "parent": "owner",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    },
+    {
+      "perm_name": "owner",
+      "parent": "",
+      "required_auth": {
+        "threshold": 1,
+        "keys": [
+          {
+            "key": "EOS7GBSrV5iyYMZAFJxkvbhN5cGsgyVwGBusx2Z4ycTT3LDNoAkwT",
+            "weight": 1
+          }
+        ],
+        "accounts": [],
+        "waits": []
+      },
+      "linked_actions": []
+    }
+  ],
+  "total_resources": {
+    "owner": "vladimir.sus",
+    "net_weight": "1386000.0500 EOS",
+    "cpu_weight": "5611881.3614 EOS",
+    "ram_bytes": 32626
+  },
+  "self_delegated_bandwidth": {
+    "from": "vladimir.sus",
+    "to": "vladimir.sus",
+    "net_weight": "0.0500 EOS",
+    "cpu_weight": "15.1500 EOS"
+  },
+  "refund_request": {
+    "owner": "vladimir.sus",
+    "request_time": "2024-09-01T08:57:39",
+    "net_amount": "0.0000 EOS",
+    "cpu_amount": "10.0000 EOS"
+  },
+  "voter_info": {
+    "owner": "vladimir.sus",
+    "proxy": "",
+    "producers": [],
+    "staked": 152000,
+    "last_vote_weight": "0.00000000000000000",
+    "proxied_vote_weight": "0.00000000000000000",
+    "is_proxy": 0,
+    "flags1": 0,
+    "reserved2": 0,
+    "reserved3": "0 "
+  },
+  "rex_info": null,
+  "subjective_cpu_bill_limit": {
+    "used": 0,
+    "available": 0,
+    "max": 0,
+    "last_usage_update_time": "2000-01-01T00:00:00.000",
+    "current_used": 0
+  },
+  "eosio_any_linked_actions": []
+}

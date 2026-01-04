@@ -1,0 +1,90 @@
+[
+  {
+    "@timestamp": "2024-10-08T15:18:37.000",
+    "timestamp": "2024-10-08T15:18:37.000",
+    "block_num": 165157311,
+    "block_id": "09d819bfc634ae03ee51bde8e5853e452356b375959d0e8a991bd841ed5f706c",
+    "trx_id": "8bd2ff536442f8138087a563ac4507e4691547c49b0497847166b7f4658d5936",
+    "act": {
+      "account": "eosio",
+      "name": "logramchange",
+      "authorization": [
+        {
+          "actor": "eosio",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "owner": "harkonnenmgl",
+        "bytes": "-1024",
+        "ram_bytes": "49233"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 226558833,
+    "producer": "eosriobrazil",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-10-08T15:18:37.000",
+    "timestamp": "2024-10-08T15:18:37.000",
+    "block_num": 165157311,
+    "block_id": "09d819bfc634ae03ee51bde8e5853e452356b375959d0e8a991bd841ed5f706c",
+    "trx_id": "8bd2ff536442f8138087a563ac4507e4691547c49b0497847166b7f4658d5936",
+    "act": {
+      "account": "eosio",
+      "name": "ramtransfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "owner"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "mangalaprovn",
+        "bytes": "1024",
+        "memo": ""
+      }
+    },
+    "receipts": [],
+    "global_sequence": 226558831,
+    "producer": "eosriobrazil",
+    "action_ordinal": 4,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-10-08T15:18:37.000",
+    "timestamp": "2024-10-08T15:18:37.000",
+    "block_num": 165157311,
+    "block_id": "09d819bfc634ae03ee51bde8e5853e452356b375959d0e8a991bd841ed5f706c",
+    "trx_id": "8bd2ff536442f8138087a563ac4507e4691547c49b0497847166b7f4658d5936",
+    "act": {
+      "account": "eosio",
+      "name": "ramtransfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "owner"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "mangalaprovn",
+        "bytes": "1024",
+        "memo": ""
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 251,
+    "net_usage_words": 15,
+    "global_sequence": 226558830,
+    "producer": "eosriobrazil",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KaSEU16fWWpjC7cMTYJtJcWRSMr6w1j97joCYdcZjdN1WULe68EaMZyR31EPMZp4vnhHEjVTD1KywUGAMKN6b45mM8ZF3y"
+    ]
+  }
+]

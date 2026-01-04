@@ -1,0 +1,67 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mangala.prowallet.dev",
+      "sha256_cert_fingerprints": [
+        "AA:E8:83:BB:D4:1C:B0:EB:95:30:0C:70:38:CE:B5:FF:42:7F:AF:E7:7B:F5:9F:4F:B0:B8:C6:23:5B:C8:D2:86",
+        "97:4F:11:2D:D9:B6:0A:34:81:8A:56:30:FA:7D:D3:92:DF:0A:C6:D7:46:66:93:E1:40:81:31:0F:D9:03:9F:88",
+        "1F:58:EA:31:C1:DF:A9:13:00:B8:01:42:23:AE:E0:BC:3C:7F:8C:12:EE:03:BC:26:62:3B:DD:5A:0A:6B:11:95",
+        "27:EB:03:19:E1:F3:24:2A:32:DE:9B:8C:1E:89:B8:3F:AF:CA:6A:1E:EB:FC:9E:35:4E:25:95:6D:B1:A0:6D:4A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mangala.prowallet",
+      "sha256_cert_fingerprints": [
+        "AA:E8:83:BB:D4:1C:B0:EB:95:30:0C:70:38:CE:B5:FF:42:7F:AF:E7:7B:F5:9F:4F:B0:B8:C6:23:5B:C8:D2:86",
+        "97:4F:11:2D:D9:B6:0A:34:81:8A:56:30:FA:7D:D3:92:DF:0A:C6:D7:46:66:93:E1:40:81:31:0F:D9:03:9F:88",
+        "1F:58:EA:31:C1:DF:A9:13:00:B8:01:42:23:AE:E0:BC:3C:7F:8C:12:EE:03:BC:26:62:3B:DD:5A:0A:6B:11:95",
+        "27:EB:03:19:E1:F3:24:2A:32:DE:9B:8C:1E:89:B8:3F:AF:CA:6A:1E:EB:FC:9E:35:4E:25:95:6D:B1:A0:6D:4A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mangala.coldwallet",
+      "sha256_cert_fingerprints": [
+        "AA:E8:83:BB:D4:1C:B0:EB:95:30:0C:70:38:CE:B5:FF:42:7F:AF:E7:7B:F5:9F:4F:B0:B8:C6:23:5B:C8:D2:86",
+        "97:4F:11:2D:D9:B6:0A:34:81:8A:56:30:FA:7D:D3:92:DF:0A:C6:D7:46:66:93:E1:40:81:31:0F:D9:03:9F:88",
+        "1F:58:EA:31:C1:DF:A9:13:00:B8:01:42:23:AE:E0:BC:3C:7F:8C:12:EE:03:BC:26:62:3B:DD:5A:0A:6B:11:95",
+        "27:EB:03:19:E1:F3:24:2A:32:DE:9B:8C:1E:89:B8:3F:AF:CA:6A:1E:EB:FC:9E:35:4E:25:95:6D:B1:A0:6D:4A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mangala.wallet",
+      "sha256_cert_fingerprints": [
+        "AA:E8:83:BB:D4:1C:B0:EB:95:30:0C:70:38:CE:B5:FF:42:7F:AF:E7:7B:F5:9F:4F:B0:B8:C6:23:5B:C8:D2:86",
+        "97:4F:11:2D:D9:B6:0A:34:81:8A:56:30:FA:7D:D3:92:DF:0A:C6:D7:46:66:93:E1:40:81:31:0F:D9:03:9F:88",
+        "1F:58:EA:31:C1:DF:A9:13:00:B8:01:42:23:AE:E0:BC:3C:7F:8C:12:EE:03:BC:26:62:3B:DD:5A:0A:6B:11:95",
+        "27:EB:03:19:E1:F3:24:2A:32:DE:9B:8C:1E:89:B8:3F:AF:CA:6A:1E:EB:FC:9E:35:4E:25:95:6D:B1:A0:6D:4A"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.get_login_creds"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mangala.wallet.dev",
+      "sha256_cert_fingerprints": [
+        "AA:E8:83:BB:D4:1C:B0:EB:95:30:0C:70:38:CE:B5:FF:42:7F:AF:E7:7B:F5:9F:4F:B0:B8:C6:23:5B:C8:D2:86",
+        "97:4F:11:2D:D9:B6:0A:34:81:8A:56:30:FA:7D:D3:92:DF:0A:C6:D7:46:66:93:E1:40:81:31:0F:D9:03:9F:88",
+        "1F:58:EA:31:C1:DF:A9:13:00:B8:01:42:23:AE:E0:BC:3C:7F:8C:12:EE:03:BC:26:62:3B:DD:5A:0A:6B:11:95",
+        "27:EB:03:19:E1:F3:24:2A:32:DE:9B:8C:1E:89:B8:3F:AF:CA:6A:1E:EB:FC:9E:35:4E:25:95:6D:B1:A0:6D:4A"
+      ]
+    }
+  }
+]

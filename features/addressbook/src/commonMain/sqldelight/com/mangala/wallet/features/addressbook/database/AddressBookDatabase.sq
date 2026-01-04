@@ -1,0 +1,2182 @@
+-- AddressBookDatabase.sq
+-- Định nghĩa SQLDelight cho Address Book Database
+
+-- Import thư viện cần thiết
+import kotlin.Boolean;
+
+-- Bảng Contact
+CREATE TABLE IF NOT EXISTS contacts (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  notes TEXT,
+  solar_birthday TEXT, -- Sử dụng TEXT cho ngày tháng, sẽ được chuyển đổi qua adapter
+  lunar_birthday TEXT,
+  is_sensitive INTEGER AS Boolean DEFAULT 0,
+  security_level TEXT DEFAULT 'NORMAL', -- NORMAL, HIGH, MAXIMUM
+  privacy_display_mode TEXT DEFAULT 'FULL', -- FULL, HIDDEN, SECRET
+  auth_requirement TEXT DEFAULT 'NONE', -- NONE, BIOMETRIC, BIOMETRIC_PIN
+  created_at INTEGER NOT NULL, -- Unix timestamp
+  updated_at INTEGER NOT NULL,
+  last_viewed_at INTEGER,
+  sync_status TEXT DEFAULT 'LOCAL_ONLY', -- SYNCED, LOCAL_ONLY, PENDING
+  encrypted_data TEXT,
+  avatar TEXT
+);
+
+-- Bảng Blockchain Types
+CREATE TABLE IF NOT EXISTS blockchain_types (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  symbol TEXT NOT NULL,
+  address_format TEXT,
+  validation_regex TEXT,
+  icon TEXT,
+  color TEXT,
+  network_type TEXT NOT NULL DEFAULT 'mainnet', -- 'mainnet' hoặc 'testnet'
+  is_active INTEGER AS Boolean DEFAULT 1,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Bảng Wallet Address
+CREATE TABLE IF NOT EXISTS wallet_addresses (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  blockchain_type_id TEXT NOT NULL,
+  address TEXT NOT NULL,
+  alias TEXT,
+  wallet_type TEXT,
+  is_sensitive INTEGER AS Boolean DEFAULT 0,
+  is_primary INTEGER AS Boolean DEFAULT 0,
+  is_verified INTEGER AS Boolean DEFAULT 0,
+  verified_date TEXT, -- Sử dụng TEXT cho ngày tháng, sẽ được chuyển đổi qua adapter
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (blockchain_type_id) REFERENCES blockchain_types(id)
+);
+
+-- Bảng Tag
+CREATE TABLE IF NOT EXISTS tags (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  color TEXT NOT NULL DEFAULT '#CCCCCC',
+  text_color TEXT DEFAULT NULL, -- Added text_color column for the text color
+  icon TEXT,
+  is_deleted INTEGER AS Boolean DEFAULT 0 NOT NULL , -- soft delete for the tag, if true, it will not be shown in the UI
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Bảng liên kết Contact và Tag
+CREATE TABLE IF NOT EXISTS contact_tags (
+  contact_id TEXT NOT NULL,
+  tag_id TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  PRIMARY KEY (contact_id, tag_id),
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Bảng Group
+CREATE TABLE IF NOT EXISTS groups (
+  id TEXT PRIMARY KEY NOT NULL,
+  name TEXT NOT NULL,
+  main_blockchain_id TEXT,
+  description TEXT,
+  icon TEXT,
+  color TEXT,
+  privacy_level TEXT DEFAULT 'PUBLIC', -- PUBLIC, PRIVATE, SECRET
+  security_level TEXT DEFAULT 'NORMAL', -- NORMAL, HIGH, MAXIMUM
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (main_blockchain_id) REFERENCES blockchain_types(id)
+);
+
+-- Bảng liên kết Group và Wallet
+CREATE TABLE IF NOT EXISTS group_wallet (
+  group_id TEXT NOT NULL,
+  wallet_address_id TEXT NOT NULL,
+  contact_id TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  PRIMARY KEY (group_id, wallet_address_id),
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (group_id) REFERENCES groups(id),
+  FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+-- Bảng Transaction History
+CREATE TABLE IF NOT EXISTS transaction_history (
+  id TEXT PRIMARY KEY NOT NULL,
+  from_address TEXT NOT NULL,
+  to_address TEXT NOT NULL,
+  blockchain_type_id TEXT NOT NULL,
+  amount TEXT NOT NULL,
+  token_symbol TEXT NOT NULL,
+  transaction_hash TEXT NOT NULL,
+  status TEXT NOT NULL, -- PENDING, CONFIRMED, FAILED
+  timestamp INTEGER NOT NULL,
+  fee TEXT,
+  note TEXT,
+  is_from_imported_wallet INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (blockchain_type_id) REFERENCES blockchain_types(id)
+);
+
+-- Bảng liên kết Contact và Transaction
+CREATE TABLE IF NOT EXISTS contact_transactions (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  transaction_id TEXT NOT NULL,
+  wallet_address_id TEXT NOT NULL,
+  is_sender INTEGER AS Boolean NOT NULL,
+  created_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (transaction_id) REFERENCES transaction_history(id) ON DELETE CASCADE,
+  FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+-- Bảng Security Audit Logs
+CREATE TABLE IF NOT EXISTS security_audit_logs (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT,
+  wallet_address_id TEXT,
+  action TEXT NOT NULL, -- CREATE, VIEW, EDIT, DELETE, EXPORT, VIEW_SENSITIVE, PRIVACY_CHANGE, AUTH_FAILURE
+  details TEXT,
+  device_info TEXT,
+  timestamp INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+-- Bảng User Settings
+CREATE TABLE IF NOT EXISTS user_settings (
+  id TEXT PRIMARY KEY NOT NULL,
+  privacy_mode_enabled INTEGER AS Boolean DEFAULT 0,
+  default_privacy_display TEXT DEFAULT 'PARTIAL', -- FULL, PARTIAL, HIDDEN
+  biometric_auth_enabled INTEGER AS Boolean DEFAULT 0,
+  two_factor_auth_enabled INTEGER AS Boolean DEFAULT 0,
+  sync_enabled INTEGER AS Boolean DEFAULT 0,
+  default_sort_option TEXT DEFAULT 'A_Z', -- A_Z, Z_A, NEWEST, OLDEST, BLOCKCHAIN
+  theme TEXT DEFAULT 'SYSTEM', -- LIGHT, DARK, SYSTEM
+  reminder_settings TEXT,
+  safe_zones TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Bảng Transaction Reminders
+CREATE TABLE IF NOT EXISTS transaction_reminders (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  wallet_address_id TEXT,
+  title TEXT NOT NULL,
+  description TEXT,
+  reminder_date INTEGER NOT NULL,
+  recurrence TEXT DEFAULT 'NONE', -- NONE, DAILY, WEEKLY, MONTHLY, YEARLY
+  status TEXT DEFAULT 'PENDING', -- PENDING, COMPLETED, CANCELLED
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+-- Bảng AppVersion
+CREATE TABLE IF NOT EXISTS app_version (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  version_code INTEGER NOT NULL,
+  version_name TEXT NOT NULL,
+  schema_version INTEGER NOT NULL,
+  last_updated INTEGER NOT NULL, -- Unix timestamp
+  migration_notes TEXT
+);
+
+-- Bảng Offline Queue
+CREATE TABLE IF NOT EXISTS offline_queue (
+  id TEXT PRIMARY KEY NOT NULL,
+  action_type TEXT NOT NULL, -- CREATE, UPDATE, DELETE
+  entity_type TEXT NOT NULL, -- CONTACT, WALLET, TAG, GROUP, etc.
+  entity_id TEXT NOT NULL,
+  queue_data TEXT NOT NULL,
+  attempt_count INTEGER DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+-- Bảng Token Information
+CREATE TABLE IF NOT EXISTS token_information (
+  id TEXT PRIMARY KEY NOT NULL,
+  blockchain_type_id TEXT NOT NULL,
+  token_name TEXT NOT NULL,
+  token_symbol TEXT NOT NULL,
+  contract_address TEXT,
+  icon TEXT,
+  decimals INTEGER NOT NULL DEFAULT 18,
+  is_native INTEGER AS Boolean DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (blockchain_type_id) REFERENCES blockchain_types(id)
+);
+
+-- Bảng Physical Addresses
+CREATE TABLE IF NOT EXISTS physical_addresses (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  street_address TEXT,
+  ward TEXT,
+  district TEXT,
+  city TEXT,
+  state_province TEXT,
+  postal_code TEXT,
+  country TEXT,
+  is_primary INTEGER AS Boolean DEFAULT 1,
+  address_type TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Phone Numbers
+CREATE TABLE IF NOT EXISTS phone_numbers (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  phone_number TEXT NOT NULL,
+  label TEXT,
+  is_primary INTEGER AS Boolean DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Email Addresses
+CREATE TABLE IF NOT EXISTS email_addresses (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  email TEXT NOT NULL,
+  label TEXT,
+  is_primary INTEGER AS Boolean DEFAULT 0,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Related Names
+CREATE TABLE IF NOT EXISTS related_names (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  name TEXT NOT NULL,
+  relationship TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Important Dates
+CREATE TABLE IF NOT EXISTS important_dates (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  date INTEGER NOT NULL, -- Unix timestamp hoặc YYYYMMDD
+  description TEXT NOT NULL,
+  calendar_type TEXT DEFAULT 'SOLAR', -- SOLAR hoặc LUNAR
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Favorites
+CREATE TABLE IF NOT EXISTS favorites (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL UNIQUE,
+  display_order INTEGER NOT NULL,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Bảng Social Profiles
+CREATE TABLE IF NOT EXISTS social_profiles (
+  id TEXT PRIMARY KEY NOT NULL,
+  contact_id TEXT NOT NULL,
+  platform TEXT NOT NULL, -- e.g., "Twitter", "Facebook", "Instagram", "Telegram"
+  username TEXT NOT NULL,
+  url TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Các Query để lấy dữ liệu
+
+-- Lấy contact với đầy đủ thông tin
+getContactById:
+SELECT * FROM contacts WHERE id = ?;
+
+-- Lấy tất cả contacts và phân trang để tối ưu hiệu suất
+getAllContactsPaged:
+SELECT * FROM contacts
+ORDER BY
+  CASE WHEN :sortOrder = 'A_Z' THEN name END ASC,
+  CASE WHEN :sortOrder = 'Z_A' THEN name END DESC,
+  CASE WHEN :sortOrder = 'NEWEST' THEN created_at END DESC,
+  CASE WHEN :sortOrder = 'OLDEST' THEN created_at END ASC
+LIMIT :limit OFFSET :offset;
+
+-- Tìm kiếm contacts theo tên
+searchContacts:
+SELECT * FROM contacts
+WHERE name LIKE '%' || :query || '%'
+ORDER BY name ASC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy wallet addresses của một contact
+getWalletAddressesByContactId:
+SELECT * FROM wallet_addresses WHERE contact_id = ?;
+
+-- Lấy blockchain type
+getBlockchainTypeById:
+SELECT * FROM blockchain_types WHERE id = ?;
+
+-- Lấy tất cả blockchain types
+getAllBlockchainTypes:
+SELECT * FROM blockchain_types WHERE is_active = 1 ORDER BY name ASC;
+
+-- Lấy tags của một contact
+getTagsByContactId:
+SELECT t.* FROM tags t
+INNER JOIN contact_tags ct ON t.id = ct.tag_id
+WHERE ct.contact_id = ?
+ORDER BY t.name ASC;
+
+-- Lấy tất cả tags
+getAllTags:
+SELECT * FROM tags ORDER BY name ASC;
+
+-- Lấy contacts theo tag
+getContactsByTagId:
+SELECT c.* FROM contacts c
+INNER JOIN contact_tags ct ON c.id = ct.contact_id
+WHERE ct.tag_id = ?
+ORDER BY c.name ASC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy groups mà contact thuộc về
+getGroupsByContactId:
+SELECT g.* FROM groups g
+INNER JOIN group_wallet gw ON g.id = gw.group_id
+WHERE gw.contact_id = ?
+ORDER BY g.name ASC;
+
+-- Lấy tất cả groups
+getGroupById:
+SELECT * FROM groups WHERE id = :id ORDER BY name ASC;
+
+-- Filter groups with pagination (matching contacts pattern)
+filterGroups:
+SELECT
+    g.id AS group_id,
+    g.name AS group_name,
+    g.description AS group_description,
+    g.icon AS group_icon,
+    g.color AS group_color,
+    g.privacy_level AS privacy_level,
+    g.security_level AS security_level,
+    g.created_at AS created_at,
+    g.updated_at AS updated_at,
+    bt.id AS main_blockchain_id,
+    bt.name AS main_blockchain_name,
+    bt.symbol AS main_blockchain_symbol,
+    bt.icon AS main_blockchain_icon,
+    COUNT(DISTINCT cg.wallet_address_id) AS wallet_address_count
+FROM
+    groups g
+LEFT JOIN
+    blockchain_types bt ON g.main_blockchain_id = bt.id
+LEFT JOIN
+    group_wallet cg ON g.id = cg.group_id
+WHERE
+    (:query = '' OR g.name LIKE '%' || :query || '%' OR g.description LIKE '%' || :query || '%')
+GROUP BY
+    g.id,
+    g.name,
+    g.description,
+    g.icon,
+    g.color,
+    g.privacy_level,
+    g.security_level,
+    g.created_at,
+    g.updated_at,
+    bt.name,
+    bt.symbol,
+    bt.icon
+ORDER BY
+    g.name COLLATE NOCASE ASC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy contacts trong một group
+getContactsByGroupId:
+SELECT c.* FROM contacts c
+INNER JOIN group_wallet gw ON c.id = gw.contact_id
+WHERE gw.group_id = ?
+ORDER BY c.name ASC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy wallet address được sử dụng trong group
+getWalletAddressForContactInGroup:
+SELECT wa.* FROM wallet_addresses wa
+INNER JOIN group_wallet gw ON wa.id = gw.wallet_address_id
+WHERE gw.contact_id = ? AND gw.group_id = ?;
+
+-- Lấy transaction history của một contact
+getTransactionHistoryByContactId:
+SELECT th.* FROM transaction_history th
+INNER JOIN contact_transactions ct ON th.id = ct.transaction_id
+WHERE ct.contact_id = ?
+ORDER BY th.timestamp DESC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy transaction history của một wallet address
+getTransactionHistoryByWalletAddress:
+SELECT th.* FROM transaction_history th
+WHERE th.from_address = ? OR th.to_address = ?
+ORDER BY th.timestamp DESC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy transaction reminders của một contact
+getRemindersByContactId:
+SELECT * FROM transaction_reminders
+WHERE contact_id = ?
+ORDER BY reminder_date ASC;
+
+-- Lấy physical addresses của một contact
+getPhysicalAddressesByContactId:
+SELECT * FROM physical_addresses WHERE contact_id = ?;
+
+-- Lấy phone numbers của một contact
+getPhoneNumbersByContactId:
+SELECT * FROM phone_numbers WHERE contact_id = ?;
+
+-- Lấy email addresses của một contact
+getEmailAddressesByContactId:
+SELECT * FROM email_addresses WHERE contact_id = ?;
+
+-- Lấy related names của một contact
+getRelatedNamesByContactId:
+SELECT * FROM related_names WHERE contact_id = ?;
+
+-- Lấy important dates của một contact
+getImportantDatesByContactId:
+SELECT * FROM important_dates WHERE contact_id = ?;
+
+-- Lấy danh sách favorites
+getFavoriteContacts:
+SELECT c.* FROM contacts c
+INNER JOIN favorites f ON c.id = f.contact_id
+ORDER BY f.display_order ASC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy recent contacts (đã xem gần đây)
+getRecentContacts:
+SELECT * FROM contacts
+WHERE last_viewed_at IS NOT NULL
+ORDER BY last_viewed_at DESC
+LIMIT :limit;
+
+countTransactions:
+SELECT count(*) FROM transaction_history;
+
+-- Lấy pending transactions
+getPendingTransactions:
+SELECT * FROM transaction_history
+WHERE status = 'PENDING'
+ORDER BY timestamp DESC;
+
+-- Lấy contacts cần đồng bộ
+getContactsToSync:
+SELECT * FROM contacts
+WHERE sync_status = 'PENDING'
+ORDER BY updated_at ASC;
+
+-- Lấy offline queue
+getOfflineQueue:
+SELECT * FROM offline_queue
+ORDER BY created_at ASC;
+
+-- Lấy audit logs cho một contact
+getAuditLogsByContactId:
+SELECT * FROM security_audit_logs
+WHERE contact_id = ?
+ORDER BY timestamp DESC
+LIMIT :limit OFFSET :offset;
+
+-- Lấy tất cả user settings
+getUserSettings:
+SELECT * FROM user_settings
+WHERE id = ?;
+
+-- Lấy app version hiện tại
+getCurrentAppVersion:
+SELECT * FROM app_version
+ORDER BY version_code DESC
+LIMIT 1;
+
+-- Kiểm tra contact có phải favorite không
+isContactFavorite:
+SELECT EXISTS(SELECT 1 FROM favorites WHERE contact_id = ?) AS is_favorite;
+
+-- Count tổng số contacts
+countAllContacts:
+SELECT COUNT(*) FROM contacts;
+
+-- Count số contacts theo tag
+countContactsByTagId:
+SELECT COUNT(*) FROM contact_tags WHERE tag_id = ?;
+
+-- Count số wallets theo group
+countWalletsByGroupId:
+SELECT COUNT(*) FROM group_wallet WHERE group_id = ?;
+
+-- Tìm contact từ email
+findContactByEmail:
+SELECT c.* FROM contacts c
+INNER JOIN email_addresses e ON c.id = e.contact_id
+WHERE e.email = ?;
+
+-- Tìm contact từ phone number
+findContactByPhoneNumber:
+SELECT c.* FROM contacts c
+INNER JOIN phone_numbers p ON c.id = p.contact_id
+WHERE p.phone_number = ?;
+
+-- Tìm contact từ wallet address
+findContactByWalletAddress:
+SELECT c.* FROM contacts c
+INNER JOIN wallet_addresses w ON c.id = w.contact_id
+WHERE w.address = ?;
+
+-- Find contact by exact name
+findContactByName:
+SELECT * FROM contacts
+WHERE name = ? COLLATE NOCASE
+LIMIT 1;
+
+-- Insert/Update Queries (để sử dụng trong repository)
+-- Thêm một contact mới
+insertContact:
+INSERT INTO contacts(
+  id, name, notes, solar_birthday, lunar_birthday, is_sensitive,
+  security_level, privacy_display_mode, auth_requirement,
+  created_at, updated_at, last_viewed_at, sync_status, encrypted_data, avatar
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Cập nhật một contact
+updateContact:
+UPDATE contacts
+SET name = ?,
+    notes = ?,
+    solar_birthday = ?,
+    lunar_birthday = ?,
+    is_sensitive = ?,
+    security_level = ?,
+    privacy_display_mode = ?,
+    auth_requirement = ?,
+    updated_at = ?,
+    sync_status = ?,
+    encrypted_data = ?,
+    avatar= ?
+WHERE id = ?;
+
+-- Cập nhật thời gian xem contact
+updateContactLastViewedAt:
+UPDATE contacts
+SET last_viewed_at = ?
+WHERE id = ?;
+
+-- Thêm wallet address
+insertWalletAddress:
+INSERT INTO wallet_addresses(
+  id, contact_id, blockchain_type_id, address, alias, wallet_type,
+  is_sensitive, is_primary, is_verified, verified_date, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Cập nhật wallet address
+
+-- Find group by exact name
+findGroupByName:
+SELECT * FROM groups
+WHERE name = ? COLLATE NOCASE
+LIMIT 1;
+
+-- Thêm group
+insertGroup:
+INSERT INTO groups(
+  id, name, main_blockchain_id, description, icon, color,
+  privacy_level, security_level, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Cập nhật group
+updateGroup:
+UPDATE groups
+SET name = ?,
+    main_blockchain_id = ?,
+    description = ?,
+    icon = ?,
+    color = ?,
+    privacy_level = ?,
+    security_level = ?,
+    updated_at = ?
+WHERE id = ?;
+
+-- Thêm wallet vào group
+addWalletToGroup:
+INSERT INTO group_wallet(group_id, wallet_address_id, contact_id, created_at)
+VALUES (?, ?, ?, ?);
+
+-- Xóa wallet khỏi group
+removeWalletFromGroup:
+DELETE FROM group_wallet
+WHERE wallet_address_id = ? AND group_id = ?;
+
+-- Thêm favorite
+addFavorite:
+INSERT INTO favorites(id, contact_id, display_order, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?);
+
+-- Xóa favorite
+removeFavorite:
+DELETE FROM favorites
+WHERE contact_id = ?;
+
+-- Xóa contact
+deleteContact:
+DELETE FROM contacts WHERE id = ?;
+
+-- Xóa physical address
+deletePhysicalAddress:
+DELETE FROM physical_addresses WHERE id = ?;
+
+-- Xóa phone number
+deletePhoneNumber:
+DELETE FROM phone_numbers WHERE id = ?;
+
+-- Xóa email address
+deleteEmailAddress:
+DELETE FROM email_addresses WHERE id = ?;
+
+-- Xóa wallet address
+deleteWalletAddress:
+DELETE FROM wallet_addresses WHERE id = ?;
+
+-- Xóa related name
+deleteRelatedName:
+DELETE FROM related_names WHERE id = ?;
+
+-- Xóa important date
+deleteImportantDate:
+DELETE FROM important_dates WHERE id = ?;
+
+-- Xóa tag
+deleteTag:
+DELETE FROM tags WHERE id = ?;
+
+-- Xóa group
+deleteGroup:
+DELETE FROM groups WHERE id = ?;
+
+-- Lấy danh sách social profiles của một contact
+getSocialProfilesByContactId:
+SELECT * FROM social_profiles WHERE contact_id = ?;
+
+-- Thêm social profile
+insertSocialProfile:
+INSERT INTO social_profiles(
+  id, contact_id, platform, username, url, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- Cập nhật social profile
+updateSocialProfile:
+UPDATE social_profiles
+SET platform = ?,
+    username = ?,
+    url = ?,
+    updated_at = ?
+WHERE id = ?;
+
+-- Xóa social profile
+deleteSocialProfile:
+DELETE FROM social_profiles WHERE id = ?;
+
+-- Xóa social profile
+deleteSocialProfileByContactId:
+DELETE FROM social_profiles WHERE contact_id = ?;
+
+-- Thêm phone number
+insertPhoneNumber:
+INSERT INTO phone_numbers(
+  id, contact_id, phone_number, label, is_primary, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- Thêm email address
+insertEmailAddress:
+INSERT INTO email_addresses(
+  id, contact_id, email, label, is_primary, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- Thêm physical address
+insertPhysicalAddress:
+INSERT INTO physical_addresses(
+  id, contact_id, street_address, ward, district, city, state_province, postal_code,
+  country, is_primary, address_type, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Thêm các query sau vào AddressBookDatabase.sq
+
+-- Lấy danh sách wallet address của một contact
+getWalletAddressesForContact:
+SELECT
+  wa.*,
+  bt.name AS network_name,
+  bt.symbol AS network_symbol
+FROM wallet_addresses wa
+JOIN blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE wa.contact_id = ?
+ORDER BY wa.is_primary DESC, wa.created_at DESC
+LIMIT ? OFFSET ?;
+
+-- Lấy danh sách wallet address theo id
+getWalletAddressesById:
+SELECT
+  wa.*,
+  bt.name AS network_name,
+  bt.symbol AS network_symbol
+FROM wallet_addresses wa
+JOIN blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE wa.id = ?;
+
+-- Đếm số wallet address của một contact
+countWalletAddressesForContact:
+SELECT COUNT(*) FROM wallet_addresses WHERE contact_id = ?;
+
+-- Lấy wallet address mặc định của một contact và blockchain type
+getDefaultWalletAddress:
+SELECT * FROM wallet_addresses
+WHERE contact_id = ?
+AND blockchain_type_id = ?
+AND is_primary = 1
+LIMIT 1;
+
+-- Đặt một wallet address làm mặc định
+setWalletAddressAsPrimary:
+UPDATE wallet_addresses
+SET is_primary = 0
+WHERE contact_id = ? AND blockchain_type_id = ?;
+
+-- Lấy wallet address theo blockchain type
+getWalletAddressesByBlockchainType:
+SELECT
+  wa.*,
+  bt.name AS network_name,
+  bt.symbol AS network_symbol
+FROM wallet_addresses wa
+JOIN blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE wa.blockchain_type_id = ?
+ORDER BY wa.is_primary DESC, wa.created_at DESC
+LIMIT ? OFFSET ?;
+
+-- Đặt một wallet address làm mặc định và bỏ mặc định các wallet address khác
+-- clearPrimaryWalletForContactAndBlockchainType:
+-- UPDATE wallet_addresses
+-- SET is_primary = 0
+-- WHERE contact_id = ? AND blockchain_type_id = ?;
+
+-- Cập nhật wallet address
+updateWalletAddress:
+UPDATE wallet_addresses
+SET
+  address = ?,
+  alias = ?,
+  wallet_type = ?,
+  is_primary = ?,
+  is_sensitive = ?,
+  is_verified = ?,
+  blockchain_type_id = ?,
+  verified_date = ?,
+  updated_at = ?
+WHERE id = ?;
+
+-- Xóa các wallet address của một contact
+deleteWalletAddressesByContactId:
+DELETE FROM wallet_addresses WHERE contact_id = ?;
+
+-- Thêm query này vào file .sq của bạn
+updateWalletAddressPrimaryStatus:
+UPDATE wallet_addresses
+SET is_primary = ?,
+    updated_at = ?
+WHERE id = ?;
+
+-- Lấy wallet address theo ID
+getWalletAddressById:
+SELECT * FROM wallet_addresses
+WHERE id = ?
+LIMIT 1;
+
+-- Lấy wallet address theo address string
+getWalletAddressByAddress:
+SELECT * FROM wallet_addresses
+WHERE address = ?
+LIMIT 1;
+
+-- Cập nhật trạng thái xác thực (verified) của wallet address
+updateWalletAddressVerificationStatus:
+UPDATE wallet_addresses
+SET is_verified = ?,
+    verified_date = ?,
+    updated_at = ?
+WHERE id = ?;
+
+-- Đặt tất cả wallet address của một contact và blockchain type thành non-primary
+clearPrimaryWalletForContactAndBlockchainType:
+UPDATE wallet_addresses
+SET is_primary = 0,
+    updated_at = ?
+WHERE contact_id = ?
+AND blockchain_type_id = ?;
+
+-- Đếm số lượng liên kết giữa một wallet và một group cụ thể
+countWalletInGroup:
+SELECT COUNT(*) FROM group_wallet
+WHERE wallet_address_id = ? AND group_id = ?;
+
+-- Lấy tất cả các nhóm có liên quan đến một từ khóa tìm kiếm
+searchGroupsByKeyword:
+SELECT * FROM groups
+WHERE name LIKE '%' || ? || '%' OR description LIKE '%' || ? || '%'
+ORDER BY name ASC;
+
+-- Lấy log audit theo ID
+getAuditLogById:
+SELECT * FROM security_audit_logs
+WHERE id = ?
+LIMIT 1;
+
+-- Lấy một transaction theo ID
+getTransactionById:
+SELECT * FROM transaction_history
+WHERE id = ?
+LIMIT 1;
+
+
+-- new queries
+-- Tag related queries
+
+-- Get all active tags ordered by name
+getActiveTags:
+SELECT *
+FROM tags
+WHERE is_deleted = 0
+ORDER BY name;
+
+-- Get a tag by ID
+getTagById:
+SELECT *
+FROM tags
+WHERE id = ?;
+
+-- Find a tag by name regardless of deleted status
+findTagByName:
+SELECT *
+FROM tags
+WHERE name = ?;
+
+-- Insert a new tag
+insertTag:
+INSERT INTO tags (id, name, color, text_color, icon, is_deleted, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Update an existing tag
+updateTag:
+UPDATE tags
+SET name = ?, color = ?, text_color = ?, icon = ?, updated_at = ?
+WHERE id = ?;
+
+-- Mark a tag as deleted (soft delete)
+markTagAsDeleted:
+UPDATE tags
+SET is_deleted = 1, updated_at = ?
+WHERE id = ?;
+
+-- Restore a previously deleted tag
+restoreTag:
+UPDATE tags
+SET is_deleted = 0, color = ?, text_color = ?, updated_at = ?
+WHERE id = ?;
+
+-- Search active tags by name pattern
+searchActiveTags:
+SELECT *
+FROM tags
+WHERE is_deleted = 0 AND name LIKE ?
+ORDER BY name;
+
+-- Contact-Tag related queries
+
+-- Check if contact-tag association exists
+checkAssociationExists:
+SELECT 1
+FROM contact_tags
+WHERE contact_id = ? AND tag_id = ?
+LIMIT 1;
+
+-- Insert contact tag association
+insertContactTag:
+INSERT INTO contact_tags (contact_id, tag_id, created_at)
+VALUES (?, ?, ?);
+
+-- Remove tag from contact
+removeTagFromContact:
+DELETE FROM contact_tags
+WHERE contact_id = ? AND tag_id = ?;
+
+-- Get all tags for a contact, including those that are soft-deleted
+getTagsForContact:
+SELECT t.*
+FROM contact_tags ct
+JOIN tags t ON ct.tag_id = t.id
+WHERE ct.contact_id = ?
+ORDER BY t.name;
+
+-- Get all active tags for a contact (excluding soft-deleted)
+getActiveTagsForContact:
+SELECT t.*
+FROM contact_tags ct
+JOIN tags t ON ct.tag_id = t.id
+WHERE ct.contact_id = ? AND t.is_deleted = 0
+ORDER BY t.name;
+
+countContactAssociatedWithTagByTagId:
+SELECT COUNT(*)
+FROM contact_tags
+WHERE tag_id = ?;
+
+-- Get all contact IDs with a specific tag
+getContactIdsWithTag:
+SELECT ct.contact_id
+FROM contact_tags ct
+INNER JOIN contacts c ON ct.contact_id = c.id
+WHERE ct.tag_id = ?;
+
+-- Get contact IDs with any of the specified tags (OR logic)
+getContactIdsWithAnyTag:
+SELECT DISTINCT contact_id
+FROM contact_tags
+WHERE tag_id IN ?;
+
+-- Get count of tags per contact
+getTagCountForContact:
+SELECT COUNT(*)
+FROM contact_tags
+WHERE contact_id = ?;
+
+-- Get most used tags (for suggestions)
+getMostUsedTags:
+SELECT t.*, COUNT(ct.contact_id) AS usage_count
+FROM tags t
+JOIN contact_tags ct ON t.id = ct.tag_id
+WHERE t.is_deleted = 0
+GROUP BY t.id
+ORDER BY usage_count DESC
+LIMIT ?;
+
+
+insertBlockchainType:
+INSERT INTO blockchain_types(
+  id, name, symbol, address_format, validation_regex, icon, color, network_type, is_active, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+
+insertTokenInformation:
+INSERT INTO token_information(
+  id, blockchain_type_id, token_name, token_symbol, contract_address, icon, decimals, is_native, created_at, updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+
+getTokenInformationByBlockchainType:
+SELECT * FROM token_information
+WHERE blockchain_type_id = ?;
+
+-- New User Subscription table
+CREATE TABLE IF NOT EXISTS user_subscription (
+  id TEXT PRIMARY KEY NOT NULL,
+  user_setting_id TEXT NOT NULL,
+  subscription_type TEXT NOT NULL,
+  start_date INTEGER NOT NULL,
+  end_date INTEGER,
+  is_active INTEGER AS Boolean NOT NULL DEFAULT 1,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL,
+  FOREIGN KEY (user_setting_id) REFERENCES user_settings(id)
+);
+
+-- Queries for user_subscription table
+getUserSubscription:
+SELECT * FROM user_subscription WHERE user_setting_id = ?;
+
+insertUserSubscription:
+INSERT INTO user_subscription(id, user_setting_id, subscription_type, start_date, end_date, is_active, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+updateUserSubscription:
+UPDATE user_subscription
+SET subscription_type = ?,
+    start_date = ?,
+    end_date = ?,
+    is_active = ?,
+    updated_at = ?
+WHERE id = ?;
+
+deleteUserSubscription:
+DELETE FROM user_subscription WHERE id = ?;
+
+updateBlockchainType:
+UPDATE blockchain_types SET
+  name = ?,
+  symbol = ?,
+  address_format = ?,
+  validation_regex = ?,
+  icon = ?,
+  color = ?,
+  network_type = ?,
+  is_active = ?,
+  updated_at = ?
+WHERE id = ?;
+
+deleteBlockchainType:
+DELETE FROM blockchain_types WHERE id = ?;
+
+deleteTokenInformationByBlockchainTypeId:
+DELETE FROM token_information WHERE blockchain_type_id = ?;
+
+getTokenInformationById:
+SELECT * FROM token_information WHERE id = ?;
+
+-- Bảng lưu ghi chú cho địa chỉ ví
+CREATE TABLE IF NOT EXISTS address_notes (
+    id TEXT PRIMARY KEY NOT NULL,
+    wallet_address_id TEXT NOT NULL,
+    content TEXT NOT NULL,
+    format_options TEXT,
+    created_at TEXT NOT NULL,
+    updated_at TEXT,
+    is_deleted INTEGER NOT NULL DEFAULT 0,
+    ai_suggestion_source TEXT,
+    reminder_date TEXT,
+    FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS address_notes_wallet_address_id ON address_notes(wallet_address_id);
+CREATE INDEX IF NOT EXISTS address_notes_content ON address_notes(content);
+CREATE INDEX IF NOT EXISTS address_notes_created_at ON address_notes(created_at);
+CREATE INDEX IF NOT EXISTS address_notes_is_deleted ON address_notes(is_deleted);
+
+-- Bảng lưu lịch sử thay đổi ghi chú
+CREATE TABLE IF NOT EXISTS address_notes_history (
+    id TEXT PRIMARY KEY NOT NULL,
+    note_id TEXT NOT NULL,
+    wallet_address_id TEXT NOT NULL,
+    old_content TEXT NOT NULL,
+    changed_at TEXT NOT NULL,
+    changed_by TEXT,
+    FOREIGN KEY (note_id) REFERENCES address_notes(id) ON DELETE CASCADE,
+    FOREIGN KEY (wallet_address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS address_notes_history_note_id ON address_notes_history(note_id);
+CREATE INDEX IF NOT EXISTS address_notes_history_wallet_address_id ON address_notes_history(wallet_address_id);
+
+-- Bảng lưu mẫu ghi chú
+CREATE TABLE IF NOT EXISTS note_templates (
+    id TEXT PRIMARY KEY NOT NULL,
+    name TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS note_templates_name ON note_templates(name);
+
+-- Câu truy vấn lấy ghi chú theo địa chỉ ví
+getAddressNotesByWalletAddressId:
+SELECT *
+FROM address_notes
+WHERE wallet_address_id = ? AND is_deleted = 0
+ORDER BY created_at DESC;
+
+-- Câu truy vấn lấy ghi chú theo ID
+getAddressNoteById:
+SELECT *
+FROM address_notes
+WHERE id = ? AND is_deleted = 0;
+
+-- Câu truy vấn thêm ghi chú
+insertAddressNote:
+INSERT INTO address_notes(id, wallet_address_id, content, format_options, created_at, updated_at, is_deleted, ai_suggestion_source, reminder_date)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Câu truy vấn cập nhật ghi chú
+updateAddressNote:
+UPDATE address_notes
+SET content = ?, format_options = ?, updated_at = ?, ai_suggestion_source = ?, reminder_date = ?
+WHERE id = ?;
+
+-- Câu truy vấn xóa ghi chú (soft delete)
+softDeleteAddressNote:
+UPDATE address_notes
+SET is_deleted = 1, updated_at = ?
+WHERE id = ?;
+
+-- Câu truy vấn tìm kiếm ghi chú theo nội dung
+searchAddressNotes:
+SELECT *
+FROM address_notes
+WHERE wallet_address_id = ? AND content LIKE '%' || ? || '%' AND is_deleted = 0
+ORDER BY created_at DESC;
+
+-- Câu truy vấn lấy lịch sử ghi chú
+getAddressNoteHistoryByNoteId:
+SELECT *
+FROM address_notes_history
+WHERE note_id = ?
+ORDER BY changed_at DESC;
+
+-- Câu truy vấn thêm lịch sử ghi chú
+insertAddressNoteHistory:
+INSERT INTO address_notes_history(id, note_id, wallet_address_id, old_content, changed_at, changed_by)
+VALUES (?, ?, ?, ?, ?, ?);
+
+-- Câu truy vấn lấy tất cả mẫu ghi chú
+getAllNoteTemplates:
+SELECT *
+FROM note_templates
+ORDER BY name ASC;
+
+-- Câu truy vấn lấy mẫu ghi chú theo ID
+getNoteTemplateById:
+SELECT *
+FROM note_templates
+WHERE id = ?;
+
+-- Câu truy vấn thêm mẫu ghi chú
+insertNoteTemplate:
+INSERT INTO note_templates(id, name, content, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?);
+
+-- Câu truy vấn cập nhật mẫu ghi chú
+updateNoteTemplate:
+UPDATE note_templates
+SET name = ?, content = ?, updated_at = ?
+WHERE id = ?;
+
+-- Câu truy vấn xóa mẫu ghi chú
+deleteNoteTemplate:
+DELETE FROM note_templates
+WHERE id = ?;
+
+
+-- Update important date
+updateImportantDate:
+UPDATE important_dates
+SET date = ?,
+    description = ?,
+    calendar_type = ?,
+    updated_at = ?
+WHERE id = ?;
+
+-- Get physical address by ID
+getPhysicalAddressById:
+SELECT * FROM physical_addresses
+WHERE id = ?
+LIMIT 1;
+
+
+-- Insert important date
+insertImportantDate:
+INSERT INTO important_dates(id, contact_id, date, description, calendar_type, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+-- Insert related name
+insertRelatedName:
+INSERT INTO related_names(id, contact_id, name, relationship, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?);
+
+-- Update related name
+updateRelatedName:
+UPDATE related_names
+SET name = ?,
+    relationship = ?,
+    updated_at = ?
+WHERE id = ?;
+
+clearPrimaryPhysicalAddressForContact:
+UPDATE physical_addresses
+SET is_primary = 0,
+    updated_at = ?
+WHERE contact_id = ?
+AND id != ?;
+
+
+-- Update physical address
+updatePhysicalAddress:
+UPDATE physical_addresses
+SET street_address = ?,
+    ward = ?,
+    district = ?,
+    city = ?,
+    state_province = ?,
+    postal_code = ?,
+    country = ?,
+    is_primary = ?,
+    address_type = ?,
+    updated_at = ?
+WHERE id = ?;
+
+
+-- mark address as primary
+markAddressAsPrimary:
+UPDATE physical_addresses
+SET is_primary = 1,
+    updated_at = ?
+WHERE id = ?;
+
+
+-- Get the maximum display order from favorites
+getMaxDisplayOrderFromFavorites:
+SELECT COALESCE(MAX(display_order), 0) AS max_order FROM favorites;
+
+-- Get contact in Ids
+getContactsInIds:
+SELECT * FROM contacts
+WHERE id IN ?;
+
+-- getContactIdsWithBlockchainIds
+getContactsByBlockchainIds:
+SELECT *
+FROM contacts
+WHERE id IN (
+    SELECT DISTINCT contact_id
+    FROM wallet_addresses
+    WHERE blockchain_type_id IN ?
+)
+ORDER BY name ASC
+LIMIT :limit OFFSET :offset;
+
+-- Get contact IDs with multiple filters
+filterContacts:
+SELECT
+    c.id AS contact_id,
+    c.name AS contact_name,
+    wa.id AS wallet_address_id,
+    wa.address AS wallet_address,
+    wa.alias AS wallet_alias,
+    wa.is_primary AS is_primary_address,
+    wa.is_sensitive AS is_sensitive,
+    bt.name AS blockchain_name,
+    bt.symbol AS blockchain_symbol,
+    bt.icon AS blockchain_icon,
+    bt.color AS blockchain_color,
+    CASE WHEN f.contact_id IS NOT NULL THEN 1 ELSE 0 END AS is_favorite,
+    c.avatar,
+    c.is_sensitive AS isSensitive,
+    c.privacy_display_mode AS privacy_display_mode,
+    -- Check if contact is in a specific tag (for address selection with pre-selected checkboxes)
+    CASE
+        WHEN :checkTagId IS NULL OR :checkTagId = '' THEN 0
+        ELSE CASE WHEN EXISTS(
+            SELECT 1 FROM contact_tags ct
+            WHERE ct.contact_id = c.id AND ct.tag_id = :checkTagId
+        ) THEN 1 ELSE 0 END
+    END AS is_in_checked_tag
+FROM contacts c
+LEFT JOIN
+    wallet_addresses wa ON c.id = wa.contact_id AND wa.is_primary = 1
+LEFT JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+LEFT JOIN
+    favorites f ON c.id = f.contact_id
+WHERE
+  -- Filter by favorites if requested
+  (:onlyFavorites = 0 OR EXISTS (SELECT 1 FROM favorites f WHERE f.contact_id = c.id))
+
+  -- Name/Search filter
+  AND (:query = '' OR
+     c.name LIKE '%' || :query || '%' OR
+     wa.address LIKE '%' || :query || '%' OR
+     wa.alias LIKE '%' || :query || '%' OR
+     bt.symbol LIKE '%' || :query || '%')
+
+  -- Filter by tags if requested
+  AND (
+    :hasTagFilters = 0 OR c.id IN (
+      SELECT DISTINCT ct.contact_id
+      FROM contact_tags ct
+      WHERE ct.tag_id IN :tagIds
+    )
+  )
+
+  -- Filter by groups if requested
+  AND (
+    :hasGroupFilters = 0 OR c.id IN (
+      SELECT DISTINCT gw.contact_id
+      FROM group_wallet gw
+      WHERE gw.group_id IN :groupIds
+    )
+  )
+
+  -- Filter by blockchain if requested
+  AND (
+    :hasBlockchainFilters = 0 OR c.id IN (
+      SELECT DISTINCT wa.contact_id
+      FROM wallet_addresses wa
+      WHERE wa.blockchain_type_id IN :blockchainIds
+    )
+  )
+ORDER BY
+  CASE :sortOrder
+    WHEN 'name_asc' THEN c.name
+    WHEN 'name_desc' THEN c.name
+    WHEN 'date_asc' THEN c.created_at
+    WHEN 'date_desc' THEN c.created_at
+  END
+  || ' ' ||
+  CASE :sortOrder
+    WHEN 'name_asc' THEN 'ASC'
+    WHEN 'name_desc' THEN 'DESC'
+    WHEN 'date_asc' THEN 'ASC'
+    WHEN 'date_desc' THEN 'DESC'
+  END
+LIMIT :limit OFFSET :offset;
+
+-- Get contact by group id in
+getContactsByGroupIdIn:
+SELECT c.* FROM contacts c
+INNER JOIN group_wallet gw ON c.id = gw.contact_id
+WHERE gw.group_id IN ?
+ORDER BY c.name ASC
+LIMIT :limit OFFSET :offset;
+
+-- Thêm mới user settings
+insertUserSettings:
+INSERT INTO user_settings(
+  id,
+  privacy_mode_enabled,
+  default_privacy_display,
+  biometric_auth_enabled,
+  two_factor_auth_enabled,
+  sync_enabled,
+  default_sort_option,
+  theme,
+  reminder_settings,
+  safe_zones,
+  created_at,
+  updated_at
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Get recent contacts with search functionality
+selectRecentContactsWithSearch:
+SELECT
+    th.id AS transactionId,
+    COALESCE(c.id, 'unknown_' || th.to_address) AS contactId,
+    COALESCE(c.name, 'Unknown') AS contactName,
+    COALESCE(wa.address, CASE WHEN th.is_from_imported_wallet THEN th.to_address ELSE th.from_address END) AS walletAddress,
+    COALESCE(wa.id, 'unknown') AS walletAddressId,
+    COALESCE(wa.alias, '') AS walletAlias,
+    COALESCE(wa.is_sensitive, 0) AS isSensitive,
+    th.blockchain_type_id,
+    COALESCE(bt.name, 'Unknown Network') AS blockchainName,
+    COALESCE(bt.symbol, th.token_symbol) AS blockchainSymbol,
+    COALESCE(bt.icon, '') AS blockchainIcon,
+    th.timestamp AS lastTransactionTime,
+    th.amount AS lastTransactionAmount,
+    th.token_symbol AS lastTokenSymbol,
+    th.status AS transactionStatus,
+    th.note AS transactionNote,
+    COALESCE(ct.is_sender, th.is_from_imported_wallet) AS isSender,
+    CASE WHEN f.contact_id IS NOT NULL THEN 1 ELSE 0 END AS isFavorite,
+    c.avatar,
+    c.privacy_display_mode AS privacyDisplayMode
+FROM
+    transaction_history th
+LEFT JOIN
+    contact_transactions ct ON th.id = ct.transaction_id
+LEFT JOIN
+    contacts c ON ct.contact_id = c.id
+LEFT JOIN
+    wallet_addresses wa ON ct.wallet_address_id = wa.id
+LEFT JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+LEFT JOIN
+    favorites f ON c.id = f.contact_id
+WHERE
+    th.status IN :statuses
+    AND (:searchQuery IS NULL OR :searchQuery = '' OR 
+         COALESCE(c.name, th.to_address) LIKE '%' || :searchQuery || '%' OR 
+         COALESCE(wa.address, th.to_address, th.from_address) LIKE '%' || :searchQuery || '%' OR
+         COALESCE(bt.symbol, th.token_symbol) LIKE '%' || :searchQuery || '%')
+ORDER BY
+    th.timestamp DESC
+LIMIT :limit OFFSET :offset;
+
+-- Cập nhật user settings
+updateUserSettings:
+UPDATE user_settings
+SET
+  privacy_mode_enabled = ?,
+  default_privacy_display = ?,
+  biometric_auth_enabled = ?,
+  two_factor_auth_enabled = ?,
+  sync_enabled = ?,
+  default_sort_option = ?,
+  theme = ?,
+  reminder_settings = ?,
+  safe_zones = ?,
+  updated_at = ?
+WHERE id = ?;
+
+-- Get favorite contacts with search functionality
+getFavoritesContactsWithSearch:
+SELECT DISTINCT
+    c.id AS contact_id,
+    c.name AS contact_name,
+    wa.id AS wallet_address_id,
+    wa.address AS wallet_address,
+    wa.alias AS wallet_alias,
+    wa.is_primary AS is_primary_address,
+    wa.is_sensitive AS is_sensitive,
+    bt.name AS blockchain_name,
+    bt.symbol AS blockchain_symbol,
+    bt.icon AS blockchain_icon,
+    bt.color AS blockchain_color,
+    c.avatar,
+    c.is_sensitive AS isSensitive,
+    c.privacy_display_mode AS privacy_display_mode
+FROM
+    contacts c
+INNER JOIN
+    favorites f ON c.id = f.contact_id
+LEFT JOIN
+    wallet_addresses wa ON c.id = wa.contact_id AND (wa.is_primary = 1 OR (SELECT COUNT(*) FROM wallet_addresses WHERE contact_id = c.id) = 1)
+LEFT JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    (:searchQuery IS NULL OR :searchQuery = '' OR 
+     c.name LIKE '%' || :searchQuery || '%' OR 
+     wa.address LIKE '%' || :searchQuery || '%' OR
+     wa.alias LIKE '%' || :searchQuery || '%' OR
+     bt.symbol LIKE '%' || :searchQuery || '%')
+ORDER BY
+    f.display_order ASC,
+    c.name ASC
+LIMIT :limit OFFSET :offset;
+
+filterContactsV2:
+SELECT
+    c.id AS contact_id,
+    c.name AS contact_name,
+    wa.id AS wallet_address_id,
+    wa.address AS wallet_address,
+    wa.alias AS wallet_alias,
+    wa.is_primary AS is_primary_address,
+    wa.is_sensitive AS is_sensitive,
+    bt.name AS blockchain_name,
+    bt.symbol AS blockchain_symbol,
+    bt.icon AS blockchain_icon,
+    bt.color AS blockchain_color,
+    c.avatar,
+    c.is_sensitive AS isSensitive,
+    c.privacy_display_mode AS privacy_display_mode
+FROM contacts c
+LEFT JOIN
+    wallet_addresses wa ON c.id = wa.contact_id
+LEFT JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+  -- Filter by favorites if requested
+  (:onlyFavorites = 0 OR EXISTS (SELECT 1 FROM favorites f WHERE f.contact_id = c.id))
+
+  -- Name/Search filter
+  AND (:query = '' OR c.name LIKE '%' || :query || '%')
+
+  -- Filter by tags if requested
+  AND (
+    :hasTagFilters = 0 OR c.id IN (
+      SELECT DISTINCT ct.contact_id
+      FROM contact_tags ct
+      WHERE ct.tag_id IN :tagIds
+    )
+  )
+
+  -- Filter by groups if requested
+  AND (
+    :hasGroupFilters = 0 OR c.id IN (
+      SELECT DISTINCT gw.contact_id
+      FROM group_wallet gw
+      WHERE gw.group_id IN :groupIds
+    )
+  )
+
+  -- Filter by blockchain if requested
+  AND (
+    :hasBlockchainFilters = 0 OR c.id IN (
+      SELECT DISTINCT wa.contact_id
+      FROM wallet_addresses wa
+      WHERE wa.blockchain_type_id IN :blockchainIds
+    )
+  )
+ORDER BY
+  CASE :sortOrder
+    WHEN 'name_asc' THEN c.name
+    WHEN 'name_desc' THEN c.name
+    WHEN 'date_asc' THEN c.created_at
+    WHEN 'date_desc' THEN c.created_at
+  END
+  || ' ' ||
+  CASE :sortOrder
+    WHEN 'name_asc' THEN 'ASC'
+    WHEN 'name_desc' THEN 'DESC'
+    WHEN 'date_asc' THEN 'ASC'
+    WHEN 'date_desc' THEN 'DESC'
+  END
+LIMIT :limit OFFSET :offset;
+
+insertContactTransaction:
+INSERT OR REPLACE INTO contact_transactions (
+    id,
+    contact_id,
+    transaction_id,
+    wallet_address_id,
+    is_sender,
+    created_at
+) VALUES (
+    :id,
+    :contactId,
+    :transactionId,
+    :walletAddressId,
+    :isSender,
+    :createdAt
+);
+
+-- insertTransactionHistory
+insertTransactionHistory:
+INSERT OR REPLACE INTO transaction_history (
+    id,
+    from_address,
+    to_address,
+    blockchain_type_id,
+    amount,
+    token_symbol,
+    transaction_hash,
+    status,
+    timestamp,
+    fee,
+    note,
+    is_from_imported_wallet
+) VALUES (
+    :id,
+    :fromAddress,
+    :toAddress,
+    :blockchainTypeId,
+    :amount,
+    :tokenSymbol,
+    :transactionHash,
+    :status,
+    :timestamp,
+    :fee,
+    :note,
+    :isFromImportedWallet
+);
+
+getGroupById2:
+SELECT
+    g.id AS group_id,
+    g.name AS group_name,
+    g.description AS group_description,
+    g.icon AS group_icon,
+    g.color AS group_color,
+    g.privacy_level AS privacy_level,
+    g.security_level AS security_level,
+    g.created_at AS created_at,
+    g.updated_at AS updated_at,
+    bt.id AS main_blockchain_id,
+    bt.name AS main_blockchain_name,
+    bt.symbol AS main_blockchain_symbol,
+    bt.icon AS main_blockchain_icon,
+    COUNT(DISTINCT cg.wallet_address_id) AS wallet_address_count
+FROM
+    groups g
+LEFT JOIN
+    blockchain_types bt ON g.main_blockchain_id = bt.id
+LEFT JOIN
+    group_wallet cg ON g.id = cg.group_id
+WHERE
+    g.id = ?
+GROUP BY
+    g.id,
+    g.name,
+    g.description,
+    g.icon,
+    g.color,
+    g.privacy_level,
+    g.security_level,
+    g.created_at,
+    g.updated_at,
+    bt.name,
+    bt.symbol,
+    bt.icon;
+
+updateGroupMainBlockchain:
+UPDATE groups
+SET main_blockchain_id = ?,
+    updated_at = ?
+WHERE id = ?;
+
+
+getWalletAddressByGroupId:
+SELECT
+    c.id AS contact_id,
+    c.name AS contact_name,
+    c.is_sensitive AS contact_is_sensitive,
+    wa.id AS wallet_address_id,
+    wa.address AS wallet_address,
+    wa.alias AS wallet_alias,
+    wa.is_primary AS is_primary_address,
+    wa.is_verified AS is_verified,
+    wa.verified_date AS verified_date,
+    bt.id AS blockchain_type_id,
+    bt.name AS blockchain_name,
+    bt.symbol AS blockchain_symbol,
+    bt.icon AS blockchain_icon,
+    bt.color AS blockchain_color,
+    gw.created_at AS added_to_group_at,
+    c.avatar,
+    c.is_sensitive AS isSensitive
+FROM
+    group_wallet gw
+JOIN
+    contacts c ON gw.contact_id = c.id
+JOIN
+    wallet_addresses wa ON gw.wallet_address_id = wa.id
+JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    gw.group_id = :groupId
+ORDER BY
+    c.name ASC,
+    wa.is_primary DESC,
+    gw.created_at DESC
+LIMIT :limit OFFSET :offset;
+
+deleteGroupWalletsByGroupId:
+DELETE FROM group_wallet
+WHERE group_id = ?;
+
+getGroupWalletsByGroupId:
+SELECT group_id, wallet_address_id, contact_id, created_at
+FROM group_wallet
+WHERE group_id = ?;
+
+getContactsWithAddressesByGroupId:
+SELECT
+    c.id AS contact_id, c.name, c.notes, c.solar_birthday, c.lunar_birthday,
+    c.is_sensitive, c.security_level, c.privacy_display_mode, c.auth_requirement,
+    c.created_at AS contact_created_at, c.updated_at AS contact_updated_at,
+    c.last_viewed_at, c.sync_status, c.encrypted_data,
+    w.id AS wallet_id, w.contact_id AS wallet_contact_id, w.blockchain_type_id,
+    w.address, w.alias, w.wallet_type, w.is_sensitive AS wallet_is_sensitive,
+    w.is_primary, w.is_verified, w.verified_date,
+    w.created_at AS wallet_created_at, w.updated_at AS wallet_updated_at
+FROM group_wallet gw
+JOIN contacts c ON gw.contact_id = c.id
+JOIN wallet_addresses w ON gw.wallet_address_id = w.id
+WHERE gw.group_id = ?;
+
+-- Get active tags with contact count
+getActiveTagsWithContactCount:
+SELECT
+    t.*,
+    COUNT(ct.contact_id) AS contact_count
+FROM tags t
+LEFT JOIN (
+    SELECT ct.tag_id, ct.contact_id
+    FROM contact_tags ct
+    INNER JOIN contacts c ON ct.contact_id = c.id
+) ct ON t.id = ct.tag_id
+WHERE t.is_deleted = 0
+    AND (:query = '' OR t.name LIKE '%' || :query || '%')
+GROUP BY t.id, t.name, t.color, t.is_deleted, t.created_at, t.updated_at
+ORDER BY t.name COLLATE NOCASE ASC
+LIMIT :limit OFFSET :offset;
+
+-- Get all contact-tag pairs
+getAllContactTagPairs:
+SELECT contact_id, tag_id
+FROM contact_tags;
+
+-- Clean up orphaned contact-tag entries where contact no longer exists
+cleanupOrphanedContactTags:
+DELETE FROM contact_tags
+WHERE contact_id NOT IN (SELECT id FROM contacts);
+
+getContactsWithAddressesByBlockchainType:
+SELECT
+    c.id AS contact_id, c.name, c.notes, c.solar_birthday, c.lunar_birthday,
+    c.is_sensitive, c.security_level, c.privacy_display_mode, c.auth_requirement,
+    c.created_at AS contact_created_at, c.updated_at AS contact_updated_at,
+    c.last_viewed_at, c.sync_status, c.encrypted_data,
+    w.id AS wallet_id, w.contact_id AS wallet_contact_id, w.blockchain_type_id,
+    w.address, w.alias, w.wallet_type, w.is_sensitive AS wallet_is_sensitive,
+    w.is_primary, w.is_verified, w.verified_date,
+    w.created_at AS wallet_created_at, w.updated_at AS wallet_updated_at
+FROM wallet_addresses w
+JOIN contacts c ON w.contact_id = c.id
+WHERE w.blockchain_type_id = ?;
+
+-- Create the address_tags table
+CREATE TABLE IF NOT EXISTS address_tags (
+  address_id TEXT NOT NULL,
+  tag_id TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  PRIMARY KEY (address_id, tag_id),
+  FOREIGN KEY (address_id) REFERENCES wallet_addresses(id) ON DELETE CASCADE,
+  FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Check if address-tag association exists
+checkAddressTagAssociationExists:
+SELECT 1
+FROM address_tags
+WHERE address_id = ? AND tag_id = ?
+LIMIT 1;
+
+-- Insert address tag association
+insertAddressTag:
+INSERT INTO address_tags (address_id, tag_id, created_at)
+VALUES (?, ?, ?);
+
+-- Remove tag from address
+removeTagFromAddress:
+DELETE FROM address_tags
+WHERE address_id = ? AND tag_id = ?;
+
+-- Get all address IDs with a specific tag
+getAddressIdsWithTag:
+SELECT address_id
+FROM address_tags
+WHERE tag_id = ?;
+
+-- Get all tags for a specific address
+getTagsForAddress:
+SELECT t.*
+FROM address_tags at
+JOIN tags t ON at.tag_id = t.id
+WHERE at.address_id = ?
+ORDER BY t.name;
+
+-- Count addresses for each tag (for UI display)
+countAddressesByTagId:
+SELECT COUNT(*)
+FROM address_tags
+WHERE tag_id = ?;
+
+-- Get active tags with their address count
+getActiveTagsWithAddressCount:
+SELECT
+    t.*,
+    COUNT(at.address_id) AS address_count
+FROM tags t
+LEFT JOIN address_tags at ON t.id = at.tag_id
+WHERE t.is_deleted = 0
+GROUP BY t.id, t.name, t.color, t.text_color, t.is_deleted, t.created_at, t.updated_at
+ORDER BY t.name;
+
+-- Query to get distinct contact IDs in a group with pagination
+getContactsByGroupIdPaginated:
+SELECT DISTINCT
+    c.id AS contact_id,
+    c.name AS contact_name,
+    MIN(gw.created_at) AS first_added_at
+FROM
+    group_wallet gw
+JOIN
+    contacts c ON gw.contact_id = c.id
+WHERE
+    gw.group_id = ?
+GROUP BY
+    c.id, c.name
+ORDER BY
+    first_added_at DESC
+LIMIT ? OFFSET ?;
+
+-- Query to get all wallet addresses for a contact in a group
+getWalletAddressesForContactInGroup:
+SELECT
+    wa.id AS wallet_address_id,
+    wa.address AS wallet_address,
+    wa.alias AS wallet_alias,
+    wa.is_sensitive AS wallet_is_sensitive,
+    bt.name AS blockchain_name,
+    bt.symbol AS blockchain_symbol,
+    bt.icon AS blockchain_icon,
+    bt.color AS blockchain_color,
+    gw.created_at AS added_to_group_at
+FROM
+    wallet_addresses wa
+JOIN
+    group_wallet gw ON wa.id = gw.wallet_address_id
+JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    gw.contact_id = ? AND gw.group_id = ?;
+
+-- Query to count total distinct contacts in a group
+countDistinctContactsInGroup:
+SELECT COUNT(DISTINCT contact_id) FROM group_wallet WHERE group_id = ?;
+
+-- Optimized query for getting GroupWallet information
+getGroupWalletsByWalletIds:
+SELECT
+    wa.id AS wallet_id,
+    wa.alias AS wallet_alias,
+    wa.wallet_type AS wallet_type,
+    wa.address AS wallet_address,
+    c.name AS contact_name,
+    bt.symbol AS blockchain_symbol,
+    wa.is_sensitive AS is_sensitive,
+    wa.contact_id AS contact_id
+FROM
+    wallet_addresses wa
+JOIN
+    contacts c ON wa.contact_id = c.id
+JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    wa.id IN :walletIds;
+    
+-- Query to get wallet addresses filtered by blockchain and wallet alias for the AddWalletToGroup feature
+getGroupWalletsByBlockchainAndAlias:
+SELECT
+    wa.id AS wallet_id,
+    wa.alias AS wallet_alias,
+    wa.wallet_type AS wallet_type,
+    wa.address AS wallet_address,
+    c.id AS contact_id,
+    c.name AS contact_name,
+    bt.symbol AS blockchain_symbol,
+    wa.is_sensitive AS is_sensitive
+FROM
+    wallet_addresses wa
+JOIN
+    contacts c ON wa.contact_id = c.id
+JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    wa.blockchain_type_id = :blockchainId
+    AND (
+        :searchQuery = '' 
+        OR wa.alias LIKE '%' || :searchQuery || '%' 
+        OR wa.address LIKE '%' || :searchQuery || '%'
+        OR c.name LIKE '%' || :searchQuery || '%'
+    )
+ORDER BY
+    c.name ASC,
+    wa.is_primary DESC
+LIMIT :limit OFFSET :offset;
+
+-- Count query for pagination of wallet addresses filtered by blockchain and search
+countGroupWalletsByBlockchainAndAlias:
+SELECT COUNT(*)
+FROM
+    wallet_addresses wa
+JOIN
+    contacts c ON wa.contact_id = c.id
+WHERE
+    wa.blockchain_type_id = :blockchainId
+    AND (
+        :searchQuery = '' 
+        OR wa.alias LIKE '%' || :searchQuery || '%' 
+        OR wa.address LIKE '%' || :searchQuery || '%'
+        OR c.name LIKE '%' || :searchQuery || '%'
+    );
+
+-- Query to get minimal group wallet information for display
+getGroupWalletsForDisplay:
+SELECT
+    wa.id AS wallet_id,
+    wa.alias AS wallet_alias,
+    wa.wallet_type AS wallet_type,
+    wa.address AS wallet_address,
+    c.name AS contact_name,
+    bt.symbol AS blockchain_type_symbol,
+    wa.is_sensitive AS is_sensitive,
+    wa.contact_id AS contact_id
+FROM
+    group_wallet gw
+JOIN
+    contacts c ON gw.contact_id = c.id
+JOIN
+    wallet_addresses wa ON gw.wallet_address_id = wa.id
+JOIN
+    blockchain_types bt ON wa.blockchain_type_id = bt.id
+WHERE
+    gw.group_id = :groupId
+ORDER BY
+    c.name ASC,
+    wa.is_primary DESC
+LIMIT :limit OFFSET :offset;
+
+-- =====================================================
+-- AVATAR HISTORY TABLES
+-- =====================================================
+
+-- Bảng Avatar History - Lưu lịch sử sử dụng avatar
+CREATE TABLE IF NOT EXISTS avatar_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    avatar_source_hash TEXT NOT NULL UNIQUE,
+    avatar_source_type TEXT NOT NULL, -- 'emoji', 'image', 'default', 'none'
+    avatar_source_value TEXT NOT NULL, -- emoji text, image path, or resource name
+    first_used_at INTEGER NOT NULL,
+    last_used_at INTEGER NOT NULL,
+    usage_count INTEGER DEFAULT 1,
+    is_global_favorite INTEGER AS Boolean DEFAULT 0
+);
+
+-- Indexes cho performance
+CREATE INDEX IF NOT EXISTS idx_avatar_history_recent ON avatar_history(last_used_at DESC);
+CREATE INDEX IF NOT EXISTS idx_avatar_history_popular ON avatar_history(usage_count DESC, last_used_at DESC);
+CREATE INDEX IF NOT EXISTS idx_avatar_history_hash ON avatar_history(avatar_source_hash);
+CREATE INDEX IF NOT EXISTS idx_avatar_history_favorites ON avatar_history(is_global_favorite, last_used_at DESC);
+
+-- Note: Triggers removed as SQLDelight doesn't support them
+-- Cleanup and promotion logic will be handled in Kotlin code
+
+-- =====================================================
+-- AVATAR HISTORY QUERIES
+-- =====================================================
+
+-- Insert or update avatar usage
+insertOrUpdateAvatarUsage:
+INSERT OR REPLACE INTO avatar_history (
+    avatar_source_hash,
+    avatar_source_type,
+    avatar_source_value,
+    first_used_at,
+    last_used_at,
+    usage_count,
+    is_global_favorite
+) VALUES (
+    ?,
+    ?,
+    ?,
+    COALESCE((SELECT first_used_at FROM avatar_history WHERE avatar_source_hash = ?), ?),
+    ?,
+    COALESCE((SELECT usage_count FROM avatar_history WHERE avatar_source_hash = ?) + 1, 1),
+    COALESCE((SELECT is_global_favorite FROM avatar_history WHERE avatar_source_hash = ?), 0)
+);
+
+-- Get recent avatars
+getRecentAvatars:
+SELECT * FROM avatar_history
+ORDER BY last_used_at DESC
+LIMIT :limit OFFSET :offset;
+
+-- Get popular avatars
+getPopularAvatars:
+SELECT * FROM avatar_history
+WHERE usage_count >= 3 OR is_global_favorite = 1
+ORDER BY usage_count DESC, last_used_at DESC
+LIMIT :limit;
+
+-- Get global favorite avatars
+getGlobalFavoriteAvatars:
+SELECT * FROM avatar_history
+WHERE is_global_favorite = 1
+ORDER BY usage_count DESC, last_used_at DESC;
+
+-- Search avatars by type or value
+searchAvatars:
+SELECT * FROM avatar_history
+WHERE avatar_source_type LIKE '%' || ? || '%'
+   OR avatar_source_value LIKE '%' || ? || '%'
+ORDER BY usage_count DESC, last_used_at DESC
+LIMIT :limit;
+
+-- Get avatar by hash
+getAvatarByHash:
+SELECT * FROM avatar_history
+WHERE avatar_source_hash = ?;
+
+-- Update usage count
+updateAvatarUsageCount:
+UPDATE avatar_history
+SET usage_count = ?, last_used_at = ?
+WHERE avatar_source_hash = ?;
+
+-- Delete old avatars (for cleanup)
+deleteOldAvatars:
+DELETE FROM avatar_history
+WHERE last_used_at < ? AND is_global_favorite = 0;
+
+-- Get total avatar count
+getTotalAvatarCount:
+SELECT COUNT(*) FROM avatar_history;
+
+-- Promote avatar to global favorite
+promoteToGlobalFavorite:
+UPDATE avatar_history
+SET is_global_favorite = 1
+WHERE avatar_source_hash = ?;
+
+-- Remove from global favorites
+removeFromGlobalFavorites:
+UPDATE avatar_history
+SET is_global_favorite = 0
+WHERE avatar_source_hash = ?;
+
+-- Clear all avatar history
+clearAvatarHistory:
+DELETE FROM avatar_history;
+
+-- Get oldest non-favorite avatars for cleanup
+getOldestNonFavoriteAvatars:
+SELECT * FROM avatar_history
+WHERE is_global_favorite = 0
+ORDER BY last_used_at ASC, usage_count ASC
+LIMIT :limit;
+
+-- Delete avatar by hash
+deleteAvatarByHash:
+DELETE FROM avatar_history
+WHERE avatar_source_hash = ?;
+
+-- =====================================================
+-- CLEAR USER DATA QUERIES FOR WALLET RESET
+-- =====================================================
+
+-- Clear all contacts (CASCADE will handle related data)
+clearAllContacts:
+DELETE FROM contacts;
+
+-- Clear all groups (CASCADE will handle group_wallet)
+clearAllGroups:
+DELETE FROM groups;
+
+-- Clear user-created tags (preserve default tags)
+clearUserTags:
+DELETE FROM tags 
+WHERE id NOT IN ('family', 'friends', 'work', 'exchange', 'favorite', 'investment', 'blacklist');
+
+-- Clear transaction history
+clearAllTransactionHistory:
+DELETE FROM transaction_history;
+
+-- Clear user settings (will be recreated with defaults)
+clearAllUserSettings:
+DELETE FROM user_settings;
+
+-- Clear offline queue
+clearAllOfflineQueue:
+DELETE FROM offline_queue;
+
+-- Clear note templates
+clearAllNoteTemplates:
+DELETE FROM note_templates;
+
+-- Clear avatar history
+clearAllAvatarHistory:
+DELETE FROM avatar_history;
+
+-- Clear user subscription
+clearAllUserSubscription:
+DELETE FROM user_subscription;
+
+-- Clear remote keys (cache data)
+clearAllRecentTxRemoteKeys:
+DELETE FROM RecentTxRemoteKey;
+
+-- =====================================================
+-- ADDRESSBOOK REMOTE KEY TABLE
+-- =====================================================
+
+-- Remote key table for addressbook recent transactions pagination
+CREATE TABLE IF NOT EXISTS RecentTxRemoteKey (
+    query TEXT NOT NULL,
+    last_requested_page INTEGER DEFAULT NULL,
+    last_updated_at INTEGER NOT NULL,
+    end_of_pagination_reached INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (query)
+);
+
+-- Get remote key by query and blockchain
+getRecentTxRemoteKeyByQuery:
+SELECT * FROM RecentTxRemoteKey
+WHERE query = ?;
+
+-- Insert or replace remote key
+insertOrReplaceRecentTxRemoteKey:
+INSERT OR REPLACE INTO RecentTxRemoteKey
+(query, last_requested_page, last_updated_at, end_of_pagination_reached)
+VALUES (?, ?, ?, ?);
+
+-- Delete remote key by query and blockchain
+deleteRecentTxRemoteKeyByQuery:
+DELETE FROM RecentTxRemoteKey
+WHERE query = ?;
+
+-- Get last updated timestamp for cache validation
+getRecentTxLastUpdatedTimestamp:
+SELECT last_updated_at FROM RecentTxRemoteKey
+WHERE query = ?;
+
+-- =====================================================
+-- INITIAL DATA SETUP
+-- =====================================================
+
+-- Insert default blockchain types
+-- Insert default mainnet blockchain types (using main app blockchain UIDs)
+insertDefaultBlockchainTypes:
+INSERT OR IGNORE INTO blockchain_types (id, name, symbol, address_format, validation_regex, icon, color, network_type, is_active, created_at, updated_at)
+VALUES 
+    -- Use main app blockchain UIDs to ensure compatibility
+    ('ethereum', 'Ethereum', 'ETH', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.ethereum', '#627eea', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('bitcoin', 'Bitcoin', 'BTC', 'base58/bech32', '^(1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,39}$', 'MR.images.bitcoin', '#f7931a', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('binance-smart-chain', 'Binance Smart Chain', 'BNB', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.binance_smart_chain', '#f0b90b', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('solana', 'Solana', 'SOL', 'base58', '^[1-9A-HJ-NP-Za-km-z]{32,44}$', 'MR.images.solana', '#9945ff', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('polygon-pos', 'Polygon', 'MATIC', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.polygon', '#8247e5', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('avalanche', 'Avalanche', 'AVAX', 'hex (0x...) hoặc bech32', '^(0x[a-fA-F0-9]{40}|avax1[0-9a-z]{38})$', 'MR.images.avalanche', '#e84142', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('fantom', 'Fantom', 'FTM', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.fantom', '#1969ff', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('optimistic-ethereum', 'Optimism', 'OP', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.optimism', '#ff0420', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('arbitrum-one', 'Arbitrum One', 'ARB', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.arbitrum', '#28a0f0', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('gnosis', 'Gnosis', 'xDAI', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.gnosis', '#04795b', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('eos', 'Vaulta', 'A', 'account name', '^[a-z1-5.]{1,12}$', 'MR.images.vaulta', '#443f54', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('eos-evm', 'Vaulta EVM', 'EOS', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.vaulta', '#443f54', 'mainnet', 1, strftime('%s', 'now'), strftime('%s', 'now'));
+
+-- Insert default testnet blockchain types (separate from mainnet)
+insertDefaultTestnetBlockchainTypes:
+INSERT OR IGNORE INTO blockchain_types (id, name, symbol, address_format, validation_regex, icon, color, network_type, is_active, created_at, updated_at)
+VALUES 
+    ('ethereum-goerli', 'Ethereum Goerli', 'ETH', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.ethereum', '#627eea', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('ethereum-sepolia', 'Ethereum Sepolia', 'ETH', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.ethereum', '#627eea', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('ethereum-holesky', 'Ethereum Holesky', 'ETH', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.ethereum', '#627eea', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('bsc-testnet', 'BSC Test Net', 'BNB', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.binance_smart_chain', '#f0b90b', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('polygon-mumbai', 'Polygon Mumbai', 'MATIC', 'hex (0x...)', '^0x[a-fA-F0-9]{40}$', 'MR.images.polygon', '#8247e5', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('bitcoin-testnet4', 'Bitcoin Testnet4', 'BTC', 'base58/bech32', '^(1|3|bc1)[a-zA-HJ-NP-Z0-9]{25,39}$', 'MR.images.bitcoin', '#f7931a', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('eos-jungle-testnet', 'Vaulta Jungle Testnet', 'EOS', 'account name', '^[a-z1-5.]{1,12}$', 'MR.images.vaulta', '#443f54', 'testnet', 1, strftime('%s', 'now'), strftime('%s', 'now'));
+
+-- Insert default tags
+insertDefaultTags:
+INSERT OR IGNORE INTO tags (id, name, color, text_color, icon, is_deleted, created_at, updated_at)
+VALUES 
+    ('family', 'Gia đình', '#FFB6C1', '#000000', 'emoji:👨‍👩‍👧‍👦', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('friends', 'Bạn bè', '#87CEFA', '#000000', 'emoji:🧑‍🤝‍🧑', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('work', 'Công việc', '#FFD700', '#000000', 'emoji:💼', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('exchange', 'Sàn giao dịch', '#90EE90', '#000000', 'emoji:🏦', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('favorite', 'Yêu thích', '#FFA07A', '#000000', 'emoji:⭐', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('investment', 'Đầu tư', '#BA55D3', '#FFFFFF', 'emoji:📈', 0, strftime('%s', 'now'), strftime('%s', 'now')),
+    ('blacklist', 'Danh sách đen', '#A9A9A9', '#FFFFFF', 'emoji:🚫', 0, strftime('%s', 'now'), strftime('%s', 'now'));

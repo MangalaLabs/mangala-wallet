@@ -1,0 +1,12 @@
+Mangala Wallet - Antelope Module
+Copyright 2023-2024 Mangala Wallet
+
+This product includes software derived from eos-jvm
+(https://github.com/memtrip/eos-jvm)
+Copyright 2013-present memtrip LTD.
+Licensed under the Apache License, Version 2.0
+
+This product includes cryptographic software adapted from BouncyCastle
+(https://www.bouncycastle.org/)
+Copyright (c) 2000-2021 The Legion of the Bouncy Castle Inc.
+Licensed under the MIT License

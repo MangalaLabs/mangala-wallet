@@ -1,0 +1,2 @@
+ALTER TABLE AntelopeAccountEntity
+ADD COLUMN is_notification_registered INTEGER NOT NULL DEFAULT 0;

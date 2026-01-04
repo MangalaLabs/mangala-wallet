@@ -1,0 +1,28 @@
+package com.mangala.wallet.features.chains.antelope_base.domain.model.actions
+
+object ActionId {
+    const val LOG_SELL_RAM = "eosio:logsellram"
+    const val SELL_RAM = "eosio:sellram"
+    const val LOG_BUY_RAM = "eosio:logbuyram"
+    const val BUY_RAM = "eosio:buyram"
+    const val BUY_RAM_BYTES = "eosio:buyrambytes"
+    const val LOG_RAM_CHANGE = "eosio:logramchange"
+    const val RAM_TRANSFER = "eosio:ramtransfer"
+    const val TOKEN_TRANSFER = "eosio.token:transfer"
+    const val NEW_VAULTA_TOKEN_TRANSFER = "core.vaulta:transfer"
+    const val ALL_TOKEN_TRANSFER = "*:transfer"
+    const val NEW_ACCOUNT = "eosio:newaccount"
+    const val LINK_AUTH = "eosio:linkauth"
+    const val UPDATE_AUTH = "eosio:updateauth"
+    const val RENT_CPU = "eosio:rentcpu"
+    const val RENT_NET = "eosio:rentnet"
+    const val DEPOSIT = "eosio:deposit"
+    const val POWERUP = "eosio:powerup"
+    const val DELEGATE_BANDWIDTH = "eosio:delegatebw"
+    const val MSIG_PROPOSE = "eosio.msig:propose"
+    const val MSIG_EXECUTE = "eosio.msig:exec"
+    const val MSIG_CANCEL = "eosio.msig:cancel"
+    const val MSIG_APPROVE = "eosio.msig:approve"
+    const val MSIG_UNAPPROVE = "eosio.msig:unapprove"
+    const val RAM_BURN = "eosio:ramburn"
+}

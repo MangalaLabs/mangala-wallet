@@ -1,0 +1,1194 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* Buton label for Edit action */
+"action.generic.edit" = "Редактировать";
+
+/* Button label for a generic show action */
+"action.generic.show" = "Показать";
+
+/* Button label for Undo action */
+"action.generic.undo" = "Отменить";
+
+/* Add action - button shown in alert */
+"action.title.add" = "Добавить";
+
+/* Confirmation of Bookmark action in add to bookmark alert */
+"action.title.bookmark" = "Добавить в закладки";
+
+/* Button: Open bookmarks list */
+"action.title.bookmarks" = "Закладки";
+
+/* Cancel action - button shown in alert */
+"action.title.cancel" = "Отменить";
+
+/* Copy action */
+"action.title.copy" = "Копировать";
+
+/* Floating message indicating URL has been copied */
+"action.title.copy.message" = "Адрес скопирован";
+
+/* Disable protection action */
+"action.title.disable.protection" = "Отключить защиту конфиденциальности";
+
+/* Downloads menu item opening the downlods list */
+"action.title.downloads" = "Загрузки";
+
+/* Edit Bookmark action */
+"action.title.edit.bookmark" = "Редактировать закладку";
+
+/* Enable protection action */
+"action.title.enable.protection" = "Включить защиту конфиденциальности";
+
+/* No comment provided by engineer. */
+"action.title.forgetAll" = "Закрыть вкладки и удалить данные";
+
+/* Confirmation message */
+"action.title.forgetAllDone" = "Вкладки и данные сброшены";
+
+/* Open in New Background Tab action */
+"action.title.newBackgroundTabForUrl" = "Открыть в фоновом режиме";
+
+/* Create New Tab action */
+"action.title.newTabAction" = "Новая вкладка";
+
+/* Open in New Tab action */
+"action.title.newTabForUrl" = "Открыть в новой вкладке";
+
+/* Open action */
+"action.title.open" = "Открыть";
+
+/* Paste and Go action */
+"action.title.pasteAndGo" = "Вставить и перейти";
+
+/* Print action */
+"action.title.print" = "Распечатать";
+
+/* Refresh action - button shown in alert */
+"action.title.refresh" = "Обновить";
+
+/* Remove Favorite action */
+"action.title.remove.favorite" = "Удалить из избранного";
+
+/* Report broken site action */
+"action.title.reportBrokenSite" = "Сообщить о неработающем сайте";
+
+/* Action to reload current page in desktop mode */
+"action.title.request.desktop.site" = "Полная версия сайта";
+
+/* Action to reload current page in mobile mode */
+"action.title.request.mobile.site" = "Мобильная версия";
+
+/* Save action - button shown in alert */
+"action.title.save" = "Сохранить";
+
+/* Add to Bookmarks action */
+"action.title.save.bookmark" = "Добавить закладку";
+
+/* Add to Favorites action */
+"action.title.save.favorite" = "Добавить в избранное";
+
+/* Settings action */
+"action.title.settings" = "Настройки";
+
+/* Share action */
+"action.title.share" = "Поделиться";
+
+/* No comment provided by engineer. */
+"addWidget.button" = "Добавить виджет";
+
+/* No comment provided by engineer. */
+"addWidget.description" = "Быстрый доступ к конфиденциальному поиску и любимым сайтам.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.firstParagraph" = "Удерживайте нажатие на домашнем экране, чтобы запустить режим настройки.";
+
+/* Replacement string is a plus button icon. */
+"addWidget.settings.secondParagraph.%@" = "Нажмите кнопку «плюс» %@.";
+
+/* No comment provided by engineer. */
+"addWidget.settings.title" = "Найдите и выберите Mangala Wallet. Затем выберите виджет.";
+
+/* No comment provided by engineer. */
+"addWidget.title" = "Доступ к любимым сайтам в одно касание.";
+
+/* No comment provided by engineer. */
+"alert.message.bookmarkAll" = "Существующие закладки дублироваться не будут.";
+
+/* Question from confirmation dialog */
+"alert.title.bookmarkAll" = "Добавить все вкладки в закладки?";
+
+/* Disable protection alert */
+"alert.title.disable.protection" = "Добавить в незащищенные сайты";
+
+/* Disable potection alert placeholder - leave as it is */
+"alert.title.disable.protection.placeholder" = "www.example.com";
+
+/* Save Bookmark action */
+"alert.title.save.bookmark" = "Сохранить закладку";
+
+/* Save Favorite action */
+"alert.title.save.favorite" = "Сохранить в избранное";
+
+/* Shown on authentication screen */
+"app.authentication.unlock" = "Разблокируйте Mangala Wallet.";
+
+/* Authentication Alert Sign In Button */
+"auth.alert.login.button" = "Войти";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.encrypted" = "Войдите в %@. Ваши учетные данные надежно защищены.";
+
+/* Authentication Alert - populated with a domain name */
+"auth.alert.message.plain" = "Войдите в %@. Ваш пароль передается по незащищенному каналу (соединение не зашифровано).";
+
+/* Authentication Password field placeholder */
+"auth.alert.password.placeholder" = "Пароль";
+
+/* Authentication Alert Title */
+"auth.alert.title" = "Требуется авторизация";
+
+/* Authentication User name field placeholder */
+"auth.alert.username.placeholder" = "Имя пользователя";
+
+/* No comment provided by engineer. */
+"autoclear.off" = "Выключено";
+
+/* No comment provided by engineer. */
+"autoclear.on" = "Включено";
+
+/* Add bookmark screen title */
+"bookmark.addBookmark.title" = "Добавить закладку";
+
+/* Add favorite screen title */
+"bookmark.addFavorite.title" = "Добавить в избранное";
+
+/* Add folder screen title */
+"bookmark.addFolder.title" = "Добавить папку";
+
+/* Add bookmark folder button text */
+"bookmark.addFolderButton" = "Добавить папку";
+
+/* Placeholder in the add bookmark form */
+"bookmark.address.placeholder" = "www.example.com";
+
+/* Delete bookmark folder alert delete button */
+"bookmark.deleteFolderAlert.deleteButton" = "Удалить";
+
+/* Delete bookmark folder alert message plural */
+"bookmark.deleteFolderAlert.message.plural" = "Действительно удалить эту папку и пункты (%i)?";
+
+/* Delete bookmark folder alert message */
+"bookmark.deleteFolderAlert.message.singular" = "Действительно удалить эту папку и %i пункт?";
+
+/* Delete bookmark folder alert title */
+"bookmark.deleteFolderAlert.title" = "Удалить %@?";
+
+/* Edit bookmark screen title */
+"bookmark.editBookmark.title" = "Редактировать закладку";
+
+/* Edit favorite screen title */
+"bookmark.editFavorite.title" = "Изменить избранное";
+
+/* Edit folder screen title */
+"bookmark.editFolder.title" = "Изменить папку";
+
+/* Header for folder selection for bookmarks */
+"bookmark.folderSelect.title" = "Геопозиция";
+
+/* More options button text */
+"bookmark.moreButton" = "больше";
+
+/* Placeholder in the add bookmark form */
+"bookmark.title.placeholder" = "Название сайта";
+
+/* Top level bookmarks folder title */
+"bookmark.topLevelFolder.title" = "Закладки";
+
+/* Info message after selecting Bookmark All button */
+"bookmarkAll.tabs.failed" = "Все вкладки сохранены в закладках";
+
+/* Confirmation message after selecting Bookmark All button */
+"bookmarkAll.tabs.saved" = "Все вкладки добавлены в закладки";
+
+/* No comment provided by engineer. */
+"bookmarks.button.hint" = "Закладки";
+
+/* Failure message when bookmarks failed to export */
+"bookmarks.export.failed.message" = "Экспортировать закладки не удалось. Пожалуйста, повторите попытку.";
+
+/* Confirmation message that bookmarks have been exported to the file system */
+"bookmarks.export.files.success.message" = "Закладки экспортированы.";
+
+/* Confirmation message that bookmarks have been shared successfully to another app */
+"bookmarks.export.share.success.message" = "Закладки переданы.";
+
+/* Title of option to export HTML */
+"bookmarks.exportAction.title" = "Экспорт в файл HTML";
+
+/* Failure message when bookmarks failed to import */
+"bookmarks.import.failed.message" = "К сожалению, мы не можем импортировать данный файл.";
+
+/* Confirmation message that bookmarks have been imported */
+"bookmarks.import.success.message" = "Закладки импортированы.";
+
+/* Title of option to import HTML */
+"bookmarks.importAction.title" = "Импорт из файла HTML";
+
+/* Import bookmark file button text */
+"bookmarks.importExport.footer.button.title" = "Импортировать закладки из другого браузера";
+
+/* Title of prompt for users where they can choose to import or export an HTML file containing webpage bookmarks */
+"bookmarks.importExport.title" = "Импортировать файл HTML с закладками из другого браузера или экспортировать свои закладки.";
+
+/* Broken Site Category */
+"brokensite.category.comments" = "Не загружаются комментарии";
+
+/* Broken Site Category */
+"brokensite.category.content" = "Отсутствует содержимое";
+
+/* Broken Site Category */
+"brokensite.category.images" = "Не загружаются изображения";
+
+/* Broken Site Category */
+"brokensite.category.links" = "Не работают ссылки или кнопки";
+
+/* Broken Site Category */
+"brokensite.category.login" = "Не удается войти";
+
+/* Broken Site Category */
+"brokensite.category.other" = "Что-то другое";
+
+/* Broken Site Category */
+"brokensite.category.paywall" = "Сайт попросил меня отключить";
+
+/* Broken Site Category */
+"brokensite.category.unsupported" = "Несовместимость браузера";
+
+/* Broken Site Category */
+"brokensite.category.videos" = "Не воспроизводится видео";
+
+/* Broken Site Section Title */
+"brokensite.sectionTitle" = "ОПИШИТЕ, ЧТО СЛУЧИЛОСЬ";
+
+/* Title for a section containing only items from past month */
+"date.range.past-month" = "За последний месяц";
+
+/* Title for a section containing only items from past week */
+"date.range.past-week" = "За последнюю неделю";
+
+/* Title for a section containing only items from today */
+"date.range.today" = "Сегодня";
+
+/* Title for a section containing only items from yesterday */
+"date.range.yesterday" = "Вчера";
+
+/* No comment provided by engineer. */
+"dax.hide.button" = "Скрыть подсказки навсегда";
+
+/* No comment provided by engineer. */
+"dax.hide.cancel" = "Отменить";
+
+/* Subtitle in Hide Dax dialog */
+"dax.hide.message" = "Их немного, и мы постарались сделать их информативными.";
+
+/* Title in Hide Dax dialog */
+"dax.hide.title" = "Скрыть другие подсказки?";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search" = "Ваши поисковые запросы в Mangala Wallet анонимны. Все и всегда. 🙌";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.after.search.cta" = "Уф!";
+
+/* First parameter is a count of additional trackers, second and third are names of the tracker networks (strings) */
+"dax.onboarding.browsing.multiple.trackers" = "dax.onboarding.browsing.multiple.trackers";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.multiple.trackers.cta" = "Дай пять!";
+
+/* Parameter is domain name (string) */
+"dax.onboarding.browsing.one.tracker" = "Сайт *%1$@* пытался вести за вами слежку.\n\nНо мы его заблокировали!\n\n☝️ Заходя на новый сайт, вы всегда можете проверить, шпионит ли он за вами: просто загляните в адресную строку.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.one.tracker.cta" = "Дай пять!";
+
+/* First paramter is a string - network name, 2nd parameter is a string - domain name */
+"dax.onboarding.browsing.site.is.major.tracker" = "Внимание! Мы не можем скрыть вашу активность от %1$@ на %2$@.\n\nИспользуйте наш браузер, и мы сократим объем собираемой о вас информации, заблокировав трекеры %1$@ на других сайтах.";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.site.is.major.tracker.cta" = "Понятно";
+
+/* Parameters are domain names (strings) */
+"dax.onboarding.browsing.site.owned.by.major.tracker" = "Внимание! Так как %1$@ принадлежит сети %2$@, мы не можем скрыть вашу активность на этом ресурсе.\n\nИспользуйте наш браузер, и мы сократим объем собираемой о вас информации, заблокировав трекеры %2$@ на других сайтах.";
+
+/* Got It */
+"dax.onboarding.browsing.site.owned.by.major.tracker.cta" = "Понятно";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers" = "Вы жмете на кнопки и листаете страницы — мы блокируем трекеры.\n\nПользуйтесь сайтами без страха!";
+
+/* No comment provided by engineer. */
+"dax.onboarding.browsing.without.trackers.cta" = "Понятно";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button" = "В браузере могут скапливаться личные данные. Фу! Пользуйтесь кнопкой «Огонь», чтобы сжечь весь лишний мусор. Попробуйте сами! 👇";
+
+/* Cancel action */
+"dax.onboarding.fire.button.cancelAction" = "Отменить";
+
+/* Encourage user to try clearing data with the fire button */
+"dax.onboarding.fire.button.confirmAction" = "Закрыть вкладки и удалить данные";
+
+/* Encourage user to add favorite site using the browsing menu. */
+"dax.onboarding.home.add.favorite" = "Посещайте любимые сайты в мгновение ока! \n\nЗайдите на сайт, который вам нравится. Затем нажмите значок «⋯» и выберите *Добавить в избранное*.";
+
+/* Accessible version of dax.onboarding.home.add.favorite */
+"dax.onboarding.home.add.favorite.accessible" = "Посещайте любимые сайты в мгновение ока! Посетите один из своих любимых сайтов. Затем нажмите кнопку меню и выберите «Добавить в избранное».";
+
+/* No comment provided by engineer. */
+"dax.onboarding.home.initial" = "А теперь попробуйте заглянуть на любимый сайт!\n\nМы заблокируем трекеры и пресечем слежку. И даже постараемся повысить безопасность соединения 🔒";
+
+/* ad = advertisment */
+"dax.onboarding.home.subsequent" = "Проще некуда!\n\nПросматривать сайтам с нами — значит навсегда попрощаться с назойливой рекламой 👍";
+
+/* No comment provided by engineer. */
+"dax.onboarding.message" = "Интернет набит трекерами.\n\nНо выход есть! Пользоваться сетью без слежки проще, чем вы думали.";
+
+/* GPC Setting state */
+"donotsell.disabled" = "Отключено";
+
+/* No comment provided by engineer. */
+"donotsell.disclaimer.learnmore" = "Узнать больше";
+
+/* GPC Setting state */
+"donotsell.enabled" = "Включено";
+
+/* No comment provided by engineer. */
+"donotsell.info.headertext" = "Mangala Wallet блокирует многие трекеры автоматически. Функция «Глобальный контроль конфиденциальности» (GPC) позволяет затребовать от участвующих в программе сайтов остановить передачу и продажу ваших личных данных другим компаниям.";
+
+/* Alert action for starting a file dowload */
+"downloads.alert.action.save-to-downloads" = "Сохранить в «Загрузки»";
+
+/* Cancel download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.cancel" = "Отменить";
+
+/* Message for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.message" = "Вы точно хотите отменить эту загрузку?";
+
+/* Resume download action for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.resume" = "Продолжить";
+
+/* Title for alert when trying to cancel the file download */
+"downloads.cancel-download.alert.title" = "Отменить загрузку?";
+
+/* Button for deleting all items on downloads list */
+"downloads.downloads-list.delete-all" = "Удалить все";
+
+/* Empty downloads list placholder */
+"downloads.downloads-list.empty" = "Пока ничего не загружено";
+
+/* Label displaying file download progress. Both parameters are formatted data size measurements e.g. 5MB. First parameter is data size currently downloaded. Second parameter is total expected data size of the file. */
+"downloads.downloads-list.row.downloading" = "Загружается файл %1$@ из %2$@";
+
+/* Label displaying file download progress. The parameter is formatted data size measurements currently downloaded e.g. 5MB. */
+"downloads.downloads-list.row.downloadingUnknownTotalSize" = "Загружается %@";
+
+/* Downloads list screen title */
+"downloads.downloads-list.title" = "Загрузки";
+
+/* Additional alert message shown when there are active downloads when using the fire button */
+"downloads.fire-button.alert.message" = "Текущие загрузки также будут отменены";
+
+/* Message confirming that all files on the downloads list have been deleted */
+"downloads.message.all-files-deleted" = "Все файлы удалены";
+
+/* Message confirming that the download process has completed. Parameter is downloaded file's filename */
+"downloads.message.download-complete" = "Завершена загрузка файла %@";
+
+/* Message confirming the file was deleted. Parameter is file's filename */
+"downloads.message.download-deleted" = "Файл %@ удален";
+
+/* Message informing that the download has failed due to connection issues */
+"downloads.message.download-failed" = "Ошибка загрузки. Проверьте подключение к интернету.";
+
+/* Message confirming that the download process has started. Parameter is downloaded file's filename */
+"downloads.message.download-started" = "Началась загрузка файла %@";
+
+/* Cancel option for the email alias alert */
+"email.aliasAlert.decline" = "Отменить";
+
+/* Option for generating a private email address */
+"email.aliasAlert.generatePrivateAddress" = "Сгенерировать приватный адрес";
+
+/* Title for the email alias selection alert */
+"email.aliasAlert.title" = "Блокировать почтовые трекеры с адресом Duck";
+
+/* Parameter is an email address (string) */
+"email.aliasAlert.useUserAddress" = "Использовать %@";
+
+/* Title for the email copy browsing menu alert */
+"email.browsingMenu.alert" = "Новый адрес скопирован в буфер обмена";
+
+/* Email option title in the browsing menu */
+"email.browsingMenu.useNewDuckAddress" = "Создать адрес на Duck";
+
+/* Signed in state for the email feature */
+"email.settings.enabled" = "Включено";
+
+/* Footer text for the email feature */
+"email.settings.footer" = "Снятие почтовой защиты на данном устройстве лишит вас возможности вносить свой личный адрес на Duck или свежесгенерированный приватный адрес Duck в поле для электронной почты при посещении сайтов.<br/><br/>Если вы хотите полностью удалить свои адреса Duck, задать нам вопрос или отправить отзывы и предложения, пишите нам: support@duck.com.";
+
+/* Signed out state for the email feature */
+"email.settings.off" = "Выключено";
+
+/* Cancel option for the email sign out alert */
+"email.signOutAlert.cancel" = "Отменить";
+
+/* Description for the email sign out alert */
+"email.signOutAlert.description" = "Внимание: снятие почтовой защиты на этом устройстве не ведет к удалению вашего адреса на Duck.";
+
+/* Remove option for the email sign out alert */
+"email.signOutAlert.remove" = "Удалить";
+
+/* Title for the email sign out alert */
+"email.signOutAlert.title" = "Удалить защиту почты?";
+
+/* Error text when failing to join the waitlist */
+"email.waitlist.error-joining" = "При постановке в очередь произошла ошибка. Пожалуйста, повторите попытку позже";
+
+/* Action button text for the email waitlist */
+"email.waitlist.get-started" = "Приступим!";
+
+/* Invite code button text for the email waitlist */
+"email.waitlist.have-invite-code" = "У меня есть пригласительный код";
+
+/* Header text for the email waitlist */
+"email.waitlist.invited" = "Вас пригласили!";
+
+/* Action button text for the email waitlist */
+"email.waitlist.join" = "Приглашаем встать в очередь";
+
+/* Header text for the email waitlist */
+"email.waitlist.joined" = "Вас добавили в список ожидания!";
+
+/* First parameter is 'get a notification', second is 'Learn more'. */
+"email.waitlist.joined.no-notification" = "Когда настанет время, ваше приглашение появится здесь. Хотите %1$@, когда оно придет? %2$@ о защите почты.";
+
+/* Notification text for the email waitlist */
+"email.waitlist.joined.no-notification.get-notification" = "получить уведомление";
+
+/* Description text for the email waitlist. Parameter is 'Learn more.' */
+"email.waitlist.joined.notification" = "Мы отправим вам уведомление, когда защита почты станет вам доступна. %@.";
+
+/* Footer text for the email waitlist */
+"email.waitlist.learn-more" = "Узнать больше";
+
+/* Body text for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.body" = "Мы отправим вам уведомление, когда вы сможете начать пользоваться защитой почты.";
+
+/* Title for the permission notification for the email waitlist */
+"email.waitlist.notification-permission.title" = "Оповестить, когда подойдет ваша очередь?";
+
+/* Body text for the email waitlist notification */
+"email.waitlist.notification.body" = "Ранее вы встали в очередь и попросили нас оповестить вас о возможности применить защиту почты.";
+
+/* Decline option for the permission notification for the email waitlist */
+"email.waitlist.notification.no-thanks" = "Нет, спасибо";
+
+/* Accept option for the permission notification for the email waitlist */
+"email.waitlist.notification.notify-me" = "ОПОВЕСТИТЬ";
+
+/* Title for the email waitlist notification */
+"email.waitlist.notification.title" = "Ваше приглашение воспользоваться защитой почты";
+
+/* Footer text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.privacy-guarantee" = "Мы не храним вашу электронную почту. %@.";
+
+/* Header text for the email waitlist */
+"email.waitlist.privacy-simplified" = "Надежная защита почты и ничего лишнего.";
+
+/* Description text for the email waitlist. Parameter is 'Learn more'. */
+"email.waitlist.summary" = "Оказывается, чтобы избавиться от трекеров и скрыть свой адрес,<br/>вовсе не нужно менять почтовый сервис. %@.";
+
+/* Empty list state placholder */
+"empty.bookmarks" = "Закладок пока нет";
+
+/* Empty list state placholder */
+"empty.favorites" = "В избранное пока ничего не добавлено";
+
+/* Empty search placeholder on bookmarks search */
+"empty.search" = "Ничего не найдено";
+
+/* No comment provided by engineer. */
+"favorite" = "Избранное";
+
+/* No comment provided by engineer. */
+"favorite.menu.delete" = "Удалить";
+
+/* No comment provided by engineer. */
+"favorite.menu.edit" = "Редактировать";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.ads" = "Блокировка рекламы и всплывающих окон";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.bookmarks" = "Создание закладок/управление закладками";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.caption" = "Какую функцию браузера мы могли бы добавить или улучшить?";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.description" = "Проблемы с функциями браузера";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.entry" = "Функции браузера отсутствуют или плохо работают";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.images" = "Работа с изображениями";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.navigation" = "Переход вперед и назад и/или обновление страницы";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.other" = "Ничего из перечисленного";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.tabs" = "Создание вкладок/управление вкладками";
+
+/* No comment provided by engineer. */
+"feedback.browserFeatures.videos" = "Просмотр видео";
+
+/* No comment provided by engineer. */
+"feedback.customization.bookmarks" = "Формат отображения закладок";
+
+/* No comment provided by engineer. */
+"feedback.customization.caption" = "Какие элементы настройки мы могли бы добавить или улучшить?";
+
+/* No comment provided by engineer. */
+"feedback.customization.description" = "Проблемы с пользовательской настройкой";
+
+/* No comment provided by engineer. */
+"feedback.customization.entry" = "Мало вариантов настройки на свой вкус";
+
+/* No comment provided by engineer. */
+"feedback.customization.homeScreen" = "Конфигурация главного экрана";
+
+/* No comment provided by engineer. */
+"feedback.customization.other" = "Ничего из перечисленного";
+
+/* No comment provided by engineer. */
+"feedback.customization.tabs" = "Формат отображения вкладок";
+
+/* No comment provided by engineer. */
+"feedback.customization.ui" = "Интерфейс приложения";
+
+/* No comment provided by engineer. */
+"feedback.customization.whatIsCleared" = "Тип данных, подлежащих сбросу";
+
+/* No comment provided by engineer. */
+"feedback.customization.whenIsCleared" = "Время сброса данных";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.autocomplete" = "Улучшение автозаполнения";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.caption" = "Какую функцию поиска мы могли бы добавить или улучшить?";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.description" = "Проблемы с поиском Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.entry" = "Не устраивает поиск в Mangala Wallet";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.languageOrRegion" = "Поиск по определённому языку или региону";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.layout" = "Оформление должно быть больше похоже на поиск Google";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.loadTime" = "Ускорение загрузки";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.other" = "Ничего из перечисленного";
+
+/* No comment provided by engineer. */
+"feedback.ddgSearch.technical" = "Программирование/технический поиск";
+
+/* No comment provided by engineer. */
+"feedback.form.caption" = "Что мы можем улучшить?";
+
+/* Confirmation button */
+"feedback.form.submit" = "Отправить";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.genericPlaceholder" = "Опишите максимально подробно";
+
+/* No comment provided by engineer. */
+"feedback.negative.form.placeholder" = "Хотите добавить что-то конкретное?";
+
+/* No comment provided by engineer. */
+"feedback.negative.header" = "Очень жаль";
+
+/* No comment provided by engineer. */
+"feedback.negative.supplementary" = "Что именно вам не понравилось?";
+
+/* No comment provided by engineer. */
+"feedback.other.description" = "Другие проблемы";
+
+/* No comment provided by engineer. */
+"feedback.other.entry" = "Ничего из перечисленного";
+
+/* No comment provided by engineer. */
+"feedback.performance.caption" = "Какие проблемы у вас возникают?";
+
+/* No comment provided by engineer. */
+"feedback.performance.crashes" = "Приложение вылетает или зависает";
+
+/* No comment provided by engineer. */
+"feedback.performance.description" = "Проблемы с производительностью";
+
+/* No comment provided by engineer. */
+"feedback.performance.entry" = "Приложение работает слишком медленно, часто возникают ошибки или сбои";
+
+/* No comment provided by engineer. */
+"feedback.performance.other" = "Ничего из перечисленного";
+
+/* No comment provided by engineer. */
+"feedback.performance.playback" = "Видео или медиа воспроизводится с ошибками";
+
+/* No comment provided by engineer. */
+"feedback.performance.slowLoading" = "Медленно загружаются страницы или результаты поиска";
+
+/* Header above input field */
+"feedback.positive.form.header" = "Добавить комментарий";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.placeholder" = "Что вам больше всего понравилось?";
+
+/* No comment provided by engineer. */
+"feedback.positive.form.supplementary" = "Хотите добавить комментарий для нашей команды разработчиков?";
+
+/* No comment provided by engineer. */
+"feedback.positive.header" = "Приятно слышать!";
+
+/* No comment provided by engineer. */
+"feedback.positive.noThanks" = "Нет, спасибо. У меня пока всё";
+
+/* Button encouraging uses to share details aboout their feedback */
+"feedback.positive.submit" = "Добавить комментарий";
+
+/* No comment provided by engineer. */
+"feedback.start.footer" = "Ваш отзыв важен для нас. Он полностью анонимный.";
+
+/* No comment provided by engineer. */
+"feedback.start.header" = "Итак, начнем!";
+
+/* No comment provided by engineer. */
+"feedback.start.supplementary" = "К какой категории вы бы отнесли свой отзыв?";
+
+/* No comment provided by engineer. */
+"feedback.submitted.confirmation" = "Спасибо! Ваш отзыв отправлен.";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.description" = "Проблемы с загрузкой сайтов";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.entry" = "Некоторые сайты загружаются с ошибками";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.placeholder" = "С какими видами содержимого возникли проблемы?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.supplementary" = "Где возникают эти проблемы?";
+
+/* No comment provided by engineer. */
+"feedback.websiteLoading.form.urlPlaceholder" = "На каком сайте возникли проблемы?";
+
+/* Used to indicate number of entries found and position of the currently viewed one: e.g. 1 of 10 */
+"findinpage.count" = "%1$d из %2$d";
+
+/* No comment provided by engineer. */
+"findinpage.title" = "Найти на странице";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.airstream.name" = "Воздушный поток";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.fireRising.name" = "Инферно";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.none.name" = "Без анимации";
+
+/* No comment provided by engineer. */
+"fireButtonAnimation.waterSwirl.name" = "Водоворот";
+
+/* No comment provided by engineer. */
+"home.row.onboarding.header" = "Добавьте Mangala Wallet на домашний экран!";
+
+/* No comment provided by engineer. */
+"home.row.reminder.message" = "Добавьте Mangala Wallet на док-панель для быстрого доступа!";
+
+/* Home is this context is the bottom home row (dock) */
+"home.row.reminder.title" = "Mangala Wallet всегда под рукой";
+
+/* This describes empty tab */
+"homeTab.searchAndFavorites" = "Введите поисковый запрос или адрес сайта";
+
+/* Home tab title */
+"homeTab.title" = "Домашняя";
+
+/* No comment provided by engineer. */
+"keyCommandAddBookmark" = "Добавить закладку";
+
+/* No comment provided by engineer. */
+"keyCommandAddFavorite" = "Добавить в избранное";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserBack" = "Назад";
+
+/* No comment provided by engineer. */
+"keyCommandBrowserForward" = "Вперед";
+
+/* No comment provided by engineer. */
+"keyCommandClose" = "Закрыть";
+
+/* No comment provided by engineer. */
+"keyCommandCloseTab" = "Закрыть вкладку";
+
+/* No comment provided by engineer. */
+"keyCommandFind" = "Найти на странице";
+
+/* No comment provided by engineer. */
+"keyCommandFindNext" = "Найти следующий";
+
+/* No comment provided by engineer. */
+"keyCommandFindPrevious" = "Найти предыдущий";
+
+/* No comment provided by engineer. */
+"keyCommandFire" = "Сбросить все вкладки и данные";
+
+/* No comment provided by engineer. */
+"keyCommandLocation" = "Введите поисковый запрос или адрес сайта";
+
+/* No comment provided by engineer. */
+"keyCommandNewTab" = "Новая вкладка";
+
+/* No comment provided by engineer. */
+"keyCommandNextTab" = "Следующая вкладка";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewBackgroundTab" = "Открыть ссылку в фоновом режиме";
+
+/* No comment provided by engineer. */
+"keyCommandOpenInNewTab" = "Открыть ссылку в новой вкладке";
+
+/* No comment provided by engineer. */
+"keyCommandPreviousTab" = "Предыдущая вкладка";
+
+/* No comment provided by engineer. */
+"keyCommandPrint" = "Распечатать";
+
+/* No comment provided by engineer. */
+"keyCommandReload" = "Перезагрузить";
+
+/* No comment provided by engineer. */
+"keyCommandSelect" = "Выбрать";
+
+/* No comment provided by engineer. */
+"keyCommandShowAllTabs" = "Показать все вкладки";
+
+/* Please preserve newline character */
+"launchscreenWelcomeMessage" = "Добро пожаловать в\nMangala Wallet!";
+
+/* No comment provided by engineer. */
+"menu.button.hint" = "Меню браузера";
+
+/* Finish editing bookmarks button */
+"navigation.title.done" = "Готово";
+
+/* Edit button */
+"navigation.title.edit" = "Редактировать";
+
+/* Do not translate - stringsdict entry */
+"number.of.tabs" = "number.of.tabs";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.continueButton" = "Добавить виджет";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.header" = "Пользоваться Mangala Wallet стало еще проще.";
+
+/* No comment provided by engineer. */
+"onboarding.widgets.skipButton" = "Позже";
+
+/* No comment provided by engineer. */
+"onboardingContinue" = "Продолжить";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserMaybeLater" = "Позже";
+
+/* No comment provided by engineer. */
+"onboardingDefaultBrowserTitle" = "Выберите Mangala Wallet браузером по умолчанию!";
+
+/* No comment provided by engineer. */
+"onboardingSetAsDefaultBrowser" = "Сделать браузером по умолчанию";
+
+/* No comment provided by engineer. */
+"onboardingSkip" = "Пропустить";
+
+/* This is on a button presented on the last of the onboarding screens. */
+"onboardingStartBrowsing" = "Начать просмотр";
+
+/* No comment provided by engineer. */
+"onboardingWelcomeHeader" = "Добро пожаловать в Mangala Wallet!";
+
+/* ’Link’ is link on a website */
+"open.externally.failed" = "Приложение для открытия этой ссылки не найдено";
+
+/* No comment provided by engineer. */
+"preserveLogins.domain.list.footer" = "Чтобы вам не приходилось каждый раз входить в свою учетную запись, сайты используют куки-файлы. Если сделать сайт огнеупорным, мы не будем стирать его куки-файлы, даже если вы воспользуетесь кнопкой «Огонь». Но мы по-прежнему будем блокировать сторонние трекеры, в том числе на огнеупорных сайтах.";
+
+/* Section header above Fireproofed websites list */
+"preserveLogins.domain.list.title" = "Огнеупорные сайты";
+
+/* Alert message explaining to users that the benefit of fireproofing a site is that they will be kept signed in */
+"preserveLogins.fireproof.message" = "Вам не придется заново входить в свою учетную запись даже после применения кнопки «Огонь».";
+
+/* Parameter is a string - domain name. Alert title prompting user to fireproof a site so they can stay signed in */
+"preserveLogins.fireproof.title" = "Сделать сайт %@ огнеупорным, чтобы не выходить из учетной записи?";
+
+/* Confirm fireproofing action */
+"preserveLogins.menu.confirm" = "Сделать огнеупорным";
+
+/* Parameter is a website URL. Messege confirms that given website has been fireproofed. */
+"preserveLogins.menu.confirm.message" = "%@ теперь огнеупорный";
+
+/* Deny fireproofing action */
+"preserveLogins.menu.defer" = "Не сейчас";
+
+/* Disable fireproofing for site */
+"preserveLogins.menu.disable" = "Снять огнеупорность";
+
+/* Enable fireproofing for site */
+"preserveLogins.menu.enable" = "Сделать огнеупорным";
+
+/* Messege confirms that website is no longer fireproofed. */
+"preserveLogins.menu.removal.message" = "Огнеупорность снята";
+
+/* Alert title */
+"preserveLogins.remove.all" = "Удалить все";
+
+/* Confirmation button in alert */
+"preserveLogins.remove.all.ok" = "Хорошо";
+
+/* Part of certificate info */
+"privacy.protection.encryption.algorithm" = "Алгоритм";
+
+/* Certificate Key size info - number (integer) of bits */
+"privacy.protection.encryption.bits" = "%d бит";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.cert.error" = "Ошибка извлечения сертификата";
+
+/* Part of certificate info */
+"privacy.protection.encryption.common.name" = "Общепринятое название";
+
+/* Part of certificate info */
+"privacy.protection.encryption.effective.size" = "Фактический размер";
+
+/* Part of certificate info */
+"privacy.protection.encryption.email" = "Электронная почта";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.encrypted.heading" = "Зашифрованное соединение";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.heading" = "Принудительное шифрование";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.forced.message" = "Чтобы защитить вас от перехвата личной информации, мы заставили этот сайт зашифровать соединение.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.header" = "Зашифрованное соединение не позволит злоумышленникам перехватить личную информацию, которую вы передаете сайту.";
+
+/* Part of certificate info */
+"privacy.protection.encryption.id" = "Идентификатор ключа субъекта";
+
+/* Part of certificate info */
+"privacy.protection.encryption.issuer" = "Кем выдан";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key" = "Открытый ключ";
+
+/* Part of certificate info */
+"privacy.protection.encryption.key.size" = "Размер ключа";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.heading" = "Смешанное шифрование";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.mixed.message" = "Данный сайт предлагает смешанное шифрование, то есть часть содержимого передается по незащищенным каналам.";
+
+/* Info that certificate is not permanent */
+"privacy.protection.encryption.no" = "Нет";
+
+/* Part of certificate info - Permanent in this context means that certificate is stored on the device (so it’s not temporary one). */
+"privacy.protection.encryption.permanent" = "Постоянный";
+
+/* Public Key of a certficate */
+"privacy.protection.encryption.public.key" = "Открытый ключ";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.standard.message" = "Зашифрованное соединение не позволит злоумышленникам перехватить личную информацию, которую вы передаете сайту.";
+
+/* Header of a section that provides infomration about certificate issuer */
+"privacy.protection.encryption.subject.name" = "Имя субъекта";
+
+/* Part of certificate info */
+"privacy.protection.encryption.summary" = "Сводка";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted" = "Проявляйте бдительность при вводе личной информации на этом сайте.";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unencrypted.heading" = "Незашифрованное соединение";
+
+/* No comment provided by engineer. */
+"privacy.protection.encryption.unknown" = "Неизвестно";
+
+/* Part of certificate info */
+"privacy.protection.encryption.usage" = "Применение";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.decrypt" = "Расшифровка";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.derive" = "Производные";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.encrypt" = "Шифрование";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.sign" = "Подпись";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.unwrap" = "Развертка";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.verify" = "Подтверждение";
+
+/* Usage of a certificate */
+"privacy.protection.encryption.usage.wrap" = "Сворачивание";
+
+/* Confirmation that certificate is permanent */
+"privacy.protection.encryption.yes" = "Да";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.disabled" = "ЗАЩИТА САЙТА ОТКЛЮЧЕНА";
+
+/* $1 and $2 are grades - letters. Example: Enhanced from D to B */
+"privacy.protection.main.enhanced" = "УРОВЕНЬ ЗАЩИТЫ ПОВЫШЕН С $1 ДО $2";
+
+/* No comment provided by engineer. */
+"privacy.protection.main.grade" = "УРОВЕНЬ КОНФИДЕНЦИАЛЬНОСТИ";
+
+/* Major trackers blocked */
+"privacy.protection.major.trackers.blocked" = "privacy.protection.major.trackers.blocked";
+
+/* Major trackers found */
+"privacy.protection.major.trackers.found" = "privacy.protection.major.trackers.found";
+
+/* First parameter (%@) is a number (percent), %% is a percent sign, second %@ is a date */
+"privacy.protection.network.leaderboard" = "Сети трекеров были обнаружены на %1$@%% сайтах, которые вы посетили с %2$@.";
+
+/* No comment provided by engineer. */
+"privacy.protection.network.leaderboard.gathering" = "Мы все еще собираем данные\nо количестве заблокированных трекеров.";
+
+/* ToS;DR is an organization */
+"privacy.protection.practices.footer.info" = "Стандарты конфиденциальности ToS;DR.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.header.info" = "Уровень конфиденциальности показывает, насколько защищены персональные данные, которые вы передаёте сайту.";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.reviewed.info" = "Этот сайт предупредит вас о передаче вашей информации в случае слияния или поглощения";
+
+/* No comment provided by engineer. */
+"privacy.protection.practices.unknown.info" = "Стандарты конфиденциальности этого сайта не проверены.";
+
+/* Replacement string is a single letter: A/B/C/D */
+"privacy.protection.site.grade" = "Уровень защиты: %@";
+
+/* No comment provided by engineer. */
+"privacy.protection.site.hint" = "Нажмите, чтобы открыть страницу защиты конфиденциальности";
+
+/* No comment provided by engineer. */
+"privacy.protection.top.offenders.info" = "Эта статистика хранится только на вашем устройстве и никуда не передается. Никогда.";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.good" = "Высокий уровень конфиденциальности";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.mixed" = "Средний уровень конфиденциальности";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.poor" = "Низкий уровень конфиденциальности";
+
+/* No comment provided by engineer. */
+"privacy.protection.tos.unknown" = "Уровень конфиденциальности неизвестен";
+
+/* No comment provided by engineer. */
+"privacy.protection.tracker.networks.info" = "Сети трекеров собирают историю вашей активности в интернете и формируют ваш информационный профиль. Крупные сети трекеров более опасны, так как могут отслеживать вас и показывать адресную рекламу на большем количестве сайтов.";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.blocked" = "privacy.protection.trackers.blocked";
+
+/* Do not translate - stringsdict entry */
+"privacy.protection.trackers.found" = "privacy.protection.trackers.found";
+
+/* Deny action */
+"prompt.custom.url.scheme.dontopen" = "Отменить";
+
+/* Confirm action */
+"prompt.custom.url.scheme.open" = "Открыть";
+
+/* No comment provided by engineer. */
+"prompt.custom.url.scheme.prompt" = "Выйти из Mangala Wallet для просмотра этого контента?";
+
+/* Alert title */
+"prompt.custom.url.scheme.title" = "Открыть в другом приложении?";
+
+/* No comment provided by engineer. */
+"report.brokensite.header" = "Отправка анонимной жалобы на неработающий сайт помогает нам решить эти проблемы и улучшить приложение.";
+
+/* No comment provided by engineer. */
+"search.hint.duckduckgo" = "Введите поисковый запрос или адрес сайта";
+
+/* No comment provided by engineer. */
+"section.title.bookmarks" = "Закладки";
+
+/* No comment provided by engineer. */
+"section.title.favorites" = "Избранное";
+
+/* No comment provided by engineer. */
+"settings.about.text" = "Mangala Wallet задает новый стандарт доверия в сети.\n\nНаш браузер оснащен всеми функциями защиты личных данных в интернете, включая блокировку трекеров, надежное шифрование и конфиденциальный поиск Mangala Wallet.\n\nИнтернет — не место для постоянной слежки, а скрыться от посторонних глаз должно быть не сложнее, чем закрыть жалюзи на окнах.";
+
+/* Report a Broken Site screen confirmation button */
+"siteFeedback.buttonText" = "Отправить жалобу";
+
+/* Domain is an URL address */
+"siteFeedback.domainInfo" = "Домен неработающего сайта:";
+
+/* No comment provided by engineer. */
+"siteFeedback.messagePlaceholder" = "С каким контентом или функциями возникли проблемы?";
+
+/* No comment provided by engineer. */
+"siteFeedback.subtitle" = "Жалобы на неработающие сайты полностью анонимны и помогают нам улучшить приложение.";
+
+/* This is a form title */
+"siteFeedback.title" = "Сообщить о неработающем сайте";
+
+/* No comment provided by engineer. */
+"siteFeedback.urlPlaceholder" = "На каком сайте возникает проблема?";
+
+/* Accessibility label on remove button */
+"tab.close.home" = "Закрыть домашнюю вкладку";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.close.with.title.and.address" = "Закрыть сайт «%1$@» по адресу %2$@";
+
+/* Accessibility label on tab cell */
+"tab.open.home" = "Открыть домашнюю вкладку";
+
+/* Accesibility label: first string is website title, second is address */
+"tab.open.with.title.and.address" = "Открыть сайт «%1$@» по адресу %2$@";
+
+/* Tab Switcher Accessibility Label */
+"tab.switcher.accessibility.label" = "Переключатель вкладок";
+
+/* Description text for the text size adjustment setting */
+"textSize.description" = "Выберите удобный для вас размер шрифта. Mangala Wallet настроит вид сайтов автоматически.";
+
+/* Replacement string is a current percent value e.g. '120%' */
+"textSize.footer" = "Размер текста — %@";
+
+/* Dark Theme entry */
+"theme.acc.dark" = "Темная";
+
+/* Short entry for Default System theme */
+"theme.acc.default" = "Тема системы";
+
+/* Light Theme entry */
+"theme.acc.light" = "Светлая";
+
+/* Dark Theme entry */
+"theme.name.dark" = "Темная";
+
+/* Entry for Default System theme */
+"theme.name.default" = "По умолчанию";
+
+/* Light Theme entry */
+"theme.name.light" = "Светлая";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.disabled" = "Защита конфиденциальности на %@ отключена";
+
+/* Confirmation of an action - populated with a domain name */
+"toast.protection.enabled" = "Защита конфиденциальности на %@ включена";
+
+/* No comment provided by engineer. */
+"unknown.error.occurred" = "Произошла неизвестная ошибка.";
+
+/* No microphone permission alert action button to open the settings app */
+"voiceSearch.alert.no-permission.action.settings" = "Настройки";
+
+/* Message for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.message" = "Чтобы пользоваться голосовыми функциями, откройте Mangala Wallet доступ к микрофону в системных настройках iOS.";
+
+/* Title for alert warning the user about missing microphone permission */
+"voiceSearch.alert.no-permission.title" = "Требуется доступ к микрофону";
+
+/* Voice-search privacy accept alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.accept" = "Хорошо";
+
+/* Voice-search privacy reject alert action */
+"voiceSearch.alert.privacy-acknowledgment.action.reject" = "Отменить";
+
+/* Message for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.message" = "Mangala Wallet ни в коем случае не подслушивает ваши разговоры. Вся обработка голосовых данных для приватного голосового поиска осуществляется на вашем устройства.";
+
+/* Title for alert explaining voice-search privacy */
+"voiceSearch.alert.privacy-acknowledgment.title" = "Для приватного голосового поиска требуется доступ к микрофону";
+
+/* Cancel button for voice search */
+"voiceSearch.cancel" = "Отменить";
+
+/* Voice-search footer note with on-device privacy warning */
+"voiceSearch.footer.note" = "Аудио обрабатывается непосредственно на устройстве, не хранится и не передается никому, даже Mangala Wallet.";
+
+/* Confirmation message */
+"web.url.remove.favorite.done" = "Страница удалена из избранного";
+
+/* Confirmation message */
+"web.url.save.bookmark.done" = "Закладка добавлена";
+
+/* Floating Info message */
+"web.url.save.bookmark.exists" = "Уже в закладках";
+
+/* Floating message indicating failure */
+"web.url.save.bookmark.none" = "Нечего добавить в закладки";
+
+/* Confirmation message */
+"web.url.save.favorite.done" = "Сайт добавлен в избранное";
+
+/* Block Alerts button for JavaScript alerts */
+"webJSAlert.block-alerts.button" = "Блокировать уведомления";
+
+/* Cancel button for JavaScript alerts */
+"webJSAlert.cancel.button" = "Отменить";
+
+/* OK button for JavaScript alerts */
+"webJSAlert.OK.button" = "Хорошо";
+

@@ -1,0 +1,4 @@
+package com.mangala.wallet.features.crypto_payment
+
+const val WALLET_NATIVE_COIN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+const val SMART_CONTRACT_NATIVE_COIN_ADDRESS = "0x0000000000000000000000000000000000000000"

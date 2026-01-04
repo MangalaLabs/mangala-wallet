@@ -1,0 +1,50 @@
+@startuml
+User -> ImportAccount ++: user click to import account
+User <-- ImportAccount --: show import account screen
+note left ImportAccount
+    - Option to input EOS private key or scanning QR code
+    - Option to import EOS account with EVM
+end note
+
+User -> ImportAccount ++: user select import EOS account with EVM
+ImportAccount -> ImportEOSAccountViaEVM ++: System navigate to ImportEOSAccountViaEVM screen
+User <-- ImportEOSAccountViaEVM --: show ImportEOSAccountViaEVM screen
+note over User, ImportEOSAccountViaEVM
+    Screen will show:
+        - list wallets of EVM networks in the wallet
+        - Option to import new EVM wallet
+        - Button to import EOS account(This button will be enabled only if one of wallet was chosen)
+end note
+
+== User choose wallet to import ==
+User -> ImportEOSAccountViaEVM ++: User choose wallet to import, click import EOS account button
+alt if chosen wallet has linked with EOS account before
+    ImportEOSAccountViaEVM -> ChooseImportedEOSPrivateKey ++: System navigate to ChooseImportedEOSPrivateKey screen
+    User <-- ChooseImportedEOSPrivateKey --: show ChooseImportedEOSPrivateKey screen
+    note left ChooseImportedEOSPrivateKey
+        Screen will show:
+            - list EOS private keys of the chosen wallet
+    end note
+    User -> ChooseImportedEOSPrivateKey ++: User choose EOS private key to import
+    ChooseImportedEOSPrivateKey -> Step2ImportAccountSelectAccountScreen ++: System navigate to Step2ImportAccountSelectAccountScreen screen
+    User <-- Step2ImportAccountSelectAccountScreen --: show Step2ImportAccountSelectAccountScreen screen
+    note left Step2ImportAccountSelectAccountScreen
+        Screen will show:
+            - list EOS accounts of the chosen EOS private key
+    end note
+    User -> Step2ImportAccountSelectAccountScreen ++: User choose EOS account to import
+    Step2ImportAccountSelectAccountScreen -> HomeScreen ++: import account and navigate to HomeScreen
+else if chosen wallet has not linked with EOS account before
+    User <-- ImportEOSAccountViaEVM --: show error below wallet, require user to choose again.
+end
+
+== User choose import new EVM seed phrase ==
+User -> ImportEOSAccountViaEVM ++: User choose import new EVM seed phrase
+ImportEOSAccountViaEVM -> ImportEVMAccountScreen ++: System navigate to ImportEVMAccountScreen screen
+User <-- ImportEVMAccountScreen --: show ImportEVMAccountScreen screen
+User -> ImportEVMAccountScreen ++: Import new EVM seed phrase
+ImportEVMAccountScreen -> ImportEOSAccountViaEVM ++: System navigate again to ImportEOSAccountViaEVM screen
+note over ImportEOSAccountViaEVM
+Continue from the step user choose wallet to import
+end note
+@enduml

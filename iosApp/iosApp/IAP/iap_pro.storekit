@@ -1,0 +1,22 @@
+{
+  "identifier" : "C502D7FC",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6477342686",
+    "_developerTeamID" : "5HAFYSU3DS",
+    "_failTransactionsEnabled" : false,
+    "_shouldSetupSyncOnLoad" : true
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

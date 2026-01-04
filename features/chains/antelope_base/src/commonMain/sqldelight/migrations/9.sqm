@@ -1,0 +1,39 @@
+import kotlin.Long;
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE IF NOT EXISTS AntelopeProposalEntity_new (
+    proposal_name TEXT NOT NULL,
+    proposer TEXT NOT NULL,
+    requested_approvals TEXT AS List<String> DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL,
+    actionsName TEXT AS List<String> NOT NULL,
+    is_draft INTEGER NOT NULL,
+    PRIMARY KEY (proposal_name, blockchain_uid, account_name)
+);
+
+INSERT INTO AntelopeProposalEntity_new (
+    proposal_name, proposer, requested_approvals, blockchain_uid, account_name, created_at, expires_at, actionsName, is_draft
+)
+SELECT
+    proposal_name, proposer, requested_approvals, blockchain_uid, created_at, expires_at, actionsName, proposer, 0
+FROM AntelopeProposalEntity;
+
+DROP TABLE AntelopeProposalEntity;
+
+ALTER TABLE AntelopeProposalEntity_new RENAME TO AntelopeProposalEntity;
+
+CREATE TABLE IF NOT EXISTS AntelopeMsigProposalDraftEntity(
+    id INTEGER PRIMARY KEY AUTOINCREMENT, -- use this as primary key to allow changing the proposal name on save
+    proposal_name TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    proposer_permission_name TEXT NOT NULL,
+    actions_detail_json TEXT NOT NULL,
+    approvers_detail_json TEXT NOT NULL,
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE,
+    FOREIGN KEY (proposal_name, blockchain_uid, account_name) REFERENCES AntelopeProposalEntity(proposal_name, blockchain_uid, account_name) ON DELETE CASCADE
+);

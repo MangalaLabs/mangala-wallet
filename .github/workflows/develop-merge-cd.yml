@@ -1,0 +1,149 @@
+name: Deploy to Firebase on Develop Merge
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-test-deploy:
+    runs-on: self-hosted
+
+    permissions: read-all
+
+    steps:
+      - name: 🛒 Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.PAT }}
+          ssh-strict: false
+          persist-credentials: true
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Decode secret properties, Firebase Admin Credential, Play Store Credential
+        run: sh ./scripts/decode.sh
+        env:
+          PLAY_CREDENTIAL: ${{ secrets.PLAY_CREDENTIAL_PKG_CONTENT }}
+          FIREBASE_CREDENTIAL: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVENUECATANDROID: ${{ secrets.REVENUECATANDROID }}
+          REVENUECATIOS: ${{ secrets.REVENUECATIOS }}
+          INFURASECRET: ${{ secrets.INFURASECRET }}
+          INFURAAPI: ${{ secrets.INFURAAPI }}
+          COVALENTAPI: ${{ secrets.COVALENTAPI }}
+          MORALISAPI: ${{ secrets.MORALISAPI }}
+
+      - name: 📝 Create keystore file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE }}
+
+      - name: 📝 Create signing config secrets file
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'keystore.properties'
+          fileDir: '.'
+          encodedString: ${{ secrets.STG_KEYSTORE_PROPERTIES }}
+
+      - name: 📝 Create google-services file from base64 string
+        uses: timheuer/base64-to-file@adaa40c0c581f276132199d4cf60afa07ce60eac
+        with:
+          fileName: 'google-services.json'
+          fileDir: './composeApp/src/proDevRelease'
+          encodedString: ${{ secrets.GOOGLESERVICES }}
+
+      - run: echo "RELEASE_VERSION=$(sed -e s:refs/heads/::g -e s:/:-:g -e s:v::g -e 's/\-canary.*$//' -e 's/\-update.*$//' -e 's/\-pre-alpha.*$//' -e 's/\-patch.*$//' <<< ${GITHUB_REF#refs/*/})" >> $GITHUB_ENV
+
+      - name: 🐘 Execute Gradle Pro variant APK build
+        run: ./gradlew composeApp:assembleProDevRelease
+
+      - name: Create AVD
+        run: |
+          echo "Creating AVD snapshot"
+          $ANDROID_HOME/cmdline-tools/latest/bin/avdmanager create avd \
+            --force \
+            --name test_emulator \
+            --abi arm64-v8a \
+            --package 'system-images;android-35;google_apis_playstore;arm64-v8a' \
+            --device "pixel_5"
+
+      - name: Start Emulator
+        run: |
+          echo "Starting emulator"
+          nohup $ANDROID_HOME/emulator/emulator -avd test_emulator -no-audio -no-boot-anim -no-window -gpu swiftshader_indirect &
+          echo "Waiting for emulator to boot"
+          until adb shell getprop sys.boot_completed | grep -m 1 '1'; do
+            echo "Waiting for emulator boot..."
+            sleep 5
+          done
+          echo "Emulator booted successfully"
+          adb devices
+
+      - name: Install APK on emulator
+        run: |
+          echo "Installing APK on emulator"
+          adb install -r composeApp/build/outputs/apk/proDev/release/composeApp-pro-dev-release.apk
+
+      - name: Grant notification permission
+        run: |
+          adb shell pm grant com.mangala.prowallet.dev android.permission.POST_NOTIFICATIONS
+
+      - name: Run automation tests
+        run: cd automation-tests && npm i && chmod +x full_test.sh && ./full_test.sh
+        continue-on-error: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        if: always()
+        with:
+          name: test-results
+          path: automation-tests/test_results/
+          retention-days: 7
+
+      - name: Stop Emulator
+        if: always()
+        run: |
+          adb emu kill
+          pkill -f "emulator.*"
+      
+      - name: 📝 Create artifact
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882
+        with:
+          name: composeApp-pro-dev-release.apk
+          path: composeApp/build/outputs/apk/proDev/release/composeApp-pro-dev-release.apk
+          retention-days: 1
+
+  publish-pro:
+    needs: build-test-deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: composeApp-pro-dev-release.apk
+
+      - name: 🔥 Release Pro variant build on Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@a41b2f7ab3f7c2631b6a73fb2f660b517cef45a9
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: internal-test
+          file: composeApp-pro-dev-release.apk
+          debug: true
+          releaseNotes: |
+            Build from develop branch merge
+            Commit: ${{ github.sha }}
+      
+      - uses: geekyeggo/delete-artifact@f275313e70c08f6120db482d7a6b98377786765b
+        with:
+          name: composeApp-pro-dev-release.apk

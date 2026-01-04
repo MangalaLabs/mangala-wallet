@@ -1,0 +1,18 @@
+-- TABLE ANTELOPE ACTION ABI
+CREATE TABLE IF NOT EXISTS AntelopeActionAbiEntity (
+    action_name TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    field_name TEXT NOT NULL,
+    field_type TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    stt INTEGER NOT NULL,
+    PRIMARY KEY (action_name, account_name, field_name)
+);
+
+-- TABLE ANTELOPE ACTIONS
+CREATE TABLE IF NOT EXISTS AntelopeActionEntity (
+    actionName TEXT NOT NULL,
+    accountName TEXT NOT NULL,
+    lastTimeUpdatedCode INTEGER NOT NULL,
+    PRIMARY KEY (actionName, accountName)
+);

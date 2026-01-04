@@ -1,0 +1,138 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  lane :pro_dev_build_and_release do |options|
+    # TODO: Implement better functionality for this to get the beta and production version codes
+    internalVersionCode = google_play_track_version_codes(track: 'internal') || 1
+
+    versionCode = internalVersionCode + 1
+    # Bundle the app
+    gradle(
+      task: 'composeApp:bundle',
+      build_type: 'ProDevRelease',
+      properties: {
+        "versionCode" => versionCode
+      }
+    )
+
+    # Upload to Play Store's Internal Testing
+    upload_to_play_store(
+      track: "internal",
+      aab: "./composeApp/build/outputs/bundle/proDevRelease/composeApp-pro-dev-release.aab",
+      skip_upload_apk: true,
+      changes_not_sent_for_review: true
+    )
+
+    ENV['VERSION_CODE'] = versionCode.to_s
+    sh("echo VERSION_CODE=#{ENV['VERSION_CODE']} >> $GITHUB_ENV")
+  end
+
+  lane :pro_stg_build_and_release do |options|
+    # TODO: Implement better functionality for this to get the beta and production version codes
+    alphaVersionCode = google_play_track_version_codes(track: 'alpha') || 1
+    internalVersionCode = google_play_track_version_codes(track: 'internal') || 1
+
+    # puts version codes from all tracks into the same array
+    versionCodes = [
+      alphaVersionCode,
+      internalVersionCode
+    ].reduce([], :concat)
+
+    versionCode = versionCodes.max + 1
+    # Bundle the app
+    gradle(
+      task: 'composeApp:bundle',
+      build_type: 'ProStgRelease',
+      properties: {
+        "versionCode" => versionCode
+      }
+    )
+
+    # Upload to Play Store's Internal Testing
+    upload_to_play_store(
+      track: "internal",
+      aab: "./composeApp/build/outputs/bundle/proStgRelease/composeApp-pro-stg-release.aab",
+      skip_upload_apk: true,
+      changes_not_sent_for_review: true
+    )
+
+    ENV['VERSION_CODE'] = versionCode.to_s
+    sh("echo VERSION_CODE=#{ENV['VERSION_CODE']} >> $GITHUB_ENV")
+  end
+
+  lane :pro_prod_build_and_release do |options|
+    # TODO: Implement better functionality for this to get the beta and production version codes
+    alphaVersionCode = google_play_track_version_codes(track: 'alpha') || 1
+    internalVersionCode = google_play_track_version_codes(track: 'internal') || 1
+
+    # puts version codes from all tracks into the same array
+    versionCodes = [
+      alphaVersionCode,
+      internalVersionCode
+    ].reduce([], :concat)
+
+    versionCode = versionCodes.max + 1
+    # Bundle the app
+    gradle(
+      task: 'composeApp:bundle',
+      build_type: 'ProProdRelease',
+      properties: {
+        "versionCode" => versionCode
+      }
+    )
+
+    # Upload to Play Store's Internal Testing
+    upload_to_play_store(
+      track: "internal",
+      aab: "./composeApp/build/outputs/bundle/proProdRelease/composeApp-pro-prod-release.aab",
+      skip_upload_apk: true,
+      changes_not_sent_for_review: true
+    )
+
+    ENV['VERSION_CODE'] = versionCode.to_s
+    sh("echo VERSION_CODE=#{ENV['VERSION_CODE']} >> $GITHUB_ENV")
+  end
+
+  lane :build_and_release_to_firebase do |options|
+    # Bundle the app
+    gradle(
+      task: 'assemble',
+      build_type: 'ProDevRelease'
+    )
+
+    # Upload to Firebase app distribution
+    firebase_app_distribution(
+      service_credentials_file: "firebase-admin-credentials.json",
+      app: ENV['FIREBASE_ANDROID_APP_ID'],
+      groups: 'internal-test',
+      release_notes: ENV['RELEASE_NOTES']
+    )
+
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV['FIREBASE_ANDROID_APP_ID'],
+      service_credentials_file: "firebase-admin-credentials.json",
+    )
+
+    ENV['DOWNLOAD_LINK'] = "https://appdistribution.firebase.google.com/testerapps/".concat(latest_release[:name].split('/apps/')[1])
+    ENV['QR_CODE'] = "https://quickchart.io/qr?text=#{URI.encode_www_form_component(ENV['DOWNLOAD_LINK'])}&size=256"
+
+    sh("echo DOWNLOAD_LINK='#{ENV['DOWNLOAD_LINK']}' >> $GITHUB_ENV")
+    sh("echo QR_CODE='#{ENV['QR_CODE']}' >> $GITHUB_ENV")
+  end
+
+end

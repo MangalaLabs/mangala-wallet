@@ -1,0 +1,50 @@
+import kotlin.Boolean;
+
+-- ChatMessage table
+CREATE TABLE IF NOT EXISTS ChatMessage (
+    id TEXT PRIMARY KEY NOT NULL,
+    sessionId TEXT NOT NULL,
+    messageType TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    senderId TEXT NOT NULL,
+    isFromUser INTEGER AS Boolean NOT NULL,
+    parentMessageId TEXT,
+    content TEXT NOT NULL, -- JSON string for type-specific content
+    sendingStatus TEXT,
+    FOREIGN KEY (sessionId) REFERENCES ConversationSession(id) ON DELETE CASCADE
+);
+
+-- Index for efficient message queries
+CREATE INDEX IF NOT EXISTS idx_message_session ON ChatMessage(sessionId);
+CREATE INDEX IF NOT EXISTS idx_message_timestamp ON ChatMessage(sessionId, timestamp);
+
+-- Message queries
+getMessagesForSession:
+SELECT * FROM ChatMessage 
+WHERE sessionId = ? 
+ORDER BY timestamp ASC;
+
+insertMessage:
+INSERT OR REPLACE INTO ChatMessage(id, sessionId, messageType, timestamp, senderId, isFromUser, parentMessageId, content, sendingStatus)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+deleteMessagesForSession:
+DELETE FROM ChatMessage 
+WHERE sessionId = ?;
+
+updateMessageSendingStatus:
+UPDATE ChatMessage 
+SET sendingStatus = ? 
+WHERE id = ?;
+
+getMessageById:
+SELECT * FROM ChatMessage 
+WHERE id = ?;
+
+updateMessage:
+UPDATE ChatMessage 
+SET content = ?, sendingStatus = ? 
+WHERE id = ?;
+
+clearAllChatMessages:
+DELETE FROM ChatMessage;

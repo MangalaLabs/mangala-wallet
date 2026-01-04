@@ -1,0 +1,1 @@
+ALTER TABLE AntelopeActionAbiEntity ADD COLUMN is_variant INTEGER NOT NULL DEFAULT 0;

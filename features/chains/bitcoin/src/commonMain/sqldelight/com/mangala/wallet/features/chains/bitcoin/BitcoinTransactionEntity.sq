@@ -1,0 +1,103 @@
+import kotlin.Boolean;
+import kotlin.collections.List;
+import kotlinx.serialization.Serializable;
+
+-- Bitcoin Transaction Entity
+CREATE TABLE BitcoinTransactionEntity (
+    txid TEXT NOT NULL PRIMARY KEY,
+    blockchainType TEXT NOT NULL,
+    hash TEXT,
+    version INTEGER NOT NULL,
+    size INTEGER NOT NULL,
+    weight INTEGER NOT NULL,
+    locktime INTEGER NOT NULL,
+    fee INTEGER NOT NULL,
+    -- Status fields
+    confirmed INTEGER AS Boolean NOT NULL,
+    block_height INTEGER,
+    block_hash TEXT,
+    block_time INTEGER,
+    -- JSON serialized inputs and outputs
+    vin TEXT NOT NULL, -- Serialized JSON array of transaction inputs
+    vout TEXT NOT NULL, -- Serialized JSON array of transaction outputs
+    -- Timestamp for cache invalidation
+    lastUpdated INTEGER NOT NULL
+);
+
+-- Get transaction by ID and blockchain
+getTransactionById:
+SELECT *
+FROM BitcoinTransactionEntity
+WHERE txid = ? AND blockchainType = ?;
+
+-- Insert or replace transaction
+upsertTransaction:
+INSERT OR REPLACE INTO BitcoinTransactionEntity(
+    txid, 
+    blockchainType,
+    hash,
+    version,
+    size,
+    weight,
+    locktime,
+    fee,
+    confirmed,
+    block_height,
+    block_hash,
+    block_time,
+    vin,
+    vout,
+    lastUpdated
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Delete transaction by ID and blockchain
+deleteTransaction:
+DELETE FROM BitcoinTransactionEntity
+WHERE txid = ? AND blockchainType = ?;
+
+-- Get transactions by address (through a LIKE query on serialized inputs/outputs)
+getTransactionsByAddress:
+SELECT *
+FROM BitcoinTransactionEntity
+WHERE blockchainType = ? 
+AND (vin LIKE '%' || ? || '%' OR vout LIKE '%' || ? || '%')
+-- Sort order: 
+-- 1. Unconfirmed transactions at the top (confirmed ASC puts false/0 first)
+-- 2. For transactions with same lastUpdated, sort by block_time (only relevant for confirmed)
+-- 3. Within each group (confirmed/unconfirmed), newest first by lastUpdated
+ORDER BY confirmed ASC, block_time DESC, lastUpdated DESC;
+
+-- Get transactions by address with paging support
+getTransactionsByAddressPaged:
+SELECT *
+FROM BitcoinTransactionEntity
+WHERE blockchainType = ? 
+AND (vin LIKE '%' || ? || '%' OR vout LIKE '%' || ? || '%')
+-- Sort order: 
+-- 1. Unconfirmed transactions at the top (confirmed ASC puts false/0 first)
+-- 2. For transactions with same lastUpdated, sort by block_time (only relevant for confirmed)
+-- 3. Within each group (confirmed/unconfirmed), newest first by lastUpdated
+ORDER BY confirmed ASC, block_time DESC, lastUpdated DESC
+LIMIT ? OFFSET ?;
+
+-- Count transactions for an address
+countTransactionsByAddress:
+SELECT COUNT(*)
+FROM BitcoinTransactionEntity
+WHERE blockchainType = ? 
+AND (vin LIKE '%' || ? || '%' OR vout LIKE '%' || ? || '%');
+
+-- Delete all transactions for an address
+deleteAllTransactionsByAddress:
+DELETE FROM BitcoinTransactionEntity
+WHERE blockchainType = ? 
+AND (vin LIKE '%' || ? || '%' OR vout LIKE '%' || ? || '%');
+
+-- Delete all transactions older than a certain time
+deleteOldTransactions:
+DELETE FROM BitcoinTransactionEntity
+WHERE lastUpdated < ?;
+
+-- Clear all Bitcoin transactions
+clearAllTransactions:
+DELETE FROM BitcoinTransactionEntity;

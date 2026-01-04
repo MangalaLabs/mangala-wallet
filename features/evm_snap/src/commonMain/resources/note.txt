@@ -1,0 +1,2 @@
+## EVM screen
+- RestoreRecoveryPhraseScreen: EVM import recovery phrase screen

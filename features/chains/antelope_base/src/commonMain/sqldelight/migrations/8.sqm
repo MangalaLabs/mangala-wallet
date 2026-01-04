@@ -1,0 +1,27 @@
+import app.cash.paging.LoadType;
+import com.mangala.wallet.features.chains.antelope_base.domain.model.cache.AntelopeRemoteKeyTargetEntity;
+import kotlin.String;
+import kotlin.collections.List;
+
+DROP TABLE IF EXISTS AntelopeProposalEntity;
+
+CREATE TABLE IF NOT EXISTS AntelopeProposalEntity (
+    proposal_name TEXT NOT NULL,
+    proposer TEXT NOT NULL,
+    requested_approvals TEXT AS List<String> DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL,
+    actionsName TEXT AS List<String> NOT NULL,
+    PRIMARY KEY (proposal_name, blockchain_uid)
+);
+
+CREATE TABLE IF NOT EXISTS AntelopeRemoteKey (
+    query TEXT NOT NULL,
+    last_requested_key INTEGER DEFAULT NULL,
+    blockchain_uid TEXT NOT NULL,
+    target_cache_entity TEXT AS AntelopeRemoteKeyTargetEntity NOT NULL,
+    last_updated_at INTEGER NOT NULL,
+    end_of_pagination_reached INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (query, blockchain_uid, target_cache_entity)
+);

@@ -1,0 +1,8 @@
+{
+  "code": 400,
+  "message": "Unexpected error while processing request.",
+  "data": {
+    "error": "FetchError: request to http://51.222.8.194:8199/v1/chain/get_abi failed, reason: connect ETIMEDOUT 51.222.8.194:8199",
+    "url": "/v1/resource_provider/request_transaction"
+  }
+}

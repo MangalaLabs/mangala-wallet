@@ -1,0 +1,72 @@
+[
+  {
+    "@timestamp": "2024-09-17T15:15:13.500",
+    "timestamp": "2024-09-17T15:15:13.500",
+    "block_num": 161529415,
+    "block_id": "09a0be475541c22f9851f31b42144179fcda6fcf11d516ee91cebfc8a280e48a",
+    "trx_id": "6edda57aab33d9766d4679fccce4a70943b40f10cae9d39e8e8b5b598abe0a85",
+    "act": {
+      "account": "eosio.msig",
+      "name": "propose",
+      "authorization": [
+        {
+          "actor": "accpartner11",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "proposer": "accpartner11",
+        "proposal_name": "buyram1..22",
+        "requested": [
+          {
+            "actor": "accpartner11",
+            "permission": "active"
+          },
+          {
+            "actor": "accpartner12",
+            "permission": "active"
+          }
+        ],
+        "trx": {
+          "expiration": "2024-09-17T16:15:12.000",
+          "ref_block_num": 48708,
+          "ref_block_prefix": 2870658960,
+          "max_net_usage_words": 0,
+          "max_cpu_usage_ms": 0,
+          "delay_sec": 0,
+          "context_free_actions": [],
+          "actions": [
+            {
+              "account": "eosio",
+              "name": "buyram",
+              "authorization": [
+                {
+                  "actor": "accmultisig1",
+                  "permission": "active"
+                }
+              ],
+              "data": "1098C32E472D11321098C32E472D1132A08601000000000004454F5300000000"
+            }
+          ],
+          "transaction_extensions": []
+        }
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 211,
+    "net_usage_words": 28,
+    "account_ram_deltas": [
+      {
+        "account": "accpartner11",
+        "delta": 375
+      }
+    ],
+    "global_sequence": 222535617,
+    "producer": "thebluewhale",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KBexDWqtPuyRpD4WrepeKqC1w6PCyyxPwV5R9TFjQEYJuzbGyhtRsvAyEv4EV54oKzgZq1zoVghSzrzYwbkzggF6BZcyiE"
+    ]
+  }
+]

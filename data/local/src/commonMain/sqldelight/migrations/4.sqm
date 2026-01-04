@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS RemoteKeyEntity_temp (
+    query TEXT PRIMARY KEY,
+    lastRequestedPage TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL
+);
+
+INSERT INTO RemoteKeyEntity_temp(query, lastRequestedPage, blockchain_uid)
+SELECT query, CAST(lastRequestedPage AS TEXT), blockchain_uid FROM RemoteKeyEntity;
+
+DROP TABLE RemoteKeyEntity;
+
+ALTER TABLE RemoteKeyEntity_temp RENAME TO RemoteKeyEntity;
+
+
+ALTER TABLE TransactionsEntity ADD COLUMN nft_transfers TEXT;
+ALTER TABLE TransactionsEntity ADD COLUMN erc20_transfers TEXT;
+ALTER TABLE TransactionsEntity ADD COLUMN native_transfers TEXT;

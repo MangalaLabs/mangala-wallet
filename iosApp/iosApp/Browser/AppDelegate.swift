@@ -1,0 +1,702 @@
+//
+//  AppDelegate.swift
+//  DuckDuckGo
+//
+//  Copyright © 2017 DuckDuckGo. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import UIKit
+import UserNotifications
+import os.log
+import Kingfisher
+import WidgetKit
+import BackgroundTasks
+import BrowserServicesKit
+import composeApp
+import Combine
+import SwiftUI
+import FirebaseCore
+import FirebaseMessaging
+import FirebaseRemoteConfig
+import FirebaseAppCheck
+
+// swiftlint:disable file_length
+// swiftlint:disable type_body_length
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+// swiftlint:enable type_body_length
+
+    private static let ShowKeyboardOnLaunchThreshold = TimeInterval(20)
+    
+    let openBrowserViewModel = OpenBrowserViewModel()
+    
+    let scannerViewModel = ScannerViewModel()
+    
+    let rinku = RinkuIos.init(deepLinkFilter: nil, deepLinkMapper: nil)
+
+    
+    private struct ShortcutKey {
+        static let clipboard = "com.mangalawallet.mobile.ios.clipboard"
+    }
+
+    private var testing = false
+    var appIsLaunching = false
+    var overlayWindow: UIWindow?
+    var window: UIWindow?
+
+    private lazy var bookmarkStore: BookmarkStore = BookmarkUserDefaults()
+    private lazy var privacyStore = PrivacyUserDefaults()
+    private var autoClear: AutoClear?
+    private var showKeyboardIfSettingOn = true
+    private var lastBackgroundDate: Date?
+    private var mainController: MainViewController?
+    
+    var switchingRootView: SwitchingRootView?
+    private var composeController: UIViewController?
+    
+    var chainCancellable: AnyCancellable?
+    var chainId: Int = 1
+    var addressCancellable: AnyCancellable?
+    var address: String = ""
+    var rpcUrlCancellable: AnyCancellable?
+    var rpcUrl: String = ""
+    var accountIdCancellable: AnyCancellable?
+    var accountId: String = ""
+    
+    var cancellable: AnyCancellable?  // This is used to store the reference to the subscriber
+        
+    override init() {
+        super.init()
+        
+        // Set up a subscriber to observe changes to `isShowingScanner`
+        cancellable = openBrowserViewModel.$isOpenBrowser.sink { newValue in
+            print("isShowingScanner changed to \(newValue)")
+
+            if newValue {
+//                self.window?.rootViewController = self.mainController
+//                self.window?.makeKeyAndVisible()
+                DispatchQueue.main.async {
+                    let navVC = UINavigationController(rootViewController: self.mainController!)
+                    navVC.modalPresentationStyle = .formSheet
+                    
+                    // Check if the device is an iPad
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        let screenWidth = UIScreen.main.bounds.width
+                        let desiredWidth = screenWidth * 0.9
+                        
+                        let screenHeight = UIScreen.main.bounds.height
+                        let desiredHeight = screenHeight * 0.9
+
+                        // Set preferredContentSize only for iPad
+                        navVC.preferredContentSize = CGSize(width: desiredWidth, height: desiredHeight)
+                    }
+//                    navVC.isModalInPresentation = false
+                    
+                     self.composeController?.present(navVC, animated: true, completion: nil)
+                }
+                
+            
+            }
+        }
+        
+        addressCancellable = openBrowserViewModel.$address.sink { newValue in
+            print("2000 Address has been changed: \(newValue)")
+            self.address = newValue
+            self.mainController?.address = self.address
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.mainController?.startSession()
+            }
+        }
+        
+        chainCancellable = openBrowserViewModel.$chainId.sink { newValue in
+            print("2000 chainId has been changed: \(newValue)")
+            self.chainId = newValue
+            self.mainController?.chainId = self.chainId
+        }
+        
+        rpcUrlCancellable = openBrowserViewModel.$rpcUrl.sink { newValue in
+            print("2000 rpcUrl has been changed: \(newValue)")
+            self.rpcUrl = newValue
+            self.mainController?.rpcUrl = self.rpcUrl
+        }
+        
+        accountIdCancellable = openBrowserViewModel.$accountId.sink { newValue in
+            print("2000 accountId has been changed: \(newValue)")
+            self.accountId = newValue
+            self.mainController?.accountId = self.accountId
+        }
+        
+    }
+
+    @objc func closePressed() {
+        self.composeController?.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: lifecycle
+
+    // swiftlint:disable function_body_length
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        if isDebugBuild {
+            let providerFactory = AppCheckDebugProviderFactory()
+            AppCheck.setAppCheckProviderFactory(providerFactory)
+        } else {
+            let providerFactory = MangalaAppCheckProviderFactory()
+            AppCheck.setAppCheckProviderFactory(providerFactory)
+        }
+        
+        FirebaseApp.configure()
+        let remoteConfig = RemoteConfig.remoteConfig()
+        remoteConfig.fetchAndActivate { status, error in
+            if let error = error {
+                print("Error fetching remote config: \(error.localizedDescription)")
+            } else {
+                print("Remote Config fetched and activated successfully!")
+            }
+        }
+        startKoin()
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
+       NotificationInitializer.shared.onApplicationStart()
+       FirebasePushNotifierImpl.shared.swiftDelegate = self
+        #if targetEnvironment(simulator)
+        if ProcessInfo.processInfo.environment["UITESTING"] == "true" {
+            // Disable hardware keyboards.
+            let setHardwareLayout = NSSelectorFromString("setHardwareLayout:")
+            UITextInputMode.activeInputModes
+                // Filter `UIKeyboardInputMode`s.
+                .filter({ $0.responds(to: setHardwareLayout) })
+                .forEach { $0.perform(setHardwareLayout, with: nil) }
+        }
+        #endif
+
+        
+        clearTmp()
+
+        _ = DefaultUserAgentManager.shared
+        testing = ProcessInfo().arguments.contains("testing")
+        if testing {
+            _ = DefaultUserAgentManager.shared
+            Database.shared.loadStore { _ in }
+            BookmarksCoreDataStorage.shared.loadStoreAndCaches { context in
+                _ = BookmarksCoreDataStorageMigration.migrate(fromBookmarkStore: self.bookmarkStore, context: context)
+            }
+            window?.rootViewController = UIStoryboard.init(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+            return true
+        }
+
+        if !Database.shared.isDatabaseFileInitialized {
+            let autofillStorage = EmailKeychainManager()
+            autofillStorage.deleteAuthenticationState()
+            autofillStorage.deleteWaitlistState()
+        }
+        
+        Database.shared.loadStore(application: application) { context in
+            DatabaseMigration.migrate(to: context)
+        }
+        
+        BookmarksCoreDataStorage.shared.loadStoreAndCaches { context in
+            if BookmarksCoreDataStorageMigration.migrate(fromBookmarkStore: self.bookmarkStore, context: context) {
+                if #available(iOS 14, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
+        }
+
+        Favicons.shared.migrateFavicons(to: Favicons.Constants.maxFaviconSize) {
+            if #available(iOS 14, *) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        }
+
+        PrivacyFeatures.httpsUpgrade.loadDataAsync()
+        
+        // assign it here, because "did become active" is already too late and "viewWillAppear"
+        // has already been called on the HomeViewController so won't show the home row CTA
+        AtbAndVariantCleanup.cleanup()
+        DefaultVariantManager().assignVariantIfNeeded { _ in
+            // MARK: perform first time launch logic here
+            DaxDialogs.shared.primeForUse()
+        }
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let mainController = storyboard.instantiateInitialViewController(creator: { coder in
+            MainViewController(coder: coder)
+        }) else {
+            fatalError("Could not load MainViewController")
+        }
+        
+        self.mainController = mainController
+        mainController.delegate = self
+        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.rootViewController = mainController
+//        window?.makeKeyAndVisible()
+
+        if let main = self.mainController {
+            autoClear = AutoClear(worker: main)
+            autoClear?.applicationDidLaunch()
+        }
+        
+        clearLegacyAllowedDomainCookies()
+
+        // Task handler registration needs to happen before the end of `didFinishLaunching`, otherwise submitting a task can throw an exception.
+        // Having both in `didBecomeActive` can sometimes cause the exception when running on a physical device, so registration happens here.
+        AppConfigurationFetch.registerBackgroundRefreshTaskHandler()
+        EmailWaitlist.shared.registerBackgroundRefreshTaskHandler()
+        MacBrowserWaitlist.shared.registerBackgroundRefreshTaskHandler()
+        
+        window?.windowScene?.screenshotService?.delegate = self
+        ThemeManager.shared.updateUserInterfaceStyle(window: window)
+
+        appIsLaunching = true
+        
+        switchingRootView =  SwitchingRootView(
+            scannerViewModel: scannerViewModel,
+//            mainViewController: self.mainController!,
+            viewModel: koin.applicationViewModel,
+            openBrowserViewModel: openBrowserViewModel
+        )
+        
+        composeController = UIHostingController(rootView: switchingRootView)
+        window?.rootViewController = composeController
+        window?.makeKeyAndVisible()
+        return true
+    }
+    // swiftlint:enable function_body_length
+
+    private func clearTmp() {
+        let tmp = FileManager.default.temporaryDirectory
+        do {
+            try FileManager.default.removeItem(at: tmp)
+        } catch {
+            os_log("Failed to delete tmp dir")
+        }
+    }
+
+    private func clearLegacyAllowedDomainCookies() {
+        let domains = PreserveLogins.shared.legacyAllowedDomains
+        guard !domains.isEmpty else { return }
+        WebCacheManager.shared.removeCookies(forDomains: domains, completion: {
+            os_log("Removed cookies for %d legacy allowed domains", domains.count)
+            PreserveLogins.shared.clearLegacyAllowedDomains()
+        })
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        guard !testing else { return }
+
+        if !(overlayWindow?.rootViewController is AuthenticationViewController) {
+            removeOverlay()
+        }
+        
+        StatisticsLoader.shared.load {
+            StatisticsLoader.shared.refreshAppRetentionAtb()
+            self.fireAppLaunchPixel()
+        }
+        
+        if appIsLaunching {
+            appIsLaunching = false
+            onApplicationLaunch(application)
+        }
+
+        mainViewController?.showBars()
+        mainViewController?.didReturnFromBackground()
+        
+        if !privacyStore.authenticationEnabled {
+            showKeyboardOnLaunch()
+        }
+
+        AppConfigurationFetch().start { newData in
+            if newData {
+                ContentBlocking.contentBlockingManager.scheduleCompilation()
+            }
+        }
+
+        EmailWaitlist.shared.emailManager.fetchInviteCodeIfAvailable { result in
+            switch result {
+            case .success: EmailWaitlist.shared.sendInviteCodeAvailableNotification()
+            case .failure: break
+            }
+        }
+        
+        MacBrowserWaitlist.shared.fetchInviteCodeIfAvailable { error in
+            guard error == nil else { return }
+            MacBrowserWaitlist.shared.sendInviteCodeAvailableNotification()
+        }
+        
+        BGTaskScheduler.shared.getPendingTaskRequests { tasks in
+            let hasMacBrowserWaitlistTask = tasks.contains { $0.identifier == MacBrowserWaitlist.Constants.backgroundRefreshTaskIdentifier }
+            if !hasMacBrowserWaitlistTask {
+                MacBrowserWaitlist.shared.scheduleBackgroundRefreshTask()
+            }
+        }
+        
+//        window?.rootViewController = UIHostingController(rootView: switchingRootView)
+//        window?.makeKeyAndVisible()
+    }
+
+    private func fireAppLaunchPixel() {
+
+        if #available(iOS 14, *) {
+            WidgetCenter.shared.getCurrentConfigurations { result in
+
+                let paramKeys: [WidgetFamily: String] = [
+                    .systemSmall: PixelParameters.widgetSmall,
+                    .systemMedium: PixelParameters.widgetMedium,
+                    .systemLarge: PixelParameters.widgetLarge
+                ]
+
+                switch result {
+                case .failure(let error):
+                    Pixel.fire(pixel: .appLaunch, withAdditionalParameters: [
+                        PixelParameters.widgetError: "1",
+                        PixelParameters.widgetErrorCode: "\((error as NSError).code)",
+                        PixelParameters.widgetErrorDomain: (error as NSError).domain
+                    ])
+
+                case .success(let widgetInfo):
+                    let params = widgetInfo.reduce([String: String]()) {
+                        var result = $0
+                        if let key = paramKeys[$1.family] {
+                            result[key] = "1"
+                        }
+                        return result
+                    }
+                    Pixel.fire(pixel: .appLaunch, withAdditionalParameters: params)
+                }
+
+            }
+        } else {
+            Pixel.fire(pixel: .appLaunch, withAdditionalParameters: [PixelParameters.widgetUnavailable: "1"])
+        }
+
+    }
+    
+    private func shouldShowKeyboardOnLaunch() -> Bool {
+        guard let date = lastBackgroundDate else { return true }
+        return Date().timeIntervalSince(date) > AppDelegate.ShowKeyboardOnLaunchThreshold
+    }
+
+    private func showKeyboardOnLaunch() {
+        guard KeyboardSettings().onAppLaunch && showKeyboardIfSettingOn && shouldShowKeyboardOnLaunch() else { return }
+        self.mainViewController?.enterSearch()
+        showKeyboardIfSettingOn = false
+    }
+    
+    private func onApplicationLaunch(_ application: UIApplication) {
+        os_log("2001 onApplicationLaunch ")
+        beginAuthentication()
+        initialiseBackgroundFetch(application)
+        applyAppearanceChanges()
+    }
+    
+    private func applyAppearanceChanges() {
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        ThemeManager.shared.updateUserInterfaceStyle()
+
+        beginAuthentication()
+        autoClear?.applicationWillMoveToForeground()
+        showKeyboardIfSettingOn = true
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        displayBlankSnapshotWindow()
+        autoClear?.applicationDidEnterBackground()
+        lastBackgroundDate = Date()
+    }
+
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        handleShortCutItem(shortcutItem)
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        os_log("App launched with url %s", log: lifecycleLog, type: .debug, url.absoluteString)
+        autoClear?.applicationWillMoveToForeground()
+        showKeyboardIfSettingOn = false
+        
+        rinku.onDeepLinkReceived(url: url.absoluteString)
+
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == NSUserActivityTypeBrowsingWeb, let url = userActivity.webpageURL {
+            let urlString = url.absoluteString
+            rinku.onDeepLinkReceived(userActivity: userActivity)
+        }
+        return true
+    }
+
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        os_log(#function, log: lifecycleLog, type: .debug)
+
+        AppConfigurationFetch().start(isBackgroundFetch: true) { newData in
+            completionHandler(newData ? .newData : .noData)
+        }
+    }
+
+    func application(_ application: UIApplication, willContinueUserActivityWithType userActivityType: String) -> Bool {
+        return true
+    }
+
+    // MARK: private
+
+    private func initialiseBackgroundFetch(_ application: UIApplication) {
+        guard UIApplication.shared.backgroundRefreshStatus == .available else {
+            return
+        }
+
+        // BackgroundTasks will automatically replace an existing task in the queue if one with the same identifier is queued, so we should only
+        // schedule a task if there are none pending in order to avoid the config task getting perpetually replaced.
+        BGTaskScheduler.shared.getPendingTaskRequests { tasks in
+            let hasConfigurationTask = tasks.contains { $0.identifier == AppConfigurationFetch.Constants.backgroundProcessingTaskIdentifier }
+            if !hasConfigurationTask {
+                AppConfigurationFetch.scheduleBackgroundRefreshTask()
+            }
+
+            let hasEmailWaitlistTask = tasks.contains { $0.identifier == EmailWaitlist.Constants.backgroundRefreshTaskIdentifier }
+            if !hasEmailWaitlistTask {
+                EmailWaitlist.shared.scheduleBackgroundRefreshTask()
+            }
+        }
+    }
+    
+    private func displayAuthenticationWindow() {
+        guard overlayWindow == nil, let frame = window?.frame else { return }
+        overlayWindow = UIWindow(frame: frame)
+        overlayWindow?.windowLevel = UIWindow.Level.alert
+        overlayWindow?.rootViewController = AuthenticationViewController.loadFromStoryboard()
+        overlayWindow?.makeKeyAndVisible()
+        window?.isHidden = true
+    }
+    
+    private func displayBlankSnapshotWindow() {
+        guard overlayWindow == nil, let frame = window?.frame else { return }
+        guard autoClear?.isClearingEnabled ?? false || privacyStore.authenticationEnabled else { return }
+        
+        overlayWindow = UIWindow(frame: frame)
+        overlayWindow?.windowLevel = UIWindow.Level.alert
+        
+        let overlay = BlankSnapshotViewController.loadFromStoryboard()
+        overlay.delegate = self
+        
+        overlayWindow?.rootViewController = overlay
+        overlayWindow?.makeKeyAndVisible()
+        window?.isHidden = true
+    }
+
+    private func beginAuthentication() {
+        
+        guard privacyStore.authenticationEnabled else { return }
+
+        removeOverlay()
+        displayAuthenticationWindow()
+        
+        guard let controller = overlayWindow?.rootViewController as? AuthenticationViewController else {
+            removeOverlay()
+            return
+        }
+        
+        controller.beginAuthentication { [weak self] in
+            self?.removeOverlay()
+            self?.showKeyboardOnLaunch()
+        }
+    }
+    
+    private func tryToObtainOverlayWindow() {
+        for window in UIApplication.shared.windows where window.rootViewController is BlankSnapshotViewController {
+            overlayWindow = window
+            return
+        }
+    }
+
+    private func removeOverlay() {
+        if overlayWindow == nil {
+            tryToObtainOverlayWindow()
+        }
+        
+        overlayWindow?.isHidden = true
+        overlayWindow = nil
+        window?.makeKeyAndVisible()
+    }
+
+    private func handleShortCutItem(_ shortcutItem: UIApplicationShortcutItem) {
+        os_log("Handling shortcut item: %s", log: generalLog, type: .debug, shortcutItem.type)
+        mainViewController?.clearNavigationStack()
+        autoClear?.applicationWillMoveToForeground()
+        if shortcutItem.type ==  ShortcutKey.clipboard, let query = UIPasteboard.general.string {
+            mainViewController?.loadQueryInNewTab(query)
+        }
+    }
+
+    var mainViewController: MainViewController? {
+//        return window?.rootViewController as? MainViewController
+        return self.mainController
+    }
+}
+
+extension AppDelegate: BlankSnapshotViewRecoveringDelegate {
+    
+    func recoverFromPresenting(controller: BlankSnapshotViewController) {
+        if overlayWindow == nil {
+            tryToObtainOverlayWindow()
+        }
+        
+        overlayWindow?.isHidden = true
+        overlayWindow = nil
+        window?.makeKeyAndVisible()
+    }
+    
+}
+
+extension AppDelegate: UIScreenshotServiceDelegate {
+    func screenshotService(_ screenshotService: UIScreenshotService,
+                           generatePDFRepresentationWithCompletion completionHandler: @escaping (Data?, Int, CGRect) -> Void) {
+        guard #available(iOS 14.0, *), let webView = mainViewController?.currentTab?.webView else {
+            completionHandler(nil, 0, .zero)
+            return
+        }
+
+        let zoomScale = webView.scrollView.zoomScale
+
+        // The PDF's coordinate space has its origin at the bottom left, so the view's origin.y needs to be converted
+        let visibleBounds = CGRect(
+            x: webView.scrollView.contentOffset.x / zoomScale,
+            y: (webView.scrollView.contentSize.height - webView.scrollView.contentOffset.y - webView.bounds.height) / zoomScale,
+            width: webView.bounds.width / zoomScale,
+            height: webView.bounds.height / zoomScale
+        )
+
+        webView.createPDF { result in
+            let data = try? result.get()
+            completionHandler(data, 0, visibleBounds)
+        }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if notification.request.identifier == MacBrowserWaitlist.Constants.notificationIdentitier {
+            Pixel.fire(pixel: .macBrowserWaitlistNotificationShown)
+        }
+        
+        if #available(iOS 14.0, *) {
+            completionHandler(.banner)
+        } else {
+            completionHandler(.alert)
+        }
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            if response.notification.request.identifier == MacBrowserWaitlist.Constants.notificationIdentitier {
+                Pixel.fire(pixel: .macBrowserWaitlistNotificationLaunched)
+                presentMacBrowserWaitlistSettingsModal()
+            } else if response.notification.request.identifier == EmailWaitlist.Constants.notificationIdentitier {
+                presentEmailWaitlistSettingsModal()
+            }
+        }
+
+        completionHandler()
+    }
+
+    private func presentEmailWaitlistSettingsModal() {
+        let waitlistViewController = EmailWaitlistViewController.loadFromStoryboard()
+        presentSettings(with: waitlistViewController)
+    }
+    
+    private func presentMacBrowserWaitlistSettingsModal() {
+        let waitlistViewController = MacWaitlistViewController(nibName: nil, bundle: nil)
+        presentSettings(with: waitlistViewController)
+    }
+    
+    private func presentSettings(with viewController: UIViewController) {
+        guard let window = window, let rootViewController = window.rootViewController as? MainViewController else { return }
+
+        rootViewController.clearNavigationStack()
+
+        // Give the `clearNavigationStack` call time to complete.
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            rootViewController.performSegue(withIdentifier: "Settings", sender: nil)
+            let navigationController = rootViewController.presentedViewController as? UINavigationController
+            navigationController?.popToRootViewController(animated: false)
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+
+}
+
+extension AppDelegate: MainViewControllerDelegate {
+    func didPressShareButton() {
+        
+    }
+    
+    func didPressHomeButton() {
+        self.window?.rootViewController = UIHostingController(rootView: self.switchingRootView)
+        self.window?.makeKeyAndVisible()
+//        mainController?.navigationController?.dismiss()
+    }
+}
+
+extension AppDelegate: MessagingDelegate, PushNotifier {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data)}
+        let token = tokenParts.joined()
+        print("APNS Device Token: \(token)")
+    }
+
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+       NotifierManager.shared.onApplicationDidReceiveRemoteNotification(userInfo: userInfo)
+        return UIBackgroundFetchResult.newData
+    }
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+       if let fcmToken = fcmToken {
+           NotifierManagerImpl.shared.onNewToken(token: fcmToken)
+       }
+    }
+
+    func deleteMyToken() async throws {
+        try? await Messaging.messaging().deleteToken()
+    }
+
+    func getToken() async throws -> String? {
+        try? await Messaging.messaging().token()
+    }
+
+    func subscribeToTopic(topic: String) async throws {
+        try? await Messaging.messaging().subscribe(toTopic: topic)
+    }
+
+    func unSubscribeFromTopic(topic: String) async throws {
+        try? await Messaging.messaging().unsubscribe(fromTopic: topic)
+    }
+}

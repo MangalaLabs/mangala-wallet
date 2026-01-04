@@ -1,0 +1,42 @@
+-- ConversationSession table (multiple sessions per user)
+CREATE TABLE IF NOT EXISTS ConversationSession (
+    id TEXT PRIMARY KEY NOT NULL,
+    userId TEXT NOT NULL,
+    startTime INTEGER NOT NULL,
+    lastUpdatedTime INTEGER NOT NULL,
+    title TEXT,
+    metadata TEXT NOT NULL -- JSON string for Map<String, String>
+);
+
+-- Index for efficient user session queries
+CREATE INDEX IF NOT EXISTS idx_session_user ON ConversationSession(userId);
+
+-- Session queries
+getAllSessionsForUser:
+SELECT * FROM ConversationSession 
+WHERE userId = ? 
+ORDER BY lastUpdatedTime DESC;
+
+getSessionById:
+SELECT * FROM ConversationSession 
+WHERE id = ?;
+
+insertSession:
+INSERT INTO ConversationSession(id, userId, startTime, lastUpdatedTime, title, metadata)
+VALUES (?, ?, ?, ?, ?, ?);
+
+updateSession:
+UPDATE ConversationSession 
+SET lastUpdatedTime = ?, title = ?, metadata = ?
+WHERE id = ?;
+
+deleteSession:
+DELETE FROM ConversationSession 
+WHERE id = ?;
+
+deleteAllSessionsForUser:
+DELETE FROM ConversationSession 
+WHERE userId = ?;
+
+clearAllConversationSessions:
+DELETE FROM ConversationSession;

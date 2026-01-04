@@ -1,0 +1,40 @@
+[
+  {
+    "@timestamp": "2024-08-14T15:50:38.500",
+    "timestamp": "2024-08-14T15:50:38.500",
+    "block_num": 155717374,
+    "block_id": "09480efefe11823df4dbec741bb34fa345de0bf376d841e86967feef815fd63a",
+    "trx_id": "606506d351b852f38f27f865ae0d5116d15d1c9c2cbd151b9ca0b371e8383bd0",
+    "act": {
+      "account": "eosio.msig",
+      "name": "cancel",
+      "authorization": [
+        {
+          "actor": "accpartner11",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "proposer": "accpartner11",
+        "proposal_name": "buyram1",
+        "canceler": "accpartner11"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 184,
+    "net_usage_words": 15,
+    "account_ram_deltas": [
+      {
+        "account": "accpartner11",
+        "delta": -383
+      }
+    ],
+    "global_sequence": 216227726,
+    "producer": "eosriobrazil",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KcewCRn8niXv8KEz8HDPmjuw8RTtTkwJzxZN1bH7ZbE5vjefBoGcxWxms7L5FWbp9TpkGxuzzbrqHw14XR5ieoB219MWMi"
+    ]
+  }
+]

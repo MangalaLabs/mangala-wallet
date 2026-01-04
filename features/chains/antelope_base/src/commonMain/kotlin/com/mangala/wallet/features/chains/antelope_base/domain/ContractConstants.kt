@@ -1,0 +1,18 @@
+package com.mangala.wallet.features.chains.antelope_base.domain
+
+const val CONTRACT_EOSIO = "eosio"
+const val CONTRACT_EOSIO_MULTISIG = "eosio.msig"
+const val FUNCTION_UPDATE_AUTH = "updateauth"
+const val FUNCTION_DELETE_AUTH = "deleteauth"
+const val FUNCTION_CREATE_PROPOSE = "propose"
+const val FUNCTION_LINK_AUTH = "linkauth"
+const val FUNCTION_UN_LINK_AUTH = "unlinkauth"
+const val BUY_RAM_ACTION = "buyram"
+const val SELL_RAM_ACTION = "sellram"
+const val APPROVE_PROPOSAL_ACTION = "approve"
+const val UN_APPROVE_PROPOSAL_ACTION = "unapprove"
+const val CANCEL_PROPOSAL_ACTION = "cancel"
+const val EXECUTE_PROPOSAL_ACTION = "exec"
+const val PROPOSAL_APPROVED_STATUS = "Approved"
+const val PROPOSAL_PENDING_STATUS = "Pending"
+const val FUNCTION_GIFT_RAM = "giftram"

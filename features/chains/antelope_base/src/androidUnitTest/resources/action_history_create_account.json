@@ -1,0 +1,194 @@
+[
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio",
+      "name": "logbuyram",
+      "authorization": [
+        {
+          "actor": "eosio",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "payer": "harkonnenmgl",
+        "receiver": "qibgvn3v3iox",
+        "quantity": "0.2898 EOS",
+        "bytes": "1599",
+        "ram_bytes": "1599",
+        "fee": "0.0015 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 209670227,
+    "producer": "atticlabeosb",
+    "action_ordinal": 9,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "eosio.ramfee",
+        "amount": 0.0015,
+        "symbol": "EOS",
+        "memo": "ram fee",
+        "quantity": "0.0015 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 209670219,
+    "producer": "atticlabeosb",
+    "action_ordinal": 6,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        },
+        {
+          "actor": "eosio.ram",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "harkonnenmgl",
+        "to": "eosio.ram",
+        "amount": 0.2883,
+        "symbol": "EOS",
+        "memo": "buy ram",
+        "quantity": "0.2883 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 209670216,
+    "producer": "atticlabeosb",
+    "action_ordinal": 5,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio",
+      "name": "buyrambytes",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "bytes": 1600,
+        "payer": "harkonnenmgl",
+        "receiver": "qibgvn3v3iox"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 209670214,
+    "producer": "atticlabeosb",
+    "action_ordinal": 3,
+    "creator_action_ordinal": 2
+  },
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio",
+      "name": "buyrambytes",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "bytes": 1600,
+        "payer": "harkonnenmgl",
+        "receiver": "qibgvn3v3iox"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 209670213,
+    "producer": "atticlabeosb",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 0
+  },
+  {
+    "@timestamp": "2024-07-12T00:24:44.500",
+    "timestamp": "2024-07-12T00:24:44.500",
+    "block_num": 149913545,
+    "block_id": "08ef7fc9f04993b5f4a68604cb3d94fc6f8e415ea50ecc32955057ea8392029d",
+    "trx_id": "85546eafbbafe4be04b7af40b5c55840232eef87b01bcfa9cbc5f93604c355f4",
+    "act": {
+      "account": "eosio",
+      "name": "newaccount",
+      "authorization": [
+        {
+          "actor": "harkonnenmgl",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "active": {
+          "threshold": 1,
+          "keys": [
+            {
+              "key": "PUB_K1_5jgyaK4P3MeFii2q42nv3jkHjuQicAj8dp7tyz54Q9a68zhNZ3",
+              "weight": 1
+            }
+          ],
+          "accounts": [],
+          "waits": []
+        },
+        "owner": {
+          "threshold": 1,
+          "keys": [
+            {
+              "key": "PUB_K1_89ZXXf8EPNWbrFCLDVJCY6GCVqukntANWYuy6mRJy8GJDrmNRJ",
+              "weight": 1
+            }
+          ],
+          "accounts": [],
+          "waits": []
+        },
+        "newact": "qibgvn3v3iox",
+        "creator": "harkonnenmgl"
+      }
+    },
+    "receipts": []
+  }
+]

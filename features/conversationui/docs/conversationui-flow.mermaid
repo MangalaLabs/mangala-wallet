@@ -1,0 +1,143 @@
+sequenceDiagram
+    participant User
+    participant ConversationScreen
+    participant ScreenModel
+    participant UseCases
+    participant PreprocessorChain
+    participant Preprocessor
+    participant AiRepository
+    participant FunctionRegistry
+    participant FunctionHandlerRegistry
+    participant FunctionHandler
+    participant ChatRepository
+    participant AddressValidator
+    
+    %% Basic message flow
+    User->>ConversationScreen: Type message
+    ConversationScreen->>ScreenModel: sendMessage(text)
+    ScreenModel->>UseCases: SendMessageUseCase.execute()
+    UseCases->>ChatRepository: saveMessage(userMessage)
+    
+    %% Preprocessing step
+    UseCases->>PreprocessorChain: process(userMessage)
+    loop For each preprocessor
+        PreprocessorChain->>Preprocessor: process(message)
+        Preprocessor-->>PreprocessorChain: ProcessedMessage
+    end
+    PreprocessorChain-->>UseCases: Final processed message
+    
+    UseCases->>AiRepository: processConversation(messages)
+    
+    alt AI responds with text
+        AiRepository-->>UseCases: TextMessage
+        UseCases->>ChatRepository: saveMessage(aiMessage)
+        UseCases-->>ScreenModel: Update state
+        ScreenModel-->>ConversationScreen: Update UI with response
+        ConversationScreen-->>User: Display AI message
+    else AI responds with function call
+        AiRepository-->>UseCases: FunctionCallMessage
+        UseCases->>FunctionRegistry: getFunctionByName()
+        FunctionRegistry-->>UseCases: FunctionDefinition
+        
+        alt Requires confirmation
+            note over UseCases: Check functionDef.requiresConfirmation
+            UseCases-->>ScreenModel: FunctionConfirmationRequired
+            ScreenModel-->>ConversationScreen: Show confirmation dialog
+            ConversationScreen-->>User: Display function details
+            
+            alt User confirms
+                User->>ConversationScreen: Confirm
+                ConversationScreen->>ScreenModel: confirmFunction()
+                ScreenModel->>UseCases: ConfirmFunctionCallUseCase.execute()
+                UseCases->>FunctionHandlerRegistry: getHandlerByName()
+                FunctionHandlerRegistry-->>UseCases: FunctionHandler
+                UseCases->>FunctionHandler: execute(params)
+                FunctionHandler-->>UseCases: FunctionResult
+                UseCases->>ChatRepository: saveMessage(functionResult)
+                UseCases->>AiRepository: processConversation(withResult)
+            else User cancels
+                User->>ConversationScreen: Cancel
+                ConversationScreen->>ScreenModel: cancelFunction()
+                ScreenModel->>UseCases: CancelFunctionCallUseCase.execute()
+                UseCases->>ChatRepository: saveMessage(cancelMessage)
+                UseCases->>AiRepository: processConversation(withCancel)
+            end
+        else No confirmation needed
+            UseCases->>FunctionHandlerRegistry: getHandlerByName()
+            FunctionHandlerRegistry-->>UseCases: FunctionHandler
+            UseCases->>FunctionHandler: execute(params)
+            FunctionHandler-->>UseCases: FunctionResult
+            UseCases->>ChatRepository: saveMessage(functionResult)
+            UseCases->>AiRepository: processConversation(withResult)
+        end
+        
+        AiRepository-->>UseCases: Response
+        UseCases-->>ScreenModel: Update state
+        ScreenModel-->>ConversationScreen: Update UI
+    end
+    
+    %% Network selection flow
+    note over ConversationScreen: AI sends [SELECT_NETWORK] tag
+    ConversationScreen->>ScreenModel: showNetworkPicker()
+    ScreenModel-->>ConversationScreen: Display network picker
+    User->>ConversationScreen: Select network
+    ConversationScreen->>ScreenModel: selectNetwork(network)
+    ScreenModel->>ChatRepository: saveNetworkSelection()
+    ScreenModel-->>ConversationScreen: Hide picker
+    
+    %% Address input flow
+    note over ConversationScreen: AI sends [ENTER_ADDRESS:ethereum] tag
+    ConversationScreen->>ScreenModel: showAddressInput(network)
+    ScreenModel-->>ConversationScreen: Display address input
+    User->>ConversationScreen: Enter address
+    ConversationScreen->>ScreenModel: validateAddress(address, network)
+    ScreenModel->>AddressValidator: validate(address)
+    
+    alt Valid address
+        AddressValidator-->>ScreenModel: ValidationSuccess
+        ScreenModel->>ChatRepository: saveAddress()
+        ScreenModel-->>ConversationScreen: Hide input, show success
+    else Invalid address
+        AddressValidator-->>ScreenModel: ValidationError
+        ScreenModel-->>ConversationScreen: Show error message
+        ConversationScreen-->>User: Display validation error
+    end
+    
+    %% Contact creation flow example
+    note over User: Complete contact creation flow
+    User->>ConversationScreen: "Create a contact named Alice"
+    ConversationScreen->>ScreenModel: sendMessage(text)
+    ScreenModel->>AiRepository: generateResponse()
+    AiRepository-->>ScreenModel: "Select network: [SELECT_NETWORK]"
+    note over User: User selects Ethereum
+    AiRepository-->>ScreenModel: "Enter address: [ENTER_ADDRESS:ethereum]"
+    note over User: User enters valid address
+    ScreenModel->>FunctionHandlerRegistry: getHandlerByName()
+    FunctionHandlerRegistry-->>ScreenModel: CreateContactFunction
+    ScreenModel->>FunctionHandler: execute()
+    FunctionHandler-->>ScreenModel: Contact created
+    ScreenModel-->>ConversationScreen: Show success message
+    
+    %% Chat export flow
+    User->>ConversationScreen: Export chat
+    ConversationScreen->>ScreenModel: exportChatLog()
+    ScreenModel->>UseCases: ExportChatLogUseCase.execute()
+    UseCases->>ChatRepository: getAllMessages(sessionId)
+    ChatRepository-->>UseCases: List<ChatMessage>
+    UseCases->>UseCases: formatAsMarkdown()
+    UseCases-->>ScreenModel: Export file path
+    ScreenModel-->>ConversationScreen: Share/Download file
+    ConversationScreen-->>User: Download/Share chat log
+    
+    %% Session management
+    note over ScreenModel: On screen initialization
+    ScreenModel->>UseCases: GetCurrentSessionUseCase.execute()
+    UseCases->>ChatRepository: getCurrentSession()
+    ChatRepository-->>UseCases: ChatSession
+    UseCases-->>ScreenModel: Session details
+    
+    ScreenModel->>UseCases: GetSessionMessagesUseCase.execute()
+    UseCases->>ChatRepository: getMessages(sessionId)
+    ChatRepository-->>UseCases: List<ChatMessage>
+    UseCases-->>ScreenModel: Message history
+    ScreenModel-->>ConversationScreen: Display chat history

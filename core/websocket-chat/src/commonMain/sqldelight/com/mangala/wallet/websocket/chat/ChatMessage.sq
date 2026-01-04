@@ -1,0 +1,120 @@
+CREATE TABLE ChatMessage (
+    id TEXT NOT NULL PRIMARY KEY,
+    conversationId TEXT NOT NULL,
+    senderId TEXT NOT NULL,
+    recipientId TEXT NOT NULL,
+    content TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    status TEXT NOT NULL,
+    priority TEXT NOT NULL DEFAULT 'NORMAL',
+    expiresAt INTEGER,
+    retryCount INTEGER NOT NULL DEFAULT 0,
+    lastRetryAt INTEGER,
+    metadata TEXT,
+    createdAt INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+    updatedAt INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000)
+);
+
+CREATE INDEX idx_conversation_timestamp ON ChatMessage(conversationId, timestamp DESC);
+CREATE INDEX idx_status ON ChatMessage(status);
+CREATE INDEX idx_expires_at ON ChatMessage(expiresAt) WHERE expiresAt IS NOT NULL;
+
+-- Get all messages for a conversation
+selectByConversation:
+SELECT * FROM ChatMessage
+WHERE conversationId = ?
+ORDER BY timestamp DESC
+LIMIT ?
+OFFSET ?;
+
+-- Get pending messages that need to be sent
+selectPendingMessages:
+SELECT * FROM ChatMessage
+WHERE status IN ('PENDING', 'FAILED')
+AND (expiresAt IS NULL OR expiresAt > ?)
+ORDER BY priority DESC, timestamp ASC;
+
+-- Get message by ID
+selectById:
+SELECT * FROM ChatMessage
+WHERE id = ?;
+
+-- Insert a new message
+insert:
+INSERT INTO ChatMessage(
+    id, conversationId, senderId, recipientId, content, 
+    timestamp, status, priority, retryCount, expiresAt, metadata, createdAt, updatedAt
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- Update message status
+updateStatus:
+UPDATE ChatMessage
+SET status = ?, updatedAt = ?
+WHERE id = ?;
+
+-- Update retry information
+updateRetry:
+UPDATE ChatMessage
+SET retryCount = retryCount + 1, 
+    lastRetryAt = ?,
+    updatedAt = (strftime('%s', 'now') * 1000)
+WHERE id = ?;
+
+-- Delete expired messages
+deleteExpiredMessages:
+DELETE FROM ChatMessage
+WHERE expiresAt IS NOT NULL AND expiresAt < ?;
+
+-- Delete message by ID
+deleteById:
+DELETE FROM ChatMessage
+WHERE id = ?;
+
+-- Get message count for conversation
+getMessageCount:
+SELECT COUNT(*) FROM ChatMessage
+WHERE conversationId = ?;
+
+-- Select by conversation ID without pagination
+selectByConversationId:
+SELECT * FROM ChatMessage
+WHERE conversationId = ?
+ORDER BY timestamp DESC;
+
+-- Select pending messages
+selectPending:
+SELECT * FROM ChatMessage
+WHERE status = 'PENDING'
+ORDER BY priority DESC, timestamp ASC;
+
+-- Select failed messages
+selectFailed:
+SELECT * FROM ChatMessage
+WHERE status = 'FAILED' AND retryCount < ?
+ORDER BY timestamp ASC;
+
+-- Select expired messages
+selectExpired:
+SELECT * FROM ChatMessage
+WHERE expiresAt IS NOT NULL AND expiresAt < ?
+AND status = 'PENDING';
+
+-- Increment retry count
+incrementRetryCount:
+UPDATE ChatMessage
+SET retryCount = retryCount + 1, updatedAt = ?
+WHERE id = ?;
+
+-- Delete by conversation ID
+deleteByConversationId:
+DELETE FROM ChatMessage
+WHERE conversationId = ?;
+
+-- Delete expired messages with parameter
+deleteExpired:
+DELETE FROM ChatMessage
+WHERE expiresAt IS NOT NULL AND expiresAt < ?;
+
+-- Clear all chat messages
+clearAllMessages:
+DELETE FROM ChatMessage;

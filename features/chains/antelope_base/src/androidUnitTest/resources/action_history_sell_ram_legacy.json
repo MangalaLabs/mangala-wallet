@@ -1,0 +1,102 @@
+[
+  {
+    "@timestamp": "2024-03-11T18:09:54.000",
+    "timestamp": "2024-03-11T18:09:54.000",
+    "block_num": 361963513,
+    "block_id": "15931ff9ff9db7649d338d55582a7130c9c61fb0080571ae7024fea7ae486e06",
+    "trx_id": "578bb990ed6fc7a7b34ad4a89a5411bb642f938ddb25ce8fdf1c3007d494e1b4",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "gm3tanzzgyge",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "gm3tanzzgyge",
+        "to": "eosio.ramfee",
+        "amount": 0.42,
+        "symbol": "EOS",
+        "memo": "sell ram fee",
+        "quantity": "0.4200 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 360337403867,
+    "producer": "eosflytomars",
+    "action_ordinal": 3,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-03-11T18:09:54.000",
+    "timestamp": "2024-03-11T18:09:54.000",
+    "block_num": 361963513,
+    "block_id": "15931ff9ff9db7649d338d55582a7130c9c61fb0080571ae7024fea7ae486e06",
+    "trx_id": "578bb990ed6fc7a7b34ad4a89a5411bb642f938ddb25ce8fdf1c3007d494e1b4",
+    "act": {
+      "account": "eosio.token",
+      "name": "transfer",
+      "authorization": [
+        {
+          "actor": "eosio.ram",
+          "permission": "active"
+        },
+        {
+          "actor": "gm3tanzzgyge",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "from": "eosio.ram",
+        "to": "gm3tanzzgyge",
+        "amount": 83.986,
+        "symbol": "EOS",
+        "memo": "sell ram",
+        "quantity": "83.9860 EOS"
+      }
+    },
+    "receipts": [],
+    "global_sequence": 360337403864,
+    "producer": "eosflytomars",
+    "action_ordinal": 2,
+    "creator_action_ordinal": 1
+  },
+  {
+    "@timestamp": "2024-03-11T18:09:54.000",
+    "timestamp": "2024-03-11T18:09:54.000",
+    "block_num": 361963513,
+    "block_id": "15931ff9ff9db7649d338d55582a7130c9c61fb0080571ae7024fea7ae486e06",
+    "trx_id": "578bb990ed6fc7a7b34ad4a89a5411bb642f938ddb25ce8fdf1c3007d494e1b4",
+    "act": {
+      "account": "eosio",
+      "name": "sellram",
+      "authorization": [
+        {
+          "actor": "bitpiestbill",
+          "permission": "active"
+        },
+        {
+          "actor": "gm3tanzzgyge",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "account": "gm3tanzzgyge",
+        "bytes": "484000"
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 416,
+    "net_usage_words": 18,
+    "global_sequence": 360337403863,
+    "producer": "eosflytomars",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_KBspCywfhcJ1wE7xLHQQtP9FTvsiWkJcQmmFpSfm14w2wtEEPPcBsYNP3HEnm8QFcf9Su9GW7sifFW6zhwSrXTVAuXrQLA",
+      "SIG_K1_KYzyjf7b7vEXCYCpwXEancVexWiFSxH13NVZtkk54vEdXVrHKquHnAGF12PpYFnzxRbbB6rnBU6EUgvM7jvaPCpM9qPRx6"
+    ]
+  }
+]

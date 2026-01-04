@@ -1,0 +1,104 @@
+graph TD
+%% Define node styles with classes
+    classDef mainEntry fill:#E0FFFF,stroke:#000080,stroke-width:2px;
+    classDef contact fill:#90EE90,stroke:#000080,stroke-width:2px;
+    classDef group fill:#FFB6C1,stroke:#000080,stroke-width:2px;
+    classDef tag fill:#FFFFE0,stroke:#000080,stroke-width:2px;
+    classDef transaction fill:#F08080,stroke:#000080,stroke-width:2px;
+    classDef support fill:#E6E6FA,stroke:#000080,stroke-width:2px;
+    classDef security fill:#FFE4E1,stroke:#000080,stroke-width:2px;
+    classDef blockchain fill:#FFA07A,stroke:#000080,stroke-width:2px;
+    classDef test fill:#F5F5F5,stroke:#000080,stroke-width:2px;
+
+%% Main Entry Point
+    CLS[ContactListScreen<br>Main Entry<br>+ Recent Transactions Tab<br>+ Favorites Tab<br>+ Contacts Tab<br>+ Groups Tab<br>+ Tags Tab]
+
+%% Contact Management
+    NCS[NewContactScreen<br>+ Create new contact<br>+ Add personal info<br>+ Add wallet addresses]
+    CDS[ContactDetailScreen<br>+ View contact info<br>+ View transactions<br>+ Edit/Delete actions]
+    CES[ContactEditScreen<br>+ Update contact info<br>+ Modify addresses<br>+ Change tags]
+
+%% Group Management
+    CGSN[CreateGroupScreenNew<br>+ Create/Edit group<br>+ Set group properties<br>+ Add contacts]
+    GDSN[GroupDetailScreenNew<br>+ View group members<br>+ Search members<br>+ Export addresses]
+
+%% Tag Management
+    ATS[AddTagScreen<br>+ Create/Edit tag<br>+ Set properties<br>+ Apply to contacts]
+    DTS[DetailTagScreen<br>+ View tagged items<br>+ Edit/Delete tag]
+
+%% Transaction Flow
+    TDS[TransactionDetailScreen<br>+ View transaction info<br>+ Copy details<br>+ Blockchain explorer]
+
+%% Utility/Support Screens
+    NSBSS[NetworkSelectionBottomSheetScreen<br>+ Select blockchain]
+    AWTGBSS[AddWalletToGroupBottomSheetScreen<br>+ Select addresses]
+    ASS[AddressSelectionScreen<br>+ Select addresses]
+
+%% Security
+    SAS[SecureAuthScreen<br>+ Authentication]
+
+%% Blockchain Management
+    BS[BlockchainScreen<br>+ Manage blockchains<br>+ Configure tokens]
+
+%% Test/Debug Screens
+    FPTS[FilterPerformanceTestScreen<br>+ Performance testing]
+    ACIS[AllContactIconScreen<br>+ Icon library]
+
+%% Forward Navigation (solid lines)
+    CLS -->|Create Contact| NCS
+    CLS -->|View Contact| CDS
+    CLS -->|Create Group| CGSN
+    CLS -->|View Group| GDSN
+    CLS -->|Create Tag| ATS
+    CLS -->|View Tag| DTS
+    CLS -->|Recent Transactions| TDS
+
+    NCS -->|After Save| CDS
+    CDS -->|Edit| CES
+    CES -->|After Save| CDS
+
+    CGSN -->|Select Network| NSBSS
+    CGSN -->|Add Contacts| AWTGBSS
+    CGSN -->|After Save| GDSN
+    GDSN -->|Edit| CGSN
+
+    ATS -->|Select Addresses| ASS
+    DTS -->|Edit| ATS
+
+    CDS -->|View Transactions| TDS
+
+%% Blockchain and Test screens
+    CLS -->|Manage Blockchains| BS
+    CLS -->|Dev Testing| FPTS
+    CLS -->|Dev Testing| ACIS
+
+%% Security connections
+    CDS -->|Secure Operations| SAS
+    GDSN -->|Secure Operations| SAS
+    CGSN -->|Secure Operations| SAS
+
+%% Apply classes to nodes
+    class CLS mainEntry;
+    class NCS,CDS,CES contact;
+    class CGSN,GDSN group;
+    class ATS,DTS tag;
+    class TDS transaction;
+    class NSBSS,AWTGBSS,ASS support;
+    class SAS security;
+    class BS blockchain;
+    class FPTS,ACIS test;
+
+%% %% Legend (added as a subgraph at the bottom)
+%% subgraph Legend
+%%     L_ME[Main Entry]:::mainEntry
+%%     L_CM[Contact Management]:::contact
+%%     L_GM[Group Management]:::group
+%%     L_TM[Tag Management]:::tag
+%%     L_TR[Transaction]:::transaction
+%%     L_SU[Support/Utility]:::support
+%%     L_SE[Security]:::security
+%%     L_BL[Blockchain]:::blockchain
+%%     L_TD[Test/Debug]:::test
+
+%%     L_FN[Forward Navigation: →]
+%% end

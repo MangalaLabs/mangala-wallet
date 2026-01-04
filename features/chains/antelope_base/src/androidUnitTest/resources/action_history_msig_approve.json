@@ -1,0 +1,43 @@
+[
+  {
+    "@timestamp": "2024-09-17T15:03:38.000",
+    "timestamp": "2024-09-17T15:03:38.000",
+    "block_num": 161528024,
+    "block_id": "09a0b8d8a41569501980789ec4d11fb7469b139a8383d9678165baa60d18d984",
+    "trx_id": "cc708dea3d6f41a22484df26dddcc68dfdba3a268849a2274cdc89c071e04ec2",
+    "act": {
+      "account": "eosio.msig",
+      "name": "approve",
+      "authorization": [
+        {
+          "actor": "accpartner11",
+          "permission": "active"
+        }
+      ],
+      "data": {
+        "proposer": "accpartner11",
+        "proposal_name": "buyram1dd",
+        "level": {
+          "actor": "accpartner11",
+          "permission": "active"
+        }
+      }
+    },
+    "receipts": [],
+    "cpu_usage_us": 2367,
+    "net_usage_words": 16,
+    "account_ram_deltas": [
+      {
+        "account": "accpartner11",
+        "delta": 8
+      }
+    ],
+    "global_sequence": 222534118,
+    "producer": "eoseouldotio",
+    "action_ordinal": 1,
+    "creator_action_ordinal": 0,
+    "signatures": [
+      "SIG_K1_Jxihv4og5eTeC6Eh2sgH8y3LXjmu25uai2TpXoqsodW6UBXfZqX3x1s7oE9LRX7bWD6bAnBkyXAz1J9myYW9cn5TzbAn6N"
+    ]
+  }
+]

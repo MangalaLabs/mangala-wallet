@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/zxing_barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:zxing_preview_scaling_strategy="centerCrop"
+        app:zxing_scanner_layout="@layout/layout_custom_barcode_scanner"
+        app:zxing_use_texture_view="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--    margin: since rect width is 240, top margin for rect is 90 + margin top for text 24dp -> 142dp-->
+        <TextView
+            android:id="@+id/text_custom_capture_message"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_scan_qr_code"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:layout_marginTop="354dp" />
+
+        <ImageButton
+            android:id="@+id/imagebutton_custom_capture_receive"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="18dp"
+            android:background="@drawable/background_round"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="90dp"
+            android:src="@drawable/ic_receive"/>
+        
+        <TextView
+            android:id="@+id/text_custom_capture_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_receive"
+            app:layout_constraintTop_toBottomOf="@id/imagebutton_custom_capture_receive"
+            app:layout_constraintStart_toStartOf="@id/imagebutton_custom_capture_receive"
+            app:layout_constraintEnd_toEndOf="@id/imagebutton_custom_capture_receive"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:clickable="true" />
+
+        <ImageButton
+            android:id="@+id/imagebutton_custom_capture_album"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/background_round"
+            android:padding="18dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="90dp"
+            android:src="@drawable/ic_album"/>
+        
+        <TextView
+            android:id="@+id/text_custom_capture_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_scan_qr_code_album"
+            app:layout_constraintTop_toBottomOf="@id/imagebutton_custom_capture_album"
+            app:layout_constraintStart_toStartOf="@id/imagebutton_custom_capture_album"
+            app:layout_constraintEnd_toEndOf="@id/imagebutton_custom_capture_album"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/white"
+            android:clickable="true"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

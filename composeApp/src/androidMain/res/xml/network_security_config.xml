@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<network-security-config>
+    <!-- Default configuration for all domains not explicitly listed -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+    
+    <!-- Specific configuration for local development -->
+    <domain-config cleartextTrafficPermitted="true" >
+        <domain includeSubdomains="true">192.168.43.165</domain>
+        <domain includeSubdomains="true">89.147.102.6</domain>
+        <trust-anchors>
+            <certificates src="user"/>
+            <certificates src="system"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

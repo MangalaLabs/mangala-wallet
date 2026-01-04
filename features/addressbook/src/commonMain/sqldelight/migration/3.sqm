@@ -1,0 +1,8 @@
+-- Version 3: Add icon column to tags table
+-- This migration adds support for avatar icons to tags similar to groups
+
+-- Add icon column to tags table
+ALTER TABLE tags ADD COLUMN icon TEXT DEFAULT NULL;
+
+-- Create index for faster icon lookups
+CREATE INDEX IF NOT EXISTS tags_icon ON tags(icon); 

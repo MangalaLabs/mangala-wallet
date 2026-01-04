@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.networking.networkextension</key>
+	<array/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.mangala.prowallet.apptp</string>
+		<string>group.com.mangala.prowallet.contentblocker</string>
+		<string>group.com.mangala.prowallet.database</string>
+		<string>group.com.mangala.prowallet.statistics</string>
+		<string>group.com.mangala.prowallet.bookmarks</string>
+	</array>
+</dict>
+</plist>

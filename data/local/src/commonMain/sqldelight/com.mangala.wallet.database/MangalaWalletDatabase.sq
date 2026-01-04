@@ -1,0 +1,1015 @@
+import com.mangala.wallet.local.cache.MetadataTargetCacheEntity;
+
+CREATE TABLE IF NOT EXISTS PersonEntity (
+    name TEXT,
+    height TEXT,
+    mass TEXT,
+    url TEXT
+);
+
+insertPerson:
+INSERT INTO PersonEntity(name, height, mass, url)
+VALUES(?, ?, ?, ?);
+
+removeAllPerson:
+DELETE FROM PersonEntity;
+
+selectAllPersonsInfo:
+SELECT PersonEntity.*
+FROM PersonEntity;
+
+-- TABLE WALLET
+
+CREATE TABLE IF NOT EXISTS WalletEntity (
+  id TEXT PRIMARY KEY,
+  name TEXT,
+  words TEXT, -- Store encrypted version here
+  passphrase TEXT, -- Store encrypted version here
+  key TEXT, -- Not sure what this does? Maybe for multichain support?
+  is_backed_up INTEGER,
+  is_selected INTEGER
+);
+
+-- Wallet queries and operations
+getAllWallets:
+SELECT * FROM WalletEntity;
+
+selectWalletById:
+SELECT * FROM WalletEntity WHERE id = ?;
+
+clearSelectedWallet:
+UPDATE WalletEntity SET is_selected = 0;
+
+setSelectedWallet:
+UPDATE WalletEntity SET is_selected = 1 WHERE id = ?;
+
+getSelectedWallet:
+SELECT * FROM WalletEntity WHERE is_selected = 1 LIMIT 1;
+
+insertWallet:
+INSERT INTO WalletEntity (id, name, words, passphrase, key, is_backed_up, is_selected) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+updateWallet:
+UPDATE WalletEntity SET name = ?, words = ?, passphrase = ?, key = ?, is_backed_up = ? WHERE id = ?;
+
+deleteWallet:
+DELETE FROM WalletEntity WHERE id = ?;
+
+deleteAllWallets:
+DELETE FROM WalletEntity;
+
+updateWalletName:
+UPDATE WalletEntity SET name = ? WHERE id = ?;
+
+getWalletById:
+SELECT * FROM WalletEntity WHERE id = ?;
+
+
+-- TABLE ACCOUNT
+CREATE TABLE IF NOT EXISTS AccountEntity (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  type TEXT NOT NULL,
+  wallet_id TEXT NOT NULL,
+  derivation_path_index INTEGER NOT NULL,
+  sorting_order INTEGER NOT NULL DEFAULT 0,
+  is_hidden INTEGER NOT NULL DEFAULT 0,
+  bip_44_address TEXT NOT NULL,
+  bip_49_address TEXT NOT NULL,
+  bip_84_address TEXT NOT NULL,
+  FOREIGN KEY(wallet_id) REFERENCES WalletEntity(id) ON DELETE CASCADE
+);
+
+selectAccountById:
+SELECT * FROM AccountEntity WHERE id = ?;
+
+insertAccount:
+INSERT INTO AccountEntity(id, name, type, wallet_id, derivation_path_index, sorting_order, bip_44_address, bip_49_address, bip_84_address)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+removeAllAccounts:
+DELETE FROM AccountEntity;
+
+selectAllAccountsByWalletId:
+SELECT * FROM AccountEntity WHERE wallet_id = ? ORDER BY sorting_order ASC;
+
+selectAllActiveAccountsByWalletId:
+SELECT * FROM AccountEntity WHERE wallet_id = ? AND is_hidden = 0 ORDER BY sorting_order ASC;
+
+updateAccount:
+UPDATE AccountEntity SET name = ?, sorting_order = ?, is_hidden = ? WHERE id = ?;
+
+deleteAccount:
+DELETE FROM AccountEntity WHERE id = ?;
+
+updateHiddenAccount:
+UPDATE AccountEntity
+SET is_hidden = CASE WHEN is_hidden = 1 THEN 0 ELSE 1 END
+WHERE id = ?;
+
+
+
+-- TABLE BLOCKCHAIN ENTITY
+CREATE TABLE IF NOT EXISTS BlockchainEntity (
+    uid TEXT PRIMARY KEY,
+    name TEXT,
+    eip3091url TEXT
+);
+
+insertBlockchain:
+INSERT INTO BlockchainEntity(uid, name, eip3091url)
+VALUES(?, ?, ?);
+
+CREATE INDEX IF NOT EXISTS index_blockchain_entity_uid ON BlockchainEntity(uid);
+
+
+deleteAllBlockchain:
+DELETE FROM BlockchainEntity;
+
+deleteBlockchainById:
+DELETE FROM BlockchainEntity WHERE uid = :uid;
+
+getAllBlockchainEntity:
+SELECT BlockchainEntity.*
+FROM BlockchainEntity;
+
+getBlockchainById: SELECT * FROM BlockchainEntity WHERE uid = :uid;
+
+countBlockchain: SELECT COUNT(uid) FROM BlockchainEntity;
+
+-- TABLE COIN
+CREATE TABLE IF NOT EXISTS Coin (
+    uid TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    code TEXT NOT NULL,
+    marketCapRank INTEGER,
+    coinGeckoId TEXT
+);
+
+CREATE INDEX IF NOT EXISTS index_coin_uid ON Coin(uid);
+
+insertCoin:
+INSERT INTO Coin (uid, name, code, marketCapRank, coinGeckoId)
+VALUES (?, ?, ?, ?, ?);
+
+insertOrReplaceCoin:
+INSERT OR REPLACE INTO Coin (uid, name, code, marketCapRank, coinGeckoId)
+VALUES (?, ?, ?, ?, ?);
+
+deleteCoinById:
+DELETE FROM Coin WHERE uid = ?;
+
+deleteAllCoin:
+DELETE FROM Coin;
+
+getCoinById:
+SELECT * FROM Coin WHERE uid = ?;
+
+getCoinByCode:
+SELECT * FROM Coin WHERE code = ?;
+
+getAllCoin:
+SELECT * FROM Coin;
+
+countCoin: SELECT COUNT(uid)  FROM Coin;
+
+-- TABLE TOKEN ENTITY
+CREATE TABLE IF NOT EXISTS TokenEntity (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    coin_uid TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    type TEXT NOT NULL,
+    decimals INTEGER,
+    reference TEXT,
+    FOREIGN KEY (coin_uid) REFERENCES Coin (uid),
+    FOREIGN KEY (blockchain_uid) REFERENCES BlockchainEntity (uid)
+);
+
+CREATE INDEX IF NOT EXISTS index_token_entity_coin_uid ON TokenEntity(coin_uid);
+
+insertToken:
+INSERT INTO TokenEntity (coin_uid, blockchain_uid, type, decimals, reference)
+VALUES (?, ?, ?, ?, ?);
+
+insertOrReplaceToken:
+INSERT OR REPLACE INTO TokenEntity (coin_uid, blockchain_uid, type, decimals, reference)
+VALUES (?, ?, ?, ?, ?);
+
+getLastInsertedTokenRowId:
+SELECT last_insert_rowid();
+
+deleteTokenById:
+DELETE FROM TokenEntity WHERE id = ?;
+
+getTokenById:
+SELECT * FROM TokenEntity WHERE id = ?;
+
+getNativeCoin:
+SELECT * FROM TokenEntity WHERE blockchain_uid = ? AND type = 'native' LIMIT 1;
+
+getTokenByCoinUidAndBlockchainUid:
+SELECT * FROM TokenEntity WHERE coin_uid = ? AND blockchain_uid = ?;
+
+getFirst2TokenByBlockchainUid:
+SELECT * FROM TokenEntity WHERE blockchain_uid = :blockchain_uid LIMIT 2;
+
+countTokenByBlockchainUid:
+SELECT COUNT(*) FROM TokenEntity WHERE blockchain_uid = :blockchain_uid;
+
+getTokenByBlockchainUidPaged:
+SELECT * FROM TokenEntity WHERE blockchain_uid = :blockchain_uid
+LIMIT :limit OFFSET :offset;
+
+getTokenByCoinUid:
+SELECT * FROM TokenEntity WHERE coin_uid = ?;
+
+getTokenByReference:
+SELECT * FROM TokenEntity WHERE reference = ?;
+
+getTokenByReferenceAndBlockchainUid:
+SELECT * FROM TokenEntity WHERE reference = ? AND blockchain_uid = ?;
+
+getTokenByReferences:
+SELECT * FROM TokenEntity WHERE reference IN ?;
+
+countToken: SELECT COUNT(id)  FROM TokenEntity;
+
+-- TABLE TOKEN BALANCE ENTITY
+
+CREATE TABLE IF NOT EXISTS TokenBalanceEntity (
+  token_id INTEGER NOT NULL,
+  account_id TEXT NOT NULL,
+  blockchain_uid TEXT NOT NULL,
+  balance TEXT NOT NULL,
+  balance_24h TEXT ,
+  balance_locked TEXT NOT NULL,
+  order_number INTEGER NOT NULL,
+  contract_decimals INTEGER NOT NULL,
+  contract_name TEXT NOT NULL,
+  contract_symbol TEXT NOT NULL,
+  contract_address TEXT NOT NULL,
+  logo_url TEXT,
+  last_updated INTEGER,
+  FOREIGN KEY (token_id) REFERENCES TokenEntity(id),
+  FOREIGN KEY (account_id) REFERENCES AccountEntity(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS index_token_balance_token_id ON TokenBalanceEntity(token_id);
+
+insertTokenBalance:
+INSERT INTO TokenBalanceEntity (
+  token_id,
+  account_id,
+  blockchain_uid,
+  balance,
+  balance_24h,
+  balance_locked,
+  order_number,
+  contract_decimals,
+  contract_name,
+  contract_symbol,
+  contract_address,
+  logo_url,
+  last_updated
+) VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);
+
+deleteTokenBalanceByTokenIdAndAccountId:
+DELETE FROM TokenBalanceEntity WHERE token_id = ? AND account_id = ?;
+
+deleteTokenBalanceByAccountId:
+DELETE FROM TokenBalanceEntity WHERE account_id = ?;
+
+deleteTokenBalanceByAccountIdAndBlockchainUid:
+DELETE FROM TokenBalanceEntity WHERE account_id = ? AND blockchain_uid = ?;
+
+getTokenBalanceByTokenIdAndAccountId:
+SELECT * FROM TokenBalanceEntity WHERE token_id = ? AND account_id = ?;
+
+getTokenBalanceByAccountIdAndBlockchainUid:
+SELECT * FROM TokenBalanceEntity WHERE account_id = ? AND blockchain_uid = ?;
+
+getTokenBalanceByAccountId:
+SELECT * FROM TokenBalanceEntity WHERE account_id = ?;
+
+updateTokenBalanceByTokenIdAndAccountId:
+UPDATE TokenBalanceEntity SET blockchain_uid =?, balance = ?, balance_24h = ?, balance_locked = ?, order_number = ?, contract_decimals = ?, contract_name = ?, contract_symbol = ?, contract_address = ?, logo_url = ? WHERE token_id = ? AND account_id = ?;
+
+insertOrReplaceTokenBalance:
+INSERT OR IGNORE INTO TokenBalanceEntity (
+  token_id,
+  account_id,
+  blockchain_uid,
+  balance,
+  balance_24h,
+  balance_locked,
+  order_number,
+  contract_decimals,
+  contract_name,
+  contract_symbol,
+  contract_address,
+  logo_url,
+  last_updated
+)
+VALUES (?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- TABLE TOKEN PRICE ENTITY
+-- create table
+CREATE TABLE IF NOT EXISTS TokenPriceEntity (
+  coin_uid TEXT NOT NULL,
+  currency_code TEXT NOT NULL,
+  current_price TEXT,
+  market_cap TEXT,
+  market_cap_rank INTEGER,
+  total_volume TEXT,
+  high_24h TEXT,
+  low_24h TEXT,
+  price_change_24h TEXT,
+  price_change_percentage_24h TEXT,
+  market_cap_change_24h TEXT,
+  market_cap_change_percentage_24h TEXT,
+  fully_diluted_valuation TEXT,
+  circulating_supply TEXT,
+  total_supply TEXT,
+  max_supply TEXT,
+  ath TEXT,
+  ath_change_percentage TEXT,
+  ath_date TEXT,
+  atl TEXT,
+  price_change_percentage_1h_in_currency TEXT,
+  price_change_percentage_24h_in_currency TEXT,
+  price_change_percentage_7d_in_currency TEXT,
+  last_updated INTEGER,
+  PRIMARY KEY (coin_uid)
+);
+
+-- insert
+insertTokenPriceEntity:
+INSERT INTO TokenPriceEntity (
+  coin_uid, currency_code, current_price, market_cap, market_cap_rank, total_volume,
+  high_24h, low_24h, price_change_24h, price_change_percentage_24h, market_cap_change_24h,
+  market_cap_change_percentage_24h, fully_diluted_valuation, circulating_supply, total_supply,
+  max_supply, ath, ath_change_percentage, ath_date, atl, price_change_percentage_1h_in_currency,
+  price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, last_updated
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+-- delete by coin_uid
+deleteTokenPriceByCoinUid:
+DELETE FROM TokenPriceEntity WHERE coin_uid = ?;
+
+-- get by coin_uid
+getTokenPriceByCoinUid:
+SELECT * FROM TokenPriceEntity WHERE coin_uid = ?;
+
+getTokenPriceByCoinUidAndCurrencyCode:
+SELECT * FROM TokenPriceEntity WHERE coin_uid = ? AND currency_code = ?;
+
+getTokenPriceByCoinUidsAndCurrencyCode:
+SELECT * FROM TokenPriceEntity WHERE coin_uid IN ? AND currency_code = ?;
+
+getTokenWithSparklineByCoinUidsAndCurrencyCode:
+SELECT * FROM TokenPriceEntity
+JOIN TokenPriceSparklineEntity ON TokenPriceEntity.coin_uid = TokenPriceSparklineEntity.coin_uid
+WHERE TokenPriceEntity.coin_uid IN ? AND TokenPriceEntity.currency_code = ?;
+
+-- update by coin_uid and currency_code
+updateTokenPriceByCoinUidAndCurrencyCode:
+UPDATE TokenPriceEntity SET
+  current_price = ?, market_cap = ?, market_cap_rank = ?, total_volume = ?, high_24h = ?,
+  low_24h = ?, price_change_24h = ?, price_change_percentage_24h = ?, market_cap_change_24h = ?,
+  market_cap_change_percentage_24h = ?, fully_diluted_valuation = ?, circulating_supply = ?,
+  total_supply = ?, max_supply = ?, ath = ?, ath_change_percentage = ?, ath_date = ?, atl = ?,
+  price_change_percentage_1h_in_currency = ?, price_change_percentage_24h_in_currency = ?,
+  price_change_percentage_7d_in_currency = ?, last_updated = ?
+WHERE coin_uid = ? AND currency_code = ?;
+
+insertOrReplaceTokenPriceEntity:
+INSERT OR REPLACE INTO TokenPriceEntity (
+  coin_uid, currency_code, current_price, market_cap, market_cap_rank, total_volume,
+  high_24h, low_24h, price_change_24h, price_change_percentage_24h, market_cap_change_24h,
+  market_cap_change_percentage_24h, fully_diluted_valuation, circulating_supply, total_supply,
+  max_supply, ath, ath_change_percentage, ath_date, atl, price_change_percentage_1h_in_currency,
+  price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, last_updated
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+CREATE TABLE IF NOT EXISTS TokenExchangeRateEntity(
+    coin_uid TEXT NOT NULL,
+    quote_currency TEXT NOT NULL,
+    rate TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (coin_uid, quote_currency)
+);
+
+insertOrReplaceTokenExchangeRate:
+INSERT OR REPLACE INTO TokenExchangeRateEntity(coin_uid, quote_currency, rate, updated_at)
+VALUES (?, ?, ?, ?);
+
+selectAllTokenExchangeRateByCoinUid:
+SELECT *
+FROM TokenExchangeRateEntity
+WHERE coin_uid = ?;
+
+deleteTokenExchangeRateDataByCoinUid:
+DELETE FROM TokenExchangeRateEntity
+WHERE coin_uid = ?;
+
+CREATE TABLE IF NOT EXISTS TokenExchangeRateMetadataEntity(
+    coin_uid TEXT PRIMARY KEY,
+    updated_at INTEGER NOT NULL
+);
+
+insertOrReplaceTokenExchangeRateMetadata:
+INSERT OR REPLACE INTO TokenExchangeRateMetadataEntity(coin_uid, updated_at)
+VALUES (?, ?);
+
+getTokenExchangeRateMetadataByCoinUid:
+SELECT updated_at
+FROM TokenExchangeRateMetadataEntity
+WHERE coin_uid = ?;
+
+deleteTokenExchangeRateMetadataByCoinUid:
+DELETE FROM TokenExchangeRateMetadataEntity
+WHERE coin_uid = ?;
+
+-- TABLE TOKEN PRICE SPARKLINE ENTITY
+-- create table
+CREATE TABLE IF NOT EXISTS TokenPriceSparklineEntity (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  coin_uid TEXT NOT NULL,
+  timestamp INTEGER NOT NULL,
+  price REAL,
+  FOREIGN KEY(coin_uid) REFERENCES TokenPriceEntity(coin_uid) ON DELETE CASCADE
+);
+
+insertOrReplaceTokenPriceSparklineEntity:
+INSERT OR REPLACE INTO TokenPriceSparklineEntity(coin_uid, timestamp, price)
+VALUES (?, ?, ?);
+
+deleteTokenPriceSparklineByCoinUid:
+DELETE FROM TokenPriceSparklineEntity WHERE coin_uid = ?;
+
+-- TABLE CONTACT
+
+CREATE TABLE IF NOT EXISTS ContactEntity (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  blockchain_uid TEXT,
+  address TEXT
+);
+
+-- Wallet queries and operations
+getAllContacts:
+SELECT * FROM ContactEntity;
+
+getAllContactsByBlockchainUid:
+SELECT *
+FROM ContactEntity
+WHERE (:blockchainUid IS NULL OR blockchain_uid = :blockchainUid)
+ORDER BY name ASC;
+
+selectContactById:
+SELECT * FROM ContactEntity WHERE id = ?;
+
+insertContact:
+INSERT INTO ContactEntity (name, blockchain_uid, address) VALUES (?, ?, ?);
+
+updateContact:
+UPDATE ContactEntity SET name = ?, blockchain_uid = ?, address = ? WHERE id = ?;
+
+deleteContact:
+DELETE FROM ContactEntity WHERE id = ?;
+
+lastInsertedRowId:
+SELECT last_insert_rowid();
+
+-- DAppEntity.sq
+CREATE TABLE IF NOT EXISTS DAppEntity (
+    uuid TEXT PRIMARY KEY NOT NULL,
+    title TEXT,
+    description TEXT,
+    iconUrl TEXT,
+    bannerUrl TEXT,
+    chainId TEXT,
+    redirectLink TEXT
+);
+
+selectAllDApp:
+SELECT * FROM DAppEntity;
+
+insertDApp:
+INSERT  INTO DAppEntity(uuid, title, description, iconUrl, bannerUrl, chainId, redirectLink)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectDAppByUUID:
+SELECT * FROM DAppEntity WHERE uuid = ?;
+
+deleteByUUID:
+DELETE FROM DAppEntity WHERE uuid = ?;
+
+
+-- TABLE TRANSACTION ENTITY
+
+CREATE TABLE IF NOT EXISTS TransactionsEntity (
+    blockHeight INTEGER NOT NULL,
+    blockSignedAt INTEGER NOT NULL,
+    feesPaid TEXT NOT NULL,
+    fromAddress TEXT NOT NULL,
+    fromAddressLabel TEXT NOT NULL,
+    gasContractAddress TEXT,
+    gasContractDecimals INTEGER,
+    gasContractName TEXT,
+    gasContractTickerSymbol TEXT,
+    gasLogoUrl TEXT,
+    gasOffered INTEGER NOT NULL,
+    gasPrice TEXT NOT NULL,
+    gasQuote TEXT NOT NULL,
+    gasQuoteRate TEXT NOT NULL,
+    gasSpent TEXT NOT NULL,
+    minerAddress TEXT NOT NULL,
+    prettyGasQuote TEXT NOT NULL,
+    prettyValueQuote TEXT NOT NULL,
+    status TEXT NOT NULL,
+    toAddress TEXT NOT NULL,
+    toAddressLabel TEXT NOT NULL,
+    transactionHash TEXT PRIMARY KEY,
+    txOffset INTEGER NOT NULL,
+    value TEXT NOT NULL,
+    valueQuote TEXT NOT NULL,
+    accountId TEXT NOT NULL,
+    transactionType TEXT NOT NULL,
+    logEvents TEXT,
+    blockchain_uid TEXT NOT NULL,
+    is_nft_transaction INTEGER NOT NULL DEFAULT 0,
+    nft_transfers TEXT,
+    erc20_transfers TEXT,
+    native_transfers TEXT,
+    FOREIGN KEY(accountId) REFERENCES AccountEntity(id) ON DELETE CASCADE
+);
+
+countTransactions:
+SELECT COUNT(*)
+FROM TransactionsEntity
+WHERE accountId = :accountId
+AND blockchain_uid = :blockchainUid
+AND (transactionType = :transactionType OR :transactionType IS NULL)
+AND (status = :transactionStatus OR :transactionStatus IS NULL)
+AND (blockSignedAt >= :blockSignedAtStart OR :blockSignedAtStart IS NULL)
+AND (blockSignedAt <= :blockSignedAtEnd OR :blockSignedAtEnd IS NULL);
+
+getTransactionsByAccountIdPaged:
+SELECT *
+FROM TransactionsEntity
+WHERE accountId = :accountId
+AND blockchain_uid = :blockchainUid
+AND (transactionType = :transactionType OR :transactionType IS NULL)
+AND (status = :transactionStatus OR :transactionStatus IS NULL)
+AND (blockSignedAt >= :blockSignedAtStart OR :blockSignedAtStart IS NULL)
+AND (blockSignedAt <= :blockSignedAtEnd OR :blockSignedAtEnd IS NULL)
+ORDER BY blockSignedAt DESC
+LIMIT :limit OFFSET :offset;
+
+getTransactionsByTxHash:
+SELECT * FROM TransactionsEntity WHERE transactionHash = :txHash AND blockchain_uid = :blockchainUid AND accountId = :accountId;
+
+getPendingTransactionsByBlockchainUid:
+SELECT * FROM TransactionsEntity WHERE status = 'PENDING' AND blockchain_uid = :blockchainUid;
+
+insertTransaction:
+INSERT OR REPLACE INTO TransactionsEntity(
+    blockHeight,
+    blockSignedAt,
+    feesPaid,
+    fromAddress,
+    fromAddressLabel,
+    gasContractAddress,
+    gasContractDecimals,
+    gasContractName,
+    gasContractTickerSymbol,
+    gasLogoUrl,
+    gasOffered,
+    gasPrice,
+    gasQuote,
+    gasQuoteRate,
+    gasSpent,
+    minerAddress,
+    prettyGasQuote,
+    prettyValueQuote,
+    status,
+    toAddress,
+    toAddressLabel,
+    transactionHash,
+    txOffset,
+    value,
+    valueQuote,
+    accountId,
+    transactionType,
+    logEvents,
+    blockchain_uid,
+    is_nft_transaction,
+    nft_transfers,
+    erc20_transfers,
+    native_transfers
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+updateTransactionStatus:
+UPDATE TransactionsEntity SET status = ? WHERE transactionHash IN ? AND blockchain_uid = ? AND accountId = ?;
+
+clearAllTransactions:
+DELETE FROM TransactionsEntity;
+
+-- TABLE REMOTE KEY ENTITY
+
+CREATE TABLE IF NOT EXISTS RemoteKeyEntity (
+    query TEXT PRIMARY KEY,
+    lastRequestedPage TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL
+);
+
+insertRemoteKey:
+INSERT OR REPLACE INTO RemoteKeyEntity (query, lastRequestedPage, blockchain_uid)
+VALUES (?, ?, ?);
+
+getRemoteKeyByQuery:
+SELECT lastRequestedPage
+FROM RemoteKeyEntity
+WHERE query = ? AND blockchain_uid = ?;
+
+deleteRemoteKeyByQuery:
+DELETE FROM RemoteKeyEntity
+WHERE query = ? AND blockchain_uid = ?;
+
+clearAllRemoteKeys:
+DELETE FROM RemoteKeyEntity;
+
+-- TABLE TRANSACTION METADATA
+
+CREATE TABLE IF NOT EXISTS TransactionMetadataEntity (
+    address TEXT NOT NULL,
+    blockchainUid TEXT NOT NULL,
+    lastSynchedTimestamp INTEGER NOT NULL,
+    PRIMARY KEY (address, blockchainUid)
+);
+
+insertTransactionMetadata:
+INSERT OR REPLACE INTO TransactionMetadataEntity(address, blockchainUid, lastSynchedTimestamp)
+VALUES (?, ?, ?);
+
+getLastSynchedTimestamp:
+SELECT lastSynchedTimestamp FROM TransactionMetadataEntity WHERE address = ? AND blockchainUid = ?;
+
+clearAllTransactionMetadata:
+DELETE FROM TransactionMetadataEntity;
+
+clearAllTokenBalances:
+DELETE FROM TokenBalanceEntity;
+
+-- TABLE TOKEN HISTORICAL PRICE ENTITY
+
+CREATE TABLE IF NOT EXISTS TokenHistoricalPriceEnitity(
+    date TEXT,
+    coinGeckoId TEXT,
+    usd REAL,
+    aed REAL,
+    ars REAL,
+    aud REAL,
+    bdt REAL,
+    bhd REAL,
+    bmd REAL,
+    brl REAL,
+    cad REAL,
+    chf REAL,
+    clp REAL,
+    cny REAL,
+    czk REAL,
+    dkk REAL,
+    eur REAL,
+    gbp REAL,
+    hkd REAL,
+    huf REAL,
+    idr REAL,
+    ils REAL,
+    inr REAL,
+    jpy REAL,
+    krw REAL,
+    kwd REAL,
+    lkr REAL,
+    mmk REAL,
+    mxn REAL,
+    myr REAL,
+    ngn REAL,
+    nok REAL,
+    nzd REAL,
+    php REAL,
+    pkr REAL,
+    pln REAL,
+    rub REAL,
+    sar REAL,
+    sek REAL,
+    sgd REAL,
+    thb REAL,
+    try REAL,
+    twd REAL,
+    uah REAL,
+    vef REAL,
+    vnd REAL,
+    zar REAL,
+    btc REAL,
+    PRIMARY KEY (date, coinGeckoId)
+);
+
+insertOrUpdateHistoricalPrice:
+INSERT OR REPLACE INTO TokenHistoricalPriceEnitity(
+    date,
+    coinGeckoId,
+    usd,
+    aed,
+    ars,
+    aud,
+    bdt,
+    bhd,
+    bmd,
+    brl,
+    cad,
+    chf,
+    clp,
+    cny,
+    czk,
+    dkk,
+    eur,
+    gbp,
+    hkd,
+    huf,
+    idr,
+    ils,
+    inr,
+    jpy,
+    krw,
+    kwd,
+    lkr,
+    mmk,
+    mxn,
+    myr,
+    ngn,
+    nok,
+    nzd,
+    php,
+    pkr,
+    pln,
+    rub,
+    sar,
+    sek,
+    sgd,
+    thb,
+    try,
+    twd,
+    uah,
+    vef,
+    vnd,
+    zar,
+    btc
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getHistoricalPriceByDateAndSymbol:
+SELECT *
+FROM TokenHistoricalPriceEnitity
+WHERE date = ? AND coinGeckoId = ?;
+
+-- TABLE NftCollectionEntity
+
+CREATE TABLE IF NOT EXISTS NftCollectionEntity (
+    type TEXT NOT NULL,
+    contractName TEXT NOT NULL,
+    contractTickerSymbol TEXT NOT NULL,
+    contractAddress TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    accountId TEXT NOT NULL,
+    PRIMARY KEY (blockchain_uid, accountId, contractAddress),
+    FOREIGN KEY(accountId) REFERENCES AccountEntity(id) ON DELETE CASCADE
+);
+
+insertNftCollection:
+INSERT OR IGNORE INTO NftCollectionEntity (
+    contractName,
+    type,
+    contractTickerSymbol,
+    contractAddress,
+    blockchain_uid,
+    accountId
+) VALUES (?,?, ?, ?, ?, ?);
+
+deleteNftCollectionsByAccountIdAndBlockchainUid:
+DELETE FROM NftCollectionEntity WHERE accountId = ? AND blockchain_uid = ?;
+
+deleteNftById:
+DELETE FROM NftEntity WHERE tokenId = ? AND blockchain_uid = ? AND accountId = ? AND collectionContractAddress = ?;
+
+getNftCollectionsByAccountIdAndBlockchainUid:
+SELECT * FROM NftCollectionEntity WHERE accountId = ? AND blockchain_uid = ?;
+
+getNftCollectionByAccountIdAndBlockchainUidAndContractAddress:
+SELECT * FROM NftCollectionEntity WHERE accountId = ? AND blockchain_uid = ? AND contractAddress = ?;
+
+getNftCollectionByAccountIdAndBlockchainUidAndContractAddressJoin:
+SELECT *
+FROM NftCollectionEntity
+LEFT JOIN NftEntity ON NftCollectionEntity.contractAddress = NftEntity.collectionContractAddress
+AND NftCollectionEntity.blockchain_uid = NftEntity.blockchain_uid
+AND NftCollectionEntity.accountId = NftEntity.accountId
+WHERE NftCollectionEntity.accountId = ?
+AND NftCollectionEntity.blockchain_uid = ?;
+
+-- TABLE NftEntity
+
+CREATE TABLE IF NOT EXISTS NftEntity (
+    tokenId TEXT NOT NULL,
+    tokenUrl TEXT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    image TEXT NOT NULL,
+    attributes TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    accountId TEXT NOT NULL,
+    isFavorite INTEGER NOT NULL DEFAULT 0,
+    collectionContractAddress TEXT NOT NULL,
+    PRIMARY KEY (tokenId, blockchain_uid, accountId, collectionContractAddress),
+    FOREIGN KEY(blockchain_uid, accountId, collectionContractAddress) REFERENCES NftCollectionEntity(blockchain_uid, accountId, contractAddress) ON DELETE CASCADE
+);
+
+getNft:
+SELECT * FROM NftEntity WHERE tokenId = ? AND blockchain_uid = ? AND accountId = ? AND collectionContractAddress = ?;
+
+getNfts:
+SELECT * FROM NftEntity WHERE blockchain_uid = ? AND accountId = ? AND collectionContractAddress = ?;
+
+insertNft:
+INSERT OR REPLACE INTO NftEntity (tokenId, tokenUrl, name, description, image, attributes, blockchain_uid, accountId, collectionContractAddress)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+upsertNft {
+    UPDATE NftEntity
+    SET tokenUrl = :tokenUrl, name = :name, description = :description, image = :image, attributes = :attributes
+    WHERE tokenId = :tokenId AND blockchain_uid = :blockchain_uid AND accountId = :accountId AND collectionContractAddress = :collectionContractAddress;
+
+    INSERT OR IGNORE INTO NftEntity (tokenId, tokenUrl, name, description, image, attributes, blockchain_uid, accountId, collectionContractAddress)
+    VALUES (:tokenId, :tokenUrl, :name, :description, :image, :attributes, :blockchain_uid, :accountId, :collectionContractAddress);
+}
+
+getNftFavoriteStatus:
+SELECT isFavorite FROM NftEntity WHERE tokenId = ? AND blockchain_uid = ? AND accountId = ? AND collectionContractAddress = ?;
+
+updateNftFavoriteStatus:
+UPDATE NftEntity SET isFavorite = ? WHERE tokenId = ? AND blockchain_uid = ? AND accountId = ? AND collectionContractAddress = ?;
+
+deleteNftsByAccountIdAndBlockchainUid:
+DELETE FROM NftEntity WHERE blockchain_uid = ? AND accountId = ?;
+
+-- TABLE NftCacheMetadataEntity
+
+CREATE TABLE IF NOT EXISTS NftCacheMetadataEntity(
+    accountId TEXT NOT NULL,
+    blockchainUid TEXT NOT NULL,
+    lastSynchedTimestamp INTEGER NOT NULL,
+    PRIMARY KEY (accountId, blockchainUid),
+    FOREIGN KEY(accountId) REFERENCES AccountEntity(id) ON DELETE CASCADE
+);
+
+insertOrReplaceNftCacheMetadata:
+INSERT OR REPLACE INTO NftCacheMetadataEntity(accountId, blockchainUid, lastSynchedTimestamp)
+VALUES (?, ?, ?);
+
+getNftCacheLastSynchedTimestamp:
+SELECT lastSynchedTimestamp FROM NftCacheMetadataEntity WHERE accountId = ? AND blockchainUid = ?;
+
+-- Clear all NFT data
+clearAllNftEntities:
+DELETE FROM NftEntity;
+
+clearAllNftCollectionEntities:
+DELETE FROM NftCollectionEntity;
+
+clearAllNftCacheMetadataEntities:
+DELETE FROM NftCacheMetadataEntity;
+
+-- TABLE PORTFOLIO ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioEntity (
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    portfolio_id TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, network_id, portfolio_id)
+);
+
+insertOrReplacePortfolio:
+INSERT OR REPLACE INTO PortfolioEntity(user_id, network_id, portfolio_id, balance_usdt, pnl_24h_usdt, pnl_24h_percent, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+getPortfolioByUserIdAndNetworkId:
+SELECT * FROM PortfolioEntity WHERE user_id = ? AND network_id = ?;
+
+getAllPortfoliosByUserId:
+SELECT * FROM PortfolioEntity WHERE user_id = ?;
+
+deletePortfolioByUserIdAndNetworkId:
+DELETE FROM PortfolioEntity WHERE user_id = ? AND network_id = ?;
+
+-- TABLE PORTFOLIO ACCOUNT ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioAccountEntity (
+    account_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    address TEXT NOT NULL,
+    label TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    PRIMARY KEY (account_id, user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioEntity(user_id, network_id) ON DELETE CASCADE
+);
+
+insertOrReplacePortfolioAccount:
+INSERT OR REPLACE INTO PortfolioAccountEntity(account_id, user_id, network_id, address, label, created_at, balance_usdt, pnl_24h_usdt, pnl_24h_percent)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getPortfolioAccountsByUserIdAndNetworkId:
+SELECT * FROM PortfolioAccountEntity WHERE user_id = ? AND network_id = ?;
+
+getPortfolioAccountByAddress:
+SELECT * FROM PortfolioAccountEntity WHERE address = ?;
+
+deletePortfolioAccountsByUserIdAndNetworkId:
+DELETE FROM PortfolioAccountEntity WHERE user_id = ? AND network_id = ?;
+
+-- TABLE PORTFOLIO TOKEN ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioTokenEntity (
+    token_key TEXT NOT NULL,
+    account_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    symbol TEXT NOT NULL,
+    name TEXT NOT NULL,
+    quantity TEXT NOT NULL,
+    balance_usdt TEXT NOT NULL,
+    price_usdt TEXT NOT NULL,
+    pnl_24h_usdt TEXT NOT NULL,
+    pnl_24h_percent TEXT NOT NULL,
+    PRIMARY KEY (token_key, account_id, user_id, network_id),
+    FOREIGN KEY(account_id, user_id, network_id) REFERENCES PortfolioAccountEntity(account_id, user_id, network_id) ON DELETE CASCADE
+);
+
+insertOrReplacePortfolioToken:
+INSERT OR REPLACE INTO PortfolioTokenEntity(token_key, account_id, user_id, network_id, symbol, name, quantity, balance_usdt, price_usdt, pnl_24h_usdt, pnl_24h_percent)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getPortfolioTokensByAccountId:
+SELECT * FROM PortfolioTokenEntity WHERE account_id = ? AND user_id = ? AND network_id = ?;
+
+deletePortfolioTokensByAccountId:
+DELETE FROM PortfolioTokenEntity WHERE account_id = ? AND user_id = ? AND network_id = ?;
+
+-- TABLE PORTFOLIO PRICING CONTEXT ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioPricingContextEntity (
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    as_of TEXT NOT NULL,
+    quote_currency TEXT NOT NULL,
+    status TEXT NOT NULL,
+    updated_at INTEGER NOT NULL,
+    PRIMARY KEY (user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioEntity(user_id, network_id) ON DELETE CASCADE
+);
+
+insertOrReplacePricingContext:
+INSERT OR REPLACE INTO PortfolioPricingContextEntity(user_id, network_id, as_of, quote_currency, status, updated_at)
+VALUES (?, ?, ?, ?, ?, ?);
+
+getPricingContextByUserIdAndNetworkId:
+SELECT * FROM PortfolioPricingContextEntity WHERE user_id = ? AND network_id = ?;
+
+-- TABLE PORTFOLIO TOKEN PRICE ENTITY
+
+CREATE TABLE IF NOT EXISTS PortfolioTokenPriceEntity (
+    token_key TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+    network_id INTEGER NOT NULL,
+    spot TEXT NOT NULL,
+    price_24h_ago TEXT NOT NULL,
+    last_updated TEXT NOT NULL,
+    source TEXT NOT NULL,
+    PRIMARY KEY (token_key, user_id, network_id),
+    FOREIGN KEY(user_id, network_id) REFERENCES PortfolioPricingContextEntity(user_id, network_id) ON DELETE CASCADE
+);
+
+insertOrReplacePortfolioTokenPrice:
+INSERT OR REPLACE INTO PortfolioTokenPriceEntity(token_key, user_id, network_id, spot, price_24h_ago, last_updated, source)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getPortfolioTokenPricesByUserIdAndNetworkId:
+SELECT * FROM PortfolioTokenPriceEntity WHERE user_id = ? AND network_id = ?;

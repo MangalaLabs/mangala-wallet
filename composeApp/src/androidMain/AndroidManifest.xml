@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="*" />
+        </intent>
+    </queries>
+
+    <application
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:enableOnBackInvokedCallback="true"
+        android:supportsRtl="true"
+        android:name=".MangalaWalletApplication"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/Theme.Mangala.Splash">
+
+        <activity
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|mnc|colorMode|density|fontScale|fontWeightAdjustment|keyboard|layoutDirection|locale|mcc|navigation|smallestScreenSize|touchscreen|uiMode"
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "app://mangala/multisig" -->
+                <data android:scheme="app" android:host="mangala" android:pathPrefix="/multisig"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "esr:" for EOSIO Signing Requests -->
+                <data android:scheme="esr" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.mangala.wallet.android.SelectNetworkActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Mangala"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mangala.wallet.walletconnect.WalletConnectActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Mangala"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.mangala.wallet.scanqr.CustomCaptureActivity"
+            android:exported="true"
+            android:theme="@style/PlatformAdjusted.Theme.Mangala"
+            android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            tools:node="remove"></provider> <!-- BROWSER -->
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" /> <!-- Disable WorkManager's default initialization so we can use Dagger with it -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+
+            <!-- If you are using androidx.startup to initialize other components -->
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <!--
+           To protect user privacy, disable SafeBrowsing which could send URLs to Google servers
+           https://developer.android.com/reference/android/webkit/WebView
+       -->
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="false" /> <!-- Renamed to allow for the introduction of custom icons without breaking existing shortcuts -->
+        <activity
+            android:name="com.mangala.app.launch.LaunchBridgeActivity"
+            android:exported="true"
+            android:label="@string/app_name_wallet"
+            android:theme="@style/SplashScreen">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+
+        <activity
+            android:name="com.mangala.app.systemsearch.SystemSearchActivity"
+            android:autoRemoveFromRecents="true"
+            android:documentLaunchMode="intoExisting"
+            android:exported="true"
+            android:label="@string/app_name_wallet"
+            android:launchMode="singleTask"
+            android:stateNotNeeded="true"
+            android:theme="@style/AppTheme3">
+
+            <!-- Required to allow the browser to be launched externally, ensuring it is ready to allow users to search immediately -->
+            <intent-filter>
+                <action android:name="com.mangala.mobile.android.NEW_SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mangala.app.onboarding.ui.OnboardingActivity"
+            android:exported="false"
+            android:label="@string/app_name_wallet"
+            android:theme="@style/AppTheme3.Dark.Transparent" />
+
+        <activity
+            android:name="com.mangala.app.browser.BrowserActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name_wallet"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme3"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+            <!-- Allows app to handle the specified MIME types that use the specified schemes, and to become the default handler for them -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+                <data android:mimeType="text/html" />
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="application/xhtml+xml" />
+            </intent-filter>
+
+            <!-- Allows apps to consume links and text shared from other apps e.g chrome -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.mangala.app.tabs.ui.TabSwitcherActivity"
+            android:exported="false"
+            android:label="@string/tabActivityTitle"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.privacy.ui.PrivacyDashboardActivity"
+            android:exported="false"
+            android:label="@string/privacyDashboardActivityTitle"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/AppTheme3" />
+        <!--        <activity-->
+        <!--            android:name="com.alphawallet.app.ui.EthanTestActivity"-->
+        <!--            android:exported="false"-->
+        <!--            android:label="@string/privacyDashboardActivityTitle"-->
+        <!--            android:parentActivityName="com.mangala.app.browser.BrowserActivity"-->
+        <!--            android:theme="@style/AppTheme3" />-->
+        <activity
+            android:name="com.alphawallet.app.ui.GasSettingsActivity"
+            android:label="@string/title_send_settings" />
+        <activity
+            android:name="com.alphawallet.app.ui.TransactionSuccessActivity"
+            android:label="Transaction Success" />
+        <!--        <activity-->
+        <!--            android:name="com.schoolonair.wallet.modules.browser.EthanTestDappActivity"-->
+        <!--            android:exported="false"-->
+        <!--            android:label="@string/privacyDashboardActivityTitle"-->
+        <!--            android:parentActivityName="com.mangala.app.browser.BrowserActivity"-->
+        <!--            android:theme="@style/AppTheme3" />-->
+        <activity
+            android:name="com.mangala.app.privacy.ui.ScorecardActivity"
+            android:exported="false"
+            android:label="@string/scorecardActivityTitle"
+            android:parentActivityName="com.mangala.app.privacy.ui.PrivacyDashboardActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.privacy.ui.TrackerNetworksActivity"
+            android:exported="false"
+            android:label="@string/networksActivityTitle"
+            android:parentActivityName="com.mangala.app.privacy.ui.PrivacyDashboardActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.privacy.ui.PrivacyPracticesActivity"
+            android:exported="false"
+            android:label="@string/privacyTermsActivityTitle"
+            android:parentActivityName="com.mangala.app.privacy.ui.PrivacyDashboardActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.settings.SettingsActivity"
+            android:exported="true"
+            android:label="@string/settingsActivityTitle"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/AppTheme3">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mangala.app.feedback.ui.common.FeedbackActivity"
+            android:exported="false"
+            android:label="@string/feedbackActivityTitle"
+            android:theme="@style/AppTheme3"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.mangala.app.brokensite.BrokenSiteActivity"
+            android:exported="false"
+            android:label="@string/brokenSiteHeading"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.survey.ui.SurveyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:label="@string/surveyActivityTitle"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/ModalCardTheme" />
+        <activity
+            android:name="com.mangala.app.widget.ui.AddWidgetInstructionsActivity"
+            android:exported="false"
+            android:label="@string/addWidgetInstructionsActivityTitle"
+            android:theme="@style/ModalCardTheme" />
+        <activity
+            android:name="com.mangala.app.about.AboutMangalaBrowserActivity"
+            android:exported="false"
+            android:label="@string/aboutActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.bookmarks.ui.BookmarksActivity"
+            android:exported="false"
+            android:label="@string/bookmarksActivityTitle"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.fire.fireproofwebsite.ui.FireproofWebsitesActivity"
+            android:exported="false"
+            android:label="@string/fireproofWebsitesActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.location.ui.LocationPermissionsActivity"
+            android:exported="false"
+            android:label="@string/preciseLocationActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.fire.FireActivity"
+            android:exported="false"
+            android:process="@string/fireProcessName"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.privacy.ui.WhitelistActivity"
+            android:exported="false"
+            android:label="@string/whitelistActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.ui.GlobalPrivacyControlActivity"
+            android:exported="false"
+            android:label="@string/globalPrivacyControlActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.accessibility.AccessibilityActivity"
+            android:exported="false"
+            android:label="@string/accessibilityActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.email.ui.EmailProtectionActivity"
+            android:exported="false"
+            android:label="@string/emailProtectionActivityTitle"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.mangala.app.email.ui.EmailWebViewActivity"
+            android:exported="false"
+            android:label="@string/emailProtectionWebViewActivityTitle"
+            android:parentActivityName="com.mangala.app.email.ui.EmailProtectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme3"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.mangala.app.settings.FireAnimationActivity"
+            android:exported="false"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+        <activity
+            android:name="com.mangala.app.browser.webview.WebViewActivity"
+            android:exported="false"
+            android:parentActivityName="com.mangala.app.settings.SettingsActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.WidgetThemeConfiguration"
+            android:exported="false"
+            android:label="@string/widgetConfigurationActivityTitle"
+            android:theme="@style/AppTheme3.Transparent">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mangala.app.bookmarks.ui.bookmarkfolders.BookmarkFoldersActivity"
+            android:exported="false"
+            android:label="@string/folderLocationTitle"
+            android:parentActivityName="com.mangala.app.bookmarks.ui.BookmarksActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.mangala.app.downloads.DownloadsActivity"
+            android:exported="false"
+            android:label="@string/downloadsActivityTitle"
+            android:parentActivityName="com.mangala.app.browser.BrowserActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name="com.alphawallet.app.ui.AddCustomRPCNetworkActivity"
+            android:label="Select DApp Browser Network"
+            android:theme="@style/DAppTheme.NoActionBar" />
+        <activity
+            android:name="com.alphawallet.app.ui.NodeStatusActivity"
+            android:label="Select DApp Browser Network"
+            android:theme="@style/DAppTheme.NoActionBar" />
+        <!--        <activity-->
+        <!--            android:name="com.alphawallet.app.ui.WalletConnectActivity"-->
+        <!--            android:label="WalletConnect"-->
+        <!--            android:launchMode="singleTop"-->
+        <!--            android:theme="@style/DAppTheme.NoActionBar" />-->
+        <activity
+            android:name="com.alphawallet.app.ui.WalletConnectSessionActivity"
+            android:label="WalletConnect"
+            android:launchMode="singleTop"
+            android:theme="@style/DAppTheme.NoActionBar" />
+        <activity
+            android:name="com.alphawallet.app.ui.SignDetailActivity"
+            android:label="Sign Details"
+            android:theme="@style/DAppTheme.NoActionBar" />
+
+        <service
+            android:name="com.alphawallet.app.service.WalletConnectService"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.alphawallet.app.ui.SelectNetworkActivity"
+            android:label="Select DApp Browser Network"
+            android:theme="@style/DAppTheme.NoActionBar" />
+        <activity
+            android:name="com.alphawallet.app.ui.SelectNetworkFilterActivity"
+            android:label="Select Network Filters"
+            android:theme="@style/DAppTheme.NoActionBar" />
+
+        <service
+            android:name="com.mangala.app.job.AppConfigurationJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.mangala.widget.FavoritesWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service
+            android:name="com.mangala.widget.EmptyFavoritesWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service android:name="com.mangala.app.notification.NotificationHandlerService" />
+
+        <!--        <service-->
+        <!--            android:name=".MangalaFirebaseMessagingService"-->
+        <!--            android:exported="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </service>-->
+
+        <receiver
+            android:name="com.mangala.widget.SearchWidget"
+            android:exported="false"
+            android:label="@string/searchWidgetLabel">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/search_widget_info" />
+        </receiver>
+        <receiver
+            android:name="com.mangala.widget.SearchWidgetLight"
+            android:exported="false"
+            android:label="@string/searchWidgetLabel">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/search_widget_info_light" />
+        </receiver>
+        <receiver
+            android:name="com.mangala.widget.SearchAndFavoritesWidget"
+            android:exported="false"
+            android:label="@string/favoritesWidgetLabel">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/search_favorites_widget_info" />
+        </receiver>
+        <receiver
+            android:name="com.mangala.widget.VoiceSearchWidgetUpdater"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

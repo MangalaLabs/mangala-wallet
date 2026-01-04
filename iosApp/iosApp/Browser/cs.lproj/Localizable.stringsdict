@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bookmark.deleteFolderAlert.message</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@items@</string>
+		<key>items</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Opravdu chceš smazat tuhle složku a %1$d položku?</string>
+			<key>few</key>
+			<string>Opravdu chceš smazat tuhle složku a %1$d položky?</string>
+			<key>many</key>
+			<string>Opravdu chceš smazat tuhle složku a %1$d položky?</string>
+			<key>other</key>
+			<string>Opravdu chceš smazat tuhle složku a %1$d položek?</string>
+		</dict>
+	</dict>
+	<key>dax.onboarding.browsing.multiple.trackers</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1#@count@</string>
+		<key>count</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>*%2$@, %3$@* a *1 další subjekt* se tě tady pokouší sledovat.
+
+Zablokovali jsme je.
+
+☝️ Při návštěvě nového webu můžeš zjistit, kdo se tě snaží sledovat, v adresním řádku.</string>
+			<key>few</key>
+			<string>*%2$@, %3$@* a *%1$d další subjekty* se tě tady pokouší sledovat.
+
+Zablokovali jsme je.
+
+☝️ Při návštěvě nového webu můžeš zjistit, kdo se tě snaží sledovat, v adresním řádku.</string>
+			<key>many</key>
+			<string>*%2$@, %3$@* a *%1$d dalšího subjektu* se tě tady pokouší sledovat.
+
+Zablokovali jsme je.
+
+☝️ Při návštěvě nového webu můžeš zjistit, kdo se tě snaží sledovat, v adresním řádku.</string>
+			<key>other</key>
+			<string>*%2$@, %3$@* a *%1$d dalších subjektů* se tě tady pokouší sledovat.
+
+Zablokovali jsme je.
+
+☝️ Při návštěvě nového webu můžeš zjistit, kdo se tě snaží sledovat, v adresním řádku.</string>
+		</dict>
+	</dict>
+	<key>privacy.protection.major.trackers.found</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@networks@</string>
+		<key>networks</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Nalezen %1$d hlavní tracker</string>
+			<key>few</key>
+			<string>Nalezeny %1$d hlavní trackery</string>
+			<key>many</key>
+			<string>Nalezeno %1$d hlavních trackerů</string>
+			<key>other</key>
+			<string>Nalezeno %1$d hlavních trackerů</string>
+		</dict>
+	</dict>
+	<key>privacy.protection.major.trackers.blocked</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@networks@</string>
+		<key>networks</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Zablokován %1$d hlavní tracker</string>
+			<key>few</key>
+			<string>Zablokován %1$d hlavní tracker</string>
+			<key>many</key>
+			<string>Zablokováno %1$d hlavních trackerů</string>
+			<key>other</key>
+			<string>Zablokováno %1$d hlavních trackerů</string>
+		</dict>
+	</dict>
+	<key>privacy.protection.trackers.found</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@networks@</string>
+		<key>networks</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Nalezen %1$d tracker</string>
+			<key>few</key>
+			<string>Nalezeny %1$d trackery</string>
+			<key>many</key>
+			<string>Nalezeno %1$d trackerů</string>
+			<key>other</key>
+			<string>Nalezeno %1$d trackerů</string>
+		</dict>
+	</dict>
+	<key>privacy.protection.trackers.blocked</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@networks@</string>
+		<key>networks</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Zablokován %1$d tracker</string>
+			<key>few</key>
+			<string>Zablokovány %1$d trackery</string>
+			<key>many</key>
+			<string>Zablokováno %1$d trackerů</string>
+			<key>other</key>
+			<string>Zablokováno %1$d trackerů</string>
+		</dict>
+	</dict>
+	<key>number.of.tabs</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@tabs@</string>
+		<key>tabs</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%1$d soukromá karta</string>
+			<key>few</key>
+			<string>%1$d soukromé karty</string>
+			<key>many</key>
+			<string>%1$d soukromých karet</string>
+			<key>other</key>
+			<string>%1$d soukromých karet</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

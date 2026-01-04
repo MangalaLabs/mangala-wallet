@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS AntelopeActionTraceEntity (
+    trx_id TEXT NOT NULL,
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    timestamp TEXT NOT NULL,
+    block_num INTEGER NOT NULL,
+    block_id TEXT NOT NULL,
+    act TEXT NOT NULL,
+    receipts TEXT NOT NULL,
+    global_sequence INTEGER NOT NULL,
+    producer TEXT NOT NULL,
+    action_ordinal INTEGER NOT NULL,
+    creator_action_ordinal INTEGER NOT NULL,
+    cpu_usage_us INTEGER NOT NULL,
+    net_usage_words INTEGER NOT NULL,
+    signatures TEXT NOT NULL,
+    account_action_seq INTEGER NOT NULL,
+    action_trace TEXT NOT NULL,
+    block_time TEXT NOT NULL,
+    global_action_sequence INTEGER NOT NULL,
+    irreversible INTEGER NOT NULL,
+    transaction_type TEXT NOT NULL,
+    PRIMARY KEY (trx_id, account_name, blockchain_uid, global_sequence),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS AntelopeActionTraceCacheMetadataEntity(
+    account_name TEXT NOT NULL,
+    blockchain_uid TEXT NOT NULL,
+    transaction_type TEXT NOT NULL,
+    last_updated INTEGER NOT NULL,
+    lookup_before_timestamp TEXT NOT NULL,
+    past_data_load_finished INTEGER NOT NULL,
+    PRIMARY KEY (account_name, blockchain_uid, transaction_type),
+    FOREIGN KEY (account_name, blockchain_uid) REFERENCES AntelopeAccountEntity(account_name, blockchain_uid) ON DELETE CASCADE
+);

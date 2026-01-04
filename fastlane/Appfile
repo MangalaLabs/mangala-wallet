@@ -1,0 +1,14 @@
+for_platform :android do
+    json_key_file("./google-pk.json")
+    for_lane :pro_dev_build_and_release do
+        package_name("com.mangala.prowallet.dev")
+    end
+
+    for_lane :pro_stg_build_and_release do
+        package_name("com.mangala.prowallet")
+    end
+
+    for_lane :pro_prod_build_and_release do
+        package_name("com.mangala.prowallet")
+    end
+  end

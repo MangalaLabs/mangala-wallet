@@ -1,0 +1,638 @@
+flowchart TD
+    %% Main Entry and Authentication
+    Start([Start App]) --> LockScreen["LockScreen
+    • Enter PIN to unlock
+    • Use biometric authentication
+    • Access forgot PIN option"]
+    
+    LockScreen -->|Unlock| HomeScreen["HomeScreen
+    • View portfolio overview
+    • Navigate to main features
+    • Manage wallets
+    • Access settings"]
+    
+    LockScreen -->|Forgot PIN| ForgotPinScreen["ForgotPinScreen
+    • Initiate PIN recovery process
+    • Navigate back to previous screen"]
+    
+    %% Wallet Setup Flow
+    Start --> SetupPinScreen["SetupPinScreen
+    • Create new PIN
+    • View security tips"]
+    
+    SetupPinScreen --> ConfirmPinScreen["ConfirmPinScreen
+    • Re-enter PIN to confirm
+    • Correct mismatches"]
+    
+    ConfirmPinScreen --> BiometryScreen["BiometryScreen
+    • Enable biometric authentication
+    • Skip biometric setup
+    • Navigate back"]
+    
+    BiometryScreen --> CreateWalletGuideScreen["CreateWalletGuideScreen
+    • Read wallet creation information
+    • Understand security
+    • Proceed to creation"]
+    
+    CreateWalletGuideScreen --> CreateWalletScreen["CreateWalletScreen
+    • Generate new wallet
+    • View seed phrase"]
+    
+    CreateWalletScreen -->|Backup| BackupWalletAlertScreen["BackupWalletAlertScreen
+    • Choose to backup now
+    • Skip backup at own risk"]
+    
+    BackupWalletAlertScreen -->|Backup Now| BackupWalletGuideScreen["BackupWalletGuideScreen
+    • Navigate through backup guide pages
+    • Start backup process
+    • Navigate back"]
+    
+    BackupWalletAlertScreen -->|Skip| HomeScreen
+    
+    BackupWalletGuideScreen -->|PIN Verification| UnlockPinScreen["UnlockPinScreen
+    • Enter PIN
+    • Use biometrics if enabled"]
+    
+    UnlockPinScreen --> ShowRecoveryPhraseScreen["ShowRecoveryPhraseScreen
+    • View recovery phrase
+    • Copy words
+    • Confirm written down"]
+    
+    ShowRecoveryPhraseScreen --> VerifyRecoveryPhraseScreen["VerifyRecoveryPhraseScreen
+    • Enter specific words from phrase
+    • Confirm backup"]
+    
+    VerifyRecoveryPhraseScreen --> BackupWalletDoneScreen["BackupWalletDoneScreen
+    • Confirm backup completion
+    • Understand backup importance"]
+    
+    BackupWalletDoneScreen --> HomeScreen
+    
+    %% Wallet Restore Flow
+    Start --> RestoreWalletGuideScreen["RestoreWalletGuideScreen
+    • Learn restore process
+    • Choose restore method"]
+    
+    RestoreWalletGuideScreen --> RestoreRecoveryPhraseScreen["RestoreRecoveryPhraseScreen
+    • Enter recovery words
+    • Validate phrase"]
+    
+    RestoreRecoveryPhraseScreen --> SetupPinScreen
+    
+    %% Main Navigation Hubs
+    HomeScreen --> WalletMainScreen["WalletMainScreen
+    • View balances
+    • Access features
+    • Manage accounts
+    • Refresh data"]
+    
+    HomeScreen --> NftMainScreen["NftMainScreen
+    • View NFT collection
+    • Filter by chain
+    • Search NFTs
+    • Import new NFTs"]
+    
+    HomeScreen --> PortfolioScreen["PortfolioScreen
+    • View total portfolio value
+    • View asset allocation
+    • View performance"]
+    
+    HomeScreen --> ManageAccountsScreen["ManageAccountsScreen
+    • View account list
+    • Add new accounts
+    • Remove accounts
+    • Switch active account"]
+    
+    HomeScreen --> BaseMenuScreen["BaseMenuScreen
+    • Navigate to different settings sections
+    • Logout
+    • Manage preferences"]
+    
+    %% Wallet Main Navigation
+    WalletMainScreen -->|Add Account| AddAccountScreen["AddAccountScreen
+    • Create new account
+    • Import private key
+    • Derive from HD wallet"]
+    
+    WalletMainScreen -->|Send| SendScreen["SendScreen
+    • Initiate transfer
+    • Select recipient/token/amount
+    • Review transaction details"]
+    
+    WalletMainScreen -->|Receive| ReceiveTokenScreen["ReceiveTokenScreen
+    • Display QR
+    • Copy address
+    • Set amount
+    • Share"]
+    
+    WalletMainScreen -->|Transactions| TransactionHistoryScreen["TransactionHistoryScreen
+    • View transactions
+    • Filter
+    • Search
+    • Pull to refresh"]
+    
+    WalletMainScreen -->|Swap| SwapTokenScreen["SwapTokenScreen
+    • Select tokens to swap
+    • Enter amounts
+    • View rates
+    • Initiate swap"]
+    
+    %% Send Flow
+    SendScreen --> SelectRecipientTypeScreen["SelectRecipientTypeScreen
+    • Select address input
+    • QR scan option
+    • Contacts selection"]
+    
+    SelectRecipientTypeScreen --> Step2SelectNetworkScreen["Step2SelectNetworkScreen
+    • Choose blockchain network
+    • View balances per network"]
+    
+    Step2SelectNetworkScreen --> Step3SelectAmountScreen["Step3SelectAmountScreen
+    • Enter amount
+    • Use max button
+    • View balance"]
+    
+    Step3SelectAmountScreen -->|Fee Settings| TransactionFeeScreen["TransactionFeeScreen
+    • Select fee tier
+    • Set custom gas price
+    • View estimates"]
+    
+    Step3SelectAmountScreen -->|EVM| EvmStep4VerifyAndSendScreen["EvmStep4VerifyAndSendScreen
+    • Review details
+    • Adjust gas
+    • Confirm send"]
+    
+    Step3SelectAmountScreen -->|Bitcoin| BitcoinStep4VerifyAndSendScreen["BitcoinStep4VerifyAndSendScreen
+    • Review UTXOs
+    • Set fee rate
+    • Confirm transaction"]
+    
+    Step3SelectAmountScreen -->|Antelope| AntelopeStep4VerifyAndSendScreen["AntelopeStep4VerifyAndSendScreen
+    • Review actions
+    • Set resources
+    • Confirm transaction"]
+    
+    EvmStep4VerifyAndSendScreen --> Step5SendSuccessScreen["Step5SendSuccessScreen
+    • View transaction hash
+    • Share details
+    • Return to wallet"]
+    
+    BitcoinStep4VerifyAndSendScreen --> Step5SendSuccessScreen
+    AntelopeStep4VerifyAndSendScreen --> Step5SendSuccessScreen
+    
+    %% Receive Flow
+    ReceiveTokenScreen -->|Add Amount| EditReceiveAmountScreen["EditReceiveAmountScreen
+    • Enter desired receive amount
+    • Confirm amount selection
+    • Clear/modify amount"]
+    
+    ReceiveTokenScreen -->|Select Account| ReceiveTokenPickAccountScreen["ReceiveTokenPickAccountScreen
+    • Choose from available accounts
+    • View addresses"]
+    
+    %% Transaction History Flow
+    TransactionHistoryScreen -->|EVM TX| TransactionInfoScreen["TransactionInfoScreen
+    • View transaction details
+    • Copy hashes
+    • View on explorer"]
+    
+    TransactionHistoryScreen -->|Bitcoin TX| TransactionInfoBitcoinScreen["TransactionInfoBitcoinScreen
+    • View inputs/outputs
+    • View confirmations
+    • View fees"]
+    
+    TransactionHistoryScreen -->|Filter| TransactionHistoryFilterBottomSheetScreen["TransactionHistoryFilterBottomSheetScreen
+    • Filter by type
+    • Filter by date
+    • Filter by status
+    • Filter by amount"]
+    
+    %% Swap Flow
+    SwapTokenScreen -->|Select Token| SelectTokenScreen["SelectTokenScreen
+    • Search tokens
+    • Select from list
+    • View balances"]
+    
+    SwapTokenScreen -->|Preview| PreviewSwapTokenScreen["PreviewSwapTokenScreen
+    • Review rates
+    • Review fees
+    • Review slippage
+    • Confirm or cancel swap"]
+    
+    %% NFT Flow
+    NftMainScreen -->|View NFT| NftDetailsScreen["NftDetailsScreen
+    • View NFT properties
+    • Transfer NFT
+    • View on explorer"]
+    
+    NftMainScreen -->|Import| ImportNftScreen["ImportNftScreen
+    • Enter NFT details
+    • Select network
+    • Confirm import"]
+    
+    NftMainScreen -->|Send| SendNftScreen["SendNftScreen
+    • Enter recipient address
+    • Confirm transfer details
+    • Sign transaction"]
+    
+    SendNftScreen --> SendNftConfirmationScreen["SendNftConfirmationScreen
+    • Review transfer details
+    • Confirm or cancel
+    • Sign transaction"]
+    
+    %% Account Management
+    ManageAccountsScreen --> AccountDetailsScreen["AccountDetailsScreen
+    • View account information
+    • Copy account address
+    • Access account settings
+    • Navigate to transaction history"]
+    
+    ManageAccountsScreen -->|Antelope| ManageAntelopeAccountScreen["ManageAntelopeAccountScreen
+    • View account resources
+    • Manage permissions
+    • Stake/unstake resources
+    • Access account tools"]
+    
+    %% Antelope Account Management
+    ManageAntelopeAccountScreen -->|Permissions| PermissionScreen["PermissionScreen
+    • Manage all permission-related features"]
+    
+    ManageAntelopeAccountScreen -->|Resources| NetAndCpuScreen["NetAndCpuScreen
+    • View resource usage
+    • Stake/unstake
+    • Rent resources"]
+    
+    ManageAntelopeAccountScreen -->|Backup| BackupAntelopeAccountScreen["BackupAntelopeAccountScreen
+    • Select backup type
+    • Initiate backup process"]
+    
+    ManageAntelopeAccountScreen -->|Multisig| AntelopeMultisigScreen["AntelopeMultisigScreen
+    • View proposal list
+    • Create new proposal
+    • Approve/reject proposals
+    • Filter proposals by status"]
+    
+    %% Permissions Management
+    PermissionScreen --> PermissionListScreen["PermissionListScreen
+    • View permissions
+    • Navigate to details
+    • Create new"]
+    
+    PermissionListScreen --> PermissionDetailScreen["PermissionDetailScreen
+    • View authorities
+    • View threshold
+    • View linked actions"]
+    
+    PermissionDetailScreen --> UpdatePermissionScreen["UpdatePermissionScreen
+    • Modify permission settings
+    • Update authority keys
+    • Add/remove permissions
+    • Save permission changes"]
+    
+    PermissionScreen --> CreatePermissionScreen["CreatePermissionScreen
+    • Set permission name
+    • Set threshold
+    • Add authorities"]
+    
+    PermissionScreen --> LinkAuthScreen["LinkAuthScreen
+    • Select action
+    • Choose permission
+    • Create link"]
+    
+    PermissionScreen --> UnLinkAuthScreen["UnLinkAuthScreen
+    • Select linked auths
+    • Confirm removal"]
+    
+    %% Resources Management
+    NetAndCpuScreen --> StakeForResourceScreen["StakeForResourceScreen
+    • Choose resource type
+    • Enter amount
+    • Stake tokens"]
+    
+    NetAndCpuScreen --> RentViaRexScreen["RentViaRexScreen
+    • Select rental duration
+    • Set amount
+    • Execute rental"]
+    
+    NetAndCpuScreen --> PowerUpScreen["PowerUpScreen
+    • Select resource type
+    • Set amount
+    • Execute power up"]
+    
+    %% RAM Management
+    NetAndCpuScreen --> RamDetailScreen["RamDetailScreen
+    • View RAM balance
+    • View market price
+    • View usage stats"]
+    
+    RamDetailScreen --> BuySellRamScreen["BuySellRamScreen
+    • Toggle buy/sell
+    • Enter amount
+    • Execute trade"]
+    
+    RamDetailScreen --> RamTransferScreen["RamTransferScreen
+    • Enter recipient
+    • Set amount
+    • Confirm transfer"]
+    
+    RamDetailScreen -->|Price Chart| ChartRamScreen["ChartRamScreen
+    • View price history
+    • Analyze trends"]
+    
+    %% Multisig Management
+    AntelopeMultisigScreen --> CreateNewProposalScreen["CreateNewProposalScreen
+    • Add/remove actions
+    • Select approvers
+    • Set expiration time
+    • Submit proposal"]
+    
+    AntelopeMultisigScreen --> ProposalDetailScreen["ProposalDetailScreen
+    • Review all proposal data
+    • Take actions based on role"]
+    
+    AntelopeMultisigScreen --> MsigScreen["MsigScreen
+    • View proposals by category
+    • Search proposals
+    • Filter by status
+    • Navigate to details"]
+    
+    MsigScreen --> ExpiredProposalScreen["ExpiredProposalScreen
+    • View expired proposals
+    • Delete expired proposals
+    • View proposal details"]
+    
+    ExpiredProposalScreen --> ExpiredProposalDetailScreen["ExpiredProposalDetailScreen
+    • View expired proposal info
+    • Clean up old proposals"]
+    
+    CreateNewProposalScreen --> MultisigProposalActionScreen["MultisigProposalActionScreen
+    • Create transaction actions
+    • Set parameters"]
+    
+    CreateNewProposalScreen --> MultisigProposalApproverScreen["MultisigProposalApproverScreen
+    • Add/remove approvers
+    • Set approval requirements"]
+    
+    CreateNewProposalScreen --> SelectAccountPermissionScreen["SelectAccountPermissionScreen
+    • Select permission level
+    • View permission details
+    • Confirm selection"]
+    
+    %% Account Creation
+    AddAccountScreen -->|Antelope| Step1SelectAccountTypeScreen["Step1SelectAccountTypeScreen
+    • Select account type
+    • View account type benefits
+    • Continue to next step"]
+    
+    Step1SelectAccountTypeScreen --> Step2SelectAccountNameScreen["Step2SelectAccountNameScreen
+    • Enter account name
+    • Check availability"]
+    
+    Step2SelectAccountNameScreen --> Step3CreateAccountPaymentScreen["Step3CreateAccountPaymentScreen
+    • Review costs
+    • Select payment method"]
+    
+    Step3CreateAccountPaymentScreen -->|IAP| IapCreateAccountScreen["IapCreateAccountScreen
+    • Purchase account
+    • Complete IAP flow"]
+    
+    Step3CreateAccountPaymentScreen -->|Friend| CreateAccountForFriendScreen["CreateAccountForFriendScreen
+    • Enter friend's details
+    • Pay for account"]
+    
+    Step3CreateAccountPaymentScreen -->|Select Account| SelectPaymentAccountScreen["SelectPaymentAccountScreen
+    • Select payment account
+    • View balances"]
+    
+    %% Settings Menu
+    BaseMenuScreen --> SecurityScreen["SecurityScreen
+    • Change PIN
+    • Enable biometrics
+    • Manage security preferences"]
+    
+    BaseMenuScreen --> ThemeScreen["ThemeScreen
+    • Switch between light/dark themes
+    • Set auto theme
+    • Preview themes"]
+    
+    BaseMenuScreen --> LanguageScreen["LanguageScreen
+    • Select preferred language
+    • Search languages
+    • Apply language change"]
+    
+    BaseMenuScreen --> CurrencyScreen["CurrencyScreen
+    • Choose fiat currency
+    • Search currencies
+    • Set default"]
+    
+    BaseMenuScreen --> NetworkScreen["NetworkScreen
+    • Add custom networks
+    • Edit RPC URLs
+    • Switch networks"]
+    
+    BaseMenuScreen --> NotificationsScreen["NotificationsScreen
+    • Toggle notification types
+    • Set alert preferences
+    • Manage push notifications"]
+    
+    BaseMenuScreen --> ContactsScreen["ContactsScreen
+    • View contacts
+    • Search
+    • Add new
+    • Select for sending"]
+    
+    BaseMenuScreen --> WalletScreen["WalletScreen
+    • Manage wallets
+    • View backup status
+    • Configure wallet settings"]
+    
+    BaseMenuScreen --> AboutUsScreen["AboutUsScreen
+    • View app information
+    • Access terms of service
+    • Access privacy policy
+    • Access licenses"]
+    
+    BaseMenuScreen --> ConnectWithUsScreen["ConnectWithUsScreen
+    • Access social media links
+    • Email support
+    • Visit website"]
+    
+    BaseMenuScreen --> HelpCenterScreen["HelpCenterScreen
+    • Browse help topics
+    • Search FAQs
+    • Contact support"]
+    
+    BaseMenuScreen --> ShareAppScreen["ShareAppScreen
+    • Share app link
+    • Send referral code
+    • Access social sharing"]
+    
+    %% Contacts Management
+    ContactsScreen --> ContactDetailScreen["ContactDetailScreen
+    • Edit contact info
+    • Delete contact
+    • Copy addresses"]
+    
+    ContactsScreen --> AddContactScreen["AddContactScreen
+    • Enter name
+    • Add addresses for different chains
+    • Save"]
+    
+    %% Browser and dApp Integration
+    BaseMenuScreen --> BrowserTabScreen["BrowserTabScreen
+    • Browse web3 sites
+    • Interact with dApps
+    • Manage bookmarks
+    • Navigate back/forward"]
+    
+    BrowserTabScreen --> ConfirmTransactionScreen["ConfirmTransactionScreen
+    • Confirm transaction
+    • Decline transaction
+    • View transaction details"]
+    
+    BrowserTabScreen --> SignPersonalMessageScreen["SignPersonalMessageScreen
+    • Sign the message
+    • Decline signing request
+    • Close screen via clear button"]
+    
+    BrowserTabScreen --> SwitchChainScreen["SwitchChainScreen
+    • Confirm chain switch
+    • Decline chain switch request
+    • Close screen via clear button"]
+    
+    BrowserTabScreen --> WalletConnectScreen["WalletConnectScreen
+    • Scan QR codes
+    • Manage connections
+    • Approve requests"]
+    
+    %% Cold Wallet Features
+    HomeScreen --> SyncAccountScreen["SyncAccountScreen
+    • Display sync QR
+    • Scan sync data
+    • Confirm sync"]
+    
+    ConfirmTransactionScreen --> TransactionQrScreen["TransactionQrScreen
+    • Show QR
+    • Adjust display settings
+    • Scan response"]
+    
+    WalletConnectScreen --> ConfirmQrScreen["ConfirmQrScreen
+    • Review transaction
+    • Sign offline
+    • Reject"]
+    
+    ConfirmQrScreen --> SignedTransactionQrScreen["SignedTransactionQrScreen
+    • Show QR code
+    • Adjust brightness
+    • Share QR"]
+    
+    %% Backup Antelope Flow
+    BackupAntelopeAccountScreen --> SelectPermissionToBackupScreen["SelectPermissionToBackupScreen
+    • Select permissions
+    • Choose backup method"]
+    
+    BackupAntelopeAccountScreen --> GuideBackupAccountScreen["GuideBackupAccountScreen
+    • Read backup instructions
+    • Choose backup method"]
+    
+    BackupAntelopeAccountScreen --> BackupWithKeyCertScreen["BackupWithKeyCertScreen
+    • Generate key certificate
+    • Export/save certificate
+    • Copy certificate data
+    • Share certificate securely"]
+    
+    BackupAntelopeAccountScreen --> BackupAntelopePrivateKeyScreen["BackupAntelopePrivateKeyScreen
+    • Display private key
+    • Copy to clipboard
+    • Export securely"]
+    
+    %% Import Account Flow
+    AddAccountScreen -->|Import| Step1ImportAccountPrivateKeyScreen["Step1ImportAccountPrivateKeyScreen
+    • Enter or paste private key
+    • Validate format"]
+    
+    Step1ImportAccountPrivateKeyScreen --> Step2ImportAccountSelectAccountScreen["Step2ImportAccountSelectAccountScreen
+    • Choose from available accounts for key"]
+    
+    AddAccountScreen -->|Import Certificate| ImportAccountByKeyCertScreen["ImportAccountByKeyCertScreen
+    • Upload/paste certificate
+    • Decrypt if needed"]
+    
+    %% EVM Snap Features
+    HomeScreen --> ImportEOSAccountViaEVMScreen["ImportEOSAccountViaEVMScreen
+    • Connect EVM wallet
+    • Import EOS accounts"]
+    
+    ImportEOSAccountViaEVMScreen --> ChooseImportedEosAccountScreen["ChooseImportedEosAccountScreen
+    • Choose accounts to import
+    • Configure settings"]
+    
+    HomeScreen --> CreateEosAccountViaEVMScreen["CreateEosAccountViaEVMScreen
+    • Set account name
+    • Configure resources"]
+    
+    %% ESR Flow
+    BrowserTabScreen --> EsrScreen["EsrScreen
+    • Parse ESR
+    • Review actions
+    • Sign request"]
+
+    %% Crypto Payment
+    HomeScreen --> PayWithCryptoScreen["PayWithCryptoScreen
+    • Select payment method
+    • Review amount
+    • Confirm payment"]
+    
+    PayWithCryptoScreen --> SelectPaymentMethodScreen["SelectPaymentMethodScreen
+    • Select cryptocurrency
+    • View rates
+    • Confirm choice"]
+    
+    PayWithCryptoScreen --> ChangeNetworkForPaymentScreen["ChangeNetworkForPaymentScreen
+    • Select compatible network
+    • Confirm switch"]
+    
+    PayWithCryptoScreen --> AllowanceScreen["AllowanceScreen
+    • Review required allowance
+    • Approve spending limit"]
+    
+    PayWithCryptoScreen --> PaymentDetailScreen["PaymentDetailScreen
+    • Review payment details
+    • Confirm transaction"]
+    
+    PayWithCryptoScreen -->|Error| CryptoPaymentErrorScreen["CryptoPaymentErrorScreen
+    • View error details
+    • Retry payment
+    • Contact support"]
+    
+    SelectPaymentMethodScreen -->|Select Network| SelectNetworkBottomSheetScreen["SelectNetworkBottomSheetScreen
+    • Choose blockchain network
+    • View fees"]
+    
+    SelectPaymentMethodScreen -->|Select Wallet| SelectWalletBottomSheetScreen["SelectWalletBottomSheetScreen
+    • Select from available wallets
+    • Add new wallet"]
+    
+    SelectPaymentMethodScreen -->|Select Account| SelectAccountBottomSheetScreen["SelectAccountBottomSheetScreen
+    • Choose payment account
+    • View balances"]
+
+    %% Style Classes
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef auth fill:#bbf,stroke:#333,stroke-width:1px;
+    classDef wallet fill:#bfb,stroke:#333,stroke-width:1px;
+    classDef send fill:#fbf,stroke:#333,stroke-width:1px;
+    classDef nft fill:#fbb,stroke:#333,stroke-width:1px;
+    classDef settings fill:#bff,stroke:#333,stroke-width:1px;
+    classDef antelope fill:#ffb,stroke:#333,stroke-width:1px;
+    classDef crypto fill:#fdb,stroke:#333,stroke-width:1px;
+    
+    %% Apply styles
+    class HomeScreen,WalletMainScreen,PortfolioScreen main;
+    class LockScreen,SetupPinScreen,ConfirmPinScreen,UnlockPinScreen,BiometryScreen auth;
+    class CreateWalletScreen,BackupWalletGuideScreen,ShowRecoveryPhraseScreen,VerifyRecoveryPhraseScreen wallet;
+    class SendScreen,ReceiveTokenScreen,Step3SelectAmountScreen,Step5SendSuccessScreen send;
+    class NftMainScreen,NftDetailsScreen,ImportNftScreen,SendNftScreen nft;
+    class BaseMenuScreen,SecurityScreen,ThemeScreen,LanguageScreen settings;
+    class ManageAntelopeAccountScreen,NetAndCpuScreen,PermissionScreen,AntelopeMultisigScreen,BackupAntelopeAccountScreen antelope;
+    class PayWithCryptoScreen,SelectPaymentMethodScreen,AllowanceScreen,CryptoPaymentErrorScreen crypto;
