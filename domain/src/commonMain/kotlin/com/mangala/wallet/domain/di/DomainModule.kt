@@ -259,4 +259,7 @@ fun domainModule() = module {
     
     // Portfolio Error Handler
     singleOf(::PortfolioErrorHandler)
+
+    single { PortfolioNetworkMapper }
+    factory<AccountCreator> { PortfolioAccountCreator(get(), get()) }
 }

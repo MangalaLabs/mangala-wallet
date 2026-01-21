@@ -61,7 +61,18 @@ class CreateWalletGuideScreen : BaseScreen<CreateWalletGuideScreenModel>() {
             } else {
                 SharedScreen.SetupPinScreen(
                     blockchainUid = BlockchainType.Ethereum.uid,
-                    pinCase = SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET.name
+                    pinCase = SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET.name,
+                    onPinSetupSuccess = {
+                        println("Leonard: on pin setup success")
+                        navigator.push(
+                            ScreenRegistry.get(
+                                SharedScreen.CreateWalletScreen(
+                                    blockchainUid = BlockchainType.Ethereum.uid,
+                                    createWalletCase = SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CREATE_NEW_WALLET
+                                )
+                            )
+                        )
+                    }
                 )
             }
             navigator.push(ScreenRegistry.get(nextScreen))

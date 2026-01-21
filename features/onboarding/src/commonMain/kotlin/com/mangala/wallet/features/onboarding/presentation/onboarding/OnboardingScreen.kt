@@ -214,9 +214,8 @@ class OnboardingScreen : BaseScreen<OnboardingScreenModel>() {
                                 mapOf(MangalaAnalytics.EventParam.ONBOARDING_STEP_NAME to MangalaAnalytics.EventParamValue.ONBOARDING_STEP_CREATE_WALLET)
                             )
 
-                            val antelopeCreateAccountScreen =
-                                ScreenRegistry.get(SharedScreen.AntelopeCreateAccountV2Screen)
-                            navigator.push(antelopeCreateAccountScreen)
+                            val createWalletScreen = ScreenRegistry.get(screenModel.getCreateWalletDestination())
+                            navigator.push(createWalletScreen)
                         },
                         buttonStyle = MangalaButtonStyle.GRADIENT,
                         modifier = Modifier.fillMaxWidth()
