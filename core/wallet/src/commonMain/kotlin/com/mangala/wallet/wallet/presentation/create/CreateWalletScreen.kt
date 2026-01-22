@@ -60,9 +60,6 @@ class CreateWalletScreen(
 
     @Composable
     override fun ScreenContent(screenModel: CreateWalletScreenModel) {
-
-        println("Leonard: screen create evm wallet was launched.")
-
         val navigator = LocalNavigator.currentOrThrow
         val globalNavigator = LocalGlobalNavigator.current
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
