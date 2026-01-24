@@ -57,10 +57,10 @@ This is a Kotlin Multiplatform project targeting Android, iOS, and Desktop platf
 
 ### Architecture Pattern
 
-We follow **Clean Architecture** principles with **MVI (Model-View-Intent)** pattern for UI:
+We follow **Clean Architecture** principles with **MVVM (Model-View-ViewModel)** pattern for UI:
 
 ```
-Presentation Layer (Compose UI + ViewModels)
+Presentation Layer (Compose UI + ScreenModels)
     ↓
 Domain Layer (Use Cases + Domain Models)
     ↓
@@ -78,7 +78,7 @@ Data Layer (Repositories + Data Sources)
    - Use PascalCase for classes
 
 2. **Naming Conventions**
-   - ViewModels: `*ViewModel` (e.g., `WalletViewModel`)
+   - ScreenModels: `*ScreenModel` (e.g., `WalletScreenModel`)
    - Use Cases: `*UseCase` (e.g., `GetBalanceUseCase`)
    - Repositories: `*Repository` (e.g., `WalletRepository`)
    - Data Sources: `*DataSource` (e.g., `LocalWalletDataSource`)
@@ -157,7 +157,7 @@ Data Layer (Repositories + Data Sources)
 
 1. **Write tests for**
    - All use cases
-   - Business logic in ViewModels
+   - Business logic in ScreenModels
    - Repository implementations
    - Complex UI interactions
 
