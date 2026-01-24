@@ -1,0 +1,40 @@
+# <type>(<scope>): <subject>
+# |<----  Using a Maximum Of 72 Characters  ---->|
+
+# [optional body]
+# Explain what and why (not how). Wrap at 72 characters.
+
+# [optional footer]
+# Reference issues (e.g., "Closes #123" or "Fixes #456")
+# Note breaking changes (e.g., "BREAKING CHANGE: description")
+
+# --- COMMIT TYPES ---
+# feat:     A new feature
+# fix:      A bug fix
+# docs:     Documentation only changes
+# style:    Code style changes (formatting, missing semicolons, etc.)
+# refactor: Code refactoring without adding features or fixing bugs
+# perf:     Performance improvements
+# test:     Adding or updating tests
+# chore:    Build process, dependencies, or tooling updates
+# ci:       CI/CD configuration changes
+# build:    Build system or external dependencies changes
+# revert:   Revert a previous commit
+
+# --- COMMON SCOPES ---
+# auth, wallet, ui, core, antelope, passkey, portfolio, transaction,
+# network, database, security, onboarding, addressbook
+
+# --- EXAMPLES ---
+# feat(wallet): add multi-currency support
+# fix(transaction): resolve crash when parsing invalid data
+# docs(readme): update build instructions for iOS
+# refactor(network): extract HTTP client configuration
+# chore(deps): upgrade Kotlin to 1.9.22
+
+# --- REMEMBER ---
+# - Use imperative mood: "add" not "added" or "adds"
+# - Don't capitalize first letter of subject
+# - No period at the end of subject
+# - Separate subject from body with a blank line
+# - Reference issues in footer when applicable
