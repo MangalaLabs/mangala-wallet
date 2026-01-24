@@ -30,6 +30,29 @@
 - `staging` - Closed alpha release branch (for Google Play closed alpha)
 - `master` - Public release branch (for Google Play Store)
 
+# Contributing
+
+Before contributing to this project, please read our development standards:
+
+- [Git Workflow](GIT_WORKFLOW.md) - Branch naming and commit message conventions
+- [Development Standards](.claude/development-standards.md) - Code style, architecture, and best practices
+
+## Quick Start for Contributors
+
+1. Read [GIT_WORKFLOW.md](GIT_WORKFLOW.md) for Git conventions
+2. Set up Git commit template:
+   ```bash
+   git config commit.template .gitmessage
+   ```
+3. Create your feature branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. Make your changes following our coding standards
+5. Write tests for your changes
+6. Commit using conventional commit format
+7. Push and create a Pull Request
+
 # Build variants
 
 ## Overview

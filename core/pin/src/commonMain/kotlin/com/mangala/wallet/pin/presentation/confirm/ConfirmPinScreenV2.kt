@@ -104,7 +104,7 @@ class ConfirmPinScreenV2(
                 globalNavigator.replaceAll(homeScreen)
             }
             PinScreenFlow.ShowCreateWalletScreen -> {
-                handleCreateWalletScreen(navigator)
+                onPinSetupSuccess?.invoke()
             }
             PinScreenFlow.ShowBackLastScreen -> {
                 handleBackLastScreen(navigator)
