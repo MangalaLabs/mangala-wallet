@@ -15,14 +15,15 @@ import com.mangala.wallet.pin.presentation.setup.SetupPinScreenV2
 import com.mangala.wallet.pin.presentation.unlock.UnlockPinScreenModel
 import com.mangala.wallet.pin.presentation.unlock.UnlockPinScreenV2
 import com.mangala.wallet.ui.SharedScreen
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 fun pinKoinModule() = module {
-    // Old V1 screens - keep for backward compatibility
     factory { (pinCase: SharedScreen.SetupPinScreen.SetupPinScreenCase) ->
         SetupPinScreenModel(pinCase)
     }
 
+    // V1: pinCase-based navigation (used by ConfirmPinScreenV2)
     factory { (pin: String, pinCase: SharedScreen.SetupPinScreen.SetupPinScreenCase) ->
         ConfirmPinScreenModel(
             pin = pin,
@@ -31,6 +32,7 @@ fun pinKoinModule() = module {
         )
     }
 
+    // V1: unlockPinCase-based navigation (used by UnlockPinScreenV2)
     factory { (unlockPinCase: Int) ->
         UnlockPinScreenModel(
             unlockPinCase = unlockPinCase,
@@ -39,15 +41,15 @@ fun pinKoinModule() = module {
         )
     }
 
-    // New V2 screens - callback-based
-    factory { (pin: String, callbacks: PinSetupCallbacks) ->
+    // V2: callback-based (decoupled from SharedScreen navigation)
+    factory(named(PIN_CONFIRM_CALLBACKS)) { (pin: String, callbacks: PinSetupCallbacks) ->
         ConfirmPinScreenModel(
             pin = pin,
             pinCase = null,
             callbacks = callbacks,
         )
     }
-    factory { (callbacks: PinUnlockCallbacks, showForgotPin: Boolean) ->
+    factory(named(PIN_UNLOCK_CALLBACKS)) { (callbacks: PinUnlockCallbacks, showForgotPin: Boolean) ->
         UnlockPinScreenModel(
             unlockPinCase = null,
             callbacks = callbacks,
@@ -57,6 +59,9 @@ fun pinKoinModule() = module {
 
     factory { LockScreenModel(get()) }
 }
+
+const val PIN_CONFIRM_CALLBACKS = "pin_confirm_callbacks"
+const val PIN_UNLOCK_CALLBACKS = "pin_unlock_callbacks"
 
 expect fun platformPinModule(): org.koin.core.module.Module
 
