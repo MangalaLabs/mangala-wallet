@@ -81,15 +81,7 @@ abstract class BasePinScreenModel: BaseScreenModel(), KoinComponent {
         mutablePinScreenFlowState.value = pinScreenFlow
     }
 
-    //Must not public
-    protected fun showHomeScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowHomeScreen
-    }
-
-    protected fun showPopFromSetupPinScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowPopFromSetupPinScreen
-    }
-
+    // Internal PIN module navigation - keep these for within-module navigation
     internal fun showForgotPinScreen(){
         mutablePinScreenFlowState.value = PinScreenFlow.ShowForgotPinScreen
     }
@@ -102,54 +94,12 @@ abstract class BasePinScreenModel: BaseScreenModel(), KoinComponent {
         mutablePinScreenFlowState.value = PinScreenFlow.ShowSetUpPinScreen
     }
 
-    protected fun showRecoveryPhraseScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowRecoveryPhraseScreen
-    }
-
-    protected fun showAddAccountScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowAddAccountScreen
-    }
-
-    protected fun showAddAccountBitcoinScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowBitcoinAddAccountScreen
-    }
-
-    protected fun showConfirmDappScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ConfirmDappScreen
-    }
-
-    protected fun showEnableBiometryScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowEnableBiometryScreen
-    }
-
-    protected fun showVerifyAndSendScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowVerifyAndSendScreen
-    }
-
-    protected fun showBackupAntelopeAccountScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.BackupAntelopeAccountScreen
-    }
-
-    protected fun showCreateWalletScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowCreateWalletScreen
-    }
-
-    protected fun showBackLastScreen(){
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowBackLastScreen
-    }
-
     internal fun showUnlockPinScreen(){
         mutablePinScreenFlowState.value = PinScreenFlow.ShowUnlockPinScreen
     }
 
     internal fun showLockScreen() {
         mutablePinScreenFlowState.value = PinScreenFlow.ShowLockScreen
-    }
-
-    // To handle case when user somehow skipped PIN setup, but triggered an action that requires PIN
-    // In this case, require the user to setup the PIN and then trigger the user's action
-    internal fun showSetupPinAndContinueScreen() {
-        mutablePinScreenFlowState.value = PinScreenFlow.ShowSetUpPinAndContinueScreen
     }
 
     internal fun resetPinScreenFlowState(){

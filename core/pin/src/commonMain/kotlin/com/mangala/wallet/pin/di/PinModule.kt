@@ -2,6 +2,9 @@ package com.mangala.wallet.pin.di
 
 import cafe.adriel.voyager.core.registry.screenModule
 import com.mangala.wallet.pin.domain.GetIsPinSetupUseCase
+import com.mangala.wallet.pin.domain.PINManager
+import com.mangala.wallet.pin.presentation.base.PinSetupCallbacks
+import com.mangala.wallet.pin.presentation.base.PinUnlockCallbacks
 import com.mangala.wallet.pin.presentation.confirm.ConfirmPinScreen
 import com.mangala.wallet.pin.presentation.confirm.ConfirmPinScreenModel
 import com.mangala.wallet.pin.presentation.forgot.ForgotPinScreenV2
@@ -15,26 +18,54 @@ import com.mangala.wallet.ui.SharedScreen
 import org.koin.dsl.module
 
 fun pinKoinModule() = module {
+    // Old V1 screens - keep for backward compatibility
     factory { (pinCase: SharedScreen.SetupPinScreen.SetupPinScreenCase) ->
         SetupPinScreenModel(pinCase)
     }
 
-    factory {  (pin: String, pinCase: SharedScreen.SetupPinScreen.SetupPinScreenCase) ->
+    factory { (pin: String, pinCase: SharedScreen.SetupPinScreen.SetupPinScreenCase) ->
         ConfirmPinScreenModel(
             pin = pin,
             pinCase = pinCase,
+            callbacks = null
         )
     }
-    factory { (unlockPinCase: Int) -> UnlockPinScreenModel(unlockPinCase) }
+
+    factory { (unlockPinCase: Int) ->
+        UnlockPinScreenModel(
+            unlockPinCase = unlockPinCase,
+            callbacks = null,
+            showForgotPinOption = true
+        )
+    }
+
+    // New V2 screens - callback-based
+    factory { (pin: String, callbacks: PinSetupCallbacks) ->
+        ConfirmPinScreenModel(
+            pin = pin,
+            pinCase = null,
+            callbacks = callbacks,
+        )
+    }
+    factory { (callbacks: PinUnlockCallbacks, showForgotPin: Boolean) ->
+        UnlockPinScreenModel(
+            unlockPinCase = null,
+            callbacks = callbacks,
+            showForgotPinOption = showForgotPin
+        )
+    }
+
     factory { LockScreenModel(get()) }
 }
 
 expect fun platformPinModule(): org.koin.core.module.Module
 
 val pinModule = module {
-    factory { GetIsPinSetupUseCase(get()) }
+    factory { GetIsPinSetupUseCase(get<PINManager>()) }
 
     includes(platformPinModule())
+    includes(newPinModule)
+    includes(platformNewPinModule())
 }
 
 

@@ -46,6 +46,7 @@ kotlin {
                 implementation(compose.materialIconsExtended)
 
                 implementation(libs.jetbrains.lifecycle.common)
+                implementation(libs.androidx.lifecycle.runtime.compose)
 
                 implementation(libs.voyager.core)
                 implementation(libs.voyager.navigator)
@@ -56,6 +57,12 @@ kotlin {
 
                 implementation(libs.moko.resources)
                 implementation(libs.moko.resources.compose)
+
+                // For new PIN module
+                implementation(libs.kotlinx.datetime)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.cryptohash)
             }
         }
         val commonTest by getting {
