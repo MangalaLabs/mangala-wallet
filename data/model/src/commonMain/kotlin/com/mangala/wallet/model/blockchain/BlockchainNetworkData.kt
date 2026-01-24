@@ -122,7 +122,7 @@ data class BlockchainNetworkData(
 
         fun getDefaultNetwork(includeDebugNetworks: Boolean): BlockchainNetworkData {
             val allNetworks = getAllBlockchainNetworkSupported(includeDebugNetworks)
-            return allNetworks.find { it.blockchainType == BlockchainType.Eos }
+            return allNetworks.find { it.blockchainType == PrimaryNetworkConfig.primaryBlockchain }
                 ?: allNetworks.first()
         }
 
