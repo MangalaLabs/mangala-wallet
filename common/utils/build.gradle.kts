@@ -85,6 +85,7 @@ kotlin {
         val jvmMain by getting {
             kotlin.srcDirs("src/jvmMain/kotlin")
             dependencies {
+                implementation(libs.uuid)
             }
         }
     }
