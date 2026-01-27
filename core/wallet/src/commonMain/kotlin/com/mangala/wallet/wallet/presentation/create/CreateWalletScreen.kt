@@ -1,43 +1,65 @@
 package com.mangala.wallet.wallet.presentation.create
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.mangala.wallet.common.mokoresources.FontType
-import com.mangala.wallet.common.mokoresources.Spacing
+import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.mokoresources.MR
-import com.mangala.wallet.ui.LocalGlobalNavigator
 import com.mangala.wallet.ui.SharedScreen
-import com.mangala.wallet.ui.component.MangalaGradientButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
-import com.mangala.wallet.ui.getSfProFamilyFont
-import com.mangala.wallet.ui.theme.mangalaColors
+import com.mangala.wallet.ui.imageloader.LocalImage
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
-import dev.icerock.moko.resources.compose.localized
-import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -61,10 +83,7 @@ class CreateWalletScreen(
     @Composable
     override fun ScreenContent(screenModel: CreateWalletScreenModel) {
         val navigator = LocalNavigator.currentOrThrow
-        val globalNavigator = LocalGlobalNavigator.current
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
-        val textButton =
-            MR.strings.using_mangala_wallet.desc().localized().toUpperCase(Locale.current)
 
         when (createWalletCase) {
             SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CREATE_NEW_WALLET -> {
@@ -79,7 +98,7 @@ class CreateWalletScreen(
                         antelopeAccountName
                     )
                 )
-                GenerateWalletAnimation(textButton) {
+                GenerateWalletAnimation {
                     navigator.replaceAll(backupWalletAlertScreen)
                 }
             }
@@ -90,7 +109,7 @@ class CreateWalletScreen(
 
                 screenModel.createWallet(blockchainUid, antelopeAccountName)
 
-                GenerateWalletAnimation(textButton) {
+                GenerateWalletAnimation {
                     navigator.replaceAll(homeScreen)
                 }
             }
@@ -99,7 +118,7 @@ class CreateWalletScreen(
                 val listString = listString ?: return
                 val name = name ?: ""
 
-                GenerateWalletAnimation(textButton) {
+                GenerateWalletAnimation {
                     screenModel.restoreWallet(listString, name)
                 }
                 LaunchedEffect(true) {
@@ -109,281 +128,351 @@ class CreateWalletScreen(
                 }
             }
         }
-        //
-//        val backupWalletAlertScreen =
-//            rememberScreen(SharedScreen.BackupWalletAlertScreen(blockchainUid, antelopeAccountName))
-
-
-//        val wallets = screenModel.wallets.collectAsStateMultiplatform()
-//        val testString = screenModel.testString.collectAsStateMultiplatform()
-
-//        Column(Modifier.background(color = Color.White)) {
-//            Text(wallets.value.map { it.words }.toString())
-//            Text(testString.value)
-//            screenModel.createWallet()
-////            Button({
-////                screenModel.createWallet()
-////            }, colors = ButtonDefaults.buttonColors()) {
-////                Text("Create wallet")
-////            }
-//
-////            GenerateWalletScreen()
-//        }
-//        val textButton =
-//            MR.strings.using_mangala_wallet.desc().localized().toUpperCase(Locale.current)
-//        screenModel.createWallet()
-//        GenerateWalletAnimation(textButton) {
-////            screenModel.createWallet()
-//            when (createWalletCase) {
-//                is SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CreateNewWallet -> {
-//
-//                    globalNavigator.replaceAll(backupWalletAlertScreen)
-//
-//                }
-//
-//                is SharedScreen.CreateWalletScreen.CreateWalletScreenCase.ImportNewAccount -> {
-//                    globalNavigator.replaceAll(homeScreen)
-//                }
-//            }
-////            navigator.push(backupWalletAlertScreen)
-//        }
-
-//        GenerateWalletScreen()
-
     }
 
 }
 
 @Composable
-fun GenerateWalletAnimation(textButton: String, onClickStart: () -> Unit) {
-    val animateState = remember { Animatable(0f) }
-    val cursorVisible = remember { mutableStateOf(true) }
-    val textState = remember { mutableStateOf("") }
-    val showButton = remember { mutableStateOf(false) }
+fun GenerateWalletAnimation(onClickStart: () -> Unit) {
+    val steps = listOf(
+        "Generating secure key pairs...",
+        "Encrypting with PIN...",
+        "Saving to local vault",
+        "Preparing your space in multichain..."
+    )
 
-    val generateText = MR.strings.message_create_wallet_animation.desc().localized()
-    val totalLength = generateText.length
+    var currentStep by remember { mutableIntStateOf(0) }
+    var isCompleted by remember { mutableStateOf(false) }
+
+    // Pulse animation for the button when completed
+    val pulseScale = remember { Animatable(1f) }
+
+    // Mascot animations - reacts to progress
+    val mascotScale = remember { Animatable(1f) }
+    val mascotRotation = remember { Animatable(0f) }
+    val mascotBounce = remember { Animatable(0f) }
+
+    // Bottom navigation bar padding
+    val bottomNavBarPadding = WindowInsets.navigationBars
 
     LaunchedEffect(Unit) {
-        animateState.animateTo(
-            targetValue = 1f,
-            animationSpec = tween(durationMillis = 15000)
-        )
-        showButton.value = true
-    }
+        for (i in steps.indices) {
+            delay(1200L)
+            currentStep = i + 1
 
-    LaunchedEffect(Unit) {
-        while (true) {
-            delay(500)
-            cursorVisible.value = !cursorVisible.value
+            // Mascot reaction for each step completion
+            when (i) {
+                0 -> {
+                    // Step 1: Small bounce
+                    mascotScale.animateTo(1.08f, tween(100))
+                    mascotScale.animateTo(1f, tween(150))
+                }
+                1 -> {
+                    // Step 2: Slight tilt (wink effect)
+                    mascotRotation.animateTo(5f, tween(100))
+                    mascotRotation.animateTo(-3f, tween(100))
+                    mascotRotation.animateTo(0f, tween(100))
+                }
+                2 -> {
+                    // Step 3: Another bounce
+                    mascotScale.animateTo(1.1f, tween(100))
+                    mascotScale.animateTo(1f, tween(150))
+                }
+                3 -> {
+                    // Step 4 (final): Celebration bounce
+                    mascotBounce.animateTo(-15f, tween(150))
+                    mascotBounce.animateTo(0f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
+                    mascotScale.animateTo(1.15f, tween(200, easing = FastOutSlowInEasing))
+                    mascotScale.animateTo(1f, spring(dampingRatio = Spring.DampingRatioMediumBouncy))
+                }
+            }
         }
+        delay(300L)
+        isCompleted = true
     }
 
-    val currentIndex = (animateState.value * totalLength).toInt()
-    val currentText = generateText.substring(0, currentIndex.coerceIn(0, totalLength))
-
-    LaunchedEffect(currentIndex) {
-        textState.value = currentText
-    }
-
-    OnboardingGradientBackground(
-        afterBackgroundModifier = Modifier.safeDrawingPadding().padding(16.dp),
-    ) {
-        Column {
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                text = textState.value,
-                fontFamily = getSfProFamilyFont(FontWeight.SemiBold),
-                fontSize = FontType.TITLE_2,
-                textAlign = TextAlign.Start,
-                lineHeight = FontType.TITLE_2_36,
-                color = MaterialTheme.mangalaColors.textPrimary
+    // Celebration pulse animation when completed
+    LaunchedEffect(isCompleted) {
+        if (isCompleted) {
+            // Pulse animation: scale up then back to normal
+            pulseScale.animateTo(
+                targetValue = 1.05f,
+                animationSpec = tween(durationMillis = 150)
+            )
+            pulseScale.animateTo(
+                targetValue = 1f,
+                animationSpec = tween(durationMillis = 150)
             )
         }
+    }
 
-        Spacer(modifier = Modifier.height(24.dp))
-        if (showButton.value && currentIndex >= totalLength) {
-            Column(
-                modifier = Modifier.padding(
-                    bottom = Spacing.SMALL,
-                    top = Spacing.SMALL
-                ).align(Alignment.BottomCenter)
+    OnboardingGradientBackground {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.safeDrawing),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(48.dp))
+
+            // Character image with reactive animations
+            LocalImage(
+                imageResource = MR.images.character,
+                modifier = Modifier
+                    .size(200.dp)
+                    .graphicsLayer {
+                        scaleX = mascotScale.value
+                        scaleY = mascotScale.value
+                        rotationZ = mascotRotation.value
+                        translationY = mascotBounce.value
+                    }
+            )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            // Title and subtitle - outside the card
+            Text(
+                text = if (isCompleted) "Your Wallet is Ready!" else "Generating Your Mangala Wallet",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                fontFamily = getInterFontFamily(),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Text(
+                text = if (isCompleted) "Tap below to start to journey" else "This might take a few moments",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Normal,
+                color = if (isCompleted) Color(0xFF22C55E) else Color(0xFFA5B4CB),
+                fontFamily = getInterFontFamily(),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Progress card
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .clip(RoundedCornerShape(24.dp))
+                    .border(
+                        width = 1.dp,
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Color.White.copy(alpha = 0.25f),
+                                Color.White.copy(alpha = 0.05f),
+                                Color.Transparent
+                            )
+                        ),
+                        shape = RoundedCornerShape(24.dp)
+                    )
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                Color(0xFF1E1F32).copy(alpha = 0.95f),
+                                Color(0xFF14152A).copy(alpha = 0.98f)
+                            )
+                        )
+                    )
+                    .drawBehind {
+                        drawLine(
+                            brush = Brush.horizontalGradient(
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.White.copy(alpha = 0.15f),
+                                    Color.White.copy(alpha = 0.2f),
+                                    Color.White.copy(alpha = 0.15f),
+                                    Color.Transparent
+                                )
+                            ),
+                            start = Offset(size.width * 0.1f, 1f),
+                            end = Offset(size.width * 0.9f, 1f),
+                            strokeWidth = 1.5f
+                        )
+                    }
             ) {
-                MangalaGradientButton(
-                    label = textButton,
-                    onClick = onClickStart,
-                    enabled = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 20.dp)
+                ) {
+                    // Progress steps
+                    steps.forEachIndexed { index, step ->
+                        val isLastStep = index == steps.lastIndex
+                        val stepCompleted = currentStep > index
+                        val stepInProgress = currentStep == index
+
+                        val shouldDim = isCompleted && stepCompleted && !isLastStep
+
+                        GeneratingStepItem(
+                            stepText = step,
+                            isCompleted = stepCompleted,
+                            isInProgress = stepInProgress,
+                            isDimmed = shouldDim,
+                            isHighlighted = isCompleted && isLastStep
+                        )
+                        if (index < steps.lastIndex) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                    }
+                }
             }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            // Button - pill shape matching design system
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .graphicsLayer {
+                        scaleX = pulseScale.value
+                        scaleY = pulseScale.value
+                    }
+            ) {
+                if (isCompleted) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(56.dp)
+                            .clip(RoundedCornerShape(1000.dp))
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color(0xFF3B90FF),
+                                        Color(0xFFC27DFF)
+                                    )
+                                )
+                            )
+                            .clickable(onClick = onClickStart),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "START YOUR JOURNEY",
+                            fontSize = 17.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White,
+                            letterSpacing = (-0.17).sp,
+                            fontFamily = getInterFontFamily()
+                        )
+                    }
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(56.dp)
+                            .clip(RoundedCornerShape(1000.dp))
+                            .background(
+                                brush = Brush.horizontalGradient(
+                                    colors = listOf(
+                                        Color(0xFF3B90FF).copy(alpha = 0.2f),
+                                        Color(0xFFC27DFF).copy(alpha = 0.2f)
+                                    )
+                                )
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            CircularProgressIndicator(
+                                color = Color(0xFF6B7280),
+                                strokeWidth = 2.dp,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Text(
+                                text = "SETTING UP...",
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                color = Color(0xFF94A3B8),
+                                letterSpacing = (-0.17).sp,
+                                fontFamily = getInterFontFamily()
+                            )
+                        }
+                    }
+                }
+            }
+
+            // Safe area padding for bottom navigation bar
+            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.windowInsetsPadding(bottomNavBarPadding))
         }
     }
 }
 
+@Composable
+private fun GeneratingStepItem(
+    stepText: String,
+    isCompleted: Boolean,
+    isInProgress: Boolean,
+    isDimmed: Boolean = false,
+    isHighlighted: Boolean = false
+) {
+    val itemAlpha = when {
+        isDimmed -> 0.5f
+        else -> 1f
+    }
 
-//@Composable
-//fun GenerateWalletAnimation(textButton: String, onClickStart: () -> Unit) {
-//    val animateState = remember { Animatable(0f) }
-//    val cursorBlinkState = remember { Animatable(1f) }
-//    val textState = remember { mutableStateOf("") }
-//    val showButton = remember { mutableStateOf(false) }
-//
-//    val generateText = "Generating Mangala wallet. Encrypting your private key using your PIN. Saving your encrypted keys to a local secure vault on this device. You can use BTC, ETH, MATIC, EOS EVM... All done! Your wallet is now ready."
-//    val charArray = generateText.toCharArray()
-//    val totalLength = charArray.size
-//
-//    LaunchedEffect(Unit) {
-//        animateState.animateTo(
-//            targetValue = 1f,
-//            animationSpec = tween(durationMillis = 5000)
-//        )
-//        showButton.value = true
-//    }
-//
-//    LaunchedEffect(Unit) {
-//        while (true) {
-//            cursorBlinkState.animateTo(
-//                targetValue = if (cursorBlinkState.value == 1f) 0f else 1f,
-//                animationSpec = tween(durationMillis = 500)
-//            )
-//        }
-//    }
-//
-//    val currentIndex = (animateState.value * totalLength).toInt()
-//    val currentText = generateText.substring(0, currentIndex.coerceIn(0, totalLength))
-//    val cursorVisibility = cursorBlinkState.value
-//
-//    LaunchedEffect(currentIndex) {
-//        textState.value = currentText
-//    }
-//
-//    Scaffold(
-//        backgroundColor = Color.White,
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        Box(
-//            modifier = Modifier.fillMaxSize().padding(16.dp),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            Text(
-//                text = textState.value + if (currentIndex < totalLength) "|" else "",
-//                fontFamily = FontFamily.Monospace,
-//                fontSize = 20.sp,
-//                fontWeight = FontWeight.Bold,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier.alpha(cursorVisibility)
-//            )
-//            if (showButton.value && currentIndex >= totalLength) {
-//                Column(
-//                    modifier = Modifier.padding(
-//                        bottom = Spacing.SMALL,
-//                        top = Spacing.SMALL
-//                    ).align(Alignment.BottomCenter)
-//                ) {
-//                    ButtonNormal(textButton, enabled = true, modifier = Modifier.fillMaxWidth()) {
-//                        onClickStart()
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(itemAlpha)
+    ) {
+        // Step text on the left
+        Text(
+            text = stepText,
+            fontSize = 15.sp,
+            fontWeight = when {
+                isHighlighted -> FontWeight.SemiBold
+                isCompleted || isInProgress -> FontWeight.Medium
+                else -> FontWeight.Normal
+            },
+            color = when {
+                isCompleted || isInProgress || isHighlighted -> Color.White
+                else -> Color(0xFF6B7280)
+            },
+            fontFamily = getInterFontFamily(),
+            modifier = Modifier.weight(1f)
+        )
 
+        Spacer(modifier = Modifier.width(12.dp))
 
-//@Composable
-//fun GenerateWalletAnimation(textButton: String, onClickStart: () -> Unit) {
-//    val animateState = remember { Animatable(0f) }
-//    val textState = remember { mutableStateOf("") }
-//    val showButton = remember { mutableStateOf(false) }
-//
-//    val generateText = "Generating Mangala wallet. Encrypting your private key using your PIN. Saving your encrypted keys to a local secure vault on this device. You can use BTC, ETH, MATIC, EOS EVM... All done! Your wallet is now ready."
-//    val lines = generateText.split("\n")
-//    val charArrays = lines.map { it.toCharArray() }
-//
-//    val totalLength = charArrays.sumBy { it.size }
-//
-//    LaunchedEffect(Unit) {
-//        animateState.animateTo(
-//            targetValue = 1f,
-//            animationSpec = tween(durationMillis = 5000)
-//        )
-//        showButton.value = true
-//    }
-//
-//    val opacity = animateState.value.coerceIn(0f, 1f)
-//    var currentIndex = (opacity * totalLength).toInt()
-//
-//    val textWithCursor = buildString {
-//        for (charArray in charArrays) {
-//            val lineLength = charArray.size
-//            if (currentIndex <= lineLength) {
-//                val currentLine = charArray.take(currentIndex)
-//                append(currentLine.joinToString(separator = ""))
-//                append("|")
-//                append(charArray.drop(currentIndex).joinToString(separator = ""))
-//                break
-//            } else {
-//                append(charArray)
-//                currentIndex -= lineLength
-//            }
-//        }
-//    }
-//
-//    LaunchedEffect(textWithCursor) {
-//        textState.value = textWithCursor
-//    }
-//
-//    Scaffold(
-//        backgroundColor = Color.White,
-//        modifier = Modifier.fillMaxSize()
-//    ) {
-//        Box(
-//            modifier = Modifier.fillMaxSize().padding(16.dp),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            Text(
-//                text = textState.value,
-//                fontFamily = FontFamily.Monospace,
-//                fontSize = 20.sp,
-//                fontWeight = FontWeight.Bold,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier.alpha(opacity)
-//            )
-//            val currentLine = textState.value.substringBefore("|")
-//            val cursorVisibility = if (currentIndex % 2 == 0) {
-//                Modifier.alpha(1f)
-//            } else {
-//                Modifier.alpha(0f)
-//            }
-//            Text(
-//                text = "|",
-//                fontFamily = FontFamily.Monospace,
-//                fontSize = 24.sp,
-//                fontWeight = FontWeight.Bold,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier
-//                    .align(Alignment.CenterStart)
-//                    .offset(x = (currentLine.length * 15).dp)
-//                    .padding(end = 8.dp)
-//                    .then(cursorVisibility)
-//            )
-//            if (showButton.value) {
-//                Column(
-//                    modifier = Modifier.padding(
-//                        bottom = Spacing.SMALL,
-//                        top = Spacing.SMALL
-//                    ).align(Alignment.BottomCenter)
-//                ) {
-//                    ButtonNormal(textButton, enabled = true, modifier = Modifier.fillMaxWidth()) {
-//                        onClickStart()
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-
-
-
-
+        // Status indicator on the right
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.size(24.dp)
+        ) {
+            when {
+                isCompleted -> {
+                    Icon(
+                        imageVector = Icons.Default.CheckCircle,
+                        contentDescription = "Completed",
+                        tint = if (isHighlighted) Color(0xFF4ADE80) else Color(0xFF22C55E),
+                        modifier = Modifier.size(22.dp)
+                    )
+                }
+                isInProgress -> {
+                    CircularProgressIndicator(
+                        color = Color(0xFF8B5CF6),
+                        strokeWidth = 2.dp,
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
+            }
+        }
+    }
+}
 

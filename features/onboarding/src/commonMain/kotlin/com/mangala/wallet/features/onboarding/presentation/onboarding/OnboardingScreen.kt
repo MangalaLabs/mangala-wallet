@@ -214,8 +214,22 @@ class OnboardingScreen : BaseScreen<OnboardingScreenModel>() {
                                 mapOf(MangalaAnalytics.EventParam.ONBOARDING_STEP_NAME to MangalaAnalytics.EventParamValue.ONBOARDING_STEP_CREATE_WALLET)
                             )
 
-                            val createWalletScreen = ScreenRegistry.get(screenModel.getCreateWalletDestination())
-                            navigator.push(createWalletScreen)
+                            if (screenModel.isPinSetup()) {
+                                // PIN already set, go directly to create wallet screen
+                                val createWalletScreen = ScreenRegistry.get(screenModel.getCreateWalletScreen())
+                                navigator.push(createWalletScreen)
+                            } else {
+                                // PIN not set, go to setup PIN first with callback
+                                val setupPinScreen = ScreenRegistry.get(
+                                    screenModel.getSetupPinScreen {
+                                        // After PIN setup success, navigate to create wallet screen
+                                        navigator.push(
+                                            ScreenRegistry.get(screenModel.getCreateWalletScreen())
+                                        )
+                                    }
+                                )
+                                navigator.push(setupPinScreen)
+                            }
                         },
                         buttonStyle = MangalaButtonStyle.GRADIENT,
                         modifier = Modifier.fillMaxWidth()

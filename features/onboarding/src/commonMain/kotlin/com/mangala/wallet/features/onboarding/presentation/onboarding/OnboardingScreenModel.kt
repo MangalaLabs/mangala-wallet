@@ -7,7 +7,14 @@ import com.mangala.wallet.ui.utils.screenmodel.BaseScreenModel
 class OnboardingScreenModel(
     private val createWalletNavigator: CreateWalletNavigator
 ) : BaseScreenModel() {
-    fun getCreateWalletDestination(): SharedScreen {
+
+    fun isPinSetup(): Boolean = createWalletNavigator.isPinSetup()
+
+    fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen {
+        return createWalletNavigator.getSetupPinScreen(onPinSetupSuccess)
+    }
+
+    fun getCreateWalletScreen(): SharedScreen {
         return createWalletNavigator.getCreateWalletScreen()
     }
 }
