@@ -69,6 +69,9 @@
     <string name="message_backup_wallet_alert">With no backup, losing your device will result in the loss of access forever. In some extremely rare cases, hardware issues with your device can result in corrupted keys, which lead to permanent loss of access too. \nThe only way to guard against losses is to back up your wallet.</string>
     <string name="backup_now">Backup now</string>
     <string name="i_will_risk_it">I will risk it</string>
+    <string name="title_risk_confirmation">Are you sure?</string>
+    <string name="message_risk_confirmation">Without a backup, you could permanently lose access to your wallet and all your assets. We strongly recommend backing up now.</string>
+    <string name="button_understand_risk">I understand the risk</string>
     <string name="title_backup_wallet_guide1">Backup your wallet</string>
     <string name="description_backup_wallet_guide1">With Mangala wallet you are your own bank. No one but you has access to your private key. Not even Mangala force. \nWithout a backup, if you lose your device, or even simply delete the app, you will lose your funds forever.</string>
     <string name="back_up_now">Back up now</string>
