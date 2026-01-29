@@ -41,10 +41,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.mangala.wallet.model.blockchain.BlockchainType
+import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
@@ -87,10 +90,18 @@ data class BackupWalletAlertScreen(
         val warningParagraph1 = messageParts.getOrElse(0) { fullMessage }
         val warningParagraph2 = messageParts.getOrElse(1) { "" }
 
-        val backupWalletGuideScreen = rememberScreen(
-            SharedScreen.BackupWalletGuideScreen(1, blockchainUid, antelopeAccountName)
-        )
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
+
+        // Determine unlock PIN case based on network type
+        val networkType = BlockchainType.fromUid(blockchainUid).networkType
+        val unlockPinCase = when (networkType) {
+            NetworkType.EVM -> SharedScreen.UnlockPinScreen.SHOW_WORDS_PHRASE
+            NetworkType.ANTELOPE -> SharedScreen.UnlockPinScreen.BACKUP_ANTELOPE_ACCOUNT
+            else -> SharedScreen.UnlockPinScreen.SHOW_WORDS_PHRASE
+        }
+        val unlockPinScreen = ScreenRegistry.get(
+            SharedScreen.UnlockPinScreen(unlockPinCase, antelopeAccountName = antelopeAccountName)
+        )
 
         val infiniteTransition = rememberInfiniteTransition()
         val mascotBounceY by infiniteTransition.animateFloat(
@@ -202,7 +213,7 @@ data class BackupWalletAlertScreen(
                     // Primary: "Backup now"
                     OnboardingButton(
                         text = backupNowText,
-                        onClick = { navigator.push(backupWalletGuideScreen) },
+                        onClick = { navigator.push(unlockPinScreen) },
                         isPrimary = true,
                         modifier = Modifier.fillMaxWidth()
                     )
@@ -264,7 +275,7 @@ data class BackupWalletAlertScreen(
                 onDismiss = { screenModel.dismissRiskDialog() },
                 onBackupNow = {
                     screenModel.dismissRiskDialog()
-                    navigator.push(backupWalletGuideScreen)
+                    navigator.push(unlockPinScreen)
                 },
                 onUnderstandRisk = {
                     screenModel.dismissRiskDialog()
