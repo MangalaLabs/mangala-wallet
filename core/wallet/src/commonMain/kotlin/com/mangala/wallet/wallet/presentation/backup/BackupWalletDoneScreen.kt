@@ -15,9 +15,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.mangala.wallet.ui.LocalGlobalNavigator
+import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
@@ -41,6 +44,8 @@ class BackupWalletDoneScreen : BaseScreen<BackupWalletDoneScreenModel>() {
     @Composable
     override fun ScreenContent(screenModel: BackupWalletDoneScreenModel) {
         val navigator = LocalNavigator.currentOrThrow
+        val globalNavigator = LocalGlobalNavigator.current
+        val homeScreen = rememberScreen(SharedScreen.HomeScreen())
 
         OnboardingGradientBackground(
             circleBackgroundEnabled = true,
@@ -126,7 +131,7 @@ class BackupWalletDoneScreen : BaseScreen<BackupWalletDoneScreenModel>() {
                 OnboardingButton(
                     text = "Explore Mangala",
                     onClick = {
-                        navigator.popUntilRoot()
+                        globalNavigator.replaceAll(homeScreen)
                     },
                     isPrimary = true,
                     modifier = Modifier
