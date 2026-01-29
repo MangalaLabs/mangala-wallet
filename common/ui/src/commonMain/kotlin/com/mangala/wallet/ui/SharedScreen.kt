@@ -114,13 +114,9 @@ sealed class SharedScreen : ScreenProvider {
 
     data object CreateWalletScreenTest : SharedScreen()
     data object ShowRecoveryPhraseScreen : SharedScreen()
-    data object ShowRecoveryPhraseScreenV2 : SharedScreen()
-    data class BackupWalletGuideScreen(val page: Int, val blockchainUid: String, val antelopeAccountName: String?) : SharedScreen()
     data class BackupWalletAlertScreen(val blockchainUid: String, val antelopeAccountName: String?) : SharedScreen()
     data object VerifyRecoveryPhraseScreen : SharedScreen()
-    data object VerifyRecoveryPhraseScreenV2 : SharedScreen()
     data object BackupWalletDoneScreen : SharedScreen()
-    data object BackupWalletDoneScreenV2 : SharedScreen()
     data class ImportWalletGuideScreen(
         val nextScreen: ScreenType = ScreenType.HOME_SCREEN
     ) : SharedScreen()

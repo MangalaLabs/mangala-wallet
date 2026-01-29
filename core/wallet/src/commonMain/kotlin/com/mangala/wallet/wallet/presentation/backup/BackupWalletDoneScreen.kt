@@ -1,31 +1,37 @@
 package com.mangala.wallet.wallet.presentation.backup
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.intl.Locale
-import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.mangala.wallet.mokoresources.MR
-import com.mangala.wallet.common.mokoresources.Spacing
+import com.mangala.wallet.ui.LocalGlobalNavigator
+import com.mangala.wallet.ui.SharedScreen
+import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
-import com.mangala.wallet.ui.*
+import com.mangala.wallet.mokoresources.MR
+import dev.icerock.moko.resources.compose.painterResource
+import com.mangala.wallet.ui.component.OnboardingButton
+import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
-import dev.icerock.moko.resources.compose.localized
-import dev.icerock.moko.resources.desc.desc
 
-class BackupWalletDoneScreen: BaseScreen<BackupWalletDoneScreenModel>() {
+class BackupWalletDoneScreen : BaseScreen<BackupWalletDoneScreenModel>() {
 
     override val screenName: String = MangalaAnalytics.Screens.BACKUP_WALLET_DONE
     override val screenClassName: String = BackupWalletDoneScreen::class.simpleName.orEmpty()
@@ -38,69 +44,101 @@ class BackupWalletDoneScreen: BaseScreen<BackupWalletDoneScreenModel>() {
     @Composable
     override fun ScreenContent(screenModel: BackupWalletDoneScreenModel) {
         val navigator = LocalNavigator.currentOrThrow
+        val globalNavigator = LocalGlobalNavigator.current
+        val homeScreen = rememberScreen(SharedScreen.HomeScreen())
 
-        val title = MR.strings.title_backed_up_wallet_done.desc().localized()
-        val description1 = MR.strings.message_backed_up_wallet_done.desc().localized()
-        val textButton = MR.strings.done.desc().localized().toUpperCase(Locale.current)
-
-        BaseBackupWalletDoneScreen(title, description1, textButton,{
-            navigator.popUntilRoot()
-        },{
-            navigator.pop()
-        })
-    }
-
-    @Composable
-    fun BaseBackupWalletDoneScreen(
-        title: String,
-        description1: String,
-        textButton: String,
-        onClickDone: (Boolean) -> Unit,
-        onBackClicked: (Boolean) -> Unit,
-    ) {
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = MaterialTheme.colors.background)
-                .windowInsetsPadding(WindowInsets.safeDrawing),
+        OnboardingGradientBackground(
+            circleBackgroundEnabled = true,
+            afterBackgroundModifier = Modifier.navigationBarsPadding().imePadding()
         ) {
-            Spacer(modifier = Modifier.height(8.dp))
-
-            IconButton(onClick = {
-                onBackClicked(true)
-            }) {
-                Icon(
-                    imageVector = MangalaWalletPack.ArrowLeft,
-                    contentDescription = "Back"
-                )
-            }
-
-            TextTitle3(
-                text = title,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
-            )
-            TextDescription1(
-                text = description1,
-                modifier = Modifier.padding(16.dp)
-            )
-
-            val spaceTop = 72.dp
-
-            Spacer(modifier = Modifier.height(spaceTop))
-
-
             Column(
-                modifier = Modifier.padding(
-                    start = Spacing.SMALL,
-                    end = Spacing.SMALL,
-                    bottom = Spacing.SMALL,
-                    top = Spacing.SMALL
-                )
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ButtonNormal(textButton, enabled = true, modifier = Modifier.fillMaxWidth()) {
-                    onClickDone(true)
+                // Top Bar with back button
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .statusBarsPadding()
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .clickable { navigator.pop() }
+                            .padding(8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = MangalaWalletPack.ArrowLeft,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
+                    }
                 }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                // Title and Description (aligned left at top)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = "Wallet secured!",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.White,
+                        textAlign = TextAlign.Start,
+                        letterSpacing = (-0.2).sp,
+                        lineHeight = 28.sp,
+                        fontFamily = getInterFontFamily()
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "Keep your recovery phrase safe! It's the ONLY way back if you lose access.",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFFA5B4CB),
+                        textAlign = TextAlign.Start,
+                        letterSpacing = (-0.14).sp,
+                        lineHeight = 19.6.sp,
+                        fontFamily = getInterFontFamily()
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(56.dp))
+
+                // Success Icon - centered below description
+                Image(
+                    painter = painterResource(MR.images.success_image),
+                    contentDescription = "Success",
+                    modifier = Modifier
+                        .size(100.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                // Explore Mangala Button
+                OnboardingButton(
+                    text = "Explore Mangala",
+                    onClick = {
+                        globalNavigator.replaceAll(homeScreen)
+                    },
+                    isPrimary = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 24.dp)
+                )
             }
         }
     }
