@@ -4,7 +4,6 @@ import cafe.adriel.voyager.core.registry.screenModule
 import com.mangala.wallet.core.ai.domain.model.function.renderer.ConfirmationRendererPlugin
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.wallet.presentation.backup.*
-import com.mangala.wallet.wallet.presentation.backup.v2.ShowRecoveryPhraseScreenModelV2
 import com.mangala.wallet.wallet.presentation.conversation.CoreWaleltConfirmationRendererPlugin
 import com.mangala.wallet.wallet.presentation.create.CreateWalletGuideScreen
 import com.mangala.wallet.wallet.presentation.create.CreateWalletGuideScreenModel
@@ -35,7 +34,6 @@ val coreWalletModule = module {
     factory { CreateWalletGuideScreenModel(get()) }
     factory { BackupWalletDoneScreenModel() }
     factory { ShowRecoveryPhraseScreenModel(getAllWalletsUseCase = get()) }
-    factory { ShowRecoveryPhraseScreenModelV2(getAllWalletsUseCase = get()) }
     factory { RestoreRecoveryPhraseScreenModel(get(), get(), get()) }
     factory { BackupWalletAlertScreenModel(get()) }
     single<ConfirmationRendererPlugin>(named("CoreWalletConfirmationRenderer")) { CoreWaleltConfirmationRendererPlugin() }
@@ -75,14 +73,6 @@ val coreWalletScreenModule = screenModule {
     register<SharedScreen.ShowRecoveryPhraseScreen> {
         ShowRecoveryPhraseScreen()
     }
-    
-    register<SharedScreen.ShowRecoveryPhraseScreenV2> {
-        com.mangala.wallet.wallet.presentation.backup.v2.ShowRecoveryPhraseScreenV2()
-    }
-
-    register<SharedScreen.BackupWalletGuideScreen> {provider ->
-        BackupWalletGuideScreen(provider.page, provider.blockchainUid, provider.antelopeAccountName)
-    }
 
     register<SharedScreen.BackupWalletAlertScreen> {
         BackupWalletAlertScreen(it.blockchainUid, it.antelopeAccountName)
@@ -91,18 +81,9 @@ val coreWalletScreenModule = screenModule {
     register<SharedScreen.VerifyRecoveryPhraseScreen> {
         VerifyRecoveryPhraseScreen()
     }
-    
-    register<SharedScreen.VerifyRecoveryPhraseScreenV2> {
-        com.mangala.wallet.wallet.presentation.backup.v2.VerifyRecoveryPhraseScreenV2()
-    }
-
 
     register<SharedScreen.BackupWalletDoneScreen> {
         BackupWalletDoneScreen()
-    }
-    
-    register<SharedScreen.BackupWalletDoneScreenV2> {
-        com.mangala.wallet.wallet.presentation.backup.v2.BackupWalletDoneScreenV2()
     }
 
     register<SharedScreen.ImportWalletGuideScreen> {
