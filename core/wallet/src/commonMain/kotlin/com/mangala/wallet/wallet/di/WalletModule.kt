@@ -13,6 +13,8 @@ import com.mangala.wallet.wallet.presentation.import.ImportWalletGuideScreen
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreen
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreenModel
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreenV2
+import com.mangala.wallet.wallet.presentation.restore.ImportWalletSuccessScreen
+import com.mangala.wallet.wallet.presentation.restore.ImportWalletSuccessScreenModel
 import com.mangala.wallet.wallet.presentation.restore.RestoreRecoveryPhraseScreen
 import com.mangala.wallet.wallet.presentation.restore.RestoreRecoveryPhraseScreenModel
 import com.mangala.wallet.wallet.presentation.restore.RestoreWalletGuideScreen
@@ -35,6 +37,7 @@ val coreWalletModule = module {
     factory { BackupWalletDoneScreenModel() }
     factory { ShowRecoveryPhraseScreenModel(getAllWalletsUseCase = get()) }
     factory { RestoreRecoveryPhraseScreenModel(get(), get(), get()) }
+    factory { ImportWalletSuccessScreenModel(get(), get()) }
     factory { BackupWalletAlertScreenModel(get()) }
     single<ConfirmationRendererPlugin>(named("CoreWalletConfirmationRenderer")) { CoreWaleltConfirmationRendererPlugin() }
     factoryOf(::ResetWalletScreenModel)
@@ -89,6 +92,13 @@ val coreWalletScreenModule = screenModule {
     register<SharedScreen.ImportWalletGuideScreen> {
         ImportWalletGuideScreen(
             nextScreen = it.nextScreen
+        )
+    }
+
+    register<SharedScreen.ImportWalletSuccessScreen> {
+        ImportWalletSuccessScreen(
+            mnemonicWords = it.mnemonicWords,
+            walletName = it.walletName
         )
     }
 }

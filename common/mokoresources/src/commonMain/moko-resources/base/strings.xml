@@ -98,6 +98,18 @@
     <string name="title_import_wallet">Import your wallet</string>
     <string name="message_import_wallet">You can restore an existing wallet by using the recovery phrase. A recovery phrase is a 12 - 24 words phrase that you wrote down when you backed up your wallet.</string>
 
+    <!--    Import Wallet Success Screen -->
+    <string name="title_import_wallet_success_restoring">Restoring Your Wallet</string>
+    <string name="title_import_wallet_success_welcome">Welcome Back!</string>
+    <string name="message_import_wallet_success_restoring">This might take a few moments</string>
+    <string name="message_import_wallet_success_complete">Your wallet has been restored successfully</string>
+    <string name="step_import_wallet_verifying">Verifying recovery phrase...</string>
+    <string name="step_import_wallet_deriving">Deriving wallet addresses...</string>
+    <string name="step_import_wallet_encrypting">Encrypting with PIN...</string>
+    <string name="step_import_wallet_restoring">Restoring your wallet...</string>
+    <string name="button_import_wallet_restoring">RESTORING...</string>
+    <string name="button_import_wallet_go_to_wallet">GO TO WALLET</string>
+
     <!--   Biometry Screen -->
     <string name="title_biometry_android">Enable fingerprint unlock</string>
     <string name="title_biometry_ios">Face ID or Touch ID unlock</string>
