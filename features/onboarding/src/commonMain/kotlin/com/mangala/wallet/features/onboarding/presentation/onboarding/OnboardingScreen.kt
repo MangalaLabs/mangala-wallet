@@ -242,9 +242,9 @@ class OnboardingScreen : BaseScreen<OnboardingScreenModel>() {
                                 mapOf(MangalaAnalytics.EventParam.ONBOARDING_STEP_NAME to MangalaAnalytics.EventParamValue.ONBOARDING_STEP_IMPORT_WALLET)
                             )
 
-                            val importPrivateKeyScreen =
-                                ScreenRegistry.get(SharedScreen.ImportPrivateKeyScreen)
-                            navigator.push(importPrivateKeyScreen)
+                            // Navigate directly to import wallet screen
+                            val importWalletScreen = ScreenRegistry.get(screenModel.getImportWalletScreen())
+                            navigator.push(importWalletScreen)
                         },
                         buttonStyle = MangalaButtonStyle.TRANSPARENT,
                         modifier = Modifier.fillMaxWidth()

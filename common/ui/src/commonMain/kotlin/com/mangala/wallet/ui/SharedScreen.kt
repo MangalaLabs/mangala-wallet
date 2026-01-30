@@ -120,6 +120,11 @@ sealed class SharedScreen : ScreenProvider {
     data class ImportWalletGuideScreen(
         val nextScreen: ScreenType = ScreenType.HOME_SCREEN
     ) : SharedScreen()
+
+    data class ImportWalletSuccessScreen(
+        val mnemonicWords: List<String>,
+        val walletName: String
+    ) : SharedScreen()
     data class BiometryScreen(
         val blockchainUid: String? = null,
         val antelopeAccountName: String? = null,

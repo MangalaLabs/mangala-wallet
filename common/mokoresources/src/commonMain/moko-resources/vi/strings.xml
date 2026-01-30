@@ -32,8 +32,20 @@
     <string name="message_restore_wallet">To restore a wallet you must memorize the content and order of the phrase words. Make sure you remember the codeword sequence when starting the wallet reset.</string>
     <string name="message_restore_wallet_private_key">To restore a wallet you must have your private key saved securely. Make sure you have the correct private key before starting the wallet restoration.</string>
 
-    <string name="all_import_wallet">Import Wallet</string>
-    <string name="title_recovery_phrase">Your recovery phrase</string>
+    <string name="all_import_wallet">Nhập Ví</string>
+    <string name="title_recovery_phrase">Cụm từ khôi phục của bạn</string>
+
+    <!--    Import Wallet Success Screen -->
+    <string name="title_import_wallet_success_restoring">Đang Khôi Phục Ví</string>
+    <string name="title_import_wallet_success_welcome">Chào Mừng Trở Lại!</string>
+    <string name="message_import_wallet_success_restoring">Quá trình này có thể mất vài giây</string>
+    <string name="message_import_wallet_success_complete">Ví của bạn đã được khôi phục thành công</string>
+    <string name="step_import_wallet_verifying">Đang xác minh cụm từ khôi phục...</string>
+    <string name="step_import_wallet_deriving">Đang tạo địa chỉ ví...</string>
+    <string name="step_import_wallet_encrypting">Đang mã hóa với PIN...</string>
+    <string name="step_import_wallet_restoring">Đang khôi phục ví...</string>
+    <string name="button_import_wallet_restoring">ĐANG KHÔI PHỤC...</string>
+    <string name="button_import_wallet_go_to_wallet">ĐI ĐẾN VÍ</string>
     <string name="description_recovery_phrase">Consists of 24 single words separated by spaces. If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.</string>
     <string name="button_recoverty_phrase_secret_phrase_info">What is Secret Phrase</string>
     <string name="next">Next</string>

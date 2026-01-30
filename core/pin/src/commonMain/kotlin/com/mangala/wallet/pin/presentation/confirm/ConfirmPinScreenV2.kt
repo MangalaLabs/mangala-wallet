@@ -41,6 +41,8 @@ import dev.icerock.moko.resources.compose.localized
 import dev.icerock.moko.resources.desc.desc
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
+import com.mangala.wallet.pin.di.PIN_CONFIRM_CALLBACKS
 import kotlin.jvm.Transient
 
 class ConfirmPinScreenV2(
@@ -58,11 +60,26 @@ class ConfirmPinScreenV2(
 
     @Composable
     override fun createScreenModel(): ConfirmPinScreenModel {
-        return getScreenModel(parameters = {
-            parametersOf(
-                pin, SharedScreen.SetupPinScreen.SetupPinScreenCase.valueOf(pinCase)
+        return if (onPinSetupSuccess != null) {
+            // Use V2 callback-based factory
+            val callbacks = object : PinSetupCallbacks {
+                override fun onSuccess() = onPinSetupSuccess.invoke()
+                override fun onError(error: String) {}
+                override fun onCancel() {}
+            }
+            getScreenModel(
+                qualifier = named(PIN_CONFIRM_CALLBACKS),
+                parameters = { parametersOf(pin, callbacks) }
             )
-        })
+        } else {
+            // Use V1 pinCase-based factory
+            getScreenModel(parameters = {
+                parametersOf(
+                    pin,
+                    SharedScreen.SetupPinScreen.SetupPinScreenCase.valueOf(pinCase)
+                )
+            })
+        }
     }
 
     override val isBottomBarVisible = false
