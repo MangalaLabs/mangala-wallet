@@ -29,6 +29,7 @@ kotlin {
                 implementation(projects.common.ui)
                 implementation(projects.common.utils)
                 implementation(projects.common.mokoresources)
+                implementation(project(":core:pin"))
                 implementation(project(":data:local"))
                 implementation(projects.data.model)
                 implementation(project(":data:remote"))

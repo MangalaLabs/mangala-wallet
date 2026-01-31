@@ -24,9 +24,9 @@ sealed class SharedScreen : ScreenProvider {
         }
     }
     data class UnlockPinScreen(
-        val unlockPinCase: Int,
-        val antelopeAccountName: String?,
-        val onUnlockSuccess: () -> Unit = {},
+        val unlockPinCase: Int = 0, // V1: required for backward compat, V2: ignored when onUnlockSuccess provided
+        val antelopeAccountName: String? = null,
+        val onUnlockSuccess: (() -> Unit)? = null, // V2: callback-based approach
         val unlockPinCallback: ((Boolean) -> Unit)? = null
     ) : SharedScreen() {
         companion object {

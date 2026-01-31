@@ -95,14 +95,22 @@ internal class AddWalletScreen : BaseScreen<AddWalletScreenModel>() {
                 onBackClicked = { navigator.pop() },
                 onCreateWalletClicked = {
                     if (screenModel.isPinExist()) {
-                        val step4CreatingAccountScreen = ScreenRegistry.get(
-                            SharedScreen.CreateWalletScreen(
-                                blockchainUid = blockchainType?.uid,
-                                antelopeAccountName = null,
-                                createWalletCase = SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CREATE_NEW_WALLET
+                        // PIN exists - verify user identity first (V2 callback approach)
+                        val unlockPinScreen = ScreenRegistry.get(
+                            SharedScreen.UnlockPinScreen(
+                                onUnlockSuccess = {
+                                    val createWalletScreen = ScreenRegistry.get(
+                                        SharedScreen.CreateWalletScreen(
+                                            blockchainUid = blockchainType?.uid,
+                                            antelopeAccountName = null,
+                                            createWalletCase = SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CREATE_NEW_WALLET
+                                        )
+                                    )
+                                    navigator.replace(createWalletScreen)
+                                }
                             )
                         )
-                        navigator.push(step4CreatingAccountScreen)
+                        navigator.push(unlockPinScreen)
                     } else {
                         navigator.push(setUpPinScreen)
                     }

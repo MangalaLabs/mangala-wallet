@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.registry.rememberScreen
+import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -35,7 +35,6 @@ import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
 import com.mangala.wallet.ui.ButtonNormal
 import com.mangala.wallet.ui.SharedScreen
-import com.mangala.wallet.ui.SharedScreen.UnlockPinScreen.Companion.ADD_ACCOUNT
 import com.mangala.wallet.ui.TextDescription2
 import com.mangala.wallet.ui.TextTopBar
 import com.mangala.wallet.ui.component.BasicTextFieldWithHint
@@ -64,19 +63,12 @@ class AddAccountScreen(
     @Composable
     override fun ScreenContent(screenModel: AddAccountScreenModel) {
         val navigator = LocalNavigator.currentOrThrow
-        val setUpPinScreen = rememberScreen(SharedScreen.UnlockPinScreen(ADD_ACCOUNT, antelopeAccountName = null))
 
         val uiModel = screenModel.uiModel.collectAsStateMultiplatform().value
 
         LaunchedEffect(true) {
             screenModel.onCreateDone.receiveAsFlow().collectLatest {
                 navigator.popUntilRoot()
-            }
-        }
-
-        LaunchedEffect(isPinVerified) {
-            if (isPinVerified) {
-                screenModel.onAddNewAccount()
             }
         }
 
@@ -89,7 +81,15 @@ class AddAccountScreen(
                 screenModel.onChangeAccountName(it)
             },
             onClickAddNewAccount = {
-                navigator.push(setUpPinScreen)
+                // V2 callback approach - no unlockPinCase needed
+                val unlockPinScreen = ScreenRegistry.get(
+                    SharedScreen.UnlockPinScreen(
+                        onUnlockSuccess = {
+                            screenModel.onAddNewAccount()
+                        }
+                    )
+                )
+                navigator.push(unlockPinScreen)
             }
         )
     }

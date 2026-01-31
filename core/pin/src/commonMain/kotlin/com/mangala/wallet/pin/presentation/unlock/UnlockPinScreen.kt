@@ -59,7 +59,7 @@ import kotlin.jvm.Transient
 class UnlockPinScreen(
     private val unlockPinCase: Int,
     private val antelopeAccountName: String?,
-    @Transient val onUnlockSuccess: () -> Unit = {},
+    @Transient val onUnlockSuccess: (() -> Unit)? = null,
     @Transient private val unlockPinCallback: ((Boolean) -> Unit)? = null
 ) : BaseScreen<UnlockPinScreenModel>(), KoinComponent {
 
@@ -234,26 +234,21 @@ class UnlockPinScreen(
                 navigator.replaceAll(lockScreen)
             }
             is PinScreenFlow.ShowAddAccountScreen -> {
-                val evmCreateAccountScreen = rememberScreen(SharedScreen.EvmCreateAccountScreen(isPinVerified = true))
-                navigator.replace(evmCreateAccountScreen) // Since we can't pass data back to previous screen, need to replace then pop twice
+                onUnlockSuccess?.invoke()
             }
             is PinScreenFlow.ShowBitcoinAddAccountScreen -> {
-                val bitcoinCreateAccountScreen = ScreenRegistry.get(SharedScreen.BitcoinCreateAccountScreen(isPinVerified = true))
-                navigator.replace(bitcoinCreateAccountScreen) // Since we can't pass data back to previous screen, need to replace then pop twice
+                onUnlockSuccess?.invoke()
             }
             is PinScreenFlow.ConfirmDappScreen -> {
                 unlockPinCallback?.let { it(true) }
                 navigator.pop()
             }
             is PinScreenFlow.ShowEnableBiometryScreen -> {
-//                if (biometryScreenModel.bioMetricByDevice() == BiometryByDevice.ANDROID_FINGERPRINT || biometryScreenModel.bioMetricByDevice() == BiometryByDevice.ANDROID_FACE_ID) {
-//                    biometryScreenModel.enableBiometric(true)
-//                }
                 biometryScreenModel.enableBiometric(true)
                 navigator.pop()
             }
             is PinScreenFlow.ShowVerifyAndSendScreen -> {
-                onUnlockSuccess()
+                onUnlockSuccess?.invoke()
             }
             else -> {}
         }
