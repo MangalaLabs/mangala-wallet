@@ -58,12 +58,14 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
+import com.mangala.wallet.pin.di.PIN_UNLOCK_CALLBACKS
 import kotlin.jvm.Transient
 
 class UnlockPinScreenV2(
     private val unlockPinCase: Int,
     private val antelopeAccountName: String?,
-    @Transient val onUnlockSuccess: () -> Unit = {},
+    @Transient val onUnlockSuccess: (() -> Unit)? = null,
     @Transient private val unlockPinCallback: ((Boolean) -> Unit)? = null
 ) : BaseScreen<UnlockPinScreenModel>(), KoinComponent {
 
@@ -73,9 +75,25 @@ class UnlockPinScreenV2(
 
     @Composable
     override fun createScreenModel(): UnlockPinScreenModel {
-        return getScreenModel(parameters = {
-            parametersOf(unlockPinCase)
-        })
+        return if (onUnlockSuccess != null) {
+            // V2: callback-based approach
+            val callbacks = object : PinUnlockCallbacks {
+                override fun onSuccess() = onUnlockSuccess.invoke()
+                override fun onError(error: String) {}
+                override fun onLocked(unlockTime: String, remainingTime: String) {}
+                override fun onRateLimited(retryAfterSeconds: Long) {}
+                override fun onCancel() {}
+            }
+            getScreenModel(
+                qualifier = named(PIN_UNLOCK_CALLBACKS),
+                parameters = { parametersOf(callbacks, true) }
+            )
+        } else {
+            // V1: pinCase-based approach (for OPEN_APP, etc.)
+            getScreenModel(parameters = {
+                parametersOf(unlockPinCase)
+            })
+        }
     }
 
     @Composable
@@ -247,14 +265,9 @@ class UnlockPinScreenV2(
                 val lockScreen = rememberScreen(SharedScreen.LockScreen)
                 navigator.replaceAll(lockScreen)
             }
-            is PinScreenFlow.ShowAddAccountScreen -> {
-                val evmCreateAccountScreen = rememberScreen(SharedScreen.EvmCreateAccountScreen(isPinVerified = true))
-                navigator.replace(evmCreateAccountScreen)
-            }
-            is PinScreenFlow.ShowBitcoinAddAccountScreen -> {
-                val bitcoinCreateAccountScreen = ScreenRegistry.get(SharedScreen.BitcoinCreateAccountScreen(isPinVerified = true))
-                navigator.replace(bitcoinCreateAccountScreen)
-            }
+            // V1 ADD_ACCOUNT cases removed - all callers now use V2 callback approach
+            // is PinScreenFlow.ShowAddAccountScreen -> { }
+            // is PinScreenFlow.ShowBitcoinAddAccountScreen -> { }
             is PinScreenFlow.ConfirmDappScreen -> {
                 hasCompletedSuccessfully = true
                 unlockPinCallback?.let { it(true) }
@@ -265,16 +278,10 @@ class UnlockPinScreenV2(
                 navigator.pop()
             }
             is PinScreenFlow.ShowVerifyAndSendScreen -> {
-                // Mark as completed successfully
+                // V1 backward compatible - when no callback provided
                 hasCompletedSuccessfully = true
-                // Call the unlock success callback
-                onUnlockSuccess()
-                // Also invoke the unlockPinCallback if provided
-                if (unlockPinCallback != null) {
-                    unlockPinCallback.invoke(true)
-                }
-                // Note: Navigation is handled by onUnlockSuccess callback
-                // Do NOT pop here as it would interfere with the auth flow
+                onUnlockSuccess?.invoke()
+                unlockPinCallback?.invoke(true)
             }
             else -> {}
         }

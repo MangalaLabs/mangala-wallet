@@ -30,6 +30,7 @@ kotlin {
                 implementation(projects.common.ui)
                 implementation(projects.common.utils)
                 implementation(project(":core:biometry"))
+                implementation(project(":core:pin"))
                 implementation(project(":data:local"))
                 implementation(projects.data.model)
                 implementation(project(":data:remote"))

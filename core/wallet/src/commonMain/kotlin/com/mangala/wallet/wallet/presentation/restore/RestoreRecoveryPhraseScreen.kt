@@ -70,14 +70,21 @@ class RestoreRecoveryPhraseScreen(
                     val walletName = "main"
 
                     if (screenModel.isPinExist()) {
-                        // PIN exists - go directly to ImportWalletSuccessScreen
-                        val importWalletSuccessScreen = ScreenRegistry.get(
-                            SharedScreen.ImportWalletSuccessScreen(
-                                mnemonicWords = mnemonicWords,
-                                walletName = walletName
+                        // PIN exists - verify user identity first (V2 callback approach)
+                        val unlockPinScreen = ScreenRegistry.get(
+                            SharedScreen.UnlockPinScreen(
+                                onUnlockSuccess = {
+                                    val importWalletSuccessScreen = ScreenRegistry.get(
+                                        SharedScreen.ImportWalletSuccessScreen(
+                                            mnemonicWords = mnemonicWords,
+                                            walletName = walletName
+                                        )
+                                    )
+                                    globalNavigator.replaceAll(importWalletSuccessScreen)
+                                }
                             )
                         )
-                        globalNavigator.replaceAll(importWalletSuccessScreen)
+                        navigator.push(unlockPinScreen)
                     } else {
                         // PIN not set - go to SetupPinScreen with callback
                         val setUpPinScreen = ScreenRegistry.get(
