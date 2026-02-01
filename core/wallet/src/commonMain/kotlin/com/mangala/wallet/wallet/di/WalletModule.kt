@@ -35,7 +35,13 @@ val coreWalletModule = module {
     }
     factory { CreateWalletGuideScreenModel(get()) }
     factory { BackupWalletDoneScreenModel() }
-    factory { ShowRecoveryPhraseScreenModel(getAllWalletsUseCase = get()) }
+    factory { (walletId: String?) ->
+        ShowRecoveryPhraseScreenModel(
+            walletId = walletId,
+            getWalletByIdUseCase = get(),
+            getSelectedWalletUseCase = get()
+        )
+    }
     factory { RestoreRecoveryPhraseScreenModel(get(), get(), get()) }
     factory { ImportWalletSuccessScreenModel(get(), get()) }
     factory { BackupWalletAlertScreenModel(get()) }
@@ -73,8 +79,8 @@ val coreWalletScreenModule = screenModule {
         )
     }
 
-    register<SharedScreen.ShowRecoveryPhraseScreen> {
-        ShowRecoveryPhraseScreen()
+    register<SharedScreen.ShowRecoveryPhraseScreen> { provider ->
+        ShowRecoveryPhraseScreen(walletId = provider.walletId)
     }
 
     register<SharedScreen.BackupWalletAlertScreen> {
