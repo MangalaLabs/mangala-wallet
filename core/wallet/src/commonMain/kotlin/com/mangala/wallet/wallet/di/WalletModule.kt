@@ -9,7 +9,6 @@ import com.mangala.wallet.wallet.presentation.create.CreateWalletGuideScreen
 import com.mangala.wallet.wallet.presentation.create.CreateWalletGuideScreenModel
 import com.mangala.wallet.wallet.presentation.create.CreateWalletScreen
 import com.mangala.wallet.wallet.presentation.create.CreateWalletScreenModel
-import com.mangala.wallet.wallet.presentation.import.ImportWalletGuideScreen
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreen
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreenModel
 import com.mangala.wallet.wallet.presentation.reset.ResetWalletScreenV2
@@ -93,12 +92,6 @@ val coreWalletScreenModule = screenModule {
 
     register<SharedScreen.BackupWalletDoneScreen> {
         BackupWalletDoneScreen()
-    }
-
-    register<SharedScreen.ImportWalletGuideScreen> {
-        ImportWalletGuideScreen(
-            nextScreen = it.nextScreen
-        )
     }
 
     register<SharedScreen.ImportWalletSuccessScreen> {

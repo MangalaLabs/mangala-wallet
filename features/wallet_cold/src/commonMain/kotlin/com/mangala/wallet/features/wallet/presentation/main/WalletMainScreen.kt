@@ -164,7 +164,7 @@ internal class WalletMainScreen : BaseWalletMainScreen<WalletMainScreenModel>(),
         LocalLifecycleOwner.current.lifecycle.addObserver(observer)
 
         val createWalletGuideScreen = rememberScreen(SharedScreen.CreateWalletGuideScreen)
-        val importWalletGuideScreen = rememberScreen(SharedScreen.ImportWalletGuideScreen)
+        val restoreRecoveryPhraseScreen = rememberScreen(SharedScreen.RestoreRecoveryPhraseScreen())
         val evmCreateAccountScreen = rememberScreen(SharedScreen.EvmCreateAccountScreen())
 
         val observer = remember {
@@ -197,7 +197,7 @@ internal class WalletMainScreen : BaseWalletMainScreen<WalletMainScreenModel>(),
                     globalNavigator.push(createWalletGuideScreen)
                 },
                 onClickImportWallet = {
-                    globalNavigator.push(importWalletGuideScreen)
+                    globalNavigator.push(restoreRecoveryPhraseScreen)
                 },
                 onClickCreateAccount = {
                     globalNavigator.push(evmCreateAccountScreen)

@@ -34,6 +34,11 @@
 
     <string name="all_import_wallet">Nhập Ví</string>
     <string name="title_recovery_phrase">Cụm từ khôi phục của bạn</string>
+    <string name="import_wallet_info_banner">Nhập cụm &lt;b&gt;12-24 từ&lt;/b&gt; khôi phục theo đúng thứ tự để khôi phục ví hiện có của bạn.</string>
+    <string name="label_recovery_phrase">Cụm từ khôi phục</string>
+    <string name="placeholder_recovery_phrase">Nhập các từ cách nhau bằng dấu cách…</string>
+    <string name="word_count_format">%d từ</string>
+    <string name="warning_never_share_phrase">Không bao giờ chia sẻ cụm từ khôi phục với bất kỳ ai. Bất kỳ ai có những từ này đều có thể lấy tiền của bạn vĩnh viễn.</string>
 
     <!--    Import Wallet Success Screen -->
     <string name="title_import_wallet_success_restoring">Đang Khôi Phục Ví</string>
@@ -294,9 +299,6 @@
     <string name="message_scan_qr_code_not_found">QR code not found</string>
     <string name="all_save_qr_success">Lưu QR thành công</string>
     <string name="all_save_qr_fail">Lưu QR thất bại</string>
-
-    <!--    Import wallet Screen -->
-    <string name="title_import_wallet">Import your wallet</string>
 
     <!--    Add wallet Screen -->
     <string name="message_add_wallet">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>

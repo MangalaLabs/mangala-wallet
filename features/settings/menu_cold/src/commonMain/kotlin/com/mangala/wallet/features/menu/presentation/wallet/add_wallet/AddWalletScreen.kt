@@ -61,7 +61,7 @@ internal class AddWalletScreen : BaseScreen<AddWalletScreenModel>() {
             accountType = com.mangala.wallet.model.account.domain.eos.AccountNameType.PREMIUM
         ))
         val setUpPinScreen = rememberScreen(SharedScreen.SetupPinScreen(SharedScreen.SetupPinScreen.CREATE_NEW_WALLET))
-        val importWalletGuideScreen = rememberScreen(SharedScreen.ImportWalletGuideScreen)
+        val restoreRecoveryPhraseScreen = rememberScreen(SharedScreen.RestoreRecoveryPhraseScreen())
         AddWalletScreen(
             onBackClicked = { navigator.pop() },
             onCreateWalletClicked = {
@@ -71,7 +71,7 @@ internal class AddWalletScreen : BaseScreen<AddWalletScreenModel>() {
                     navigator.push(setUpPinScreen)
                 }
             },
-            onImportWalletClicked = { navigator.push(importWalletGuideScreen) }
+            onImportWalletClicked = { navigator.push(restoreRecoveryPhraseScreen) }
         )
     }
 

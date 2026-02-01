@@ -57,8 +57,8 @@ class RestoreWalletGuideScreenV2 : BaseScreen<RestoreWalletGuideScreenModel>() {
     override fun ScreenContent(screenModel: RestoreWalletGuideScreenModel) {
         LifecycleEffect(onStarted = {
             MangalaAnalytics.trackScreenView(
-                MangalaAnalytics.Screens.EVM_IMPORT_WALLET_GUIDE,
-                RestoreWalletGuideScreenV2::class.simpleName.orEmpty()
+                screenName,
+                screenClassName
             )
         })
 

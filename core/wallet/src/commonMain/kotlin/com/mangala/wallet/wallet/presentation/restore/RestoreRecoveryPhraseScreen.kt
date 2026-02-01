@@ -29,13 +29,17 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.registry.ScreenRegistry
-import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.mangala.wallet.common.mokoresources.CornerRadius
+import com.mangala.wallet.common.mokoresources.Spacing
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
+import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.IcCopy
+import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.InfoCircle
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.LocalGlobalNavigator
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.ui.component.OnboardingButton
@@ -43,6 +47,10 @@ import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
+import dev.icerock.moko.resources.compose.localized
+import dev.icerock.moko.resources.desc.ResourceFormatted
+import dev.icerock.moko.resources.desc.StringDesc
+import dev.icerock.moko.resources.desc.desc
 
 class RestoreRecoveryPhraseScreen(
     val nextScreen: SharedScreen.ScreenType = SharedScreen.ScreenType.HOME_SCREEN
@@ -131,6 +139,8 @@ class RestoreRecoveryPhraseScreen(
         val recoveryPhrase = screenModel.recoveryPhrase.collectAsStateMultiplatform().value
         val recoveryPhraseState = screenModel.recoveryPhraseState.collectAsStateMultiplatform().value
 
+        val wordCount = recoveryPhrase.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.size
+
         OnboardingGradientBackground(
             circleBackgroundEnabled = true,
             afterBackgroundModifier = Modifier.navigationBarsPadding().imePadding()
@@ -139,21 +149,20 @@ class RestoreRecoveryPhraseScreen(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Top Bar with back button and progress indicator
+                // Header with back button and title
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .statusBarsPadding()
-                        .padding(horizontal = 16.dp, vertical = 12.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                        .padding(horizontal = Spacing.SMALL, vertical = Spacing.XSMALL),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(40.dp)
+                            .size(Spacing.XXXBASE)
                             .clip(CircleShape)
                             .clickable { onBackClicked() }
-                            .padding(8.dp),
+                            .padding(Spacing.TINY),
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
@@ -163,195 +172,264 @@ class RestoreRecoveryPhraseScreen(
                         )
                     }
 
-                    // Progress indicator (4 segments, 2 active)
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(2.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        // First 2 segments active (white)
-                        repeat(2) {
-                            Box(
-                                modifier = Modifier
-                                    .width(40.dp)
-                                    .height(2.dp)
-                                    .background(
-                                        color = Color(0xFFF1F5F9),
-                                        shape = RoundedCornerShape(1.dp)
-                                    )
-                            )
-                        }
-                        // Last 2 segments inactive (gray)
-                        repeat(2) {
-                            Box(
-                                modifier = Modifier
-                                    .width(40.dp)
-                                    .height(2.dp)
-                                    .background(
-                                        color = Color(0xFFA5B4CB),
-                                        shape = RoundedCornerShape(1.dp)
-                                    )
-                            )
-                        }
-                    }
+                    Spacer(modifier = Modifier.width(Spacing.TINY))
 
-                    // Spacer to balance the layout
-                    Spacer(modifier = Modifier.size(40.dp))
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Title
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalAlignment = Alignment.Start
-                ) {
                     Text(
-                        text = "Your recovery phrase",
-                        fontSize = 24.sp,
+                        text = MR.strings.all_import_wallet.desc().localized(),
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold,
-                        color = Color(0xFFF1F5F9),
-                        textAlign = TextAlign.Start,
-                        letterSpacing = (-0.24).sp,
-                        lineHeight = 28.8.sp,
+                        color = Color.White,
                         fontFamily = getInterFontFamily()
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(Spacing.BASE))
 
-                // Recovery Phrase Input Area
-                Box(
+                // Content
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .height(180.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .border(
-                            width = 1.dp,
-                            color = Color(0xFF2A3E6C),
-                            shape = RoundedCornerShape(16.dp)
-                        )
-                        .background(Color.White.copy(alpha = 0.03f))
-                        .padding(16.dp)
+                        .padding(horizontal = Spacing.MEDIUM),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.BASE)
                 ) {
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        verticalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        // Text input
-                        BasicTextField(
-                            value = recoveryPhrase,
-                            onValueChange = { screenModel.onInputRecoveryPhrase(it) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f),
-                            textStyle = androidx.compose.ui.text.TextStyle(
-                                fontSize = 15.sp,
-                                color = Color(0xFFF1F5F9),
-                                lineHeight = 22.5.sp,
-                                fontFamily = getInterFontFamily()
-                            ),
-                            visualTransformation = { text ->
-                                TransformedText(
-                                    buildAnnotatedString {
-                                        if (recoveryPhraseState.isNotEmpty()) {
-                                            recoveryPhraseState.dropLast(1).forEach { wordState ->
-                                                val color = if (wordState.second) {
-                                                    Color(0xFFF1F5F9)
-                                                } else {
-                                                    Color(0xFFFA0000)
-                                                }
-                                                withStyle(style = SpanStyle(color = color)) {
-                                                    append("${wordState.first} ")
-                                                }
-                                            }
-                                            val lastWordState = recoveryPhraseState.last()
-                                            val lastColor = if (lastWordState.second) {
-                                                Color(0xFFF1F5F9)
-                                            } else {
-                                                Color(0xFFFA0000)
-                                            }
-                                            withStyle(style = SpanStyle(color = lastColor)) {
-                                                append(lastWordState.first)
-                                            }
-                                        }
-                                    },
-                                    offsetMapping = OffsetMapping.Identity
-                                )
-                            },
-                            keyboardOptions = KeyboardOptions(
-                                keyboardType = KeyboardType.Password,
-                                autoCorrect = false,
-                                imeAction = ImeAction.Done
-                            ),
-                            decorationBox = { innerTextField ->
-                                Box {
-                                    if (recoveryPhrase.isEmpty()) {
-                                        Text(
-                                            text = "Enter your recovery phrase...",
-                                            fontSize = 15.sp,
-                                            color = Color(0xFFA5B4CB).copy(alpha = 0.6f),
-                                            fontFamily = getInterFontFamily()
-                                        )
-                                    }
-                                    innerTextField()
-                                }
-                            }
-                        )
+                    // Info Banner
+                    InfoBanner()
 
-                        // Paste button
+                    // Recovery Phrase Input Section
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(Spacing.TINY)
+                    ) {
+                        // Label and word count
                         Row(
                             modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.End
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Paste",
+                                text = MR.strings.label_recovery_phrase.desc().localized(),
                                 fontSize = 14.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.White.copy(alpha = 0.6f),
+                                fontFamily = getInterFontFamily(),
+                                modifier = Modifier.padding(start = Spacing.XTINY)
+                            )
+
+                            // Word count badge
+                            Text(
+                                text = StringDesc.ResourceFormatted(
+                                    MR.strings.word_count_format,
+                                    wordCount
+                                ).localized(),
+                                fontSize = 12.sp,
                                 fontWeight = FontWeight.Medium,
                                 color = Color(0xFF3B90FF),
                                 fontFamily = getInterFontFamily(),
-                                modifier = Modifier.clickable {
-                                    val clipboardText = clipboardManager.getText()?.text ?: ""
-                                    screenModel.onInputRecoveryPhrase(clipboardText)
-                                    focusManager.clearFocus()
-                                }
+                                modifier = Modifier
+                                    .background(
+                                        color = Color(0xFF3B90FF).copy(alpha = 0.1f),
+                                        shape = RoundedCornerShape(Spacing.STINY)
+                                    )
+                                    .padding(horizontal = Spacing.TINY, vertical = Spacing.XTINY)
                             )
                         }
+
+                        // Input area
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(160.dp)
+                                .clip(RoundedCornerShape(CornerRadius.Medium))
+                                .border(
+                                    width = 1.dp,
+                                    color = Color(0xFF2A3E6C),
+                                    shape = RoundedCornerShape(CornerRadius.Medium)
+                                )
+                                .background(Color.White.copy(alpha = 0.02f))
+                                .padding(Spacing.SMALL)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                verticalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                // Text input
+                                BasicTextField(
+                                    value = recoveryPhrase,
+                                    onValueChange = { screenModel.onInputRecoveryPhrase(it) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .weight(1f),
+                                    textStyle = androidx.compose.ui.text.TextStyle(
+                                        fontSize = 16.sp,
+                                        color = Color(0xFFF1F5F9),
+                                        lineHeight = 25.6.sp,
+                                        fontFamily = getInterFontFamily()
+                                    ),
+                                    visualTransformation = { text ->
+                                        TransformedText(
+                                            buildAnnotatedString {
+                                                if (recoveryPhraseState.isNotEmpty()) {
+                                                    recoveryPhraseState.dropLast(1).forEach { wordState ->
+                                                        val color = if (wordState.second) {
+                                                            Color(0xFFF1F5F9)
+                                                        } else {
+                                                            Color(0xFFFA0000)
+                                                        }
+                                                        withStyle(style = SpanStyle(color = color)) {
+                                                            append("${wordState.first} ")
+                                                        }
+                                                    }
+                                                    val lastWordState = recoveryPhraseState.last()
+                                                    val lastColor = if (lastWordState.second) {
+                                                        Color(0xFFF1F5F9)
+                                                    } else {
+                                                        Color(0xFFFA0000)
+                                                    }
+                                                    withStyle(style = SpanStyle(color = lastColor)) {
+                                                        append(lastWordState.first)
+                                                    }
+                                                }
+                                            },
+                                            offsetMapping = OffsetMapping.Identity
+                                        )
+                                    },
+                                    keyboardOptions = KeyboardOptions(
+                                        keyboardType = KeyboardType.Password,
+                                        autoCorrectEnabled = false,
+                                        imeAction = ImeAction.Done
+                                    ),
+                                    decorationBox = { innerTextField ->
+                                        Box {
+                                            if (recoveryPhrase.isEmpty()) {
+                                                Text(
+                                                    text = MR.strings.placeholder_recovery_phrase.desc().localized(),
+                                                    fontSize = 16.sp,
+                                                    color = Color(0xFFA5B4CB).copy(alpha = 0.6f),
+                                                    fontFamily = getInterFontFamily()
+                                                )
+                                            }
+                                            innerTextField()
+                                        }
+                                    }
+                                )
+
+                                // Paste button
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.End
+                                ) {
+                                    Row(
+                                        modifier = Modifier
+                                            .clip(RoundedCornerShape(Spacing.TINY))
+                                            .background(Color.White.copy(alpha = 0.05f))
+                                            .clickable {
+                                                val clipboardText = clipboardManager.getText()?.text ?: ""
+                                                screenModel.onInputRecoveryPhrase(clipboardText)
+                                                focusManager.clearFocus()
+                                            }
+                                            .padding(horizontal = Spacing.XSMALL, vertical = Spacing.STINY),
+                                        horizontalArrangement = Arrangement.spacedBy(Spacing.STINY),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Icon(
+                                            imageVector = MangalaWalletPack.IcCopy,
+                                            contentDescription = "Paste",
+                                            tint = Color(0xFF3B90FF),
+                                            modifier = Modifier.size(14.dp)
+                                        )
+                                        Text(
+                                            text = MR.strings.all_paste.desc().localized(),
+                                            fontSize = 13.sp,
+                                            fontWeight = FontWeight.Medium,
+                                            color = Color(0xFF3B90FF),
+                                            fontFamily = getInterFontFamily()
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
+
+                    // Warning box
+                    WarningBox()
                 }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                // Description
-                Text(
-                    text = "Consists of 24 single words separated by spaces. If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.",
-                    fontSize = 13.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFFA5B4CB).copy(alpha = 0.8f),
-                    textAlign = TextAlign.Start,
-                    letterSpacing = (-0.13).sp,
-                    lineHeight = 19.5.sp,
-                    fontFamily = getInterFontFamily(),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                )
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 // Import Wallet Button
                 OnboardingButton(
-                    text = "Import Wallet",
+                    text = MR.strings.all_import_wallet.desc().localized(),
                     onClick = onImportWalletClicked,
                     isPrimary = isImportButtonEnabled.value,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .padding(bottom = 24.dp)
+                        .padding(horizontal = Spacing.MEDIUM)
+                        .padding(bottom = Spacing.BASE)
                 )
             }
+        }
+    }
+
+    @Composable
+    private fun InfoBanner() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(CornerRadius.Medium))
+                .background(Color.White.copy(alpha = 0.05f))
+                .border(
+                    width = 1.dp,
+                    color = Color.White.copy(alpha = 0.1f),
+                    shape = RoundedCornerShape(CornerRadius.Medium)
+                )
+                .padding(Spacing.SMALL),
+            horizontalArrangement = Arrangement.spacedBy(Spacing.XSMALL)
+        ) {
+            Icon(
+                imageVector = MangalaWalletPack.InfoCircle,
+                contentDescription = "Info",
+                tint = Color(0xFF3B90FF),
+                modifier = Modifier.size(Spacing.MEDIUM)
+            )
+
+            Text(
+                text = buildAnnotatedString {
+                    append("Enter your ")
+                    withStyle(style = SpanStyle(color = Color.White, fontWeight = FontWeight.Medium)) {
+                        append("12-24 words")
+                    }
+                    append(" recovery phrase in the correct order to restore your existing wallet.")
+                },
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFFA5B4CB),
+                lineHeight = 19.5.sp,
+                fontFamily = getInterFontFamily()
+            )
+        }
+    }
+
+    @Composable
+    private fun WarningBox() {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(CornerRadius.Small))
+                .background(Color(0xFFFACC15).copy(alpha = 0.05f))
+                .border(
+                    width = 1.dp,
+                    color = Color(0xFFFACC15).copy(alpha = 0.1f),
+                    shape = RoundedCornerShape(CornerRadius.Small)
+                )
+                .padding(Spacing.SMALL)
+        ) {
+            Text(
+                text = "⚠️ ${MR.strings.warning_never_share_phrase.desc().localized()}",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color(0xFFFACC15).copy(alpha = 0.8f),
+                lineHeight = 19.2.sp,
+                fontFamily = getInterFontFamily()
+            )
         }
     }
 }
