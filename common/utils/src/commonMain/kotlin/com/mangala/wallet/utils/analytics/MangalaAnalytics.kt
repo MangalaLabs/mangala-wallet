@@ -159,7 +159,6 @@ object MangalaAnalytics {
         const val EVM_VERIFY_RECOVERY_PHRASE = "EvmVerifyRecoveryPhraseScreen"
         const val EVM_CREATE_WALLET_GUIDE = "EvmCreateWalletGuideScreen"
         const val EVM_CREATE_WALLET = "EvmCreateWalletScreen"
-        const val EVM_IMPORT_WALLET_GUIDE = "EvmImportWalletGuideScreen"
         const val EVM_RESTORE_RECOVERY_PHRASE = "EvmRestoreRecoveryPhraseScreen"
         const val EVM_IMPORT_WALLET_SUCCESS = "EvmImportWalletSuccessScreen"
         const val EVM_WALLET_DETAILS = "EvmWalletDetailsScreen"
