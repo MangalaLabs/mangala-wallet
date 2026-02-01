@@ -36,14 +36,18 @@ import kotlinx.coroutines.launch
 import cafe.adriel.voyager.core.registry.rememberScreen
 import com.mangala.wallet.ui.SharedScreen
 
-class ShowRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
+class ShowRecoveryPhraseScreen(
+    private val walletId: String? = null
+) : BaseScreen<ShowRecoveryPhraseScreenModel>() {
 
     override val screenName: String = MangalaAnalytics.Screens.EVM_SHOW_RECOVERY_PHRASE
     override val screenClassName: String = ShowRecoveryPhraseScreen::class.simpleName.orEmpty()
 
     @Composable
     override fun createScreenModel(): ShowRecoveryPhraseScreenModel {
-        return getScreenModel<ShowRecoveryPhraseScreenModel>()
+        return getScreenModel<ShowRecoveryPhraseScreenModel>(
+            parameters = { org.koin.core.parameter.parametersOf(walletId) }
+        )
     }
 
     @Composable

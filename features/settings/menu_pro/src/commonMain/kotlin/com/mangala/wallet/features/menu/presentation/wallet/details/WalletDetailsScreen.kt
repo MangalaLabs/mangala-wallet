@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -92,13 +93,6 @@ internal class WalletDetailsScreen(private val walletId: String) :
         val navigator = LocalNavigator.currentOrThrow
         val walletDetail by screenModel._walletName.collectAsStateMultiplatform()
         val uiModel by screenModel._uiModel.collectAsStateMultiplatform()
-        val viewPhrase =
-            rememberScreen(
-                SharedScreen.UnlockPinScreen(
-                    SharedScreen.UnlockPinScreen.SHOW_WORDS_PHRASE,
-                    antelopeAccountName = null
-                )
-            )
 
         WalletDetails(uiModel = uiModel,
             walletName = walletDetail,
@@ -107,7 +101,21 @@ internal class WalletDetailsScreen(private val walletId: String) :
             },
             onNameChanged = screenModel::updateWalletName,
             onClickChangeHiddenAccount = { screenModel.onClickChangeHiddenAccount(it) },
-            onClickViewPhrase = { navigator.push(viewPhrase) },
+            onClickViewPhrase = {
+                // V2 callback approach - PIN module doesn't decide navigation
+                val unlockPinScreen = ScreenRegistry.get(
+                    SharedScreen.UnlockPinScreen(
+                        onUnlockSuccess = {
+                            // Caller decides where to navigate after unlock
+                            val showRecoveryPhraseScreen = ScreenRegistry.get(
+                                SharedScreen.ShowRecoveryPhraseScreen(walletId = walletId)
+                            )
+                            navigator.replace(showRecoveryPhraseScreen)
+                        }
+                    )
+                )
+                navigator.push(unlockPinScreen)
+            },
             onClickDeleteWallet = {
                 screenModel.onClickDeletedWallet(walletId)
                 navigator.pop()
