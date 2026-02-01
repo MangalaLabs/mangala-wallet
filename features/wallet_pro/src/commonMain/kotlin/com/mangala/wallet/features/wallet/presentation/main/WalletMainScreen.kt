@@ -249,9 +249,9 @@ internal class WalletMainScreen : BaseWalletMainScreen<WalletMainScreenModel>() 
                         }
 
                         NetworkType.EVM, NetworkType.BITCOIN -> {
-                            val importWalletGuideScreen =
-                                ScreenRegistry.get(SharedScreen.ImportWalletGuideScreen())
-                            navigator.push(importWalletGuideScreen)
+                            val restoreRecoveryPhraseScreen =
+                                ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
+                            navigator.push(restoreRecoveryPhraseScreen)
                         }
 
                         else -> throw UnsupportedOperationException("Network $it does not handle import wallet")

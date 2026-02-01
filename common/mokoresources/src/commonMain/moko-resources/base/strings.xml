@@ -45,6 +45,11 @@
     <string name="all_import_wallet">Import Wallet</string>
     <string name="title_recovery_phrase">Your recovery phrase</string>
     <string name="description_recovery_phrase">Consists of 24 single words separated by spaces. If your recovery phrase is shorter than 24 words (i.e. 12, 15, 18 or 21 words) you can still use it to restore your wallet. Just enter as many words as you have in your phrase.</string>
+    <string name="import_wallet_info_banner">Enter your &lt;b&gt;12-24 words&lt;/b&gt; recovery phrase in the correct order to restore your existing wallet.</string>
+    <string name="label_recovery_phrase">Recovery Phrase</string>
+    <string name="placeholder_recovery_phrase">Enter words separated by spaces…</string>
+    <string name="word_count_format">%d words</string>
+    <string name="warning_never_share_phrase">Never share your recovery phrase with anyone. Anyone with these words can take your funds forever.</string>
     <string name="button_recoverty_phrase_secret_phrase_info">What is Secret Phrase</string>
     <string name="next">Next</string>
     <string name="all_paste">Paste</string>
@@ -93,10 +98,6 @@
     <string name="title_backed_up_wallet_done">Your wallet is now backed up</string>
     <string name="message_backed_up_wallet_done">DO NOT show your recovery phrase to anyone. Protect it like the ten millions dollars it will one day be worth (probably).</string>
     <string name="done">Done</string>
-
-    <!--    Import wallet Screen -->
-    <string name="title_import_wallet">Import your wallet</string>
-    <string name="message_import_wallet">You can restore an existing wallet by using the recovery phrase. A recovery phrase is a 12 - 24 words phrase that you wrote down when you backed up your wallet.</string>
 
     <!--    Import Wallet Success Screen -->
     <string name="title_import_wallet_success_restoring">Restoring Your Wallet</string>

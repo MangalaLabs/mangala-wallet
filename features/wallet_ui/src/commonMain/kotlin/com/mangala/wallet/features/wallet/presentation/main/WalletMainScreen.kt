@@ -84,7 +84,7 @@ internal class WalletMainScreen : BaseWalletMainScreen<WalletMainScreenModel>(),
         val uiState = screenModel.uiState.collectAsStateMultiplatform()
 
         val createWalletGuideScreen = rememberScreen(SharedScreen.CreateWalletGuideScreen)
-        val importWalletGuideScreen = rememberScreen(SharedScreen.ImportWalletGuideScreen)
+        val restoreRecoveryPhraseScreen = rememberScreen(SharedScreen.RestoreRecoveryPhraseScreen())
         val evmCreateAccountScreen = rememberScreen(SharedScreen.EvmCreateAccountScreen())
         val manageAccountsScreen = rememberScreen(SharedScreen.ManageAccountsScreen)
         val menuScreen = rememberScreen(SharedScreen.MenuScreen)
@@ -106,7 +106,7 @@ internal class WalletMainScreen : BaseWalletMainScreen<WalletMainScreenModel>(),
                     globalNavigator.push(createWalletGuideScreen)
                 },
                 onClickImportWallet = {
-                    globalNavigator.push(importWalletGuideScreen)
+                    globalNavigator.push(restoreRecoveryPhraseScreen)
                 },
                 onClickCreateAccount = {
                     globalNavigator.push(evmCreateAccountScreen)

@@ -110,8 +110,7 @@ internal class AddWalletScreen : BaseScreen<AddWalletScreenModel>() {
                     }
                 },
                 onImportWalletClicked = {
-                    val screen = ScreenRegistry.get(SharedScreen.ImportWalletGuideScreen())
-
+                    val screen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
                     navigator.push(screen)
                 },
                 textTopBar = MR.strings.message_wallet_add_wallet.desc().localized(),

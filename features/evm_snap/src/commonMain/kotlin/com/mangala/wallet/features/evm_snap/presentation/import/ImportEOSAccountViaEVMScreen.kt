@@ -138,7 +138,7 @@ class ImportEOSAccountViaEVMScreen() : BaseScreen<ImportEOSAccountViaEVMScreenMo
                             screenModel.clearState()
                             localNavigator.push(
                                 ScreenRegistry.get(
-                                    SharedScreen.ImportWalletGuideScreen(
+                                    SharedScreen.RestoreRecoveryPhraseScreen(
                                         nextScreen = SharedScreen.ScreenType.IMPORT_EOS_VIA_EVM
                                     )
                                 )
