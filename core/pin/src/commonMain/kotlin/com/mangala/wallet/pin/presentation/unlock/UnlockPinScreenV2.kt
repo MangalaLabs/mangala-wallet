@@ -258,7 +258,7 @@ class UnlockPinScreenV2(
                 }
             }
             is PinScreenFlow.ShowRecoveryPhraseScreen -> {
-                val showRecoveryPhraseScreen = rememberScreen(SharedScreen.ShowRecoveryPhraseScreen)
+                val showRecoveryPhraseScreen = rememberScreen(SharedScreen.ShowRecoveryPhraseScreen())
                 navigator.replace(showRecoveryPhraseScreen)
             }
             is PinScreenFlow.ShowLockScreen -> {

@@ -42,7 +42,9 @@ class VerifyRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
     override val isBottomBarVisible = false
 
     @Composable
-    override fun createScreenModel(): ShowRecoveryPhraseScreenModel = getScreenModel()
+    override fun createScreenModel(): ShowRecoveryPhraseScreenModel = getScreenModel(
+        parameters = { org.koin.core.parameter.parametersOf(null as String?) }
+    )
 
     @Composable
     override fun ScreenContent(screenModel: ShowRecoveryPhraseScreenModel) {

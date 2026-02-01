@@ -1,7 +1,8 @@
 package com.mangala.wallet.wallet.presentation.backup
 
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.mangala.wallet.domain.wallet.usecases.GetAllWalletsUseCase
+import com.mangala.wallet.domain.wallet.usecases.GetSelectedWalletUseCase
+import com.mangala.wallet.domain.wallet.usecases.GetWalletByIdUseCase
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreenModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -9,12 +10,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class ShowRecoveryPhraseUiState(
+    val walletId: String = "",
+    val walletName: String = "",
     val recoveryPhrase: List<String> = emptyList(),
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val error: String? = null
 )
 
 class ShowRecoveryPhraseScreenModel(
-    private val getAllWalletsUseCase: GetAllWalletsUseCase
+    private val walletId: String?,
+    private val getWalletByIdUseCase: GetWalletByIdUseCase,
+    private val getSelectedWalletUseCase: GetSelectedWalletUseCase
 ) : BaseScreenModel() {
 
     private val _uiState = MutableStateFlow(ShowRecoveryPhraseUiState())
@@ -26,12 +32,26 @@ class ShowRecoveryPhraseScreenModel(
 
     private fun loadRecoveryPhrase() {
         screenModelScope.launch {
-            _uiState.value = _uiState.value.copy(isLoading = true)
+            _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
             try {
-                // Get the first wallet's recovery phrase
-                val wallets = getAllWalletsUseCase()
-                val wordsString = wallets.firstOrNull()?.words ?: ""
+                // If walletId is provided, get wallet by ID; otherwise, get selected wallet
+                val wallet = if (!walletId.isNullOrEmpty()) {
+                    getWalletByIdUseCase(walletId)
+                } else {
+                    getSelectedWalletUseCase()
+                }
+
+                if (wallet == null) {
+                    _uiState.value = _uiState.value.copy(
+                        recoveryPhrase = emptyList(),
+                        isLoading = false,
+                        error = "Wallet not found"
+                    )
+                    return@launch
+                }
+
+                val wordsString = wallet.words ?: ""
                 val recoveryPhrase = if (wordsString.isNotEmpty()) {
                     wordsString.split(" ")
                 } else {
@@ -39,13 +59,17 @@ class ShowRecoveryPhraseScreenModel(
                 }
 
                 _uiState.value = _uiState.value.copy(
+                    walletId = wallet.id,
+                    walletName = wallet.name ?: "",
                     recoveryPhrase = recoveryPhrase,
-                    isLoading = false
+                    isLoading = false,
+                    error = null
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     recoveryPhrase = emptyList(),
-                    isLoading = false
+                    isLoading = false,
+                    error = e.message
                 )
             }
         }
@@ -55,11 +79,9 @@ class ShowRecoveryPhraseScreenModel(
         // Handle continue action - mark wallet as backed up
         screenModelScope.launch {
             try {
-                val wallets = getAllWalletsUseCase()
-                wallets.firstOrNull()?.let { wallet ->
-                    // TODO: Update wallet to mark it as backed up
-                    // updateWalletUseCase(wallet.copy(isBackedUp = true))
-                }
+                // TODO: Update wallet to mark it as backed up using walletId from uiState
+                // val walletId = _uiState.value.walletId
+                // updateWalletUseCase(walletId, isBackedUp = true)
             } catch (e: Exception) {
                 // Handle error
             }
