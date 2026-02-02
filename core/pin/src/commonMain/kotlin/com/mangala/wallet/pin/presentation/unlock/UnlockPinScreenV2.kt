@@ -69,6 +69,12 @@ class UnlockPinScreenV2(
     @Transient private val unlockPinCallback: ((Boolean) -> Unit)? = null
 ) : BaseScreen<UnlockPinScreenModel>(), KoinComponent {
 
+    // Generate unique key for each instance to prevent ScreenModel caching issues
+    // This ensures each UnlockPinScreen gets a fresh ScreenModel with correct callbacks
+    private val uniqueId = kotlin.random.Random.nextLong()
+    override val key: cafe.adriel.voyager.core.screen.ScreenKey =
+        "UnlockPinScreenV2_${uniqueId}_${hashCode()}"
+
     override val screenName: String = MangalaAnalytics.Screens.UNLOCK_PIN
     override val screenClassName: String = UnlockPinScreenV2::class.simpleName.orEmpty()
     override val isBottomBarVisible: Boolean = false

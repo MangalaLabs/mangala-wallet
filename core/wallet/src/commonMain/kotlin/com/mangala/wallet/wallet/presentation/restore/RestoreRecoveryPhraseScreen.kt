@@ -74,8 +74,14 @@ class RestoreRecoveryPhraseScreen(
         LaunchedEffect(uiState) {
             when (uiState) {
                 is RestoreRecoveryPhraseScreenUiState.Imported -> {
+                    // Prevent duplicate navigation using ScreenModel state
+                    if (!screenModel.shouldNavigate()) return@LaunchedEffect
+
                     val mnemonicWords = uiState.mnemonicWords
                     val walletName = "main"
+
+                    // Reset state BEFORE navigation to prevent re-trigger
+                    screenModel.resetUiState()
 
                     if (screenModel.isPinExist()) {
                         // PIN exists - verify user identity first (V2 callback approach)
@@ -113,10 +119,11 @@ class RestoreRecoveryPhraseScreen(
                         )
                         navigator.push(setUpPinScreen)
                     }
-                    screenModel.resetUiState()
                 }
 
-                is RestoreRecoveryPhraseScreenUiState.NoImported -> {}
+                is RestoreRecoveryPhraseScreenUiState.NoImported -> {
+                    // State is clean, no action needed
+                }
             }
         }
 
