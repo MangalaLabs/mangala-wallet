@@ -1,11 +1,9 @@
 package com.mangala.wallet.wallet.presentation.restore
 
-import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.mangala.wallet.domain.datastore.usecases.GetSelectedNetworkUseCase
 import com.mangala.wallet.domain.wallet.usecases.RestoreWalletUseCase
-import com.mangala.wallet.local.securestorage.SecureStorageWrapper
-import com.mangala.wallet.local.securestorage.SecureStorageWrapperConstants
+import com.mangala.wallet.pin.domain.PINManager
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreenModel
 import com.mangala.wallet.utils.bip39.BIP39_WORDLIST_ENGLISH
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,13 +11,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class RestoreRecoveryPhraseScreenModel(
-    private val secureStorageWrapper: SecureStorageWrapper,
+    private val pinManager: PINManager,
     private val restoreWalletUseCase: RestoreWalletUseCase,
     private val getSelectedNetworkUseCase: GetSelectedNetworkUseCase,
 ) : BaseScreenModel() {
 
     private val _uiState : MutableStateFlow<RestoreRecoveryPhraseScreenUiState> = MutableStateFlow(RestoreRecoveryPhraseScreenUiState.NoImported)
     val uiState = _uiState.asStateFlow()
+
+    // Track if navigation has been handled to prevent duplicate navigations
+    private var hasNavigated = false
 
     private val _recoveryPhrase = MutableStateFlow("")
     val recoveryPhrase = _recoveryPhrase.asStateFlow()
@@ -57,28 +58,44 @@ class RestoreRecoveryPhraseScreenModel(
         return restoreWalletUseCase.verifyWallet(list).isSuccess
     }
 
+    private var isImporting = false
+
     fun importWallet() {
+        // Prevent multiple clicks
+        if (isImporting) return
+        isImporting = true
+
         screenModelScope.launch {
-            val list = recoveryPhrase.value.split(" ")
-            if (isPinExist()) {
-                restoreWalletUseCase(list, "Main")
+            try {
+                val list = recoveryPhrase.value.split(" ")
+                // Don't call restoreWalletUseCase here - ImportWalletSuccessScreen will handle it
+                // This prevents duplicate API calls
+                val blockchainTypeUid = getSelectedNetworkUseCase().blockchainType.uid
+                _uiState.value =
+                    RestoreRecoveryPhraseScreenUiState.Imported(list, blockchainTypeUid, "")
+                onInputRecoveryPhrase("")
+            } finally {
+                isImporting = false
             }
-            val blockchainTypeUid = getSelectedNetworkUseCase().blockchainType.uid
-            _uiState.value =
-                RestoreRecoveryPhraseScreenUiState.Imported(list, blockchainTypeUid, "")
-            onInputRecoveryPhrase("")
         }
     }
 
     fun resetUiState() {
         _uiState.value = RestoreRecoveryPhraseScreenUiState.NoImported
-    }
-
-    private fun getPin(): String {
-        return secureStorageWrapper.getValue(SecureStorageWrapperConstants.PIN_KEY) ?: ""
+        hasNavigated = false
     }
 
     fun isPinExist(): Boolean {
-        return getPin().isNotEmpty()
+        return pinManager.isPINSetup()
+    }
+
+    /**
+     * Check and mark navigation as handled.
+     * Returns true if navigation should proceed, false if already handled.
+     */
+    fun shouldNavigate(): Boolean {
+        if (hasNavigated) return false
+        hasNavigated = true
+        return true
     }
 }
