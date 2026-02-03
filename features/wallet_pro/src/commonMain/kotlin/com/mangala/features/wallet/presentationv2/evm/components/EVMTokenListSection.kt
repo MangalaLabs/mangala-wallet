@@ -33,12 +33,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
+import com.mangala.features.wallet.presentationv2.antelope.components.TokenLogo
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Search
@@ -48,10 +48,34 @@ import com.mangala.wallet.model.token.domain.formattedValue
 import com.mangala.wallet.ui.HIDDEN_BALANCE_STRING
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.ui.imageloader.ImageSource
-import com.mangala.wallet.ui.imageloader.MultiImage
 import com.mangala.wallet.ui.placeholder.mangalaWalletPlaceholder
 
-private const val HIDDEN_PNL_STRING = "+*.**%"
+/**
+ * Reusable card container modifier for consistent styling.
+ */
+private fun Modifier.tokenListCard(): Modifier = this
+    .fillMaxWidth()
+    .clip(RoundedCornerShape(16.dp))
+    .background(WalletThemeV2.Colors.cardBackground)
+    .border(
+        width = 1.dp,
+        color = Color.White.copy(alpha = 0.05f),
+        shape = RoundedCornerShape(16.dp)
+    )
+
+/**
+ * Reusable divider for token list items.
+ */
+@Composable
+private fun TokenListDivider() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(1.dp)
+            .padding(horizontal = WalletThemeV2.Dimensions.paddingLarge)
+            .background(Color.White.copy(alpha = 0.03f))
+    )
+}
 
 @Composable
 fun EVMTokenListSection(
@@ -78,138 +102,150 @@ fun EVMTokenListSection(
     }
 
     Column(modifier = modifier.fillMaxWidth()) {
-        // Header with search toggle
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Tokens",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-                fontFamily = getInterFontFamily()
-            )
+        TokenListHeader(
+            isSearchActive = isSearchActive,
+            onSearchClick = onSearchClick
+        )
 
-            Icon(
-                imageVector = MangalaWalletPack.Search,
-                contentDescription = "Search",
-                tint = if (isSearchActive) WalletThemeV2.Colors.evmAccent else WalletThemeV2.Colors.secondaryText,
-                modifier = Modifier
-                    .size(WalletThemeV2.Dimensions.iconSizeMedium)
-                    .clickable { onSearchClick() }
-            )
-        }
-
-        // Search field
         if (isSearchActive) {
             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingMedium))
-
-            val focusRequester = remember { FocusRequester() }
-
-            LaunchedEffect(isSearchActive) {
-                if (isSearchActive) {
-                    focusRequester.requestFocus()
-                }
-            }
-
-            OutlinedTextField(
-                value = searchQuery,
-                onValueChange = onSearchQueryChanged,
-                placeholder = {
-                    Text(
-                        text = "Search tokens...",
-                        color = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.6f),
-                        fontSize = 14.sp,
-                        fontFamily = getInterFontFamily()
-                    )
-                },
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "Search",
-                        tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
-                        modifier = Modifier.size(20.dp)
-                    )
-                },
-                trailingIcon = if (searchQuery.isNotEmpty()) {
-                    {
-                        IconButton(onClick = { onSearchQueryChanged("") }) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = "Clear",
-                                tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
-                                modifier = Modifier.size(18.dp)
-                            )
-                        }
-                    }
-                } else null,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                singleLine = true,
-                shape = RoundedCornerShape(12.dp),
-                colors = TextFieldDefaults.outlinedTextFieldColors(
-                    textColor = WalletThemeV2.Colors.primaryText,
-                    backgroundColor = WalletThemeV2.Colors.cardBackground.copy(alpha = 0.5f),
-                    focusedBorderColor = WalletThemeV2.Colors.evmAccent.copy(alpha = 0.8f),
-                    unfocusedBorderColor = Color.White.copy(alpha = 0.1f),
-                    cursorColor = WalletThemeV2.Colors.evmAccent
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusRequester(focusRequester)
+            TokenSearchField(
+                searchQuery = searchQuery,
+                onSearchQueryChanged = onSearchQueryChanged
             )
         }
 
         Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingMedium))
 
-        // Token list container
         when {
             isLoading && filteredTokens.isNullOrEmpty() -> {
-                // Loading skeleton
                 TokenListSkeleton()
             }
 
             filteredTokens.isNullOrEmpty() -> {
-                // Empty state
                 EmptyTokenState(
                     message = if (searchQuery.isNotEmpty()) "No tokens match \"$searchQuery\"" else "No tokens found"
                 )
             }
 
             else -> {
-                // Token list
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(WalletThemeV2.Colors.cardBackground)
-                        .border(
-                            width = 1.dp,
-                            color = Color.White.copy(alpha = 0.05f),
-                            shape = RoundedCornerShape(16.dp)
-                        )
-                ) {
-                    Column {
-                        filteredTokens.forEachIndexed { index, token ->
-                            EVMTokenItem(
-                                token = token,
-                                isBalanceHidden = isBalanceHidden,
-                                currencySymbol = currencySymbol,
-                                onClick = { onTokenClick(token) }
-                            )
+                TokenListContent(
+                    tokens = filteredTokens,
+                    isBalanceHidden = isBalanceHidden,
+                    currencySymbol = currencySymbol,
+                    onTokenClick = onTokenClick
+                )
+            }
+        }
+    }
+}
 
-                            if (index < filteredTokens.lastIndex) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(1.dp)
-                                        .padding(horizontal = WalletThemeV2.Dimensions.paddingLarge)
-                                        .background(Color.White.copy(alpha = 0.03f))
-                                )
-                            }
-                        }
-                    }
+@Composable
+private fun TokenListHeader(
+    isSearchActive: Boolean,
+    onSearchClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "Tokens",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
+            fontFamily = getInterFontFamily()
+        )
+
+        Icon(
+            imageVector = MangalaWalletPack.Search,
+            contentDescription = "Search",
+            tint = if (isSearchActive) WalletThemeV2.Colors.evmAccent else WalletThemeV2.Colors.secondaryText,
+            modifier = Modifier
+                .size(WalletThemeV2.Dimensions.iconSizeMedium)
+                .clickable { onSearchClick() }
+        )
+    }
+}
+
+@Composable
+private fun TokenSearchField(
+    searchQuery: String,
+    onSearchQueryChanged: (String) -> Unit
+) {
+    val focusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
+
+    OutlinedTextField(
+        value = searchQuery,
+        onValueChange = onSearchQueryChanged,
+        placeholder = {
+            Text(
+                text = "Search tokens...",
+                color = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.6f),
+                fontSize = 14.sp,
+                fontFamily = getInterFontFamily()
+            )
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = "Search",
+                tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
+                modifier = Modifier.size(20.dp)
+            )
+        },
+        trailingIcon = if (searchQuery.isNotEmpty()) {
+            {
+                IconButton(onClick = { onSearchQueryChanged("") }) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Clear",
+                        tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
+            }
+        } else null,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+        singleLine = true,
+        shape = RoundedCornerShape(12.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            textColor = WalletThemeV2.Colors.primaryText,
+            backgroundColor = WalletThemeV2.Colors.cardBackground.copy(alpha = 0.5f),
+            focusedBorderColor = WalletThemeV2.Colors.evmAccent.copy(alpha = 0.8f),
+            unfocusedBorderColor = Color.White.copy(alpha = 0.1f),
+            cursorColor = WalletThemeV2.Colors.evmAccent
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .focusRequester(focusRequester)
+    )
+}
+
+@Composable
+private fun TokenListContent(
+    tokens: List<TokenBalanceModel>,
+    isBalanceHidden: Boolean,
+    currencySymbol: String,
+    onTokenClick: (TokenBalanceModel) -> Unit
+) {
+    Box(modifier = Modifier.tokenListCard()) {
+        Column {
+            tokens.forEachIndexed { index, token ->
+                EVMTokenItem(
+                    token = token,
+                    isBalanceHidden = isBalanceHidden,
+                    currencySymbol = currencySymbol,
+                    onClick = { onTokenClick(token) }
+                )
+
+                if (index < tokens.lastIndex) {
+                    TokenListDivider()
                 }
             }
         }
@@ -232,10 +268,10 @@ private fun EVMTokenItem(
 
     val pnlColor = remember(pnlPercentage) {
         when {
-            pnlPercentage == null -> Color(0xFF9CA3AF) // gray
-            pnlPercentage > BigDecimal.ZERO -> Color(0xFF00A699) // green
-            pnlPercentage < BigDecimal.ZERO -> Color(0xFFFF6B6B) // red
-            else -> Color(0xFF9CA3AF) // gray
+            pnlPercentage == null -> WalletThemeV2.Colors.secondaryText
+            pnlPercentage > BigDecimal.ZERO -> WalletThemeV2.Colors.positiveGain
+            pnlPercentage < BigDecimal.ZERO -> WalletThemeV2.Colors.negativeLoss
+            else -> WalletThemeV2.Colors.secondaryText
         }
     }
 
@@ -255,13 +291,13 @@ private fun EVMTokenItem(
                 ),
             verticalAlignment = Alignment.Top
         ) {
-            // Token logo
+            // Reuse TokenLogo from antelope components (DRY principle)
             Box(
                 modifier = Modifier.size(24.dp),
                 contentAlignment = Alignment.Center
             ) {
-                EVMTokenLogo(
-                    logoUrl = token.logoUrl,
+                TokenLogo(
+                    iconResource = token.logoUrl.takeIf { it.isNotEmpty() }?.let { ImageSource.Url(it) },
                     symbol = token.contractSymbol,
                     size = 22.dp
                 )
@@ -269,7 +305,6 @@ private fun EVMTokenItem(
 
             Spacer(modifier = Modifier.width(WalletThemeV2.Dimensions.spacingMedium))
 
-            // Token info - left side
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = token.contractSymbol,
@@ -295,7 +330,6 @@ private fun EVMTokenItem(
                 )
             }
 
-            // Right side - balance and PnL
             Column(horizontalAlignment = Alignment.End) {
                 Text(
                     text = if (isBalanceHidden) HIDDEN_BALANCE_STRING else token.formattedBalanceForHuman(),
@@ -312,7 +346,6 @@ private fun EVMTokenItem(
                     fontFamily = getInterFontFamily()
                 )
 
-                // PnL percentage
                 Text(
                     text = formatPnlPercentage(pnlPercentage, isBalanceHidden),
                     fontSize = 10.sp,
@@ -324,98 +357,22 @@ private fun EVMTokenItem(
     }
 }
 
-@Composable
-private fun EVMTokenLogo(
-    logoUrl: String?,
-    symbol: String,
-    size: androidx.compose.ui.unit.Dp,
-    modifier: Modifier = Modifier
-) {
-    if (!logoUrl.isNullOrEmpty()) {
-        Box(
-            modifier = modifier
-                .size(size)
-                .clip(CircleShape)
-                .background(Color.Transparent)
-        ) {
-            MultiImage(
-                imageSource = ImageSource.Url(logoUrl),
-                modifier = Modifier
-                    .size(size)
-                    .clip(CircleShape),
-                contentScale = ContentScale.Fit
-            )
-        }
-    } else {
-        // Fallback with symbol initials
-        Box(
-            modifier = modifier
-                .size(size)
-                .clip(CircleShape)
-                .background(getTokenColor(symbol)),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = symbol.take(2).uppercase(),
-                fontSize = (size.value * 0.4).sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
-    }
-}
-
-private fun getTokenColor(symbol: String): Color {
-    return when (symbol.uppercase()) {
-        "ETH" -> Color(0xFF627EEA)
-        "USDT" -> Color(0xFF26A17B)
-        "USDC" -> Color(0xFF2775CA)
-        "BNB" -> Color(0xFFF3BA2F)
-        "MATIC", "POL" -> Color(0xFF8247E5)
-        "ARB" -> Color(0xFF28A0F0)
-        "OP" -> Color(0xFFFF0420)
-        "AVAX" -> Color(0xFFE84142)
-        "DAI" -> Color(0xFFF4B731)
-        "WETH" -> Color(0xFFEC6666)
-        "LINK" -> Color(0xFF2A5ADA)
-        "UNI" -> Color(0xFFFF007A)
-        "AAVE" -> Color(0xFFB6509E)
-        else -> Color(0xFF6B7280)
-    }
-}
-
 private fun formatPnlPercentage(pnl: BigDecimal?, isHidden: Boolean): String {
-    if (isHidden) return HIDDEN_PNL_STRING
+    if (isHidden) return HIDDEN_BALANCE_STRING
     if (pnl == null) return "0.00%"
 
-    val sign = if (pnl >= BigDecimal.ZERO) "+" else ""
+    val sign = if (pnl > BigDecimal.ZERO) "+" else ""
     return "$sign${pnl.scale(2).toStringExpanded()}%"
 }
 
 @Composable
 private fun TokenListSkeleton(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(WalletThemeV2.Colors.cardBackground)
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.05f),
-                shape = RoundedCornerShape(16.dp)
-            )
-    ) {
+    Box(modifier = modifier.tokenListCard()) {
         Column {
             repeat(3) { index ->
                 SkeletonTokenItem()
                 if (index < 2) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(1.dp)
-                            .padding(horizontal = WalletThemeV2.Dimensions.paddingLarge)
-                            .background(Color.White.copy(alpha = 0.03f))
-                    )
+                    TokenListDivider()
                 }
             }
         }
@@ -433,7 +390,6 @@ private fun SkeletonTokenItem(modifier: Modifier = Modifier) {
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Logo skeleton
         Box(
             modifier = Modifier
                 .size(24.dp)
@@ -443,7 +399,6 @@ private fun SkeletonTokenItem(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.width(WalletThemeV2.Dimensions.spacingMedium))
 
-        // Info skeleton
         Column(modifier = Modifier.weight(1f)) {
             Box(
                 modifier = Modifier
@@ -462,7 +417,6 @@ private fun SkeletonTokenItem(modifier: Modifier = Modifier) {
             )
         }
 
-        // Balance skeleton
         Column(horizontalAlignment = Alignment.End) {
             Box(
                 modifier = Modifier
@@ -490,14 +444,7 @@ private fun EmptyTokenState(
 ) {
     Box(
         modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .background(WalletThemeV2.Colors.cardBackground)
-            .border(
-                width = 1.dp,
-                color = Color.White.copy(alpha = 0.05f),
-                shape = RoundedCornerShape(16.dp)
-            )
+            .tokenListCard()
             .padding(vertical = 48.dp),
         contentAlignment = Alignment.Center
     ) {
