@@ -4,11 +4,9 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
@@ -48,11 +45,9 @@ import com.mangala.features.wallet.presentationv2.evm.components.EVMAccountSwitc
 import com.mangala.features.wallet.presentationv2.evm.components.EVMAddAccountBottomSheet
 import com.mangala.features.wallet.presentationv2.evm.components.EVMPortfolioHeader
 import com.mangala.features.wallet.presentationv2.evm.components.EVMQuickActionsRow
+import com.mangala.features.wallet.presentationv2.evm.components.EVMTokenListSection
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.model.blockchain.NetworkType
-import com.mangala.wallet.model.token.domain.TokenBalanceModel
-import com.mangala.wallet.model.token.domain.formattedBalanceForHuman
-import com.mangala.wallet.model.token.domain.formattedValue
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.qrcode.domain.model.QrCodeData
 import com.mangala.wallet.scanqr.ScanQRCodeListener
@@ -129,7 +124,6 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                         // Header with network selector
                         WalletHeaderV2(
                             selectedNetwork = uiState.selectedNetwork,
-                            isConnected = uiState.isConnected,
                             notificationCount = 0,
                             isDevelopmentEnvironment = uiState.isDevelopmentEnvironment,
                             onNotificationClick = { /* TODO */ },
@@ -235,7 +229,14 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                     tokens = uiState.activeAccount?.balances,
                                     isBalanceHidden = uiState.isPortfolioBalanceHidden,
                                     isLoading = uiState.isLoadingWallets,
-                                    currencySymbol = uiState.fiatSymbol
+                                    currencySymbol = uiState.fiatSymbol,
+                                    isSearchActive = uiState.isSearchActive,
+                                    searchQuery = uiState.searchQuery,
+                                    onSearchClick = { screenModel.onSearchToggled() },
+                                    onSearchQueryChanged = { screenModel.onSearchQueryChanged(it) },
+                                    onTokenClick = { token ->
+                                        // TODO: Navigate to token detail
+                                    }
                                 )
                             }
 
@@ -262,7 +263,7 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                         globalNavigator.push(screen)
                     },
                     onImportWallet = {
-                        val screen = ScreenRegistry.get(SharedScreen.ImportWalletGuideScreen())
+                        val screen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
                         navigator.push(screen)
                     },
                     onDismiss = { showAddAccountBottomSheet = false }
@@ -359,134 +360,6 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
 }
 
 /**
- * Token list section for EVM - uses TokenBalanceModel directly
- * Following the pattern from old WalletMainScreen
- */
-@Composable
-private fun EVMTokenListSection(
-    tokens: List<TokenBalanceModel>?,
-    isBalanceHidden: Boolean,
-    isLoading: Boolean,
-    currencySymbol: String,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        // Section header
-        Text(
-            text = "Tokens",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = WalletThemeV2.Colors.primaryText,
-            fontFamily = getInterFontFamily()
-        )
-
-        if (tokens.isNullOrEmpty() && !isLoading) {
-            // Empty state
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 32.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "No tokens found",
-                    fontSize = 14.sp,
-                    color = WalletThemeV2.Colors.secondaryText,
-                    fontFamily = getInterFontFamily()
-                )
-            }
-        } else {
-            // Token list - using TokenBalanceModel directly
-            tokens?.forEach { token ->
-                EVMTokenItem(
-                    token = token,
-                    isBalanceHidden = isBalanceHidden,
-                    currencySymbol = currencySymbol
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun EVMTokenItem(
-    token: TokenBalanceModel,
-    isBalanceHidden: Boolean,
-    currencySymbol: String,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        // Token info
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            // Token icon placeholder
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        WalletThemeV2.Colors.secondaryBackground,
-                        CircleShape
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = token.contractSymbol.take(2),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = WalletThemeV2.Colors.primaryText
-                )
-            }
-
-            Column {
-                Text(
-                    text = token.contractSymbol,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = WalletThemeV2.Colors.primaryText,
-                    fontFamily = getInterFontFamily()
-                )
-                Text(
-                    text = token.contractName,
-                    fontSize = 12.sp,
-                    color = WalletThemeV2.Colors.secondaryText,
-                    fontFamily = getInterFontFamily()
-                )
-            }
-        }
-
-        // Balance - uses TokenBalanceModel extension functions
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
-            Text(
-                text = if (isBalanceHidden) "••••" else token.formattedBalanceForHuman(),
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = WalletThemeV2.Colors.primaryText,
-                fontFamily = getInterFontFamily()
-            )
-            Text(
-                text = if (isBalanceHidden) "••••" else token.formattedValue(currencySymbol),
-                fontSize = 12.sp,
-                color = WalletThemeV2.Colors.secondaryText,
-                fontFamily = getInterFontFamily()
-            )
-        }
-    }
-}
-
-/**
  * State shown when no EVM wallet is imported
  */
 @Composable
@@ -571,7 +444,7 @@ private fun NoEVMWalletState(
                 MangalaGradientButton(
                     label = "I already have a wallet",
                     onClick = {
-                        val importWalletScreen = ScreenRegistry.get(SharedScreen.ImportWalletGuideScreen())
+                        val importWalletScreen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
                         navigator.push(importWalletScreen)
                     },
                     buttonStyle = MangalaButtonStyle.TRANSPARENT,

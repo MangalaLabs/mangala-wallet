@@ -2,12 +2,15 @@ package com.mangala.features.wallet.presentationv2.evm
 
 import androidx.compose.ui.graphics.Color
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
+import com.ionspin.kotlin.bignum.decimal.DecimalMode
+import com.ionspin.kotlin.bignum.decimal.RoundingMode
 import com.mangala.wallet.common.mokoresources.Colors
 import com.mangala.wallet.model.blockchain.BlockchainNetworkData
 import com.mangala.wallet.model.token.domain.TokenBalanceModel
 import com.mangala.wallet.ui.HIDDEN_BALANCE_STRING
 import com.mangala.wallet.ui.utils.PNL_DECIMAL_PLACES
 import com.mangala.wallet.utils.ext.formatCompact
+import com.mangala.wallet.utils.formattedAddress
 
 /**
  * UI State for EVM Wallet Screen V2
@@ -20,7 +23,6 @@ data class EVMWalletUiState(
     val accounts: List<EVMAccountInfo>,
     val isPortfolioBalanceHidden: Boolean,
     val selectedAccountIndex: Int = 0,
-    val isConnected: Boolean = false,
     val fiatSymbol: String,
     val selectedNetwork: BlockchainNetworkData? = null,
     val isLoadingWallets: Boolean = true,
@@ -29,6 +31,9 @@ data class EVMWalletUiState(
     val portfolioTotalUsd: BigDecimal = BigDecimal.ZERO,
     val portfolioPnl: BigDecimal = BigDecimal.ZERO,
     val portfolioPnlPercentage: BigDecimal = BigDecimal.ZERO,
+    // Search state
+    val isSearchActive: Boolean = false,
+    val searchQuery: String = "",
 ) {
     val hasWallet: Boolean = accounts.isNotEmpty() || isLoadingWallets
 
@@ -51,7 +56,7 @@ data class EVMWalletUiState(
             if (isPortfolioBalanceHidden) return HIDDEN_BALANCE_STRING
 
             val pnlSign = if (portfolioPnlPercentage > BigDecimal.ZERO) "+" else ""
-            return pnlSign + portfolioPnlPercentage.scale(PNL_DECIMAL_PLACES).toStringExpanded() + " %"
+            return pnlSign + portfolioPnlPercentage.scale(PNL_DECIMAL_PLACES).toStringExpanded() + "%"
         }
 
     // Presentation: Determine PnL color based on value
@@ -106,12 +111,15 @@ data class EVMAccountInfo(
 
             val pnlSign = if (pnl > BigDecimal.ZERO) "+" else ""
             val pnlPercentage = if (yesterdayTotalValue != BigDecimal.ZERO) {
-                pnl.divide(yesterdayTotalValue, com.ionspin.kotlin.bignum.decimal.DecimalMode(10, com.ionspin.kotlin.bignum.decimal.RoundingMode.ROUND_HALF_AWAY_FROM_ZERO, 10))
+                pnl.divide(
+                    yesterdayTotalValue,
+                    DecimalMode(10, RoundingMode.ROUND_HALF_AWAY_FROM_ZERO, 10)
+                )
                     .multiply(BigDecimal.fromInt(100))
             } else {
                 BigDecimal.ZERO
             }
-            return pnlSign + pnlPercentage.scale(PNL_DECIMAL_PLACES).toStringExpanded() + " %"
+            return pnlSign + pnlPercentage.scale(PNL_DECIMAL_PLACES).toStringExpanded() + "%"
         }
 
     // Presentation: Determine PnL color
@@ -125,19 +133,6 @@ data class EVMAccountInfo(
             }
         }
 
-    // Presentation: Truncated address for display
-    val displayAddress: String = formatAddressForDisplay(address)
-
-    companion object {
-        fun formatAddressForDisplay(address: String, prefixLength: Int = 8, suffixLength: Int = 4): String {
-            val minimumLength = prefixLength + suffixLength + 5
-            return if (address.length <= minimumLength) {
-                address
-            } else {
-                val prefix = address.take(prefixLength)
-                val suffix = address.takeLast(suffixLength)
-                "$prefix...$suffix"
-            }
-        }
-    }
+    // Presentation: Truncated address for display (e.g., 0x1234AB...cdef)
+    val displayAddress: String = address.formattedAddress(leadingCharsCount = 8, trailingCharsCount = 4)
 }
