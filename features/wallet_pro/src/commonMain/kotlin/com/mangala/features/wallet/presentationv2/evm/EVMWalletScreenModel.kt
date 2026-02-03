@@ -62,7 +62,6 @@ class EVMWalletScreenModel(
     val uiState: StateFlow<EVMWalletUiState> = _uiState.asStateFlow()
 
     private var loadPortfolioJob: Job? = null
-    private var scannedAddressFromQrCode: String? = null
 
     init {
         observeBalanceVisibility()
@@ -115,11 +114,18 @@ class EVMWalletScreenModel(
 
             val portfolioData = resource.data ?: return@collect
 
+            val currentSelectedIndex = _uiState.value.selectedAccountIndex
+            val validatedSelectedIndex = if (portfolioData.accounts.isEmpty()) {
+                0
+            } else {
+                currentSelectedIndex.coerceIn(0, portfolioData.accounts.lastIndex)
+            }
+
             // Map domain model (AccountPortfolio) to UI model (EVMAccountInfo)
             val accountInfos = portfolioData.accounts.mapIndexed { index, accountPortfolio ->
                 mapToAccountInfo(
                     accountPortfolio = accountPortfolio,
-                    isActive = index == _uiState.value.selectedAccountIndex,
+                    isActive = index == validatedSelectedIndex,
                     isBalanceVisible = balanceVisible,
                     currencySymbol = currencySymbol
                 )
@@ -128,6 +134,7 @@ class EVMWalletScreenModel(
             _uiState.update { state ->
                 state.copy(
                     accounts = accountInfos,
+                    selectedAccountIndex = validatedSelectedIndex,
                     fiatSymbol = currencySymbol,
                     isLoadingWallets = resource is Resource.Loading,
                     isPortfolioBalanceHidden = !balanceVisible,
@@ -220,17 +227,27 @@ class EVMWalletScreenModel(
     }
 
     fun onScanQrCodeResult(qrCodeData: String): QrCodeData? {
-        val qrCodeResult = parseQRCodeResultUseCase(qrCodeData)
-
-        if (qrCodeResult is QrCodeData.Payment) {
-            scannedAddressFromQrCode = qrCodeResult.address
-        }
-
-        return qrCodeResult
+        return parseQRCodeResultUseCase(qrCodeData)
     }
 
     fun getAvailableNetworks(): List<BlockchainNetworkData> {
         return BlockchainNetworkData.getAllBlockchainNetworkSupported(buildEnvironmentProvider.isDevelopmentEnvironment())
             .filter { it.blockchainType.networkType == NetworkType.EVM }
+    }
+
+    fun onSearchToggled() {
+        _uiState.update { state ->
+            val newSearchActive = !state.isSearchActive
+            state.copy(
+                isSearchActive = newSearchActive,
+                searchQuery = if (newSearchActive) state.searchQuery else ""
+            )
+        }
+    }
+
+    fun onSearchQueryChanged(query: String) {
+        _uiState.update { state ->
+            state.copy(searchQuery = query)
+        }
     }
 }

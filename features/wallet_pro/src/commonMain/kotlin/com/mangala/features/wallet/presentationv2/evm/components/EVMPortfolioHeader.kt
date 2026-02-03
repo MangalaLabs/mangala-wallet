@@ -43,9 +43,7 @@ import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Show
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.ui.placeholder.mangalaWalletPlaceholder
 import com.mangala.wallet.ui.utils.PNL_DECIMAL_PLACES
-import com.mangala.wallet.utils.ext.format
 import com.mangala.wallet.utils.ext.formatCompact
-import com.mangala.wallet.utils.ext.formatFiat
 
 /**
  * Portfolio header for EVM wallet screen

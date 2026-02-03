@@ -30,7 +30,7 @@ import com.mangala.wallet.ui.imageloader.LocalImage
 @Composable
 fun WalletHeaderV2(
     selectedNetwork: BlockchainNetworkData?,
-    isConnected: Boolean,
+    isConnected: Boolean? = null,
     notificationCount: Int = 0,
     isDevelopmentEnvironment: Boolean = false,
     onNotificationClick: () -> Unit,
@@ -94,16 +94,17 @@ fun WalletHeaderV2(
             
             Spacer(modifier = Modifier.width(WalletThemeV2.Dimensions.spacingSmall))
             
-            // Connection Status Dot
-            Box(
-                modifier = Modifier
-                    .size(8.dp)
-                    .clip(CircleShape)
-                    .background(
-                        if (isConnected) WalletThemeV2.Colors.success 
-                        else WalletThemeV2.Colors.error
-                    )
-            )
+            isConnected?.let {
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .clip(CircleShape)
+                        .background(
+                            if (isConnected) WalletThemeV2.Colors.success
+                            else WalletThemeV2.Colors.error
+                        )
+                )
+            }
         }
         
         // Icon buttons row
