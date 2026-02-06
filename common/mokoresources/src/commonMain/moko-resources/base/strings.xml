@@ -1298,4 +1298,7 @@
     <string name="message_no_tokens_found">No tokens found</string>
     <string name="label_24h">24h</string>
     <string name="content_description_clear">Clear</string>
+
+    <!--    Network Selection Bottom Sheet -->
+    <string name="label_testnet">Testnet</string>
 </resources>

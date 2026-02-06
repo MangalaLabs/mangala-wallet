@@ -29,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -51,6 +50,7 @@ import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.qrcode.domain.model.QrCodeData
+import dev.icerock.moko.resources.compose.stringResource
 import com.mangala.wallet.scanqr.ScanQRCodeListener
 import com.mangala.wallet.ui.LocalGlobalNavigator
 import com.mangala.wallet.ui.SharedScreen
@@ -347,6 +347,11 @@ private fun NoEVMWalletState(
     navigator: Navigator,
     globalNavigator: Navigator
 ) {
+    val welcomeTitle = stringResource(MR.strings.onboarding_page_1_title)
+    val welcomeDescription = stringResource(MR.strings.onboarding_page_1_description)
+    val createWalletLabel = stringResource(MR.strings.onboarding_button_create_wallet)
+    val importWalletLabel = stringResource(MR.strings.onboarding_button_import_wallet)
+
     OnboardingGradientBackground {
         Column(
             modifier = Modifier
@@ -379,7 +384,7 @@ private fun NoEVMWalletState(
                 verticalArrangement = Arrangement.Center
             ) {
                 MangalaBrandText(
-                    fullText = "Welcome to Mangala",
+                    fullText = welcomeTitle,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     lineHeight = 39.2.sp,
@@ -389,10 +394,10 @@ private fun NoEVMWalletState(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "To get started, create a new EVM wallet or import an existing one.",
+                    text = welcomeDescription,
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Normal,
-                    color = Color(0xFFD1D1D1),
+                    color = WalletThemeV2.Colors.secondaryText,
                     textAlign = TextAlign.Center,
                     letterSpacing = (-0.17).sp,
                     lineHeight = 23.8.sp,
@@ -412,7 +417,7 @@ private fun NoEVMWalletState(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 MangalaGradientButton(
-                    label = "Create a new wallet",
+                    label = createWalletLabel,
                     onClick = {
                         val createWalletScreen = ScreenRegistry.get(SharedScreen.CreateWalletGuideScreen)
                         globalNavigator.push(createWalletScreen)
@@ -422,7 +427,7 @@ private fun NoEVMWalletState(
                 )
 
                 MangalaGradientButton(
-                    label = "I already have a wallet",
+                    label = importWalletLabel,
                     onClick = {
                         val importWalletScreen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
                         navigator.push(importWalletScreen)

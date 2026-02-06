@@ -4,8 +4,8 @@ import androidx.compose.ui.graphics.Color
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.ionspin.kotlin.bignum.decimal.DecimalMode
 import com.ionspin.kotlin.bignum.decimal.RoundingMode
-import com.mangala.wallet.common.mokoresources.Colors
 import com.mangala.wallet.model.blockchain.BlockchainNetworkData
+import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.model.token.domain.TokenBalanceModel
 import com.mangala.wallet.ui.HIDDEN_BALANCE_STRING
 import com.mangala.wallet.ui.utils.PNL_DECIMAL_PLACES
@@ -62,11 +62,11 @@ data class EVMWalletUiState(
     // Presentation: Determine PnL color based on value
     val portfolioPnlColor: Color
         get() {
-            if (isPortfolioBalanceHidden) return Colors.gray
+            if (isPortfolioBalanceHidden) return WalletThemeV2.Colors.secondaryText
             return when {
-                portfolioPnl == BigDecimal.ZERO -> Colors.gray
-                portfolioPnl > BigDecimal.ZERO -> Color(0xFF00A699)
-                else -> Colors.coral
+                portfolioPnl == BigDecimal.ZERO -> WalletThemeV2.Colors.secondaryText
+                portfolioPnl > BigDecimal.ZERO -> WalletThemeV2.Colors.positiveGain
+                else -> WalletThemeV2.Colors.negativeLoss
             }
         }
 }
@@ -125,11 +125,11 @@ data class EVMAccountInfo(
     // Presentation: Determine PnL color
     val pnlColor: Color
         get() {
-            if (!isBalanceVisible) return Colors.gray
+            if (!isBalanceVisible) return WalletThemeV2.Colors.secondaryText
             return when {
-                pnl == BigDecimal.ZERO -> Colors.gray
-                pnl > BigDecimal.ZERO -> Color(0xFF00A699)
-                else -> Colors.coral
+                pnl == BigDecimal.ZERO -> WalletThemeV2.Colors.secondaryText
+                pnl > BigDecimal.ZERO -> WalletThemeV2.Colors.positiveGain
+                else -> WalletThemeV2.Colors.negativeLoss
             }
         }
 

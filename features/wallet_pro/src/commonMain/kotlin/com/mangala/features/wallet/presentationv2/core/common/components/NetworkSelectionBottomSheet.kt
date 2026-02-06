@@ -17,11 +17,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -32,13 +34,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.model.blockchain.BlockchainNetworkData
-import com.mangala.wallet.ui.WalletThemeV2
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.imageloader.LocalImage
+import com.mangala.wallet.ui.theme.MangalaTypography
+import com.mangala.wallet.ui.theme.mangalaColors
+import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,13 +55,14 @@ fun NetworkSelectionBottomSheet(
     val bottomSheetState = rememberModalBottomSheetState(
         skipPartiallyExpanded = true
     )
+    val colors = MaterialTheme.mangalaColors
 
     ModalBottomSheet(
         modifier = Modifier.safeDrawingPadding(),
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
-        containerColor = Color(0xFF1D263E),
-        contentColor = Color.White,
+        containerColor = colors.bgInnerCard,
+        contentColor = colors.textPrimary,
         dragHandle = {
             Box(
                 modifier = Modifier
@@ -67,7 +70,7 @@ fun NetworkSelectionBottomSheet(
                     .width(40.dp)
                     .height(4.dp)
                     .background(
-                        Color.White.copy(alpha = 0.3f),
+                        colors.textSecondary.copy(alpha = 0.3f),
                         RoundedCornerShape(2.dp)
                     )
             )
@@ -78,18 +81,13 @@ fun NetworkSelectionBottomSheet(
                 .fillMaxWidth()
                 .padding(bottom = 32.dp)
         ) {
-
-            // Title
             Text(
-                text = "Select Network",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color.White,
-                fontFamily = getInterFontFamily(),
+                text = stringResource(MR.strings.all_select_network),
+                style = MangalaTypography.Size17SemiBold(),
+                color = colors.textPrimary,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
 
-            // Network list
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
@@ -121,6 +119,10 @@ private fun NetworkSwitchItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val colors = MaterialTheme.mangalaColors
+    val testnetLabel = stringResource(MR.strings.label_testnet)
+    val selectedDescription = stringResource(MR.strings.content_description_selected)
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -129,18 +131,10 @@ private fun NetworkSwitchItem(
             .border(
                 width = if (isSelected) 2.dp else 1.dp,
                 brush = if (isSelected) {
-                    Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFF3B90FF),
-                            Color(0xFFC27DFF)
-                        )
-                    )
+                    colors.borderHighlight
                 } else {
                     Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFF2A3E6C),
-                            Color(0xFF2A3E6C)
-                        )
+                        colors = listOf(colors.border, colors.border)
                     )
                 },
                 shape = RoundedCornerShape(16.dp)
@@ -153,7 +147,6 @@ private fun NetworkSwitchItem(
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Network icon - use actual network image if available, otherwise show first letter
             if (network.localImage != null) {
                 LocalImage(
                     imageResource = network.localImage!!,
@@ -164,57 +157,50 @@ private fun NetworkSwitchItem(
                     modifier = Modifier
                         .size(40.dp)
                         .background(
-                            color = WalletThemeV2.Colors.accentBlue.copy(alpha = 0.1f),
+                            color = colors.textLink.copy(alpha = 0.1f),
                             shape = RoundedCornerShape(20.dp)
                         ),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = network.blockchainType.name.first().toString(),
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = WalletThemeV2.Colors.accentBlue,
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size14SemiBold(),
+                        color = colors.textLink
                     )
                 }
             }
 
             Spacer(modifier = Modifier.width(12.dp))
 
-            // Network info
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = network.blockchainType.name,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = WalletThemeV2.Colors.primaryText.copy(alpha = if (isSelected) 0.95f else 0.8f),
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size14Medium(),
+                    color = colors.textPrimary.copy(alpha = if (isSelected) 0.95f else 0.8f)
                 )
 
                 Spacer(modifier = Modifier.height(4.dp))
 
                 if (network.isTestNet) {
                     Text(
-                        text = "Testnet",
-                        fontSize = 13.sp,
-                        color = WalletThemeV2.Colors.secondaryText,
-                        fontFamily = getInterFontFamily()
+                        text = testnetLabel,
+                        style = MangalaTypography.Size13Regular(),
+                        color = colors.textSecondary
                     )
                 }
             }
 
-            // Selection checkmark - positioned similar to network icon
             if (isSelected) {
                 Box(
                     modifier = Modifier
                         .size(20.dp)
-                        .clip(RoundedCornerShape(10.dp))
-                        .background(WalletThemeV2.Colors.accentBlue),
+                        .clip(CircleShape)
+                        .background(colors.textLink),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.Check,
-                        contentDescription = "Selected",
+                        contentDescription = selectedDescription,
                         tint = Color.White,
                         modifier = Modifier.size(12.dp)
                     )
