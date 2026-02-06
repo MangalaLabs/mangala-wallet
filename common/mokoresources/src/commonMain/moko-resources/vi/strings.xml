@@ -1094,4 +1094,36 @@
     <string name="message_addressbook_recent_transaction_no_imported_account">Để gửi, nhận và giao dịch an toàn, bạn cần một chiếc ví. Hãy tạo mới hoặc dùng ví bạn đã có.</string>
     <string name="button_addressbook_recent_transaction_create">Tạo Ví Mới</string>
     <string name="button_addressbook_recent_transaction_import">Tôi đã có ví</string>
+
+    <!--    EVM Add Account Bottom Sheet -->
+    <string name="title_evm_add_account">Thêm Tài Khoản</string>
+    <string name="title_evm_add_account_option_add_more">Thêm Tài Khoản</string>
+    <string name="description_evm_add_account_option_add_more">Tạo tài khoản mới từ ví HD hiện có của bạn</string>
+    <string name="title_evm_add_account_option_create">Tạo Ví</string>
+    <string name="description_evm_add_account_option_create">Tạo ví mới với cụm từ khôi phục mới</string>
+    <string name="title_evm_add_account_option_import">Nhập Ví</string>
+    <string name="description_evm_add_account_option_import">Nhập bằng cụm từ khôi phục hoặc khóa riêng tư</string>
+
+    <!--    EVM Portfolio Header -->
+    <string name="label_total_portfolio">TỔNG DANH MỤC</string>
+    <string name="label_usd">USD</string>
+    <string name="label_24h_prefix">24h: </string>
+    <string name="content_description_copy_address">Sao chép địa chỉ</string>
+    <string name="content_description_toggle_balance">Ẩn/hiện số dư</string>
+    <string name="content_description_switch_account">Chuyển tài khoản</string>
+
+    <!--    EVM Account Switch Bottom Sheet -->
+    <string name="title_switch_account">Chuyển Tài Khoản</string>
+    <string name="content_description_selected">Đã chọn</string>
+
+    <!--    EVM Quick Actions -->
+    <string name="label_history">Lịch sử</string>
+
+    <!--    EVM Token List Section -->
+    <string name="label_tokens">Token</string>
+    <string name="label_search">Tìm kiếm</string>
+    <string name="message_no_tokens_match">Không tìm thấy token "%s"</string>
+    <string name="message_no_tokens_found">Không có token</string>
+    <string name="label_24h">24h</string>
+    <string name="content_description_clear">Xóa</string>
 </resources>

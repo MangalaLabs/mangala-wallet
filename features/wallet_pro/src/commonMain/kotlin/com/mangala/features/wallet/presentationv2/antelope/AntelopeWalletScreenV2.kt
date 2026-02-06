@@ -115,7 +115,6 @@ class AntelopeWalletScreenV2 : BaseWalletScreenV2<AntelopeWalletScreenModel>() {
                             isDevelopmentEnvironment = uiState.isDevelopmentEnvironment,
                             onNotificationClick = { screenModel.onToggleAccountMode() },
                             onAddAccountClick = { showAddAccountBottomSheet = true },
-                            onToggleAccountMode = { screenModel.onToggleAccountMode() },
                             onNetworkDropdownClick = {
                                 showNetworkSelectionBottomSheet = true
                             }

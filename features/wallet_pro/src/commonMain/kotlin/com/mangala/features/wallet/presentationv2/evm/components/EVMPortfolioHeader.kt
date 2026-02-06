@@ -40,16 +40,13 @@ import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Copy
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Hide
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Show
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.ui.placeholder.mangalaWalletPlaceholder
 import com.mangala.wallet.ui.utils.PNL_DECIMAL_PLACES
 import com.mangala.wallet.utils.ext.formatCompact
+import dev.icerock.moko.resources.compose.stringResource
 
-/**
- * Portfolio header for EVM wallet screen
- * Key difference from Antelope: displays truncated hex address (0x1234...abcd)
- * instead of account names
- */
 @Composable
 fun EVMPortfolioHeader(
     isSingleAccountMode: Boolean,
@@ -73,7 +70,6 @@ fun EVMPortfolioHeader(
         modifier = modifier
     ) { singleMode ->
         if (singleMode) {
-            // Single Account View
             SingleAccountEVMView(
                 account = activeAccount,
                 isBalanceHidden = isBalanceHidden,
@@ -81,7 +77,6 @@ fun EVMPortfolioHeader(
                 onCopyAddress = onCopyAddress
             )
         } else {
-            // Multi Account View
             MultiAccountEVMView(
                 totalPortfolioUsd = totalPortfolioUsd,
                 totalPnlAmountFormatted = totalPnlAmountFormatted,
@@ -105,6 +100,10 @@ private fun SingleAccountEVMView(
     onCopyAddress: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val copyAddressDescription = stringResource(MR.strings.content_description_copy_address)
+    val toggleBalanceDescription = stringResource(MR.strings.content_description_toggle_balance)
+    val usdLabel = stringResource(MR.strings.label_usd)
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -121,18 +120,15 @@ private fun SingleAccountEVMView(
                 .fillMaxWidth()
                 .padding(20.dp)
         ) {
-            // Address Label Row
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Address with copy icon
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Truncated address display (0x1234...abcd)
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
@@ -154,10 +150,9 @@ private fun SingleAccountEVMView(
                         )
                     }
 
-                    // Copy icon
                     Icon(
                         imageVector = MangalaWalletPack.Copy,
-                        contentDescription = "Copy address",
+                        contentDescription = copyAddressDescription,
                         tint = WalletThemeV2.Colors.secondaryText,
                         modifier = Modifier
                             .size(16.dp)
@@ -165,7 +160,6 @@ private fun SingleAccountEVMView(
                     )
                 }
 
-                // Hide/Show Balance Icon
                 Box(
                     modifier = Modifier
                         .size(32.dp)
@@ -181,7 +175,7 @@ private fun SingleAccountEVMView(
                 ) {
                     Icon(
                         imageVector = if (isBalanceHidden) MangalaWalletPack.Hide else MangalaWalletPack.Show,
-                        contentDescription = "Toggle balance visibility",
+                        contentDescription = toggleBalanceDescription,
                         tint = WalletThemeV2.Colors.secondaryText,
                         modifier = Modifier.size(16.dp)
                     )
@@ -190,10 +184,7 @@ private fun SingleAccountEVMView(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Balance Display - uses totalValueFormatted from EVMAccountInfo (same as EvmAccountItemUiModel)
-            Row(
-                verticalAlignment = Alignment.Bottom
-            ) {
+            Row(verticalAlignment = Alignment.Bottom) {
                 Text(
                     text = if (isBalanceHidden) {
                         "••••••"
@@ -214,7 +205,7 @@ private fun SingleAccountEVMView(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "USD",
+                    text = usdLabel,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = WalletThemeV2.Colors.secondaryText,
@@ -223,7 +214,6 @@ private fun SingleAccountEVMView(
                 )
             }
 
-            // PnL Display - uses formattedPnl from EVMAccountInfo (same as EvmAccountItemUiModel)
             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingMedium))
 
             EVMPnlDisplay(
@@ -249,11 +239,12 @@ private fun MultiAccountEVMView(
     onAccountClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val totalPortfolioLabel = stringResource(MR.strings.label_total_portfolio)
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        // Portfolio Total Row
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -262,11 +253,9 @@ private fun MultiAccountEVMView(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
-                    text = "TOTAL PORTFOLIO",
+                    text = totalPortfolioLabel,
                     fontSize = 10.sp,
                     letterSpacing = 1.sp,
                     color = WalletThemeV2.Colors.tertiaryText,
@@ -294,7 +283,6 @@ private fun MultiAccountEVMView(
             }
         }
 
-        // Active Account Card
         ActiveAccountCard(
             account = activeAccount,
             isBalanceHidden = isBalanceHidden,
@@ -314,6 +302,11 @@ private fun ActiveAccountCard(
     onAccountClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val copyAddressDescription = stringResource(MR.strings.content_description_copy_address)
+    val toggleBalanceDescription = stringResource(MR.strings.content_description_toggle_balance)
+    val switchAccountDescription = stringResource(MR.strings.content_description_switch_account)
+    val usdLabel = stringResource(MR.strings.label_usd)
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -330,7 +323,6 @@ private fun ActiveAccountCard(
                 .fillMaxWidth()
                 .padding(20.dp)
         ) {
-            // Address Row with account switch
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -340,7 +332,6 @@ private fun ActiveAccountCard(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Clickable address box with switch indicator
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
@@ -368,17 +359,16 @@ private fun ActiveAccountCard(
 
                             Icon(
                                 imageVector = Icons.Default.KeyboardArrowDown,
-                                contentDescription = "Switch Account",
+                                contentDescription = switchAccountDescription,
                                 tint = WalletThemeV2.Colors.tertiaryText,
                                 modifier = Modifier.size(14.dp)
                             )
                         }
                     }
 
-                    // Copy icon
                     Icon(
                         imageVector = MangalaWalletPack.Copy,
-                        contentDescription = "Copy address",
+                        contentDescription = copyAddressDescription,
                         tint = WalletThemeV2.Colors.secondaryText,
                         modifier = Modifier
                             .size(16.dp)
@@ -386,7 +376,6 @@ private fun ActiveAccountCard(
                     )
                 }
 
-                // Hide/Show Balance Icon
                 Box(
                     modifier = Modifier
                         .size(32.dp)
@@ -402,7 +391,7 @@ private fun ActiveAccountCard(
                 ) {
                     Icon(
                         imageVector = if (isBalanceHidden) MangalaWalletPack.Hide else MangalaWalletPack.Show,
-                        contentDescription = "Toggle balance visibility",
+                        contentDescription = toggleBalanceDescription,
                         tint = WalletThemeV2.Colors.secondaryText,
                         modifier = Modifier.size(16.dp)
                     )
@@ -411,10 +400,7 @@ private fun ActiveAccountCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Balance Display - uses totalValueFormatted from EVMAccountInfo
-            Row(
-                verticalAlignment = Alignment.Bottom
-            ) {
+            Row(verticalAlignment = Alignment.Bottom) {
                 Text(
                     text = if (isBalanceHidden) {
                         "••••••"
@@ -435,7 +421,7 @@ private fun ActiveAccountCard(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "USD",
+                    text = usdLabel,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Medium,
                     color = WalletThemeV2.Colors.secondaryText,
@@ -444,7 +430,6 @@ private fun ActiveAccountCard(
                 )
             }
 
-            // PnL Display - uses formattedPnl from EVMAccountInfo
             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingMedium))
 
             EVMPnlDisplay(
@@ -466,13 +451,14 @@ private fun EVMPnlDisplay(
     modifier: Modifier = Modifier
 ) {
     val hiddenPlaceholder = "+*.**%"
+    val pnlPrefix = stringResource(MR.strings.label_24h_prefix)
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
         Text(
-            text = "24h: ",
+            text = pnlPrefix,
             fontSize = WalletThemeV2.Typography.fontSizeBody,
             color = WalletThemeV2.Colors.secondaryText,
             fontFamily = getInterFontFamily(),

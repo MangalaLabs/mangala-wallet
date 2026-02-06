@@ -7,6 +7,7 @@ import com.mangala.wallet.domain.currency.usecases.GetCurrentCurrencyCodeUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetBalanceVisibleStatusUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetSelectedNetworkUseCase
 import com.mangala.wallet.domain.datastore.usecases.SaveBalanceVisibleStatusUseCase
+import com.mangala.wallet.domain.datastore.usecases.SaveSelectedNetworkUseCase
 import com.mangala.wallet.domain.portfolio.model.AccountPortfolio
 import com.mangala.wallet.domain.portfolio.usecases.GetAllWalletsPortfolioUseCase
 import com.mangala.wallet.features.chains.evmcompatible.model.Address
@@ -27,22 +28,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-/**
- * ViewModel for EVM Wallet Screen V2
- *
- * Responsibilities:
- * - Orchestrate data loading via UseCase
- * - Map domain model (PortfolioData) to UI state (EVMWalletUiState)
- * - Handle UI events (refresh, account selection, etc.)
- *
- * Business logic (portfolio calculation) is delegated to GetAllWalletsPortfolioUseCase.
- */
 class EVMWalletScreenModel(
     private val getAllWalletsPortfolioUseCase: GetAllWalletsPortfolioUseCase,
     private val getSelectedNetworkUseCase: GetSelectedNetworkUseCase,
     private val getCurrentCurrencyCodeUseCase: GetCurrentCurrencyCodeUseCase,
     private val getBalanceVisibleStatusUseCase: GetBalanceVisibleStatusUseCase,
     private val saveBalanceVisibleStatusUseCase: SaveBalanceVisibleStatusUseCase,
+    private val saveSelectedNetworkUseCase: SaveSelectedNetworkUseCase,
     private val parseQRCodeResultUseCase: ParseQRCodeResultUseCase,
     private val clipboardFactory: ClipboardFactory,
     private val shareFactory: ShareFactory,
@@ -84,7 +76,6 @@ class EVMWalletScreenModel(
     private fun observeNetworkAndLoadPortfolio() {
         screenModelScope.launch {
             getSelectedNetworkUseCase.invokeFlow().collectLatest { selectedNetwork ->
-                // Only process if EVM network
                 if (selectedNetwork.blockchainType.networkType != NetworkType.EVM) return@collectLatest
 
                 loadPortfolioJob?.cancel()
@@ -100,10 +91,6 @@ class EVMWalletScreenModel(
         }
     }
 
-    /**
-     * Load portfolio data using the UseCase.
-     * Maps domain model to UI state.
-     */
     private suspend fun loadPortfolio(forceReload: Boolean, network: BlockchainNetworkData) {
         val currencyCode = getCurrentCurrencyCodeUseCase()
         val currencySymbol = Currency.valueOf(currencyCode).symbol
@@ -121,7 +108,6 @@ class EVMWalletScreenModel(
                 currentSelectedIndex.coerceIn(0, portfolioData.accounts.lastIndex)
             }
 
-            // Map domain model (AccountPortfolio) to UI model (EVMAccountInfo)
             val accountInfos = portfolioData.accounts.mapIndexed { index, accountPortfolio ->
                 mapToAccountInfo(
                     accountPortfolio = accountPortfolio,
@@ -139,7 +125,6 @@ class EVMWalletScreenModel(
                     isLoadingWallets = resource is Resource.Loading,
                     isPortfolioBalanceHidden = !balanceVisible,
                     isDevelopmentEnvironment = buildEnvironmentProvider.isDevelopmentEnvironment(),
-                    // Pre-calculated portfolio totals from UseCase
                     portfolioTotalUsd = portfolioData.totalValueUsd,
                     portfolioPnl = portfolioData.totalPnl,
                     portfolioPnlPercentage = portfolioData.totalPnlPercentage
@@ -148,10 +133,6 @@ class EVMWalletScreenModel(
         }
     }
 
-    /**
-     * Map domain model to UI model.
-     * This is the only place where mapping happens - keeps it clean and testable.
-     */
     private fun mapToAccountInfo(
         accountPortfolio: AccountPortfolio,
         isActive: Boolean,
@@ -167,7 +148,6 @@ class EVMWalletScreenModel(
             isActive = isActive,
             isBalanceVisible = isBalanceVisible,
             currencySymbol = currencySymbol,
-            // Pre-calculated values from domain model
             totalValueUsd = accountPortfolio.totalValueUsd,
             pnl = accountPortfolio.pnl,
             yesterdayTotalValue = accountPortfolio.yesterdayTotalValue
@@ -233,6 +213,12 @@ class EVMWalletScreenModel(
     fun getAvailableNetworks(): List<BlockchainNetworkData> {
         return BlockchainNetworkData.getAllBlockchainNetworkSupported(buildEnvironmentProvider.isDevelopmentEnvironment())
             .filter { it.blockchainType.networkType == NetworkType.EVM }
+    }
+
+    fun onNetworkSelected(network: BlockchainNetworkData) {
+        screenModelScope.launch {
+            saveSelectedNetworkUseCase(network)
+        }
     }
 
     fun onSearchToggled() {
