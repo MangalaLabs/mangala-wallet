@@ -35,7 +35,6 @@ fun WalletHeaderV2(
     isDevelopmentEnvironment: Boolean = false,
     onNotificationClick: () -> Unit,
     onAddAccountClick: () -> Unit,
-    onToggleAccountMode: () -> Unit = {},
     onNetworkDropdownClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {

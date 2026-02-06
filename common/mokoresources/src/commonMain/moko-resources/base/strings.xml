@@ -1266,4 +1266,39 @@
     <string name="message_addressbook_recent_transaction_no_imported_account">Your secure gateway to crypto. Create a new wallet or import one you already trust.</string>
     <string name="button_addressbook_recent_transaction_create">Create a new wallet</string>
     <string name="button_addressbook_recent_transaction_import">I Already Have a Wallet</string>
+
+    <!--    EVM Add Account Bottom Sheet -->
+    <string name="title_evm_add_account">Add Account</string>
+    <string name="title_evm_add_account_option_add_more">Add More Account</string>
+    <string name="description_evm_add_account_option_add_more">Derive a new account from your existing HD wallet</string>
+    <string name="title_evm_add_account_option_create">Create Wallet</string>
+    <string name="description_evm_add_account_option_create">Generate a new wallet with a fresh seed phrase</string>
+    <string name="title_evm_add_account_option_import">Import Wallet</string>
+    <string name="description_evm_add_account_option_import">Import using seed phrase or private key</string>
+
+    <!--    EVM Portfolio Header -->
+    <string name="label_total_portfolio">TOTAL PORTFOLIO</string>
+    <string name="label_usd">USD</string>
+    <string name="label_24h_prefix">24h: </string>
+    <string name="content_description_copy_address">Copy address</string>
+    <string name="content_description_toggle_balance">Toggle balance visibility</string>
+    <string name="content_description_switch_account">Switch Account</string>
+
+    <!--    EVM Account Switch Bottom Sheet -->
+    <string name="title_switch_account">Switch Account</string>
+    <string name="content_description_selected">Selected</string>
+
+    <!--    EVM Quick Actions -->
+    <string name="label_history">History</string>
+
+    <!--    EVM Token List Section -->
+    <string name="label_tokens">Tokens</string>
+    <string name="label_search">Search</string>
+    <string name="message_no_tokens_match">No tokens match "%s"</string>
+    <string name="message_no_tokens_found">No tokens found</string>
+    <string name="label_24h">24h</string>
+    <string name="content_description_clear">Clear</string>
+
+    <!--    Network Selection Bottom Sheet -->
+    <string name="label_testnet">Testnet</string>
 </resources>

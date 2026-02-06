@@ -45,14 +45,13 @@ import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Search
 import com.mangala.wallet.model.token.domain.TokenBalanceModel
 import com.mangala.wallet.model.token.domain.formattedBalanceForHuman
 import com.mangala.wallet.model.token.domain.formattedValue
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.HIDDEN_BALANCE_STRING
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.ui.imageloader.ImageSource
 import com.mangala.wallet.ui.placeholder.mangalaWalletPlaceholder
+import dev.icerock.moko.resources.compose.stringResource
 
-/**
- * Reusable card container modifier for consistent styling.
- */
 private fun Modifier.tokenListCard(): Modifier = this
     .fillMaxWidth()
     .clip(RoundedCornerShape(16.dp))
@@ -63,9 +62,6 @@ private fun Modifier.tokenListCard(): Modifier = this
         shape = RoundedCornerShape(16.dp)
     )
 
-/**
- * Reusable divider for token list items.
- */
 @Composable
 private fun TokenListDivider() {
     Box(
@@ -101,6 +97,9 @@ fun EVMTokenListSection(
         }
     }
 
+    val noTokensMatchMessage = stringResource(MR.strings.message_no_tokens_match, searchQuery)
+    val noTokensFoundMessage = stringResource(MR.strings.message_no_tokens_found)
+
     Column(modifier = modifier.fillMaxWidth()) {
         TokenListHeader(
             isSearchActive = isSearchActive,
@@ -124,7 +123,7 @@ fun EVMTokenListSection(
 
             filteredTokens.isNullOrEmpty() -> {
                 EmptyTokenState(
-                    message = if (searchQuery.isNotEmpty()) "No tokens match \"$searchQuery\"" else "No tokens found"
+                    message = if (searchQuery.isNotEmpty()) noTokensMatchMessage else noTokensFoundMessage
                 )
             }
 
@@ -145,13 +144,16 @@ private fun TokenListHeader(
     isSearchActive: Boolean,
     onSearchClick: () -> Unit
 ) {
+    val tokensLabel = stringResource(MR.strings.label_tokens)
+    val searchLabel = stringResource(MR.strings.label_search)
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Tokens",
+            text = tokensLabel,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium,
             color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
@@ -160,7 +162,7 @@ private fun TokenListHeader(
 
         Icon(
             imageVector = MangalaWalletPack.Search,
-            contentDescription = "Search",
+            contentDescription = searchLabel,
             tint = if (isSearchActive) WalletThemeV2.Colors.evmAccent else WalletThemeV2.Colors.secondaryText,
             modifier = Modifier
                 .size(WalletThemeV2.Dimensions.iconSizeMedium)
@@ -175,6 +177,9 @@ private fun TokenSearchField(
     onSearchQueryChanged: (String) -> Unit
 ) {
     val focusRequester = remember { FocusRequester() }
+    val placeholderText = stringResource(MR.strings.message_wallet_details_search_tokens_hint)
+    val searchLabel = stringResource(MR.strings.label_search)
+    val clearLabel = stringResource(MR.strings.content_description_clear)
 
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
@@ -185,7 +190,7 @@ private fun TokenSearchField(
         onValueChange = onSearchQueryChanged,
         placeholder = {
             Text(
-                text = "Search tokens...",
+                text = placeholderText,
                 color = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.6f),
                 fontSize = 14.sp,
                 fontFamily = getInterFontFamily()
@@ -194,7 +199,7 @@ private fun TokenSearchField(
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = "Search",
+                contentDescription = searchLabel,
                 tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
                 modifier = Modifier.size(20.dp)
             )
@@ -204,7 +209,7 @@ private fun TokenSearchField(
                 IconButton(onClick = { onSearchQueryChanged("") }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Clear",
+                        contentDescription = clearLabel,
                         tint = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.7f),
                         modifier = Modifier.size(18.dp)
                     )
@@ -275,6 +280,8 @@ private fun EVMTokenItem(
         }
     }
 
+    val label24h = stringResource(MR.strings.label_24h)
+
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -291,7 +298,6 @@ private fun EVMTokenItem(
                 ),
             verticalAlignment = Alignment.Top
         ) {
-            // Reuse TokenLogo from antelope components (DRY principle)
             Box(
                 modifier = Modifier.size(24.dp),
                 contentAlignment = Alignment.Center
@@ -323,7 +329,7 @@ private fun EVMTokenItem(
                 )
 
                 Text(
-                    text = "24h",
+                    text = label24h,
                     fontSize = 10.sp,
                     color = WalletThemeV2.Colors.tertiaryText,
                     fontFamily = getInterFontFamily()

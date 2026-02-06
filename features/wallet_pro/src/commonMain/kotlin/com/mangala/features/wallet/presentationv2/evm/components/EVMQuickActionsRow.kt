@@ -28,8 +28,10 @@ import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Card
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ReceiveButton
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Scan
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.SendButton
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.utils.isQrCodeScanningSupported
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun EVMQuickActionsRow(
@@ -45,26 +47,26 @@ fun EVMQuickActionsRow(
     ) {
         EVMQuickActionItem(
             icon = MangalaWalletPack.SendButton,
-            label = "Send",
+            label = stringResource(MR.strings.all_send),
             onClick = onSendClick
         )
 
         EVMQuickActionItem(
             icon = MangalaWalletPack.ReceiveButton,
-            label = "Receive",
+            label = stringResource(MR.strings.all_receive),
             onClick = onReceiveClick
         )
 
         EVMQuickActionItem(
             icon = MangalaWalletPack.Card,
-            label = "History",
+            label = stringResource(MR.strings.label_history),
             onClick = onHistoryClick
         )
 
         if (isQrCodeScanningSupported()) {
             EVMQuickActionItem(
                 icon = MangalaWalletPack.Scan,
-                label = "Scan",
+                label = stringResource(MR.strings.label_scan),
                 onClick = onScanClick
             )
         }

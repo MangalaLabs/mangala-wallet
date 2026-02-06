@@ -13,12 +13,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -26,87 +28,96 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowCircleDown
-import com.mangala.wallet.ui.WalletThemeV2
+import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Navigate
+import com.mangala.wallet.mokoresources.MR
+import com.mangala.wallet.ui.theme.MangalaTypography
+import com.mangala.wallet.ui.theme.highlightGradientDisabled
+import com.mangala.wallet.ui.theme.mangalaColors
+import dev.icerock.moko.resources.compose.stringResource
 
-/**
- * Bottom sheet for adding a new EVM account
- * Options: Create new account or Import existing wallet
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EVMAddAccountBottomSheet(
-    onCreateNewAccount: () -> Unit,
+    onAddMoreAccount: () -> Unit,
+    onCreateNewWallet: () -> Unit,
     onImportWallet: () -> Unit,
     onDismiss: () -> Unit
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val colors = MaterialTheme.mangalaColors
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = sheetState,
-        containerColor = WalletThemeV2.Colors.cardBackground,
-        shape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp),
+        containerColor = colors.bgInnerCard,
+        contentColor = colors.textPrimary,
         dragHandle = {
             Box(
                 modifier = Modifier
-                    .padding(vertical = 12.dp)
+                    .padding(vertical = 8.dp)
                     .width(40.dp)
                     .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp))
-                    .background(WalletThemeV2.Colors.tertiaryText.copy(alpha = 0.3f))
+                    .background(
+                        colors.textSecondary.copy(alpha = 0.3f),
+                        RoundedCornerShape(2.dp)
+                    )
             )
         }
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+                .padding(bottom = 32.dp)
         ) {
-            // Title
             Text(
-                text = "Add Account",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = WalletThemeV2.Colors.primaryText,
-                fontFamily = getInterFontFamily(),
-                modifier = Modifier.padding(bottom = 8.dp)
+                text = stringResource(MR.strings.title_evm_add_account),
+                style = MangalaTypography.Size17SemiBold(),
+                color = colors.textPrimary,
+                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
 
-            // Create new account option
-            AddAccountOption(
-                icon = Icons.Default.Add,
-                iconBackgroundColor = WalletThemeV2.Colors.accentBlue.copy(alpha = 0.15f),
-                iconTint = WalletThemeV2.Colors.accentBlue,
-                title = "Create New Account",
-                description = "Generate a new HD wallet account",
-                onClick = {
-                    onDismiss()
-                    onCreateNewAccount()
-                }
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp, vertical = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                AddAccountOption(
+                    icon = Icons.Default.Add,
+                    title = stringResource(MR.strings.title_evm_add_account_option_add_more),
+                    description = stringResource(MR.strings.description_evm_add_account_option_add_more),
+                    onClick = {
+                        onDismiss()
+                        onAddMoreAccount()
+                    }
+                )
 
-            // Import wallet option
-            AddAccountOption(
-                icon = MangalaWalletPack.ArrowCircleDown,
-                iconBackgroundColor = WalletThemeV2.Colors.accentPurple.copy(alpha = 0.15f),
-                iconTint = WalletThemeV2.Colors.accentPurple,
-                title = "Import Wallet",
-                description = "Import using seed phrase or private key",
-                onClick = {
-                    onDismiss()
-                    onImportWallet()
-                }
-            )
+                AddAccountOption(
+                    icon = Icons.Default.AccountCircle,
+                    title = stringResource(MR.strings.title_evm_add_account_option_create),
+                    description = stringResource(MR.strings.description_evm_add_account_option_create),
+                    onClick = {
+                        onDismiss()
+                        onCreateNewWallet()
+                    }
+                )
+
+                AddAccountOption(
+                    icon = MangalaWalletPack.ArrowCircleDown,
+                    title = stringResource(MR.strings.title_evm_add_account_option_import),
+                    description = stringResource(MR.strings.description_evm_add_account_option_import),
+                    onClick = {
+                        onDismiss()
+                        onImportWallet()
+                    }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
@@ -114,73 +125,66 @@ fun EVMAddAccountBottomSheet(
 @Composable
 private fun AddAccountOption(
     icon: ImageVector,
-    iconBackgroundColor: Color,
-    iconTint: Color,
     title: String,
     description: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
+    val colors = MaterialTheme.mangalaColors
+
     Box(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(Color.White.copy(alpha = 0.05f))
+            .clip(RoundedCornerShape(16.dp))
             .border(
                 width = 1.dp,
-                color = Color.White.copy(alpha = 0.08f),
-                shape = RoundedCornerShape(12.dp)
+                color = colors.border,
+                shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() }
-            .padding(16.dp)
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Icon
             Box(
                 modifier = Modifier
-                    .size(44.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(iconBackgroundColor),
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .background(highlightGradientDisabled),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     imageVector = icon,
-                    contentDescription = title,
-                    tint = iconTint,
-                    modifier = Modifier.size(22.dp)
+                    contentDescription = null,
+                    tint = colors.textLink,
+                    modifier = Modifier.size(20.dp)
                 )
             }
 
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(16.dp))
 
-            // Text content
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
-            ) {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = title,
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = WalletThemeV2.Colors.primaryText,
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size14SemiBold(),
+                    color = colors.textPrimary
                 )
+
+                Spacer(modifier = Modifier.height(4.dp))
+
                 Text(
                     text = description,
-                    fontSize = 12.sp,
-                    color = WalletThemeV2.Colors.secondaryText,
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size12Regular(),
+                    color = colors.textSecondary
                 )
             }
 
-            // Arrow
             Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
+                imageVector = MangalaWalletPack.Navigate,
                 contentDescription = null,
-                tint = WalletThemeV2.Colors.tertiaryText,
+                tint = colors.iconSecondary,
                 modifier = Modifier.size(20.dp)
             )
         }

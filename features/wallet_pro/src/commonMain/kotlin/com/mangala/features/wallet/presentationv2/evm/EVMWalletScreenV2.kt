@@ -29,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,10 +45,12 @@ import com.mangala.features.wallet.presentationv2.evm.components.EVMAddAccountBo
 import com.mangala.features.wallet.presentationv2.evm.components.EVMPortfolioHeader
 import com.mangala.features.wallet.presentationv2.evm.components.EVMQuickActionsRow
 import com.mangala.features.wallet.presentationv2.evm.components.EVMTokenListSection
+import com.mangala.features.wallet.presentationv2.core.common.components.NetworkSelectionBottomSheet
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.qrcode.domain.model.QrCodeData
+import dev.icerock.moko.resources.compose.stringResource
 import com.mangala.wallet.scanqr.ScanQRCodeListener
 import com.mangala.wallet.ui.LocalGlobalNavigator
 import com.mangala.wallet.ui.SharedScreen
@@ -63,14 +64,6 @@ import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
 import kotlinx.coroutines.delay
 
-/**
- * EVM Wallet Screen V2
- * Follows the same pattern as AntelopeWalletScreenV2 but adapted for EVM networks
- * Key differences:
- * - Shows truncated wallet addresses (0x1234...abcd) instead of account names
- * - Uses local balance calculation (no server-side portfolio API for EVM yet)
- * - Supports HD wallet account switching
- */
 class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
 
     override val networkType = NetworkType.EVM
@@ -96,6 +89,7 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
             var contentVisible by remember { mutableStateOf(false) }
             var showAddAccountBottomSheet by remember { mutableStateOf(false) }
             var showAccountSwitchBottomSheet by remember { mutableStateOf(false) }
+            var showNetworkSelectionBottomSheet by remember { mutableStateOf(false) }
 
             LaunchedEffect(Unit) {
                 delay(100)
@@ -107,9 +101,7 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                 onRefresh = { screenModel.onRefresh() }
             )
 
-            OnboardingGradientBackground(
-                circleBackgroundEnabled = true
-            ) {
+            OnboardingGradientBackground(circleBackgroundEnabled = true) {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -121,15 +113,13 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                             .verticalScroll(rememberScrollState())
                             .statusBarsPadding()
                     ) {
-                        // Header with network selector
                         WalletHeaderV2(
                             selectedNetwork = uiState.selectedNetwork,
                             notificationCount = 0,
                             isDevelopmentEnvironment = uiState.isDevelopmentEnvironment,
-                            onNotificationClick = { /* TODO */ },
+                            onNotificationClick = { },
                             onAddAccountClick = { showAddAccountBottomSheet = true },
-                            onToggleAccountMode = { /* Not used for EVM */ },
-                            onNetworkDropdownClick = { /* TODO: Network selection */ }
+                            onNetworkDropdownClick = { showNetworkSelectionBottomSheet = true }
                         )
 
                         Column(
@@ -138,7 +128,6 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                 .padding(horizontal = WalletThemeV2.Dimensions.paddingMedium),
                             verticalArrangement = Arrangement.spacedBy(WalletThemeV2.Dimensions.spacingMedium)
                         ) {
-                            // Portfolio Header - shows truncated address for EVM
                             EVMPortfolioHeader(
                                 isSingleAccountMode = uiState.isSingleAccountMode,
                                 activeAccount = uiState.activeAccount,
@@ -155,7 +144,6 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
 
                             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingXSmall))
 
-                            // Quick Action Buttons
                             AnimatedVisibility(
                                 visible = contentVisible,
                                 enter = fadeIn(
@@ -186,9 +174,7 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                         )
                                         globalNavigator.push(screen)
                                     },
-                                    onHistoryClick = {
-                                        // TODO: Navigate to EVM transaction history
-                                    },
+                                    onHistoryClick = { },
                                     onScanClick = {
                                         val networkType = uiState.selectedNetwork?.blockchainType?.networkType
                                         networkType?.let {
@@ -215,7 +201,6 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
 
                             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingSmall))
 
-                            // Token list section
                             AnimatedVisibility(
                                 visible = contentVisible,
                                 enter = fadeIn(
@@ -234,13 +219,10 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                     searchQuery = uiState.searchQuery,
                                     onSearchClick = { screenModel.onSearchToggled() },
                                     onSearchQueryChanged = { screenModel.onSearchQueryChanged(it) },
-                                    onTokenClick = { token ->
-                                        // TODO: Navigate to token detail
-                                    }
+                                    onTokenClick = { }
                                 )
                             }
 
-                            // Bottom spacing for navigation bar
                             Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.paddingXLarge))
                         }
                     }
@@ -255,11 +237,14 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                 }
             }
 
-            // Bottom Sheets
             if (showAddAccountBottomSheet) {
                 EVMAddAccountBottomSheet(
-                    onCreateNewAccount = {
+                    onAddMoreAccount = {
                         val screen = ScreenRegistry.get(SharedScreen.EvmCreateAccountScreen())
+                        globalNavigator.push(screen)
+                    },
+                    onCreateNewWallet = {
+                        val screen = ScreenRegistry.get(SharedScreen.CreateWalletGuideScreen)
                         globalNavigator.push(screen)
                     },
                     onImportWallet = {
@@ -281,22 +266,28 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                     onDismiss = { showAccountSwitchBottomSheet = false }
                 )
             }
+
+            if (showNetworkSelectionBottomSheet) {
+                NetworkSelectionBottomSheet(
+                    availableNetworks = screenModel.getAvailableNetworks(),
+                    selectedNetwork = uiState.selectedNetwork,
+                    onNetworkSelected = { network ->
+                        screenModel.onNetworkSelected(network)
+                        showNetworkSelectionBottomSheet = false
+                    },
+                    onDismiss = { showNetworkSelectionBottomSheet = false }
+                )
+            }
         } else {
             NoEVMWalletState(navigator, globalNavigator)
         }
     }
 
-    override fun onNavigateToSend() {
-        // Handled in ScreenContent
-    }
+    override fun onNavigateToSend() { }
 
-    override fun onNavigateToReceive() {
-        // Handled in ScreenContent
-    }
+    override fun onNavigateToReceive() { }
 
-    override fun onNavigateToHistory() {
-        // Handled in ScreenContent
-    }
+    override fun onNavigateToHistory() { }
 
     override val isBottomBarVisible = true
 
@@ -340,33 +331,27 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                 globalNavigator.push(step2Screen)
             }
 
-            QrCodeData.WalletConnect -> {
-                // TODO: Implement WalletConnect support
-            }
+            QrCodeData.WalletConnect -> { }
 
-            QrCodeData.Login -> {
-                // Not applicable for EVM
-            }
+            QrCodeData.Login -> { }
 
-            is QrCodeData.ImportAccount -> {
-                // TODO: Handle import for EVM
-            }
+            is QrCodeData.ImportAccount -> { }
 
-            else -> {
-                // Handle other cases or show error
-            }
+            else -> { }
         }
     }
 }
 
-/**
- * State shown when no EVM wallet is imported
- */
 @Composable
 private fun NoEVMWalletState(
     navigator: Navigator,
     globalNavigator: Navigator
 ) {
+    val welcomeTitle = stringResource(MR.strings.onboarding_page_1_title)
+    val welcomeDescription = stringResource(MR.strings.onboarding_page_1_description)
+    val createWalletLabel = stringResource(MR.strings.onboarding_button_create_wallet)
+    val importWalletLabel = stringResource(MR.strings.onboarding_button_import_wallet)
+
     OnboardingGradientBackground {
         Column(
             modifier = Modifier
@@ -399,7 +384,7 @@ private fun NoEVMWalletState(
                 verticalArrangement = Arrangement.Center
             ) {
                 MangalaBrandText(
-                    fullText = "Welcome to Mangala",
+                    fullText = welcomeTitle,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold,
                     lineHeight = 39.2.sp,
@@ -409,10 +394,10 @@ private fun NoEVMWalletState(
                 Spacer(modifier = Modifier.height(12.dp))
 
                 Text(
-                    text = "To get started, create a new EVM wallet or import an existing one.",
+                    text = welcomeDescription,
                     fontSize = 17.sp,
                     fontWeight = FontWeight.Normal,
-                    color = Color(0xFFD1D1D1),
+                    color = WalletThemeV2.Colors.secondaryText,
                     textAlign = TextAlign.Center,
                     letterSpacing = (-0.17).sp,
                     lineHeight = 23.8.sp,
@@ -432,7 +417,7 @@ private fun NoEVMWalletState(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 MangalaGradientButton(
-                    label = "Create a new wallet",
+                    label = createWalletLabel,
                     onClick = {
                         val createWalletScreen = ScreenRegistry.get(SharedScreen.CreateWalletGuideScreen)
                         globalNavigator.push(createWalletScreen)
@@ -442,7 +427,7 @@ private fun NoEVMWalletState(
                 )
 
                 MangalaGradientButton(
-                    label = "I already have a wallet",
+                    label = importWalletLabel,
                     onClick = {
                         val importWalletScreen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
                         navigator.push(importWalletScreen)
