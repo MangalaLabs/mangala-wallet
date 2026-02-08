@@ -7,6 +7,7 @@ import com.mangala.wallet.cryptography.pbkdf2sha512
 import com.mangala.wallet.model.blockchain.AddressType
 import com.mangala.wallet.model.blockchain.Blockchain
 import com.mangala.wallet.model.blockchain.BlockchainType
+import com.mangala.wallet.model.blockchain.NetworkType
 import fr.acinq.secp256k1.Secp256k1
 import okio.ByteString.Companion.toByteString
 
@@ -22,23 +23,11 @@ class GenerateHDKeyUseCase {
         derivationPathIndex: Int = 0
     ): HDKey {
         // Refer to this for list of coin type index https://github.com/satoshilabs/slips/blob/master/slip-0044.md
-        val coinTypeIndex = when (blockchain.type) {
-            BlockchainType.BinanceSmartChain,
-            BlockchainType.BinanceSmartChainTestNet,
-            BlockchainType.Polygon,
-            BlockchainType.PolygonMumbai,
-            BlockchainType.EosEvm,
-            BlockchainType.Ethereum,
-            BlockchainType.EthereumGoerli,
-            BlockchainType.EthereumSepolia,
-            BlockchainType.EthereumHolesky,
-            BlockchainType.Polygon,
-            BlockchainType.PolygonMumbai-> 60
-            BlockchainType.Bitcoin -> 0
-            BlockchainType.BitcoinTestnet4 -> 1
-            BlockchainType.Eos,
-            BlockchainType.EosJungleTestnet -> 194
-            else -> 0
+        val coinTypeIndex = when (blockchain.type.networkType) {
+            NetworkType.EVM -> 60
+            NetworkType.BITCOIN -> if (blockchain.type.isTestnet) 1 else 0
+            NetworkType.ANTELOPE -> 194
+            NetworkType.OTHER, NetworkType.UNSUPPORTED -> 60
         }
         val path = "m/${addressType.derivationPathPurpose}'/${coinTypeIndex}'/${accountNumber}'/${chain}/${derivationPathIndex}"
         println("GenerateHDKeyUseCase path: $path")
