@@ -161,7 +161,14 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                             ) {
                                 EVMQuickActionsRow(
                                     onSendClick = {
-                                        globalNavigator.push(ScreenRegistry.get(SharedScreen.ContactListScreen))
+                                        val screen = ScreenRegistry.get(
+                                            SharedScreen.Step2SelectNetwork(
+                                                accountId = screenModel.getCurrentAccountId(),
+                                                networkType = NetworkType.EVM.name,
+                                                address = null
+                                            )
+                                        )
+                                        globalNavigator.push(screen)
                                     },
                                     onReceiveClick = {
                                         val screen = ScreenRegistry.get(
