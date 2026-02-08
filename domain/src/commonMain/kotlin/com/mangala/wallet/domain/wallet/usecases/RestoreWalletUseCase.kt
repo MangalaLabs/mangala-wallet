@@ -6,6 +6,7 @@ import com.mangala.wallet.domain.wallet.usecases.account.AccountCreator
 import com.mangala.wallet.model.account.domain.AccountModel
 import com.mangala.wallet.model.account.domain.AccountType
 import com.mangala.wallet.model.blockchain.BlockchainType
+import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.model.wallet.domain.WalletModel
 import com.mangala.wallet.utils.bip39.BIP39_WORDLIST_ENGLISH
 import com.soywiz.krypto.sha256
@@ -38,26 +39,37 @@ class RestoreWalletUseCase(
         )
 
         val derivationPathIndex = 0
-        val addresses = mapAccountToAccountBlockchainUseCase(derivationPathIndex, walletWithoutId, BlockchainType.Ethereum)
+
+        // Always derive from Ethereum for stable wallet/account ID (chain-agnostic identifier)
+        val identifyingAddresses = mapAccountToAccountBlockchainUseCase(derivationPathIndex, walletWithoutId, BlockchainType.Ethereum)
+        val walletId = identifyingAddresses.publicKey
+
+        // Derive chain-specific addresses (reuse Ethereum derivation for EVM chains)
+        val chainAddresses = if (blockchainType.networkType == NetworkType.EVM) {
+            identifyingAddresses
+        } else {
+            mapAccountToAccountBlockchainUseCase(derivationPathIndex, walletWithoutId, blockchainType)
+        }
+
         val account = AccountModel(
-            id = addresses.publicKey,
+            id = walletId,
             name = name,
             type = AccountType.NORMAL,
-            walletId = addresses.publicKey,
+            walletId = walletId,
             derivationPathIndex = 0,
             sortingOrder = 0,
             isHidden = false,
-            bip44Address = addresses.bip44Address,
-            bip49Address = addresses.bip49Address,
-            bip84Address = addresses.bip84Address
+            bip44Address = chainAddresses.bip44Address,
+            bip49Address = chainAddresses.bip49Address,
+            bip84Address = chainAddresses.bip84Address
         )
-        val wallet = walletWithoutId.copy(id = addresses.publicKey)
+        val wallet = walletWithoutId.copy(id = walletId)
         walletRepository.saveWallet(wallet)
         accountRepository.saveAccount(account)
 
         accountCreators.forEach {
             it.createAccount(
-                accountId = addresses.publicKey,
+                accountId = walletId,
                 derivationPathIndex = 0,
                 wallet = wallet
             )

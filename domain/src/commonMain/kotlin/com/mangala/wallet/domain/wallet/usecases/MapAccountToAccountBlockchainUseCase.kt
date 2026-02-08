@@ -9,6 +9,7 @@ import com.mangala.wallet.model.account.domain.BlockchainAddresses
 import com.mangala.wallet.model.blockchain.AddressType
 import com.mangala.wallet.model.blockchain.Blockchain
 import com.mangala.wallet.model.blockchain.BlockchainType
+import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.model.wallet.domain.WalletModel
 import com.mangala.wallet.utils.ext.toHexString2
 
@@ -107,58 +108,24 @@ class MapAccountToAccountBlockchainUseCase(
         blockchainType: BlockchainType,
         words: List<String>,
         passphrase: String
-    ) = when (blockchainType) {
-        BlockchainType.Avalanche,
-        BlockchainType.BinanceSmartChain,
-        BlockchainType.BinanceSmartChainTestNet,
-        BlockchainType.EosEvm,
-        BlockchainType.Ethereum,
-        BlockchainType.EthereumGoerli,
-        BlockchainType.EthereumSepolia,
-        BlockchainType.EthereumHolesky,
-        BlockchainType.Polygon,
-        BlockchainType.PolygonMumbai -> {
-            val hdKey = generateHDKeyUseCase(
-                words,
-                passphrase,
-                Blockchain(blockchainType, "", null),
-                AddressType.Bip44,
-                derivationPathIndex = derivationPathIndex
-            )
-            deriveEvmCompatibleAddressUseCase(hdKey.publicKey)
-        }
+    ): String {
+        val hdKey = generateHDKeyUseCase(
+            words,
+            passphrase,
+            Blockchain(blockchainType, "", null),
+            AddressType.Bip44,
+            derivationPathIndex = derivationPathIndex
+        )
 
-        BlockchainType.Bitcoin -> {
-            val hdKey = generateHDKeyUseCase(
-                words,
-                passphrase,
-                Blockchain(blockchainType, "", null),
-                AddressType.Bip44,
-                derivationPathIndex = derivationPathIndex
-            )
-            deriveBitcoinAddressUseCase(
+        return when (blockchainType.networkType) {
+            NetworkType.EVM -> deriveEvmCompatibleAddressUseCase(hdKey.publicKey)
+            NetworkType.BITCOIN -> deriveBitcoinAddressUseCase(
                 hdKey.publicKey,
                 AddressType.Bip44,
                 isTestnet = blockchainType.isTestnet
             )
+            else -> throw IllegalArgumentException("Unsupported blockchain type for BIP44 derivation: $blockchainType")
         }
-
-        BlockchainType.BitcoinTestnet4 -> {
-            val hdKey = generateHDKeyUseCase(
-                words,
-                passphrase,
-                Blockchain(blockchainType, "", null),
-                AddressType.Bip44,
-                derivationPathIndex = derivationPathIndex
-            )
-            deriveBitcoinAddressUseCase(
-                hdKey.publicKey,
-                AddressType.Bip44,
-                isTestnet = blockchainType.isTestnet
-            )
-        }
-
-        else -> throw IllegalArgumentException("Unsupported blockchain type $blockchainType")
     }
 
     private fun deriveIdentifyingPublicKey(

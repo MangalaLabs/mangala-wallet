@@ -255,11 +255,10 @@ fun domainModule() = module {
     factoryOf(::SyncPortfolioDataUseCase)
     factoryOf(::GetPortfolioByAccountUseCase)
     
-    factory<AccountCreator> { PortfolioAccountCreator(get(), get()) }
-    
+    factory<AccountCreator> { PortfolioAccountCreator(get(), get(), get()) }
+
     // Portfolio Error Handler
     singleOf(::PortfolioErrorHandler)
 
     single { PortfolioNetworkMapper }
-    factory<AccountCreator> { PortfolioAccountCreator(get(), get()) }
 }
