@@ -4,124 +4,328 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Mangala Wallet is a Kotlin Multiplatform (KMP) cryptocurrency wallet targeting Android, iOS, and Desktop. It supports multiple blockchain networks (EVM, Bitcoin, Antelope/EOS) with three build variants:
+Mangala Wallet is a Kotlin Multiplatform cryptocurrency wallet supporting Android, iOS, and Desktop platforms. It supports multiple blockchain networks including Antelope (EOS/WAX/Telos), EVM-compatible chains, and Bitcoin.
 
-- **Pro**: Full-featured wallet (signing + broadcasting) — default
-- **Cold**: Air-gapped signing-only wallet (no internet)
-- **UI**: Broadcast-only wallet (no signing, pairs with Cold)
+The project uses three build variants:
+- **Pro**: Full-featured wallet (combined functionality)
+- **Cold**: Air-gapped signing device for secure transaction signing
+- **UI**: Transaction broadcast only (works with Cold variant)
 
-The active variant is controlled by `currentFlavor` in `gradle.properties`. Many modules have flavor-specific implementations (e.g., `features/wallet_pro`, `features/home_pro`) that are selected at build time via `project(":features:wallet_${currentFlavor}")`.
+## Essential Commands
 
-## Build & Development Commands
+### Initial Setup
 
 ```bash
-# Build Android APK (Pro Debug)
-./gradlew :composeApp:assembleProDevDebug
+# Initialize submodules
+git submodule update --init --recursive
 
-# Run all tests
-./gradlew test
-
-# Run tests for a specific module
-./gradlew :core:wallet:test
-./gradlew :domain:test
-
-# Generate SQLDelight code after editing .sq files
-./gradlew generateCommonMainMangalaWalletDatabaseInterface
-
-# Generate Antelope DB code after editing .sq files
-./gradlew generateCommonMainAntelopeDatabaseInterface
-
-# iOS pod install (if cocoapods error)
-./gradlew :composeApp:podInstallSyntheticIos
-
-# kmpnotifier pod fix
-./gradlew :libraries:kmpnotifier:podInstallSyntheticIos
-
-# OWASP dependency check
-./gradlew dependencyCheckAnalyze
+# Create local.properties with required API keys (see README.md)
+# Required keys: GITHUB_ACTOR, GITHUB_TOKEN, ALCHEMY_API_KEY, COVALENTHQ_API_KEY, INFURA_API_KEY, INFURA_SECRET_KEY
 ```
 
-Android build uses two flavor dimensions: `mode` (pro/cold/ui) and `environment` (dev/stg/uat/prod). Desktop build type is set via `desktopBuildType` in `gradle.properties`.
+### Build Commands
+
+```bash
+# Build all modules
+./gradlew build
+
+# Run tests
+./gradlew test
+
+# Check code style
+./gradlew ktlintCheck
+
+# Generate database interfaces after editing .sq files
+./gradlew generateCommonMainAntelopeDatabaseInterface
+```
+
+### Platform-Specific Builds
+
+**Android**: Use Android Studio build variants
+
+**iOS**:
+- Select scheme in Xcode
+- If package issues occur: File → Packages → Reset Package Caches
+- Pod install: `./gradlew :composeApp:podInstallSyntheticIos`
+
+**Desktop**:
+1. Set `desktopBuildType` in `gradle.properties` (debug or release)
+2. Run `./gradlew :common:utils:generateBuildKonfig` to update values
+
+### Build Variant Configuration
+
+Set `currentFlavor` in `gradle.properties`:
+- `currentFlavor=pro` (default)
+- `currentFlavor=cold`
+- `currentFlavor=ui`
+
+**IMPORTANT**: Do not commit changes to `currentFlavor` in `gradle.properties`
+
+### Database Modifications
+
+When editing prepopulated database in `./common/mokoresources/src/commonMain/moko-resources/files/`:
+
+```bash
+cd ./common/mokoresources/src/commonMain/moko-resources/files/
+for file in *.sql; do
+    sqlite3 mangalawallet.db < "$file"
+done
+```
+
+Then create migration in `data/local/src/commonMain/sqldelight/migrations`
 
 ## Architecture
 
-**Clean Architecture + MVVM** with Voyager navigation and Koin DI.
+### Clean Architecture with MVVM
 
 ```
-Compose UI (Screen) → ScreenModel → UseCase → Repository → DataSource
+Presentation Layer (Compose UI + ScreenModels)
+    ↓
+Domain Layer (Use Cases + Domain Models)
+    ↓
+Data Layer (Repositories + Data Sources)
 ```
 
-### Key Patterns
+### Module Structure
 
-- **ScreenModel** (not ViewModel): Uses Voyager's `ScreenModel` with `KoinComponent` for DI injection via `by inject()`. State exposed as `StateFlow`.
-- **UseCase base class**: `abstract class UseCase<out Type>` with `suspend fun run(params: Map<String, Any?>)` and `operator fun invoke()`.
-- **Navigation**: Voyager `Navigator` with `Screen` interface. Root entry point is `RootScreen` → `RootScreenModel` which determines initial destination (OnboardingScreen, UnlockPinScreen, or HomeScreen).
-- **Flavor-aware dependencies**: `composeApp` uses string interpolation for variant modules: `implementation(project(":features:home_${currentFlavor}"))`. Feature modules with `_base` suffix contain shared code; `_pro`/`_cold`/`_ui` suffixes contain variant-specific implementations.
-- **Resources**: Moko Resources (`SharedMR` in package `com.mangala.wallet`). Strings, images, and prepopulated SQLite database in `common/mokoresources/src/commonMain/moko-resources/`.
+- `composeApp/` - Main Compose Multiplatform application entry point
+- `core/` - Core functionality modules:
+  - `core/security/` - Security and cryptography
+  - `core/auth/` - Authentication logic
+  - `core/hdwallet/` - HD wallet implementation
+  - `core/pin/` - PIN management
+  - `core/biometry/` - Biometric authentication
+  - `core/websocket-chat/` - WebSocket chat functionality
+  - `core/ai/` - AI conversation features
+- `features/` - Feature modules organized by functionality:
+  - `features/wallet_*/` - Wallet management (pro/cold/ui variants)
+  - `features/portfolio/` - Portfolio aggregation and display
+  - `features/send_*/` - Send transaction flows
+  - `features/chains/` - Blockchain-specific implementations
+    - `features/chains/evmcompatible/` - EVM chains
+    - `features/chains/antelope_*/` - Antelope chains
+    - `features/chains/bitcoin/` - Bitcoin support
+  - `features/passkey/` - Passkey authentication
+  - `features/walletconnect/` - WalletConnect integration
+  - `features/dex/` - DEX integrations (Uniswap, etc.)
+- `data/` - Data layer:
+  - `data/local/` - SQLDelight local database
+  - `data/remote/` - Network data sources
+  - `data/model/` - Data models
+- `domain/` - Domain layer with use cases and domain models
+- `libraries/` - Shared libraries (chart, scanqr, walletconnect, etc.)
+- `antelope/` - Antelope blockchain SDK modules
+- `common/` - Common utilities:
+  - `common/ui/` - Shared UI components
+  - `common/utils/` - Utility functions
+  - `common/mokoresources/` - Resources and assets
 
-### Module Dependency Flow
+### Key Technologies
 
-```
-composeApp (app entry point)
-  ├── features/* (UI + presentation)
-  │     └── domain (use cases + repositories)
-  │           ├── data:local (SQLDelight DB)
-  │           ├── data:remote (Ktor HTTP + WebSocket)
-  │           └── data:model (shared DTOs)
-  ├── core/* (cross-cutting: auth, crypto, security, pin, biometry, hdwallet)
-  ├── antelope/* (EOSIO chain-specific: rpc, actions, key manager)
-  └── common/* (ui components, utils, moko resources, test helpers)
-```
-
-### Data Layer
-
-- **Local**: SQLDelight (`data/local/`), database file at `MangalaWalletDatabase.sq`, migrations in `data/local/src/commonMain/sqldelight/migrations/`
-- **Remote**: Ktor client (`data/remote/`), integrates with Alchemy, Covalent, Infura, Moralis APIs
-- **Prepopulated DB**: SQLite file in `common/mokoresources/src/commonMain/moko-resources/files/`. Edit SQL files there, then run `sqlite3 mangalawallet.db < file.sql` and add a migration.
-
-### Convention Plugins
-
-`build-logic/convention/` provides `mangala.kotlin.multiplatform.feature` which applies: kotlin-multiplatform, android-library, kotlinx-serialization, compose, compose-compiler, kotlin-parcelize.
+- **UI**: Jetpack Compose Multiplatform
+- **Navigation**: Type-safe navigation with sealed classes
+- **DI**: Koin dependency injection
+- **Database**: SQLDelight for local storage
+- **Serialization**: kotlinx-serialization
+- **Networking**: Ktor client
+- **State Management**: MVVM with ScreenModels (Cafe Bazaar Voyager)
+- **Async**: Kotlin Coroutines and Flow
+- **Resources**: MOKO Resources for multiplatform assets
 
 ## Git Workflow
 
-Branch from `develop` (or `master` for hotfixes). Branch naming: `<type>/<short-description>` where type is `feature/`, `bugfix/`, `hotfix/`, `refactor/`, `docs/`, `test/`, `chore/`, `perf/`.
+**CRITICAL**: Always follow the Git workflow defined in `GIT_WORKFLOW.md` and development standards in `.claude/development-standards.md`.
 
-Commit messages follow Conventional Commits: `<type>(<scope>): <subject>`. Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`, `revert`. Scopes: `auth`, `wallet`, `ui`, `core`, `antelope`, `passkey`, `portfolio`, `transaction`, `network`, `database`.
+### Branch Naming
 
-PRs target `develop`. Squash merge for feature branches. Merge commit for promotion: develop → uat → staging → master.
+```
+<type>/<short-description>
+```
 
-## Key Dependencies & Versions
+Types: `feature/`, `bugfix/`, `hotfix/`, `refactor/`, `docs/`, `test/`, `chore/`, `perf/`
 
-| Library | Version | Notes |
-|---------|---------|-------|
-| Kotlin | 2.1.20 | Pinned — higher versions break moko compatibility |
-| Compose Multiplatform | 1.8.0 | |
-| AGP | 8.9.3 | |
-| Ktor | 3.1.2 | HTTP client + WebSocket |
-| SQLDelight | 2.0.2 | Local database |
-| Koin | 4.0.4 | Dependency injection |
-| Voyager | 1.0.0-rc10 | Navigation + ScreenModel |
-| Moko Resources | 0.24.5 | Shared resources (strings, files) |
-| secp256k1-kmp | 0.19.0 | ECDSA cryptography |
-| Bitcoin KMP | 0.22.1 | Bitcoin protocol |
-| Lightning KMP | 1.9.1 | Lightning network |
+Examples:
+- `feature/add-solana-support`
+- `bugfix/fix-balance-calculation`
+- `hotfix/security-patch`
 
-Version catalog at `gradle/libs.versions.toml`. JVM target is 21. Android minSdk 26, targetSdk 35.
+### Commit Messages
 
-## Setup Requirements
+```
+<type>(<scope>): <subject>
+```
 
-Requires `local.properties` with: `GITHUB_ACTOR`, `GITHUB_TOKEN` (read:packages), `ALCHEMY_API_KEY`, `COVALENTHQ_API_KEY`, `INFURA_API_KEY`, `INFURA_SECRET_KEY`, `REVENUECAT_ANDROID_API_KEY`, `REVENUECAT_IOS_API_KEY`. Also needs `keystore.properties` for signing. Initialize submodules: `git submodule update --init --recursive`.
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`, `ci`, `build`, `revert`
 
-## CI/CD
+Scopes: `auth`, `wallet`, `portfolio`, `transaction`, `network`, `database`, `ui`, `core`, etc.
 
-GitHub Actions on self-hosted runners:
-- **develop push**: Build APK → Firebase App Distribution
-- **develop PR**: Build validation
-- **staging push**: Production builds (Android + iOS)
+Examples:
+- `feat(portfolio): add multi-wallet aggregation for EVM`
+- `fix(transaction): resolve crash when parsing invalid data`
+- `refactor(network): extract HTTP client configuration`
 
-Deployment ladder: develop (Firebase) → uat (Play internal) → staging (Play closed alpha) → master (Play Store).
+### Branching Strategy
 
-## Detailed Standards
+- Branch from `develop` for features/bugfixes
+- Branch from `master` for hotfixes
+- Main branches: `master` (prod) → `staging` (alpha) → `uat` (internal) → `develop` (dev)
 
-See `.claude/development-standards.md` for complete coding conventions, naming patterns, and PR templates.
+## Naming Conventions
+
+### Kotlin Code
+
+- **ScreenModels**: `*ScreenModel` (e.g., `WalletScreenModel`)
+- **Use Cases**: `*UseCase` (e.g., `GetBalanceUseCase`)
+- **Repositories**: `*Repository` (e.g., `WalletRepository`)
+- **Data Sources**: `*DataSource` (e.g., `LocalWalletDataSource`)
+- **Screens**: `*Screen` (e.g., `PortfolioScreen`)
+- **UI State**: `*State` (e.g., `WalletState`)
+- **Events**: `*Event` (e.g., `WalletEvent`)
+
+### Compose UI
+
+- Use PascalCase for composable functions
+- Start with noun describing UI element: `WalletCard`, `TransactionList`, `BalanceHeader`
+- Always pass `modifier` as first parameter
+- Provide `@Preview` for UI components
+
+## Code Patterns
+
+### State Management
+
+Use sealed interfaces for state and events:
+
+```kotlin
+sealed interface WalletState {
+    data object Loading : WalletState
+    data class Success(val balance: BigDecimal) : WalletState
+    data class Error(val message: String) : WalletState
+}
+```
+
+### Resource Loading
+
+```kotlin
+sealed interface Resource<out T> {
+    data object Loading : Resource<Nothing>
+    data class Success<T>(val data: T) : Resource<T>
+    data class Error(val message: String) : Resource<Nothing>
+}
+```
+
+### Error Handling
+
+```kotlin
+sealed interface Result<out T> {
+    data class Success<T>(val data: T) : Result<T>
+    data class Error(val exception: Throwable) : Result<Nothing>
+}
+```
+
+## Testing
+
+### Test Structure
+
+- Use Arrange-Act-Assert pattern
+- Name tests with backticks: `` `test description in backticks` ``
+- One assertion concept per test
+- Write tests for: use cases, ScreenModel logic, repositories, complex UI
+
+### Running Tests
+
+```bash
+# All tests
+./gradlew test
+
+# Specific module
+./gradlew :features:portfolio:test
+```
+
+## Security Requirements
+
+1. **Never commit sensitive data**: API keys go in `local.properties`, use `.gitignore` properly
+2. **Cryptography**: Use established libraries from `core/security/`, never roll your own crypto
+3. **Input validation**: Validate all user inputs and sanitize external data
+4. **Secure randomness**: Use proper secure random number generation from security module
+
+## Common Patterns in This Codebase
+
+### Feature Module Structure
+
+Each feature module typically contains:
+- `presentation/` - ScreenModels and Compose screens
+- `domain/` - Use cases (if feature-specific)
+- `di/` - Koin dependency injection modules
+- `navigation/` - Navigation definitions
+
+### Variant-Specific Modules
+
+Many features have three variants (e.g., `wallet_pro`, `wallet_cold`, `wallet_ui`). Only `pro` variant is typically active. Check `settings.gradle.kts` for commented-out modules.
+
+### Dependency Injection
+
+Use Koin modules. Register dependencies in `di/` folders within each module. Modules are composed in `composeApp`.
+
+### Navigation
+
+Type-safe navigation using sealed classes for routes. Pass only necessary data between screens.
+
+## Important Files
+
+- `gradle.properties` - Build configuration (do not commit `currentFlavor` changes)
+- `local.properties` - API keys and secrets (never commit)
+- `settings.gradle.kts` - Module inclusion configuration
+- `.gitmessage` - Commit message template
+- `GIT_WORKFLOW.md` - Detailed Git workflow rules
+- `.claude/development-standards.md` - Comprehensive development standards
+
+## Common Issues and Solutions
+
+### Build Issues
+
+**Pod install failure**:
+```bash
+./gradlew :composeApp:podInstallSyntheticIos
+./gradlew :libraries:kmpnotifier:podInstallSyntheticIos
+```
+
+**Missing Swift packages in Xcode**:
+- File → Packages → Reset Package Caches
+
+**Cannot find `strcmp` in scope**:
+- Modify StatementAuthorizer file per GRDB.swift commit fcfdab2f
+
+### Database Changes
+
+After modifying `.sq` files in `data/local/src/commonMain/sqldelight/`:
+1. Generate interfaces: `./gradlew generateCommonMainAntelopeDatabaseInterface`
+2. Create migration in `data/local/src/commonMain/sqldelight/migrations/`
+
+## Claude Code Specific Instructions
+
+When working in this repository:
+
+1. **Always read** `GIT_WORKFLOW.md` and `.claude/development-standards.md` before starting work
+2. **Use TodoWrite tool** to track multi-step tasks and demonstrate progress
+3. **Follow naming conventions** exactly as specified above
+4. **Create branches** using proper naming format before making changes
+5. **Write conventional commits** with appropriate type and scope
+6. **Add tests** for new functionality (use cases, repositories, complex logic)
+7. **Never expose secrets** - check that API keys stay in `local.properties`
+8. **Prefer editing** existing files over creating new ones
+9. **Reference file locations** using `file_path:line_number` format when discussing code
+10. **Check build variant context** - some features only exist in specific variants
+
+### Multi-Wallet Architecture Context
+
+The codebase supports multiple wallets and blockchain networks. When working on features:
+- Portfolio features aggregate across multiple wallets and networks
+- Network-specific logic goes in `features/chains/[network]/`
+- Shared blockchain logic goes in `core/` modules
+- Use cases in `domain/` orchestrate cross-module operations
+
+### Important Caveats
+
+- Not all feature modules are active - check `settings.gradle.kts` for included modules
+- Build variant affects which modules are compiled - `pro` is the full-featured variant
+- Some modules have platform-specific implementations (`iosMain`, `androidMain`, `jvmMain`)

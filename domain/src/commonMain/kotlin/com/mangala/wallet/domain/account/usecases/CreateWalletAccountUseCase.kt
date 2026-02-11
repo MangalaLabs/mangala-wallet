@@ -7,6 +7,7 @@ import com.mangala.wallet.domain.wallet.usecases.account.AccountCreator
 import com.mangala.wallet.model.account.domain.AccountModel
 import com.mangala.wallet.model.account.domain.AccountType
 import com.mangala.wallet.model.blockchain.BlockchainType
+import com.mangala.wallet.model.blockchain.NetworkType
 
 class CreateWalletAccountUseCase(
     private val accountRepository: AccountRepository,
@@ -63,25 +64,35 @@ class CreateWalletAccountUseCase(
         val newDerivationPathIndex = existingAccountsForWallet.maxOf { it.derivationPathIndex } + 1
         val sortingOrder = existingAccountsForWallet.size
 
-        val addresses = mapAccountToAccountBlockchainUseCase(newDerivationPathIndex, wallet, BlockchainType.Ethereum) // TODO: Support for different chains
+        // Always derive from Ethereum for stable account ID (chain-agnostic identifier)
+        val identifyingAddresses = mapAccountToAccountBlockchainUseCase(newDerivationPathIndex, wallet, BlockchainType.Ethereum)
+        val accountId = identifyingAddresses.publicKey
+
+        // Derive chain-specific addresses (reuse Ethereum derivation for EVM chains)
+        val chainAddresses = if (blockchainType.networkType == NetworkType.EVM) {
+            identifyingAddresses
+        } else {
+            mapAccountToAccountBlockchainUseCase(newDerivationPathIndex, wallet, blockchainType)
+        }
+
         val account = AccountModel(
-            id = addresses.publicKey,
+            id = accountId,
             name = name,
             type = AccountType.NORMAL,
             walletId = walletId,
             derivationPathIndex = newDerivationPathIndex,
             sortingOrder = sortingOrder,
             isHidden = false,
-            bip44Address = addresses.bip44Address,
-            bip49Address = addresses.bip49Address,
-            bip84Address = addresses.bip84Address
+            bip44Address = chainAddresses.bip44Address,
+            bip49Address = chainAddresses.bip49Address,
+            bip84Address = chainAddresses.bip84Address
         )
 
         accountRepository.saveAccount(account)
 
         accountCreators.forEach {
             it.createAccount(
-                accountId = addresses.publicKey,
+                accountId = accountId,
                 derivationPathIndex = newDerivationPathIndex,
                 wallet = wallet
             )
