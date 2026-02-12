@@ -145,6 +145,7 @@ class RestoreRecoveryPhraseScreen(
         val focusManager = LocalFocusManager.current
         val recoveryPhrase = screenModel.recoveryPhrase.collectAsStateMultiplatform().value
         val recoveryPhraseState = screenModel.recoveryPhraseState.collectAsStateMultiplatform().value
+        val validationError = screenModel.validationError.collectAsStateMultiplatform().value
 
         val wordCount = recoveryPhrase.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.size
 
@@ -354,6 +355,26 @@ class RestoreRecoveryPhraseScreen(
                                 }
                             }
                         }
+                    }
+
+                    // Validation error message
+                    if (validationError != null) {
+                        val errorMessage = when (validationError) {
+                            is ValidationError.InvalidLength ->
+                                MR.strings.error_recovery_phrase_invalid_length.desc().localized()
+                            is ValidationError.InvalidWord ->
+                                MR.strings.error_recovery_phrase_invalid_word.desc().localized()
+                            is ValidationError.InvalidChecksum ->
+                                MR.strings.error_recovery_phrase_invalid_checksum.desc().localized()
+                        }
+                        Text(
+                            text = errorMessage,
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = Color(0xFFFA0000),
+                            fontFamily = getInterFontFamily(),
+                            modifier = Modifier.padding(start = Spacing.XTINY)
+                        )
                     }
 
                     // Warning box

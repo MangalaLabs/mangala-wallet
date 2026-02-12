@@ -13,6 +13,7 @@ interface WalletRepository {
     suspend fun deletedWallet(walletId: String)
     suspend fun deleteAllWallets()
     suspend fun saveWalletName(walletName:String, walletId: String)
+    suspend fun markWalletAsBackedUp(walletId: String)
     suspend fun getWalletById(walletId: String): WalletModel?
     fun getWalletByIdFlow(walletId: String): Flow<WalletModel?>
 }

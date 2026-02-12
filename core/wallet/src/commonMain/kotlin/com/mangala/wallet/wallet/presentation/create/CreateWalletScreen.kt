@@ -7,22 +7,19 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
@@ -49,6 +46,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.TextButton
 import cafe.adriel.voyager.core.registry.rememberScreen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -56,10 +55,15 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.SharedScreen
+import com.mangala.wallet.ui.component.MangalaButtonStyle
+import com.mangala.wallet.ui.component.MangalaGradientButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.imageloader.LocalImage
+import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
+import dev.icerock.moko.resources.compose.localized
+import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -84,13 +88,49 @@ class CreateWalletScreen(
     override fun ScreenContent(screenModel: CreateWalletScreenModel) {
         val navigator = LocalNavigator.currentOrThrow
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
+        val walletState = screenModel.state.collectAsStateMultiplatform().value
+
+        // Error dialog
+        if (walletState is CreateWalletState.Error) {
+            AlertDialog(
+                onDismissRequest = { screenModel.dismissError() },
+                title = {
+                    Text(
+                        text = MR.strings.all_error_no_params.desc().localized(),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                },
+                text = {
+                    Text(
+                        text = walletState.message,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        screenModel.dismissError()
+                        navigator.pop()
+                    }) {
+                        Text(
+                            text = MR.strings.all_ok.desc().localized(),
+                            color = Color(0xFF3B90FF)
+                        )
+                    }
+                },
+                backgroundColor = Color(0xFF1E1F32),
+                contentColor = Color.White
+            )
+        }
 
         when (createWalletCase) {
             SharedScreen.CreateWalletScreen.CreateWalletScreenCase.CREATE_NEW_WALLET -> {
                 val blockchainUid = blockchainUid ?: ""
                 val antelopeAccountName = antelopeAccountName
 
-                screenModel.createWallet(blockchainUid, antelopeAccountName)
+                LaunchedEffect(Unit) {
+                    screenModel.createWallet(blockchainUid, antelopeAccountName)
+                }
 
                 val backupWalletAlertScreen = rememberScreen(
                     SharedScreen.BackupWalletAlertScreen(
@@ -107,7 +147,9 @@ class CreateWalletScreen(
                 val blockchainUid = blockchainUid ?: ""
                 val antelopeAccountName = antelopeAccountName
 
-                screenModel.createWallet(blockchainUid, antelopeAccountName)
+                LaunchedEffect(Unit) {
+                    screenModel.createWallet(blockchainUid, antelopeAccountName)
+                }
 
                 GenerateWalletAnimation {
                     navigator.replaceAll(homeScreen)
@@ -121,7 +163,7 @@ class CreateWalletScreen(
                 GenerateWalletAnimation {
                     screenModel.restoreWallet(listString, name)
                 }
-                LaunchedEffect(true) {
+                LaunchedEffect(Unit) {
                     screenModel.onCreateDone.receiveAsFlow().collectLatest {
                         navigator.replaceAll(homeScreen)
                     }
@@ -134,12 +176,13 @@ class CreateWalletScreen(
 
 @Composable
 fun GenerateWalletAnimation(onClickStart: () -> Unit) {
-    val steps = listOf(
-        "Generating secure key pairs...",
-        "Encrypting with PIN...",
-        "Saving to local vault",
-        "Preparing your space in multichain..."
-    )
+    val step1 = MR.strings.create_wallet_step_1.desc().localized()
+    val step2 = MR.strings.create_wallet_step_2.desc().localized()
+    val step3 = MR.strings.create_wallet_step_3.desc().localized()
+    val step4 = MR.strings.create_wallet_step_4.desc().localized()
+    val steps = remember(step1, step2, step3, step4) {
+        listOf(step1, step2, step3, step4)
+    }
 
     var currentStep by remember { mutableIntStateOf(0) }
     var isCompleted by remember { mutableStateOf(false) }
@@ -151,9 +194,6 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
     val mascotScale = remember { Animatable(1f) }
     val mascotRotation = remember { Animatable(0f) }
     val mascotBounce = remember { Animatable(0f) }
-
-    // Bottom navigation bar padding
-    val bottomNavBarPadding = WindowInsets.navigationBars
 
     LaunchedEffect(Unit) {
         for (i in steps.indices) {
@@ -206,11 +246,11 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
         }
     }
 
-    OnboardingGradientBackground {
+    OnboardingGradientBackground(
+        afterBackgroundModifier = Modifier.safeDrawingPadding().imePadding()
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.safeDrawing),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.height(48.dp))
@@ -232,7 +272,7 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
 
             // Title and subtitle - outside the card
             Text(
-                text = if (isCompleted) "Your Wallet is Ready!" else "Generating Your Mangala Wallet",
+                text = if (isCompleted) MR.strings.create_wallet_title_ready.desc().localized() else MR.strings.create_wallet_title_generating.desc().localized(),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -246,7 +286,7 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = if (isCompleted) "Tap below to start to journey" else "This might take a few moments",
+                text = if (isCompleted) MR.strings.create_wallet_subtitle_ready.desc().localized() else MR.strings.create_wallet_subtitle_generating.desc().localized(),
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Normal,
                 color = if (isCompleted) Color(0xFF22C55E) else Color(0xFFA5B4CB),
@@ -330,8 +370,12 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Button - pill shape matching design system
-            Box(
+            // Button - using design system component
+            MangalaGradientButton(
+                label = if (isCompleted) MR.strings.create_wallet_button_start.desc().localized() else MR.strings.create_wallet_button_setting_up.desc().localized(),
+                onClick = onClickStart,
+                enabled = isCompleted,
+                buttonStyle = MangalaButtonStyle.GRADIENT,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
@@ -339,75 +383,9 @@ fun GenerateWalletAnimation(onClickStart: () -> Unit) {
                         scaleX = pulseScale.value
                         scaleY = pulseScale.value
                     }
-            ) {
-                if (isCompleted) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp)
-                            .clip(RoundedCornerShape(1000.dp))
-                            .background(
-                                brush = Brush.horizontalGradient(
-                                    colors = listOf(
-                                        Color(0xFF3B90FF),
-                                        Color(0xFFC27DFF)
-                                    )
-                                )
-                            )
-                            .clickable(onClick = onClickStart),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = "START YOUR JOURNEY",
-                            fontSize = 17.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White,
-                            letterSpacing = (-0.17).sp,
-                            fontFamily = getInterFontFamily()
-                        )
-                    }
-                } else {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp)
-                            .clip(RoundedCornerShape(1000.dp))
-                            .background(
-                                brush = Brush.horizontalGradient(
-                                    colors = listOf(
-                                        Color(0xFF3B90FF).copy(alpha = 0.2f),
-                                        Color(0xFFC27DFF).copy(alpha = 0.2f)
-                                    )
-                                )
-                            ),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
-                        ) {
-                            CircularProgressIndicator(
-                                color = Color(0xFF6B7280),
-                                strokeWidth = 2.dp,
-                                modifier = Modifier.size(18.dp)
-                            )
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Text(
-                                text = "SETTING UP...",
-                                fontSize = 17.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = Color(0xFF94A3B8),
-                                letterSpacing = (-0.17).sp,
-                                fontFamily = getInterFontFamily()
-                            )
-                        }
-                    }
-                }
-            }
+            )
 
-            // Safe area padding for bottom navigation bar
             Spacer(modifier = Modifier.height(12.dp))
-            Spacer(modifier = Modifier.windowInsetsPadding(bottomNavBarPadding))
         }
     }
 }

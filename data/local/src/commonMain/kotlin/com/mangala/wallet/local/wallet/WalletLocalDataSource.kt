@@ -23,6 +23,7 @@ interface WalletLocalDataSource {
     suspend fun deleteWallet(id: String)
     suspend fun deleteAllWallets()
     suspend fun saveWalletName(id: String, walletName: String)
+    suspend fun updateWalletBackupStatus(id: String, isBackedUp: Boolean)
     fun getWalletByIdFlow(id: String): Flow<WalletModel?>
 
 }

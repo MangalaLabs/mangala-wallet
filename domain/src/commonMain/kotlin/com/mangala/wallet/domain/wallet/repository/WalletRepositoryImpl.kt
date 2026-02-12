@@ -42,6 +42,10 @@ internal class WalletRepositoryImpl(
         walletLocalDataSource.saveWalletName(walletId, walletName)
     }
 
+    override suspend fun markWalletAsBackedUp(walletId: String) {
+        walletLocalDataSource.updateWalletBackupStatus(walletId, isBackedUp = true)
+    }
+
     override suspend fun getWalletById(walletId: String): WalletModel? {
         return walletLocalDataSource.getWalletById(walletId)
     }
