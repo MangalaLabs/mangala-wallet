@@ -109,7 +109,7 @@ fun BigDecimal.formatCompact(decimalScale: Long = 2L, useScaleBasedCompactForSma
     if (isLessThanOne) {
         return formatSmallDecimal(strValue, decimalScale.toInt(), decimalSeparatorChar, useScaleBasedCompactForSmallerThanOne)
     } else {
-        val suffixes = arrayOf("", "K", "M", "B", "T")
+        val suffixes = arrayOf("", "K", "M", "B", "T", "Qa", "Qi")
         val integerPartSize = strValue.substringBefore('.').length
         val index = min((integerPartSize - 1) / 3, suffixes.size - 1)
         val compactValue = this.divide(BigDecimal.parseString("1000.0").pow(index),

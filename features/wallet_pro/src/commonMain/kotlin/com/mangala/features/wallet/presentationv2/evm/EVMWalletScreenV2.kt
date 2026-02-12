@@ -1,104 +1,448 @@
 package com.mangala.features.wallet.presentationv2.evm
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Text
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
-import com.mangala.wallet.model.blockchain.NetworkType
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mangala.features.wallet.presentationv2.core.base.BaseWalletScreenV2
-import com.mangala.features.wallet.presentationv2.core.base.BaseWalletViewModel
-import com.mangala.wallet.ui.WalletThemeV2
+import com.mangala.features.wallet.presentationv2.core.common.components.WalletHeaderV2
+import com.mangala.features.wallet.presentationv2.evm.components.EVMAccountSwitchBottomSheet
+import com.mangala.features.wallet.presentationv2.evm.components.EVMAddAccountBottomSheet
+import com.mangala.features.wallet.presentationv2.evm.components.EVMPortfolioHeader
+import com.mangala.features.wallet.presentationv2.evm.components.EVMQuickActionsRow
+import com.mangala.features.wallet.presentationv2.evm.components.EVMTokenListSection
+import com.mangala.features.wallet.presentationv2.core.common.components.NetworkSelectionBottomSheet
+import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
+import com.mangala.wallet.model.blockchain.NetworkType
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.qrcode.domain.model.QrCodeData
+import dev.icerock.moko.resources.compose.stringResource
+import com.mangala.wallet.scanqr.ScanQRCodeListener
+import com.mangala.wallet.ui.LocalGlobalNavigator
+import com.mangala.wallet.ui.SharedScreen
+import com.mangala.wallet.ui.WalletThemeV2
+import com.mangala.wallet.ui.component.MangalaBrandText
+import com.mangala.wallet.ui.component.MangalaButtonStyle
+import com.mangala.wallet.ui.component.MangalaGradientButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
+import com.mangala.wallet.ui.imageloader.LocalImage
+import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
+import kotlinx.coroutines.delay
 
-class EVMWalletViewModel : BaseWalletViewModel() {
-    override val networkType = NetworkType.EVM
-    
-    override fun onRefresh() {
-        // TODO: Implement EVM refresh logic
-    }
-    
-    override fun onCopyAddress() {
-        // TODO: Implement copy to clipboard
-    }
-    
-    override fun onShareAddress() {
-        // TODO: Implement share functionality
-    }
-}
+class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
 
-class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletViewModel>() {
-    
     override val networkType = NetworkType.EVM
     override val screenName = MangalaAnalytics.Screens.WALLET
     override val screenClassName = EVMWalletScreenV2::class.simpleName.orEmpty()
-    
+
     @Composable
-    override fun createScreenModel(): EVMWalletViewModel {
+    override fun createScreenModel(): EVMWalletScreenModel {
         return getScreenModel()
     }
-    
+
+    @OptIn(ExperimentalMaterialApi::class)
     @Composable
-    override fun ScreenContent(screenModel: EVMWalletViewModel) {
-        OnboardingGradientBackground(
-            circleBackgroundEnabled = true,
-            afterBackgroundModifier = Modifier.navigationBarsPadding()
-        ) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(WalletThemeV2.Dimensions.spacingMedium)
+    override fun ScreenContent(screenModel: EVMWalletScreenModel) {
+        val globalNavigator = LocalGlobalNavigator.current
+        val navigator = LocalNavigator.currentOrThrow
+        val uiState by screenModel.uiState.collectAsStateMultiplatform()
+        val isRefreshing by screenModel.isRefreshing.collectAsStateMultiplatform()
+
+        val hasWallet = uiState.hasWallet
+
+        if (hasWallet) {
+            var contentVisible by remember { mutableStateOf(false) }
+            var showAddAccountBottomSheet by remember { mutableStateOf(false) }
+            var showAccountSwitchBottomSheet by remember { mutableStateOf(false) }
+            var showNetworkSelectionBottomSheet by remember { mutableStateOf(false) }
+
+            LaunchedEffect(Unit) {
+                delay(100)
+                contentVisible = true
+            }
+
+            val pullRefreshState = rememberPullRefreshState(
+                refreshing = isRefreshing,
+                onRefresh = { screenModel.onRefresh() }
+            )
+
+            OnboardingGradientBackground(circleBackgroundEnabled = true) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .pullRefresh(pullRefreshState)
                 ) {
-                    Text(
-                        text = "⟠",
-                        fontSize = WalletThemeV2.Typography.fontSizeBalance
-                    )
-                    
-                    Text(
-                        text = "EVM Wallet",
-                        fontSize = WalletThemeV2.Typography.fontSizeHeader,
-                        fontWeight = FontWeight.Bold,
-                        color = WalletThemeV2.Colors.primaryText
-                    )
-                    
-                    Text(
-                        text = "Coming Soon",
-                        fontSize = WalletThemeV2.Typography.fontSizeMedium,
-                        color = WalletThemeV2.Colors.secondaryText
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .statusBarsPadding()
+                    ) {
+                        WalletHeaderV2(
+                            selectedNetwork = uiState.selectedNetwork,
+                            notificationCount = 0,
+                            isDevelopmentEnvironment = uiState.isDevelopmentEnvironment,
+                            onNotificationClick = { },
+                            onAddAccountClick = { showAddAccountBottomSheet = true },
+                            onNetworkDropdownClick = { showNetworkSelectionBottomSheet = true }
+                        )
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = WalletThemeV2.Dimensions.paddingMedium),
+                            verticalArrangement = Arrangement.spacedBy(WalletThemeV2.Dimensions.spacingMedium)
+                        ) {
+                            EVMPortfolioHeader(
+                                isSingleAccountMode = uiState.isSingleAccountMode,
+                                activeAccount = uiState.activeAccount,
+                                totalPortfolioUsd = uiState.portfolioTotalUsd,
+                                totalPnlAmountFormatted = uiState.portfolioPnlFormatted,
+                                pnlColor = uiState.portfolioPnlColor,
+                                isBalanceHidden = uiState.isPortfolioBalanceHidden,
+                                fiatSymbol = uiState.fiatSymbol,
+                                accounts = uiState.accounts,
+                                onToggleHideBalance = { screenModel.onTogglePortfolioHideBalance() },
+                                onCopyAddress = { screenModel.onCopyAddress() },
+                                onAccountClick = { showAccountSwitchBottomSheet = true }
+                            )
+
+                            Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingXSmall))
+
+                            AnimatedVisibility(
+                                visible = contentVisible,
+                                enter = fadeIn(
+                                    animationSpec = tween(
+                                        WalletThemeV2.Animation.durationLong,
+                                        delayMillis = WalletThemeV2.Animation.delayStep3
+                                    )
+                                ) + slideInVertically(
+                                    initialOffsetY = { it / 6 },
+                                    animationSpec = tween(
+                                        WalletThemeV2.Animation.durationLong,
+                                        delayMillis = WalletThemeV2.Animation.delayStep3
+                                    )
+                                )
+                            ) {
+                                EVMQuickActionsRow(
+                                    onSendClick = {
+                                        val screen = ScreenRegistry.get(
+                                            SharedScreen.Step2SelectNetwork(
+                                                accountId = screenModel.getCurrentAccountId(),
+                                                networkType = NetworkType.EVM.name,
+                                                address = null
+                                            )
+                                        )
+                                        globalNavigator.push(screen)
+                                    },
+                                    onReceiveClick = {
+                                        val screen = ScreenRegistry.get(
+                                            SharedScreen.ReceiveTokenScreen(
+                                                accountId = screenModel.getCurrentAccountId(),
+                                                address = screenModel.getCurrentAddress(),
+                                                networkType = NetworkType.EVM,
+                                                initialBlockchainUid = uiState.selectedNetwork?.blockChainUid
+                                            )
+                                        )
+                                        globalNavigator.push(screen)
+                                    },
+                                    onHistoryClick = { },
+                                    onScanClick = {
+                                        val networkType = uiState.selectedNetwork?.blockchainType?.networkType
+                                        networkType?.let {
+                                            MangalaAnalytics.trackEvent(MangalaAnalytics.EventName.QR_SCANNER_OPENED)
+                                            this@EVMWalletScreenV2.scanQRCode.scanQRCode(
+                                                scanQRCodeListener = object : ScanQRCodeListener {
+                                                    override fun onScanQRCodeResult(result: String) {
+                                                        onHandleQrCodeResult(
+                                                            screenModel.onScanQrCodeResult(result),
+                                                            navigator,
+                                                            globalNavigator,
+                                                            screenModel
+                                                        )
+                                                    }
+                                                },
+                                                currentAccountId = screenModel.getCurrentAccountId(),
+                                                networkType = it,
+                                                initialBlockchainUid = null
+                                            )
+                                        }
+                                    }
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.spacingSmall))
+
+                            AnimatedVisibility(
+                                visible = contentVisible,
+                                enter = fadeIn(
+                                    animationSpec = tween(
+                                        WalletThemeV2.Animation.durationLong,
+                                        delayMillis = WalletThemeV2.Animation.delayStep5
+                                    )
+                                )
+                            ) {
+                                EVMTokenListSection(
+                                    tokens = uiState.activeAccount?.balances,
+                                    isBalanceHidden = uiState.isPortfolioBalanceHidden,
+                                    isLoading = uiState.isLoadingWallets,
+                                    currencySymbol = uiState.fiatSymbol,
+                                    isSearchActive = uiState.isSearchActive,
+                                    searchQuery = uiState.searchQuery,
+                                    onSearchClick = { screenModel.onSearchToggled() },
+                                    onSearchQueryChanged = { screenModel.onSearchQueryChanged(it) },
+                                    onTokenClick = { }
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(WalletThemeV2.Dimensions.paddingXLarge))
+                        }
+                    }
+
+                    PullRefreshIndicator(
+                        refreshing = isRefreshing,
+                        state = pullRefreshState,
+                        modifier = Modifier.align(Alignment.TopCenter),
+                        backgroundColor = WalletThemeV2.Colors.secondaryBackground,
+                        contentColor = WalletThemeV2.Colors.evmAccent
                     )
                 }
             }
+
+            if (showAddAccountBottomSheet) {
+                EVMAddAccountBottomSheet(
+                    onAddMoreAccount = {
+                        val screen = ScreenRegistry.get(SharedScreen.EvmCreateAccountScreen())
+                        globalNavigator.push(screen)
+                    },
+                    onCreateNewWallet = {
+                        val screen = ScreenRegistry.get(SharedScreen.CreateWalletGuideScreen)
+                        globalNavigator.push(screen)
+                    },
+                    onImportWallet = {
+                        val screen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
+                        navigator.push(screen)
+                    },
+                    onDismiss = { showAddAccountBottomSheet = false }
+                )
+            }
+
+            if (showAccountSwitchBottomSheet) {
+                EVMAccountSwitchBottomSheet(
+                    accounts = uiState.accounts,
+                    activeAccountIndex = uiState.selectedAccountIndex,
+                    onAccountSelected = { index ->
+                        screenModel.onAccountSelected(index)
+                        showAccountSwitchBottomSheet = false
+                    },
+                    onDismiss = { showAccountSwitchBottomSheet = false }
+                )
+            }
+
+            if (showNetworkSelectionBottomSheet) {
+                NetworkSelectionBottomSheet(
+                    availableNetworks = screenModel.getAvailableNetworks(),
+                    selectedNetwork = uiState.selectedNetwork,
+                    onNetworkSelected = { network ->
+                        screenModel.onNetworkSelected(network)
+                        showNetworkSelectionBottomSheet = false
+                    },
+                    onDismiss = { showNetworkSelectionBottomSheet = false }
+                )
+            }
+        } else {
+            NoEVMWalletState(navigator, globalNavigator)
         }
     }
-    
-    override fun onNavigateToSend() {
-        // TODO: Implement navigation
-    }
-    
-    override fun onNavigateToReceive() {
-        // TODO: Implement navigation
-    }
-    
-    override fun onNavigateToHistory() {
-        // TODO: Implement navigation
-    }
+
+    override fun onNavigateToSend() { }
+
+    override fun onNavigateToReceive() { }
+
+    override fun onNavigateToHistory() { }
+
+    override val isBottomBarVisible = true
 
     override fun onHandleQrCodeResult(
         result: QrCodeData?,
         navigator: Navigator,
         globalNavigator: Navigator,
-        screenModel: EVMWalletViewModel
+        screenModel: EVMWalletScreenModel
     ) {
-        TODO("Not yet implemented")
-    }
+        when (result) {
+            is QrCodeData.Payment -> {
+                MangalaAnalytics.trackEvent(
+                    MangalaAnalytics.EventName.QR_SCANNER_RESULT_PARSED,
+                    mapOf(
+                        MangalaAnalytics.EventParam.QR_RESULT_TYPE to MangalaAnalytics.EventParamValue.QR_RESULT_TYPE_PAYMENT
+                    )
+                )
 
-    override val isBottomBarVisible = true
+                val step2Screen = ScreenRegistry.get(
+                    SharedScreen.Step2SelectNetwork(
+                        accountId = screenModel.getCurrentAccountId(),
+                        networkType = NetworkType.EVM.name,
+                        address = result.address
+                    )
+                )
+
+                if (result.chain != null) {
+                    val step3Screen = ScreenRegistry.get(
+                        SharedScreen.Step3SelectAmountScreen(
+                            accountId = screenModel.getCurrentAccountId(),
+                            address = result.address,
+                            blockchainUid = result.chain?.uid,
+                            amount = result.amount,
+                            contactId = null
+                        )
+                    )
+                    globalNavigator.push(listOf(step2Screen, step3Screen))
+                    return
+                }
+
+                globalNavigator.push(step2Screen)
+            }
+
+            QrCodeData.WalletConnect -> { }
+
+            QrCodeData.Login -> { }
+
+            is QrCodeData.ImportAccount -> { }
+
+            else -> { }
+        }
+    }
+}
+
+@Composable
+private fun NoEVMWalletState(
+    navigator: Navigator,
+    globalNavigator: Navigator
+) {
+    val welcomeTitle = stringResource(MR.strings.onboarding_page_1_title)
+    val welcomeDescription = stringResource(MR.strings.onboarding_page_1_description)
+    val createWalletLabel = stringResource(MR.strings.onboarding_button_create_wallet)
+    val importWalletLabel = stringResource(MR.strings.onboarding_button_import_wallet)
+
+    OnboardingGradientBackground {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.weight(0.1f))
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top
+            ) {
+                LocalImage(
+                    imageResource = MR.images.character,
+                    modifier = Modifier.size(200.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                MangalaBrandText(
+                    fullText = welcomeTitle,
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    lineHeight = 39.2.sp,
+                    letterSpacing = (-0.28).sp
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = welcomeDescription,
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = WalletThemeV2.Colors.secondaryText,
+                    textAlign = TextAlign.Center,
+                    letterSpacing = (-0.17).sp,
+                    lineHeight = 23.8.sp,
+                    fontFamily = getInterFontFamily(),
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(0.3f))
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .padding(bottom = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                MangalaGradientButton(
+                    label = createWalletLabel,
+                    onClick = {
+                        val createWalletScreen = ScreenRegistry.get(SharedScreen.CreateWalletGuideScreen)
+                        globalNavigator.push(createWalletScreen)
+                    },
+                    buttonStyle = MangalaButtonStyle.GRADIENT,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                MangalaGradientButton(
+                    label = importWalletLabel,
+                    onClick = {
+                        val importWalletScreen = ScreenRegistry.get(SharedScreen.RestoreRecoveryPhraseScreen())
+                        navigator.push(importWalletScreen)
+                    },
+                    buttonStyle = MangalaButtonStyle.TRANSPARENT,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+    }
 }

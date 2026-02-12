@@ -9,8 +9,9 @@ import com.mangala.wallet.features.wallet.presentation.main.WalletMainScreen
 import com.mangala.wallet.features.wallet.presentation.main.WalletMainScreenModel
 import com.mangala.features.wallet.presentationv2.antelope.AntelopeWalletScreenModel
 import com.mangala.features.wallet.presentationv2.bitcoin.BitcoinWalletViewModel
-import com.mangala.features.wallet.presentationv2.evm.EVMWalletViewModel
+import com.mangala.features.wallet.presentationv2.evm.EVMWalletScreenModel
 import com.mangala.wallet.ui.SharedScreen
+import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
 val walletModule = module {
@@ -42,7 +43,7 @@ val walletModule = module {
     // Wallet V2 ViewModels
     factory { AntelopeWalletScreenModel(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
     factory { BitcoinWalletViewModel() }
-    factory { EVMWalletViewModel() }
+    factoryOf(::EVMWalletScreenModel)
 }
 
 val walletScreenModule = screenModule {

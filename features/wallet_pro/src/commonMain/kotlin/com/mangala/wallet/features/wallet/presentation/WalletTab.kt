@@ -18,6 +18,7 @@ import com.mangala.features.wallet.presentationv2.antelope.AntelopeWalletScreenV
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Wallet
+import com.mangala.wallet.features.wallet.presentation.main.WalletMainScreen
 import com.mangala.wallet.model.blockchain.NetworkType
 
 import com.mangala.wallet.ui.tab.PopToRootTab
@@ -68,6 +69,7 @@ object WalletTab: PopToRootTab() {
         key(screenKey) {
             Navigator(
                 WalletScreenFactoryV2.createWalletScreen(currentNetworkType),
+//                WalletMainScreen(),
                 onBackPressed = {
                     BackHandler.handleBackPressed(it)
                 }

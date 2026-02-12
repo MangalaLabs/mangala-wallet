@@ -50,6 +50,9 @@
     <string name="placeholder_recovery_phrase">Enter words separated by spaces…</string>
     <string name="word_count_format">%d words</string>
     <string name="warning_never_share_phrase">Never share your recovery phrase with anyone. Anyone with these words can take your funds forever.</string>
+    <string name="error_recovery_phrase_invalid_length">Recovery phrase must be 12, 15, 18, 21, or 24 words</string>
+    <string name="error_recovery_phrase_invalid_word">One or more words are not valid BIP39 words</string>
+    <string name="error_recovery_phrase_invalid_checksum">Recovery phrase checksum is invalid. Please check the word order</string>
     <string name="button_recoverty_phrase_secret_phrase_info">What is Secret Phrase</string>
     <string name="next">Next</string>
     <string name="all_paste">Paste</string>
@@ -194,6 +197,7 @@
     <string name="all_contact_support">Contact Support</string>
     <string name="all_buy">Buy</string>
     <string name="all_retry">Retry</string>
+    <string name="all_skip">Skip</string>
     <string name="all_submit">Submit</string>
     <string name="all_done">Done</string>
     <string name="all_confirm">Confirm</string>
@@ -1261,9 +1265,64 @@
     <string name="onboarding_button_import_wallet">I already have a wallet</string>
     <string name="onboarding_fallback_emoji">🚀</string>
 
+    <!--    TryWithAI Screen -->
+    <string name="title_terms_of_service">Terms of Service</string>
+    <string name="try_with_ai_title_meet">Meet Mangala</string>
+    <string name="try_with_ai_title_subtitle">Your Own AI Assistant</string>
+    <string name="try_with_ai_description">Send and receive assets, manage contacts, and handle accounts with simple commands</string>
+    <string name="try_with_ai_button_continue">Continue with passkey</string>
+    <string name="try_with_ai_button_what_is_passkey">What is passkey?</string>
+
+    <!--    Create Wallet Screen -->
+    <string name="create_wallet_title_generating">Generating Your Mangala Wallet</string>
+    <string name="create_wallet_title_ready">Your Wallet is Ready!</string>
+    <string name="create_wallet_subtitle_generating">This might take a few moments</string>
+    <string name="create_wallet_subtitle_ready">Tap below to start the journey</string>
+    <string name="create_wallet_button_start">START YOUR JOURNEY</string>
+    <string name="create_wallet_button_setting_up">SETTING UP…</string>
+    <string name="create_wallet_step_1">Generating secure key pairs…</string>
+    <string name="create_wallet_step_2">Encrypting with PIN…</string>
+    <string name="create_wallet_step_3">Saving to local vault</string>
+    <string name="create_wallet_step_4">Preparing your space in multichain…</string>
+
     <!--    Addressbook recent transaction-->
     <string name="title_addressbook_recent_transaction_no_imported_account">Start Your Web3 Journey</string>
     <string name="message_addressbook_recent_transaction_no_imported_account">Your secure gateway to crypto. Create a new wallet or import one you already trust.</string>
     <string name="button_addressbook_recent_transaction_create">Create a new wallet</string>
     <string name="button_addressbook_recent_transaction_import">I Already Have a Wallet</string>
+
+    <!--    EVM Add Account Bottom Sheet -->
+    <string name="title_evm_add_account">Add Account</string>
+    <string name="title_evm_add_account_option_add_more">Add More Account</string>
+    <string name="description_evm_add_account_option_add_more">Derive a new account from your existing HD wallet</string>
+    <string name="title_evm_add_account_option_create">Create Wallet</string>
+    <string name="description_evm_add_account_option_create">Generate a new wallet with a fresh seed phrase</string>
+    <string name="title_evm_add_account_option_import">Import Wallet</string>
+    <string name="description_evm_add_account_option_import">Import using seed phrase or private key</string>
+
+    <!--    EVM Portfolio Header -->
+    <string name="label_total_portfolio">TOTAL PORTFOLIO</string>
+    <string name="label_usd">USD</string>
+    <string name="label_24h_prefix">24h: </string>
+    <string name="content_description_copy_address">Copy address</string>
+    <string name="content_description_toggle_balance">Toggle balance visibility</string>
+    <string name="content_description_switch_account">Switch Account</string>
+
+    <!--    EVM Account Switch Bottom Sheet -->
+    <string name="title_switch_account">Switch Account</string>
+    <string name="content_description_selected">Selected</string>
+
+    <!--    EVM Quick Actions -->
+    <string name="label_history">History</string>
+
+    <!--    EVM Token List Section -->
+    <string name="label_tokens">Tokens</string>
+    <string name="label_search">Search</string>
+    <string name="message_no_tokens_match">No tokens match "%s"</string>
+    <string name="message_no_tokens_found">No tokens found</string>
+    <string name="label_24h">24h</string>
+    <string name="content_description_clear">Clear</string>
+
+    <!--    Network Selection Bottom Sheet -->
+    <string name="label_testnet">Testnet</string>
 </resources>

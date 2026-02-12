@@ -10,6 +10,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+sealed interface ValidationError {
+    data object InvalidLength : ValidationError
+    data object InvalidWord : ValidationError
+    data object InvalidChecksum : ValidationError
+}
+
 class RestoreRecoveryPhraseScreenModel(
     private val pinManager: PINManager,
     private val restoreWalletUseCase: RestoreWalletUseCase,
@@ -31,6 +37,13 @@ class RestoreRecoveryPhraseScreenModel(
     private val _isRestoreButtonEnabled = MutableStateFlow(false)
     val isRestoreButtonEnabled = _isRestoreButtonEnabled.asStateFlow()
 
+    private val _validationError = MutableStateFlow<ValidationError?>(null)
+    val validationError = _validationError.asStateFlow()
+
+    companion object {
+        private val VALID_WORD_COUNTS = setOf(12, 15, 18, 21, 24)
+    }
+
     fun onInputRecoveryPhrase(text: String){
         val wordList = text.split(" ")
         if (wordList.size > 24) return
@@ -42,11 +55,22 @@ class RestoreRecoveryPhraseScreenModel(
         }
 
         _recoveryPhraseState.value = correctList
-
         _recoveryPhrase.value = text
 
-        if (correctList.count { it.second } >= 12) _isRestoreButtonEnabled.value = verifyWallet()
-        else _isRestoreButtonEnabled.value = false
+        // Clear validation error when user is typing
+        _validationError.value = null
+
+        val validWordCount = correctList.count { it.second }
+        if (validWordCount >= 12 && wordList.size in VALID_WORD_COUNTS) {
+            val result = verifyWallet()
+            _isRestoreButtonEnabled.value = result
+        } else {
+            _isRestoreButtonEnabled.value = false
+            // Show word count hint when user has entered enough words but count is invalid
+            if (validWordCount >= 12 && wordList.size !in VALID_WORD_COUNTS) {
+                _validationError.value = ValidationError.InvalidLength
+            }
+        }
     }
 
     private fun isCorrectWord(text: String): Boolean {
@@ -55,7 +79,16 @@ class RestoreRecoveryPhraseScreenModel(
 
     private fun verifyWallet(): Boolean {
         val list = recoveryPhrase.value.trim().split(" ")
-        return restoreWalletUseCase.verifyWallet(list).isSuccess
+        val result = restoreWalletUseCase.verifyWallet(list)
+        if (result.isFailure) {
+            _validationError.value = when (result.exceptionOrNull()) {
+                is RestoreWalletUseCase.Error.InvalidLength -> ValidationError.InvalidLength
+                is RestoreWalletUseCase.Error.InvalidWord -> ValidationError.InvalidWord
+                is RestoreWalletUseCase.Error.InvalidChecksum -> ValidationError.InvalidChecksum
+                else -> null
+            }
+        }
+        return result.isSuccess
     }
 
     private var isImporting = false
@@ -64,6 +97,7 @@ class RestoreRecoveryPhraseScreenModel(
         // Prevent multiple clicks
         if (isImporting) return
         isImporting = true
+        hasNavigated = false
 
         screenModelScope.launch {
             try {
@@ -82,7 +116,8 @@ class RestoreRecoveryPhraseScreenModel(
 
     fun resetUiState() {
         _uiState.value = RestoreRecoveryPhraseScreenUiState.NoImported
-        hasNavigated = false
+        // Note: hasNavigated is intentionally NOT reset here.
+        // It's only reset when a new import is initiated via importWallet().
     }
 
     fun isPinExist(): Boolean {

@@ -114,6 +114,10 @@ internal class WalletLocalDataSourceImpl(
         dbQuery.updateWalletName(walletName, id)
     }
 
+    override suspend fun updateWalletBackupStatus(id: String, isBackedUp: Boolean) = withContext(ioDispatcher) {
+        dbQuery.updateWalletBackupStatus(if (isBackedUp) 1 else 0, id)
+    }
+
     private fun mapWalletSelecting(
         id: String,
         name: String?,

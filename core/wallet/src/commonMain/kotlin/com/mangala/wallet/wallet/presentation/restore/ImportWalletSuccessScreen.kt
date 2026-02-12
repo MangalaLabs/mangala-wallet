@@ -24,9 +24,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.runtime.Composable
@@ -59,6 +61,7 @@ import com.mangala.wallet.ui.LocalGlobalNavigator
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.imageloader.LocalImage
+import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
 import dev.icerock.moko.resources.compose.stringResource
@@ -81,10 +84,55 @@ class ImportWalletSuccessScreen(
     override fun ScreenContent(screenModel: ImportWalletSuccessScreenModel) {
         val globalNavigator = LocalGlobalNavigator.current
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
+        val importState = screenModel.importState.collectAsStateMultiplatform().value
+
+        // Error dialog
+        if (importState is ImportWalletState.Error) {
+            AlertDialog(
+                onDismissRequest = { screenModel.dismissError() },
+                title = {
+                    Text(
+                        text = stringResource(MR.strings.all_error_no_params),
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                },
+                text = {
+                    Text(
+                        text = importState.message,
+                        color = Color.White.copy(alpha = 0.8f)
+                    )
+                },
+                confirmButton = {
+                    TextButton(onClick = {
+                        screenModel.dismissError()
+                        // Retry restore
+                        screenModel.restoreWallet(mnemonicWords, walletName)
+                    }) {
+                        Text(
+                            text = stringResource(MR.strings.all_retry),
+                            color = Color(0xFF3B90FF)
+                        )
+                    }
+                },
+                dismissButton = {
+                    TextButton(onClick = {
+                        screenModel.dismissError()
+                        globalNavigator.replaceAll(homeScreen)
+                    }) {
+                        Text(
+                            text = stringResource(MR.strings.all_skip),
+                            color = Color(0xFFA5B4CB)
+                        )
+                    }
+                },
+                backgroundColor = Color(0xFF1E1F32),
+                contentColor = Color.White
+            )
+        }
 
         ImportWalletAnimation(
             onAnimationComplete = {
-                // Start restore in background
                 screenModel.restoreWallet(mnemonicWords, walletName)
             },
             onNavigateToHome = {

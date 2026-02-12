@@ -61,6 +61,9 @@ DELETE FROM WalletEntity;
 updateWalletName:
 UPDATE WalletEntity SET name = ? WHERE id = ?;
 
+updateWalletBackupStatus:
+UPDATE WalletEntity SET is_backed_up = ? WHERE id = ?;
+
 getWalletById:
 SELECT * FROM WalletEntity WHERE id = ?;
 
