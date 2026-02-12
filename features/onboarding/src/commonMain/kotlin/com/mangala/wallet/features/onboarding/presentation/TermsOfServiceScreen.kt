@@ -3,59 +3,40 @@ package com.mangala.wallet.features.onboarding.presentation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
+import com.mangala.wallet.mokoresources.MR
+import com.mangala.wallet.ui.component.MangalaWalletTopBarCenteredTitle
+import com.mangala.wallet.ui.component.OnboardingGradientBackground
+import com.mangala.wallet.utils.analytics.MangalaAnalytics
+import dev.icerock.moko.resources.compose.localized
+import dev.icerock.moko.resources.desc.desc
 
 class TermsOfServiceScreen : Screen {
     
-    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
 
         OnboardingGradientBackground(
-            afterBackgroundModifier = Modifier.navigationBarsPadding().imePadding()
+            afterBackgroundModifier = Modifier.safeDrawingPadding().imePadding()
         ) {
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {
-                // Top bar
-                TopAppBar(
-                    title = {
-                        Text(
-                            text = "Terms of Service",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = Color.White,
-                            fontFamily = getInterFontFamily()
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = { navigator.pop() }) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "Back",
-                                tint = Color.White
-                            )
-                        }
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.Transparent
-                    )
+                MangalaWalletTopBarCenteredTitle(
+                    title = MR.strings.title_terms_of_service.desc().localized(),
+                    onBackClicked = navigator::pop
                 )
                 
                 // Scrollable content

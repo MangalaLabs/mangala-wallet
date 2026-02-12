@@ -1,6 +1,7 @@
 package com.mangala.wallet.wallet.presentation.backup
 
 import cafe.adriel.voyager.core.model.screenModelScope
+import com.mangala.wallet.domain.wallet.repository.WalletRepository
 import com.mangala.wallet.domain.wallet.usecases.GetSelectedWalletUseCase
 import com.mangala.wallet.domain.wallet.usecases.GetWalletByIdUseCase
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreenModel
@@ -20,7 +21,8 @@ data class ShowRecoveryPhraseUiState(
 class ShowRecoveryPhraseScreenModel(
     private val walletId: String?,
     private val getWalletByIdUseCase: GetWalletByIdUseCase,
-    private val getSelectedWalletUseCase: GetSelectedWalletUseCase
+    private val getSelectedWalletUseCase: GetSelectedWalletUseCase,
+    private val walletRepository: WalletRepository
 ) : BaseScreenModel() {
 
     private val _uiState = MutableStateFlow(ShowRecoveryPhraseUiState())
@@ -76,14 +78,15 @@ class ShowRecoveryPhraseScreenModel(
     }
 
     fun onContinueClick() {
-        // Handle continue action - mark wallet as backed up
         screenModelScope.launch {
             try {
-                // TODO: Update wallet to mark it as backed up using walletId from uiState
-                // val walletId = _uiState.value.walletId
-                // updateWalletUseCase(walletId, isBackedUp = true)
+                val currentWalletId = _uiState.value.walletId
+                if (currentWalletId.isNotEmpty()) {
+                    walletRepository.markWalletAsBackedUp(currentWalletId)
+                }
             } catch (e: Exception) {
-                // Handle error
+                // Non-critical: backup status is a UX convenience, not a blocker
+                e.printStackTrace()
             }
         }
     }

@@ -280,6 +280,7 @@ object MangalaAnalytics {
         const val ONBOARDING = "Onboarding"
 
         const val RESTORE_WALLET_GUIDE = "RestoreWalletGuideScreen"
+        const val TERMS_OF_SERVICE = "TermsOfServiceScreen"
     }
 }
 

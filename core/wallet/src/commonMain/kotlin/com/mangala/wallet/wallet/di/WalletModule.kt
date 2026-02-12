@@ -38,7 +38,8 @@ val coreWalletModule = module {
         ShowRecoveryPhraseScreenModel(
             walletId = walletId,
             getWalletByIdUseCase = get(),
-            getSelectedWalletUseCase = get()
+            getSelectedWalletUseCase = get(),
+            walletRepository = get()
         )
     }
     factory { RestoreRecoveryPhraseScreenModel(get(), get(), get()) }

@@ -1,10 +1,7 @@
 package com.mangala.wallet.features.onboarding.presentation.trywithai
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,12 +11,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -31,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -47,15 +39,17 @@ import com.mangala.wallet.ui.component.MangalaBrandText
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.ui.component.GradientTermsCheckbox
+import com.mangala.wallet.ui.component.MangalaButtonStyle
 import com.mangala.wallet.ui.component.MangalaGradientButton
 import com.mangala.wallet.ui.component.MangalaWalletTopBarCenteredTitle
 import com.mangala.wallet.ui.component.MaxSizeColumn
-import com.mangala.wallet.ui.component.OnboardingButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.component.PasskeyBottomSheet
 import com.mangala.wallet.ui.imageloader.LocalImage
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
+import dev.icerock.moko.resources.compose.localized
+import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.launch
 
 class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
@@ -113,7 +107,7 @@ class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
                         ) {
                             // First line with Mangala brand
                             MangalaBrandText(
-                                fullText = "Meet Mangala",
+                                fullText = MR.strings.try_with_ai_title_meet.desc().localized(),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 lineHeight = 39.2.sp,
@@ -122,7 +116,7 @@ class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
 
                             // Second line
                             Text(
-                                text = "Your Own AI Assistant",
+                                text = MR.strings.try_with_ai_title_subtitle.desc().localized(),
                                 fontSize = 28.sp,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.White,
@@ -135,7 +129,7 @@ class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
                             Spacer(modifier = Modifier.height(16.dp))
 
                             Text(
-                                text = "Send and receive assets, manage contacts, and handle accounts with simple commands",
+                                text = MR.strings.try_with_ai_description.desc().localized(),
                                 fontSize = 17.sp,
                                 fontWeight = FontWeight.Normal,
                                 color = Color(0xFFD1D1D1),
@@ -160,7 +154,7 @@ class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
                         Spacer(modifier = Modifier.height(16.dp))
 
                         MangalaGradientButton(
-                            label = "Continue with passkey",
+                            label = MR.strings.try_with_ai_button_continue.desc().localized(),
                             onClick = {
                                 if (isTermsAgreed) {
                                     coroutineScope.launch {
@@ -180,35 +174,12 @@ class TryWithAIScreen : BaseScreen<TryWithAIScreenModel>() {
 
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        Button(
+                        MangalaGradientButton(
+                            label = MR.strings.try_with_ai_button_what_is_passkey.desc().localized(),
                             onClick = { showPasskeyBottomSheet = true },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(52.dp)
-                                .clip(RoundedCornerShape(1000.dp))
-                                .border(
-                                    width = 1.dp,
-                                    color = Color.White.copy(alpha = 0.01f),
-                                    shape = RoundedCornerShape(1000.dp)
-                                ),
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Transparent,
-                                contentColor = Color.White
-                            ),
-                            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 14.dp),
-                            shape = RoundedCornerShape(1000.dp)
-                        ) {
-                            Text(
-                                text = "What is passkey?",
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Normal,
-                                color = Color(0xFFA5B4CB),
-                                textAlign = TextAlign.Center,
-                                letterSpacing = (-0.14).sp,
-                                lineHeight = 19.6.sp,
-                                fontFamily = getInterFontFamily()
-                            )
-                        }
+                            buttonStyle = MangalaButtonStyle.TRANSPARENT,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
                         Spacer(modifier = Modifier.height(32.dp))
                     }
