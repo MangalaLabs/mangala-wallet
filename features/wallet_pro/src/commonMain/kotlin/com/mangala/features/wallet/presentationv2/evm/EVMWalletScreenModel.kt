@@ -1,6 +1,8 @@
 package com.mangala.features.wallet.presentationv2.evm
 
 import cafe.adriel.voyager.core.model.screenModelScope
+import com.mangala.features.wallet.presentationv2.evm.model.EVMFilterOptions
+import com.mangala.features.wallet.presentationv2.evm.model.EVMViewMode
 import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.features.wallet.presentationv2.core.base.BaseWalletViewModel
 import com.mangala.wallet.domain.currency.usecases.GetCurrentCurrencyCodeUseCase
@@ -234,6 +236,12 @@ class EVMWalletScreenModel(
     fun onSearchQueryChanged(query: String) {
         _uiState.update { state ->
             state.copy(searchQuery = query)
+        }
+    }
+
+    fun onFilterOptionsChanged(filterOptions: EVMFilterOptions) {
+        _uiState.update { state ->
+            state.copy(filterOptions = filterOptions)
         }
     }
 }

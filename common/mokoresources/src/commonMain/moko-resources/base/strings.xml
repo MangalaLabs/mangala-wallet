@@ -1323,6 +1323,18 @@
     <string name="label_24h">24h</string>
     <string name="content_description_clear">Clear</string>
 
+    <!--    EVM Filter & Sort -->
+    <string name="label_filter_and_sort">Filter &amp; Sort</string>
+    <string name="label_hide_small_balances">Hide small balances (&lt; $1)</string>
+    <string name="label_sort_by">Sort By</string>
+    <string name="label_sort_by_name">Name</string>
+    <string name="label_sort_by_value">Value</string>
+    <string name="label_view_mode">View Mode</string>
+    <string name="label_view_mode_single_account">Single Account</string>
+    <string name="label_view_mode_all_accounts">All Accounts</string>
+    <string name="label_allocation">Allocation</string>
+    <string name="label_portfolio">Portfolio</string>
+
     <!--    Network Selection Bottom Sheet -->
     <string name="label_testnet">Testnet</string>
 </resources>

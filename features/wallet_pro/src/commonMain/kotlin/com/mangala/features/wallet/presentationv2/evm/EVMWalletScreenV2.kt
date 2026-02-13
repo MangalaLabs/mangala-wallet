@@ -42,6 +42,7 @@ import com.mangala.features.wallet.presentationv2.core.base.BaseWalletScreenV2
 import com.mangala.features.wallet.presentationv2.core.common.components.WalletHeaderV2
 import com.mangala.features.wallet.presentationv2.evm.components.EVMAccountSwitchBottomSheet
 import com.mangala.features.wallet.presentationv2.evm.components.EVMAddAccountBottomSheet
+import com.mangala.features.wallet.presentationv2.evm.components.EVMFilterBottomSheet
 import com.mangala.features.wallet.presentationv2.evm.components.EVMPortfolioHeader
 import com.mangala.features.wallet.presentationv2.evm.components.EVMQuickActionsRow
 import com.mangala.features.wallet.presentationv2.evm.components.EVMTokenListSection
@@ -90,6 +91,7 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
             var showAddAccountBottomSheet by remember { mutableStateOf(false) }
             var showAccountSwitchBottomSheet by remember { mutableStateOf(false) }
             var showNetworkSelectionBottomSheet by remember { mutableStateOf(false) }
+            var showFilterBottomSheet by remember { mutableStateOf(false) }
 
             LaunchedEffect(Unit) {
                 delay(100)
@@ -181,7 +183,9 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                         )
                                         globalNavigator.push(screen)
                                     },
-                                    onHistoryClick = { },
+                                    onHistoryClick = {
+                                        globalNavigator.push(ScreenRegistry.get(SharedScreen.ContactListScreen))
+                                    },
                                     onScanClick = {
                                         val networkType = uiState.selectedNetwork?.blockchainType?.networkType
                                         networkType?.let {
@@ -218,14 +222,18 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                                 )
                             ) {
                                 EVMTokenListSection(
-                                    tokens = uiState.activeAccount?.balances,
+                                    tokens = if (uiState.isAllAccountsView) null else uiState.filteredActiveAccountTokens,
                                     isBalanceHidden = uiState.isPortfolioBalanceHidden,
                                     isLoading = uiState.isLoadingWallets,
                                     currencySymbol = uiState.fiatSymbol,
                                     isSearchActive = uiState.isSearchActive,
                                     searchQuery = uiState.searchQuery,
+                                    isAllAccountsView = uiState.isAllAccountsView,
+                                    aggregatedTokens = uiState.filteredAggregatedTokens,
+                                    hasActiveFilters = uiState.hasActiveFilters,
                                     onSearchClick = { screenModel.onSearchToggled() },
                                     onSearchQueryChanged = { screenModel.onSearchQueryChanged(it) },
+                                    onFilterClick = { showFilterBottomSheet = true },
                                     onTokenClick = { }
                                 )
                             }
@@ -283,6 +291,14 @@ class EVMWalletScreenV2 : BaseWalletScreenV2<EVMWalletScreenModel>() {
                         showNetworkSelectionBottomSheet = false
                     },
                     onDismiss = { showNetworkSelectionBottomSheet = false }
+                )
+            }
+
+            if (showFilterBottomSheet) {
+                EVMFilterBottomSheet(
+                    currentOptions = uiState.filterOptions,
+                    onFilterOptionsChanged = screenModel::onFilterOptionsChanged,
+                    onDismiss = { showFilterBottomSheet = false }
                 )
             }
         } else {

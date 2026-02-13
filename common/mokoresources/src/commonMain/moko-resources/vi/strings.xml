@@ -1127,6 +1127,18 @@
     <string name="label_24h">24h</string>
     <string name="content_description_clear">Xóa</string>
 
+    <!--    EVM Filter & Sort -->
+    <string name="label_filter_and_sort">Lọc &amp; Sắp xếp</string>
+    <string name="label_hide_small_balances">Ẩn số dư nhỏ (&lt; $1)</string>
+    <string name="label_sort_by">Sắp xếp theo</string>
+    <string name="label_sort_by_name">Tên</string>
+    <string name="label_sort_by_value">Giá trị</string>
+    <string name="label_view_mode">Chế độ xem</string>
+    <string name="label_view_mode_single_account">Tài khoản đơn</string>
+    <string name="label_view_mode_all_accounts">Tất cả tài khoản</string>
+    <string name="label_allocation">Phân bổ</string>
+    <string name="label_portfolio">Danh mục</string>
+
     <!--    Network Selection Bottom Sheet -->
     <string name="label_testnet">Mạng thử nghiệm</string>
 </resources>
