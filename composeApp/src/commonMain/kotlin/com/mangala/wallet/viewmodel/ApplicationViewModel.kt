@@ -5,9 +5,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import com.mangala.wallet.core.notification.APP_NOTIFICATION_HOST
 import com.mangala.wallet.core.notification.APP_NOTIFICATION_SCHEME
 import com.mangala.wallet.core.notification.PATH_MULTISIG
+import com.mangala.wallet.domain.datastore.usecases.CheckPrePermissionDoneUseCase
 import com.mangala.wallet.domain.language.usecase.GetCurrentLanguageUseCase
 import com.mangala.wallet.domain.wallet.usecases.GetSelectedWalletUseCase
-import com.mangala.wallet.features.onboarding.presentation.onboarding.OnboardingScreen
 import com.mangala.wallet.pin.domain.GetIsPinSetupUseCase
 import com.mangala.wallet.pin.presentation.unlock.UnlockPinScreen
 import com.mangala.wallet.ui.SharedScreen
@@ -21,7 +21,8 @@ import org.brightify.hyperdrive.multiplatformx.BaseViewModel
 class ApplicationViewModel(
     private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     private val getIsPinSetupUseCase: GetIsPinSetupUseCase,
-    private val getSelectedWalletUseCase: GetSelectedWalletUseCase
+    private val getSelectedWalletUseCase: GetSelectedWalletUseCase,
+    private val checkPrePermissionDoneUseCase: CheckPrePermissionDoneUseCase
 ) : BaseViewModel() {
 
     init {
@@ -53,8 +54,12 @@ class ApplicationViewModel(
         val isExistingUser = isPinSetup || hasWallet
 
         if (!isExistingUser) {
-            // New user - always show onboarding first
-            return OnboardingScreen()
+            val isPrePermissionDone = runBlocking { checkPrePermissionDoneUseCase() }
+            return if (isPrePermissionDone) {
+                ScreenRegistry.get(SharedScreen.OnboardingScreen)
+            } else {
+                ScreenRegistry.get(SharedScreen.PrePermissionScreen)
+            }
         }
 
         // Existing deep link processing logic

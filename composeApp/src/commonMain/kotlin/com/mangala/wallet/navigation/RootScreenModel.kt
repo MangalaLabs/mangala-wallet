@@ -5,9 +5,9 @@ import cafe.adriel.voyager.core.model.screenModelScope
 import cafe.adriel.voyager.core.registry.ScreenRegistry
 import cafe.adriel.voyager.core.screen.Screen
 import com.mangala.wallet.domain.datastore.usecases.CheckOnboardingCompletedUseCase
-import com.mangala.wallet.features.onboarding.presentation.onboarding.OnboardingScreen
+import com.mangala.wallet.domain.datastore.usecases.CheckPrePermissionDoneUseCase
+import com.mangala.wallet.features.onboarding.presentation.notification.PrePermissionScreen
 import com.mangala.wallet.pin.domain.GetIsPinSetupUseCase
-import com.mangala.wallet.pin.presentation.unlock.UnlockPinScreen
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.domain.wallet.usecases.GetSelectedWalletUseCase
 import com.mangala.wallet.pin.presentation.unlock.UnlockPinScreenV2
@@ -21,6 +21,7 @@ class RootScreenModel : ScreenModel, KoinComponent {
     private val getIsPinSetupUseCase: GetIsPinSetupUseCase by inject()
     private val getSelectedWalletUseCase: GetSelectedWalletUseCase by inject()
     private val checkOnboardingCompletedUseCase: CheckOnboardingCompletedUseCase by inject()
+    private val checkPrePermissionDoneUseCase: CheckPrePermissionDoneUseCase by inject()
     
     private val _navigationState = MutableStateFlow<NavigationState>(NavigationState.Loading)
     val navigationState = _navigationState.asStateFlow()
@@ -28,6 +29,7 @@ class RootScreenModel : ScreenModel, KoinComponent {
     init {
         screenModelScope.launch {
             val isOnboardingCompleted = checkOnboardingCompletedUseCase()
+            val isPrePermissionDone = checkPrePermissionDoneUseCase()
             val isPinSetup = getIsPinSetupUseCase()
             val hasWallet = getSelectedWalletUseCase() != null
             
@@ -37,7 +39,8 @@ class RootScreenModel : ScreenModel, KoinComponent {
                     antelopeAccountName = null
                 )
                 isOnboardingCompleted -> ScreenRegistry.get(SharedScreen.HomeScreen())
-                else -> OnboardingScreen()
+                isPrePermissionDone -> ScreenRegistry.get(SharedScreen.OnboardingScreen)
+                else -> PrePermissionScreen()
             }
             
             _navigationState.value = NavigationState.Ready(screen)

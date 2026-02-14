@@ -46,11 +46,13 @@ import com.mangala.wallet.domain.datastore.repository.DataStoreRepository
 import com.mangala.wallet.domain.datastore.repository.DataStoreRepositoryImpl
 import com.mangala.wallet.domain.datastore.usecases.CheckInitialDatabaseUseCase
 import com.mangala.wallet.domain.datastore.usecases.CheckOnboardingCompletedUseCase
+import com.mangala.wallet.domain.datastore.usecases.CheckPrePermissionDoneUseCase
 import com.mangala.wallet.domain.datastore.usecases.CompleteOnboardingUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetBalanceVisibleStatusUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetSelectedNetworkUseCase
 import com.mangala.wallet.domain.datastore.usecases.SaveBalanceVisibleStatusUseCase
 import com.mangala.wallet.domain.datastore.usecases.SaveInitialDatabaseUseCase
+import com.mangala.wallet.domain.datastore.usecases.SavePrePermissionDoneUseCase
 import com.mangala.wallet.domain.datastore.usecases.SaveSelectedNetworkUseCase
 import com.mangala.wallet.domain.language.repository.LanguageRepository
 import com.mangala.wallet.domain.language.repository.LanguageRepositoryImpl
@@ -146,6 +148,8 @@ fun domainModule() = module {
     factoryOf(::SaveSelectedNetworkUseCase)
     factoryOf(::CheckOnboardingCompletedUseCase)
     factoryOf(::CompleteOnboardingUseCase)
+    factoryOf(::CheckPrePermissionDoneUseCase)
+    factoryOf(::SavePrePermissionDoneUseCase)
 
     singleOf(::CoingeckoRepositoryImpl) bind CoingeckoRepository::class
     singleOf(::BlockchainRepositoryImpl) bind BlockchainRepository::class

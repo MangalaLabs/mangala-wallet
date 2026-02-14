@@ -1263,6 +1263,12 @@
     <string name="onboarding_page_4_description">Native Vaulta, full EVM support, and Bitcoin - all in one place.</string>
     <string name="onboarding_button_create_wallet">Create a new wallet</string>
     <string name="onboarding_button_import_wallet">I already have a wallet</string>
+
+    <string name="pre_permission_title">Stay in the Loop</string>
+    <string name="pre_permission_description">Enable notifications to receive important updates about your account, transactions, and security alerts.</string>
+    <string name="pre_permission_button_notify_me">Notify Me</string>
+    <string name="pre_permission_button_maybe_later">Maybe Later</string>
+
     <string name="onboarding_fallback_emoji">🚀</string>
 
     <!--    TryWithAI Screen -->
