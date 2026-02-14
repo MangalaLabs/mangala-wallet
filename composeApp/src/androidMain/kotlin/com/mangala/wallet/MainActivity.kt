@@ -38,6 +38,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.mangala.features.browser.OpenBrowser
 import com.mangala.wallet.auth.BuildConfig
 import com.mangala.wallet.features.addressbook.presentation.avatar.ProvideImageLoader
+import com.mangala.wallet.features.onboarding.presentation.notification.NotificationPermissionHost
 import com.mangala.wallet.passkey.PasskeyManager
 import com.mangala.wallet.passkey.effect.BindPasskeyManagerEffect
 import com.mangala.wallet.viewmodel.ApplicationViewModel
@@ -46,7 +47,7 @@ import com.mmk.kmpnotifier.notification.NotifierManager
 import dev.theolm.rinku.RinkuInit
 import dev.theolm.rinku.compose.ext.Rinku
 
-class MainActivity : AppCompatActivity(), KoinComponent {
+class MainActivity : AppCompatActivity(), KoinComponent, NotificationPermissionHost {
 
     private val applicationViewModel: ApplicationViewModel by inject()
     private val bio: BiometryAuthenticator by inject()
@@ -58,11 +59,13 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     // TODO: Use plugin pattern so that we can build the app on variants other than pro
     private val updatePurchasedAccountsStateUseCase: UpdatePurchasedAccountsStateUseCase by inject()
+    private val notificationPermissionUtil by permissionUtil()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
+        notificationPermissionUtil
 
         NotifierManager.onCreateOrOnNewIntent(intent)
         // Keep the splash screen on-screen until the UI state is loaded. This condition is
@@ -119,9 +122,6 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 
     override fun onStart() {
         super.onStart()
-
-        val permissionUtil by permissionUtil()
-        permissionUtil.askNotificationPermission()
     }
 
     override fun onResume() {
@@ -157,6 +157,12 @@ class MainActivity : AppCompatActivity(), KoinComponent {
 //        if (root.hasChild(applicationViewModel.lifecycle)) { // TODO: Reenable
 //            root.removeChild(applicationViewModel.lifecycle)
 //        }
+    }
+
+    override fun requestNotificationPermission(onPermissionResult: (Boolean) -> Unit) {
+        notificationPermissionUtil.askNotificationPermission { isGranted ->
+            onPermissionResult(isGranted)
+        }
     }
 
     private fun generateImageLoader(): ImageLoader {

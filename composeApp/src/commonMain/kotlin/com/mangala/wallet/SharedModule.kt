@@ -211,7 +211,7 @@ fun initKoin(
 
 val sharedModule = module {
     single {
-        ApplicationViewModel(get(), get(), get())
+        ApplicationViewModel(get(), get(), get(), get())
     }
 
     ScreenRegistry {
