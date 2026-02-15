@@ -4,6 +4,11 @@ import androidx.compose.ui.graphics.Color
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.ionspin.kotlin.bignum.decimal.DecimalMode
 import com.ionspin.kotlin.bignum.decimal.RoundingMode
+import com.mangala.features.wallet.presentationv2.evm.model.EVMAggregatedToken
+import com.mangala.features.wallet.presentationv2.evm.model.EVMFilterOptions
+import com.mangala.features.wallet.presentationv2.evm.model.EVMTokenSortBy
+import com.mangala.features.wallet.presentationv2.evm.model.EVMViewMode
+import com.mangala.features.wallet.presentationv2.evm.model.toAggregatedTokens
 import com.mangala.wallet.model.blockchain.BlockchainNetworkData
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.model.token.domain.TokenBalanceModel
@@ -34,6 +39,8 @@ data class EVMWalletUiState(
     // Search state
     val isSearchActive: Boolean = false,
     val searchQuery: String = "",
+    // Filter state
+    val filterOptions: EVMFilterOptions = EVMFilterOptions(),
 ) {
     val hasWallet: Boolean = accounts.isNotEmpty() || isLoadingWallets
 
@@ -69,6 +76,78 @@ data class EVMWalletUiState(
                 else -> WalletThemeV2.Colors.negativeLoss
             }
         }
+
+    val isAllAccountsView: Boolean = filterOptions.viewMode == EVMViewMode.ALL_ACCOUNTS
+
+    val hasActiveFilters: Boolean
+        get() {
+            val defaults = EVMFilterOptions()
+            return filterOptions.hideSmallBalances != defaults.hideSmallBalances ||
+                    filterOptions.sortBy != defaults.sortBy
+        }
+
+    val filteredActiveAccountTokens: List<TokenBalanceModel>?
+        get() {
+            val tokens = activeAccount?.balances ?: return null
+            return filterAndSortTokens(tokens)
+        }
+
+    val aggregatedTokens: List<EVMAggregatedToken>
+        get() = accounts.toAggregatedTokens()
+
+    val filteredAggregatedTokens: List<EVMAggregatedToken>
+        get() = filterAndSortAggregatedTokens(aggregatedTokens)
+
+    private fun filterAndSortTokens(tokens: List<TokenBalanceModel>): List<TokenBalanceModel> {
+        val searched = if (searchQuery.isNotBlank()) {
+            tokens.filter { token ->
+                token.contractSymbol.contains(searchQuery, ignoreCase = true) ||
+                        token.contractName.contains(searchQuery, ignoreCase = true)
+            }
+        } else {
+            tokens
+        }
+
+        val filtered = searched.filter { token ->
+            if (token.isCoin) return@filter true
+            if (filterOptions.hideSmallBalances) {
+                val usdValue = token.todaysValue ?: BigDecimal.ZERO
+                if (usdValue < BigDecimal.ONE) return@filter false
+            }
+            true
+        }
+
+        return when (filterOptions.sortBy) {
+            EVMTokenSortBy.NAME -> filtered.sortedBy { it.contractSymbol.lowercase() }
+            EVMTokenSortBy.VALUE -> filtered.sortedByDescending { it.todaysValue ?: BigDecimal.ZERO }
+        }
+    }
+
+    private fun filterAndSortAggregatedTokens(
+        tokens: List<EVMAggregatedToken>
+    ): List<EVMAggregatedToken> {
+        val searched = if (searchQuery.isNotBlank()) {
+            tokens.filter { token ->
+                token.contractSymbol.contains(searchQuery, ignoreCase = true) ||
+                        token.contractName.contains(searchQuery, ignoreCase = true)
+            }
+        } else {
+            tokens
+        }
+
+        val filtered = searched.filter { token ->
+            if (token.isCoin) return@filter true
+            if (filterOptions.hideSmallBalances) {
+                if (token.totalValueUsd < BigDecimal.ONE) return@filter false
+            }
+            true
+        }
+
+        return when (filterOptions.sortBy) {
+            EVMTokenSortBy.NAME -> filtered.sortedBy { it.contractSymbol.lowercase() }
+            EVMTokenSortBy.VALUE -> filtered.sortedByDescending { it.totalValueUsd }
+        }
+    }
 }
 
 /**
