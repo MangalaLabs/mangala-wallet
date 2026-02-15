@@ -20,4 +20,7 @@ interface DataStoreRepository {
     fun getOnboardingCompletedFlow(): Flow<Boolean>
     suspend fun getOnboardingCompleted(): Boolean
     suspend fun saveOnboardingCompleted(completed: Boolean)
+    fun getPrePermissionDoneFlow(): Flow<Boolean>
+    suspend fun getPrePermissionDone(): Boolean
+    suspend fun savePrePermissionDone(done: Boolean)
 }

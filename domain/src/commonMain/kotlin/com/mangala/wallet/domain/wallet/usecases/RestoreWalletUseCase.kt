@@ -63,6 +63,9 @@ class RestoreWalletUseCase(
             bip49Address = chainAddresses.bip49Address,
             bip84Address = chainAddresses.bip84Address
         )
+        if (walletRepository.getWalletById(walletId) != null) {
+            return Result.failure(Error.DuplicateWallet(walletId))
+        }
         val wallet = walletWithoutId.copy(id = walletId)
         walletRepository.saveWallet(wallet)
         accountRepository.saveAccount(account)
@@ -143,6 +146,7 @@ class RestoreWalletUseCase(
         data object InvalidLength: Error()
         data object InvalidWord: Error()
         data object InvalidChecksum: Error()
+        data class DuplicateWallet(val walletId: String): Error()
         data object Unknown: Error()
     }
 }

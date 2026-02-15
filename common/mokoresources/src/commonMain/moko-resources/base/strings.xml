@@ -1263,6 +1263,14 @@
     <string name="onboarding_page_4_description">Native Vaulta, full EVM support, and Bitcoin - all in one place.</string>
     <string name="onboarding_button_create_wallet">Create a new wallet</string>
     <string name="onboarding_button_import_wallet">I already have a wallet</string>
+
+    <string name="pre_permission_title">Stay in the Loop</string>
+    <string name="pre_permission_description">Enable notifications to receive important updates about your account, transactions, and security alerts.</string>
+    <string name="pre_permission_button_notify_me">Notify Me</string>
+    <string name="pre_permission_button_maybe_later">Maybe Later</string>
+    <string name="title_import_wallet_already_exists">Wallet Already Exists</string>
+    <string name="message_import_wallet_already_exists">This wallet has already been imported.</string>
+
     <string name="onboarding_fallback_emoji">🚀</string>
 
     <!--    TryWithAI Screen -->
@@ -1322,6 +1330,18 @@
     <string name="message_no_tokens_found">No tokens found</string>
     <string name="label_24h">24h</string>
     <string name="content_description_clear">Clear</string>
+
+    <!--    EVM Filter & Sort -->
+    <string name="label_filter_and_sort">Filter &amp; Sort</string>
+    <string name="label_hide_small_balances">Hide small balances (&lt; $1)</string>
+    <string name="label_sort_by">Sort By</string>
+    <string name="label_sort_by_name">Name</string>
+    <string name="label_sort_by_value">Value</string>
+    <string name="label_view_mode">View Mode</string>
+    <string name="label_view_mode_single_account">Single Account</string>
+    <string name="label_view_mode_all_accounts">All Accounts</string>
+    <string name="label_allocation">Allocation</string>
+    <string name="label_portfolio">Portfolio</string>
 
     <!--    Network Selection Bottom Sheet -->
     <string name="label_testnet">Testnet</string>

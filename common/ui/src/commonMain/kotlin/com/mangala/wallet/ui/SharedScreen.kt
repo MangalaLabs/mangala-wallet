@@ -533,6 +533,7 @@ sealed class SharedScreen : ScreenProvider {
     ): SharedScreen()
     data class SignInScreen(val showTokenExpiredMessage: Boolean = false): SharedScreen()
     data object OnboardingScreen: SharedScreen()
+    data object PrePermissionScreen : SharedScreen()
     data object ConversationUiEntryPointScreen: SharedScreen()
     data object ImportPrivateKeyScreen: SharedScreen()
     data class Step4CreatingAccountScreen(

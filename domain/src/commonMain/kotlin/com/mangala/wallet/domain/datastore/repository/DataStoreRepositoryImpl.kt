@@ -31,6 +31,7 @@ class DataStoreRepositoryImpl(
     private val selectedCurrencyCodeKey = stringPreferencesKey("selected_currency_code_key")
     private val selectedLanguageCodeKey = stringPreferencesKey("selected_language_code_key")
     private val onboardingCompletedKey = booleanPreferencesKey("onboarding_completed_key")
+    private val prePermissionDoneKey = booleanPreferencesKey("pre_permission_done_key")
 
     override suspend fun getInitialDatabaseIfNeeded(): Flow<Boolean> {
         return dataStore.data.map {
@@ -135,6 +136,25 @@ class DataStoreRepositoryImpl(
         withContext(Dispatchers.IO) {
             dataStore.edit {
                 it[onboardingCompletedKey] = completed
+            }
+        }
+    }
+
+    override fun getPrePermissionDoneFlow(): Flow<Boolean> {
+        return dataStore.data.map {
+            it[prePermissionDoneKey] ?: false
+        }.distinctUntilChanged()
+    }
+
+    override suspend fun getPrePermissionDone(): Boolean = withContext(Dispatchers.IO) {
+        val preferences = dataStore.data.first()
+        return@withContext preferences[prePermissionDoneKey] ?: false
+    }
+
+    override suspend fun savePrePermissionDone(done: Boolean) {
+        withContext(Dispatchers.IO) {
+            dataStore.edit {
+                it[prePermissionDoneKey] = done
             }
         }
     }

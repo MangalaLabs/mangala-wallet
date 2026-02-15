@@ -43,6 +43,8 @@ kotlin {
                 implementation(projects.libraries.scanqr)
                 implementation(projects.domain)
 
+                implementation(projects.libraries.kmpnotifier)
+
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.multiplatformSettings.core)
