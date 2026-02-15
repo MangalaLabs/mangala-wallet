@@ -88,42 +88,64 @@ class ImportWalletSuccessScreen(
 
         // Error dialog
         if (importState is ImportWalletState.Error) {
+            val isDuplicateWallet = importState.isDuplicateWallet
+            val duplicateWalletId = importState.duplicateWalletId
             AlertDialog(
                 onDismissRequest = { screenModel.dismissError() },
                 title = {
                     Text(
-                        text = stringResource(MR.strings.all_error_no_params),
+                        text = if (isDuplicateWallet) {
+                            stringResource(MR.strings.title_import_wallet_already_exists)
+                        } else {
+                            stringResource(MR.strings.all_error_no_params)
+                        },
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
                 },
                 text = {
                     Text(
-                        text = importState.message,
+                        text = if (isDuplicateWallet) {
+                            stringResource(MR.strings.message_import_wallet_already_exists)
+                        } else {
+                            importState.message
+                        },
                         color = Color.White.copy(alpha = 0.8f)
                     )
                 },
                 confirmButton = {
                     TextButton(onClick = {
                         screenModel.dismissError()
-                        // Retry restore
-                        screenModel.restoreWallet(mnemonicWords, walletName)
+                        if (isDuplicateWallet) {
+                            screenModel.goToExistingWallet(duplicateWalletId) {
+                                globalNavigator.replaceAll(homeScreen)
+                            }
+                        } else {
+                            // Retry restore
+                            screenModel.restoreWallet(mnemonicWords, walletName)
+                        }
                     }) {
                         Text(
-                            text = stringResource(MR.strings.all_retry),
+                            text = if (isDuplicateWallet) {
+                                stringResource(MR.strings.button_import_wallet_go_to_wallet)
+                            } else {
+                                stringResource(MR.strings.all_retry)
+                            },
                             color = Color(0xFF3B90FF)
                         )
                     }
                 },
                 dismissButton = {
-                    TextButton(onClick = {
-                        screenModel.dismissError()
-                        globalNavigator.replaceAll(homeScreen)
-                    }) {
-                        Text(
-                            text = stringResource(MR.strings.all_skip),
-                            color = Color(0xFFA5B4CB)
-                        )
+                    if (!isDuplicateWallet) {
+                        TextButton(onClick = {
+                            screenModel.dismissError()
+                            globalNavigator.replaceAll(homeScreen)
+                        }) {
+                            Text(
+                                text = stringResource(MR.strings.all_skip),
+                                color = Color(0xFFA5B4CB)
+                            )
+                        }
                     }
                 },
                 backgroundColor = Color(0xFF1E1F32),

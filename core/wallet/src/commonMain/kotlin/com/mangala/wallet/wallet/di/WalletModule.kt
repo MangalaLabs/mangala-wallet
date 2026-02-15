@@ -43,7 +43,7 @@ val coreWalletModule = module {
         )
     }
     factory { RestoreRecoveryPhraseScreenModel(get(), get(), get()) }
-    factory { ImportWalletSuccessScreenModel(get(), get()) }
+    factory { ImportWalletSuccessScreenModel(get(), get(), get()) }
     factory { BackupWalletAlertScreenModel(get()) }
     single<ConfirmationRendererPlugin>(named("CoreWalletConfirmationRenderer")) { CoreWaleltConfirmationRendererPlugin() }
     factoryOf(::ResetWalletScreenModel)
