@@ -32,7 +32,6 @@ import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.ui.utils.screenmodel.BaseScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
 import com.mangala.wallet.utils.bip39.BIP39_WORDLIST_ENGLISH
-import kotlin.random.Random
 
 class VerifyRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
 
@@ -52,13 +51,14 @@ class VerifyRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
         val backupWalletDoneScreen = rememberScreen(SharedScreen.BackupWalletDoneScreen)
         val uiState by screenModel.uiState.collectAsStateMultiplatform()
 
-        if (uiState.recoveryPhrase.isNotEmpty()) {
+        if (uiState.recoveryPhrase.isNotEmpty() && uiState.verificationPositions.size == 3) {
             val words = uiState.recoveryPhrase
-            val words2 = BIP39_WORDLIST_ENGLISH.filterNot { it in words }
+            val words2 = remember(words) { BIP39_WORDLIST_ENGLISH.filterNot { it in words } }
 
             VerifyPhraseContent(
                 words = words,
                 wrongWords = words2,
+                verificationPositions = uiState.verificationPositions,
                 onComplete = {
                     navigator.push(backupWalletDoneScreen)
                 },
@@ -74,10 +74,17 @@ class VerifyRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
 private fun VerifyPhraseContent(
     words: List<String>,
     wrongWords: List<String>,
+    verificationPositions: List<Int>,
     onComplete: () -> Unit,
     onBack: () -> Unit
 ) {
-    val quizzes = remember { generateQuizzes(words, wrongWords) }
+    val quizzes = remember(words, wrongWords, verificationPositions) {
+        generateQuizzes(
+            correctWords = words,
+            wrongWords = wrongWords,
+            positions = verificationPositions
+        )
+    }
     val selectedWords = remember { mutableStateMapOf<Int, String>() }
     val allAnswersCorrect by derivedStateOf {
         selectedWords.size == 3 && selectedWords.all { (index, word) ->
@@ -280,13 +287,11 @@ private data class Quiz(
 
 private fun generateQuizzes(
     correctWords: List<String>,
-    wrongWords: List<String>
+    wrongWords: List<String>,
+    positions: List<Int>
 ): List<Quiz> {
-    val random = Random.Default
+    val random = kotlin.random.Random.Default
     val quizzes = mutableListOf<Quiz>()
-
-    // Select 3 random positions from the 12 words
-    val positions = listOf(1, 8, 12) // As shown in the Figma design
 
     positions.forEach { position ->
         val index = position - 1 // Convert to 0-based index
