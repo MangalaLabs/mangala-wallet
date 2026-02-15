@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -19,6 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -26,6 +30,7 @@ import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Copy
+import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.component.OnboardingButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
@@ -35,6 +40,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import cafe.adriel.voyager.core.registry.rememberScreen
 import com.mangala.wallet.ui.SharedScreen
+import dev.icerock.moko.resources.compose.stringResource
 
 class ShowRecoveryPhraseScreen(
     private val walletId: String? = null
@@ -57,7 +63,22 @@ class ShowRecoveryPhraseScreen(
         val clipboardManager = LocalClipboardManager.current
         val scope = rememberCoroutineScope()
         var showCopiedMessage by remember { mutableStateOf(false) }
+        var isRecoveryPhraseRevealed by remember { mutableStateOf(false) }
+        val lifecycleOwner = LocalLifecycleOwner.current
         val verifyRecoveryPhraseScreen = rememberScreen(SharedScreen.VerifyRecoveryPhraseScreen)
+
+        DisposableEffect(lifecycleOwner) {
+            val observer = LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_PAUSE || event == Lifecycle.Event.ON_STOP) {
+                    isRecoveryPhraseRevealed = false
+                }
+            }
+            lifecycleOwner.lifecycle.addObserver(observer)
+            onDispose {
+                lifecycleOwner.lifecycle.removeObserver(observer)
+                isRecoveryPhraseRevealed = false
+            }
+        }
 
         OnboardingGradientBackground(
             circleBackgroundEnabled = true,
@@ -130,8 +151,26 @@ class ShowRecoveryPhraseScreen(
 
                 // Recovery Phrase Grid
                 RecoveryPhraseGrid(
-                    recoveryPhrase = uiState.recoveryPhrase
+                    recoveryPhrase = uiState.recoveryPhrase,
+                    isRevealed = isRecoveryPhraseRevealed,
+                    onReveal = { isRecoveryPhraseRevealed = true }
                 )
+
+                if (!isRecoveryPhraseRevealed) {
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        text = stringResource(MR.strings.warning_reveal_recovery_phrase),
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color(0xFFA5B4CB),
+                        textAlign = TextAlign.Center,
+                        lineHeight = 18.sp,
+                        fontFamily = getInterFontFamily(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -143,7 +182,7 @@ class ShowRecoveryPhraseScreen(
                 ) {
                     Row(
                         modifier = Modifier
-                            .clickable {
+                            .clickable(enabled = isRecoveryPhraseRevealed) {
                                 val phraseText = uiState.recoveryPhrase.joinToString(" ")
                                 clipboardManager.setText(AnnotatedString(phraseText))
                                 showCopiedMessage = true
@@ -152,6 +191,7 @@ class ShowRecoveryPhraseScreen(
                                     showCopiedMessage = false
                                 }
                             }
+                            .background(Color.Transparent)
                             .padding(vertical = 8.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
@@ -159,14 +199,14 @@ class ShowRecoveryPhraseScreen(
                         Icon(
                             imageVector = MangalaWalletPack.Copy,
                             contentDescription = "Copy",
-                            tint = Color(0xFF3B90FF),
+                            tint = if (isRecoveryPhraseRevealed) Color(0xFF3B90FF) else Color(0xFF6B7A99),
                             modifier = Modifier.size(24.dp)
                         )
                         Text(
                             text = if (showCopiedMessage) "Copied!" else "Copy to clipboard",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Normal,
-                            color = Color(0xFF3B90FF),
+                            color = if (isRecoveryPhraseRevealed) Color(0xFF3B90FF) else Color(0xFF6B7A99),
                             fontFamily = getInterFontFamily()
                         )
                     }
@@ -196,7 +236,9 @@ class ShowRecoveryPhraseScreen(
 
 @Composable
 private fun RecoveryPhraseGrid(
-    recoveryPhrase: List<String>
+    recoveryPhrase: List<String>,
+    isRevealed: Boolean,
+    onReveal: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -208,10 +250,12 @@ private fun RecoveryPhraseGrid(
                 color = Color(0xFF2A3E6C),
                 shape = RoundedCornerShape(16.dp)
             )
-            .padding(16.dp)
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.blur(if (isRevealed) 0.dp else 12.dp)
         ) {
             // First row (1-3)
             Row(
@@ -251,6 +295,25 @@ private fun RecoveryPhraseGrid(
                 PhraseItem(index = 10, word = recoveryPhrase.getOrElse(9) { "" }, modifier = Modifier.weight(1f))
                 PhraseItem(index = 11, word = recoveryPhrase.getOrElse(10) { "" }, modifier = Modifier.weight(1f))
                 PhraseItem(index = 12, word = recoveryPhrase.getOrElse(11) { "" }, modifier = Modifier.weight(1f))
+            }
+        }
+
+        if (!isRevealed) {
+            Box(
+                modifier = Modifier
+                    .matchParentSize()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(Color(0xB31A2237))
+                    .clickable(onClick = onReveal),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(MR.strings.tap_to_reveal_recovery_phrase),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Color.White,
+                    fontFamily = getInterFontFamily()
+                )
             }
         }
     }
