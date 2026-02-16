@@ -9,11 +9,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 data class ShowRecoveryPhraseUiState(
     val walletId: String = "",
     val walletName: String = "",
     val recoveryPhrase: List<String> = emptyList(),
+    val verificationPositions: List<Int> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null
 )
@@ -47,6 +49,7 @@ class ShowRecoveryPhraseScreenModel(
                 if (wallet == null) {
                     _uiState.value = _uiState.value.copy(
                         recoveryPhrase = emptyList(),
+                        verificationPositions = emptyList(),
                         isLoading = false,
                         error = "Wallet not found"
                     )
@@ -59,17 +62,22 @@ class ShowRecoveryPhraseScreenModel(
                 } else {
                     emptyList()
                 }
+                val verificationPositions = _uiState.value.verificationPositions.ifEmpty {
+                    pickVerificationPositions()
+                }
 
                 _uiState.value = _uiState.value.copy(
                     walletId = wallet.id,
                     walletName = wallet.name ?: "",
                     recoveryPhrase = recoveryPhrase,
+                    verificationPositions = verificationPositions,
                     isLoading = false,
                     error = null
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
                     recoveryPhrase = emptyList(),
+                    verificationPositions = emptyList(),
                     isLoading = false,
                     error = e.message
                 )
@@ -89,5 +97,12 @@ class ShowRecoveryPhraseScreenModel(
                 e.printStackTrace()
             }
         }
+    }
+
+    private fun pickVerificationPositions(random: Random = Random.Default): List<Int> {
+        val firstGroup = (1..4).random(random)
+        val secondGroup = (5..8).random(random)
+        val thirdGroup = (9..12).random(random)
+        return listOf(firstGroup, secondGroup, thirdGroup).shuffled(random)
     }
 }
