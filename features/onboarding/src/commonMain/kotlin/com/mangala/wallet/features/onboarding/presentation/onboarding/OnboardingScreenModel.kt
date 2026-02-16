@@ -13,8 +13,11 @@ class OnboardingScreenModel(
     // Create Wallet
     fun isPinSetup(): Boolean = createWalletNavigator.isPinSetup()
 
-    fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen {
-        return createWalletNavigator.getSetupPinScreen(onPinSetupSuccess)
+    fun getSetupPinScreen(
+        onPinSetupSuccess: () -> Unit,
+        onPinSetupCancel: () -> Unit
+    ): SharedScreen {
+        return createWalletNavigator.getSetupPinScreen(onPinSetupSuccess, onPinSetupCancel)
     }
 
     fun getCreateWalletScreen(): SharedScreen {
