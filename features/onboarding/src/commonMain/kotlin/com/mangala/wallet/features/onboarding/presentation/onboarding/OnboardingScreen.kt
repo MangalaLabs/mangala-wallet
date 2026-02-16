@@ -221,12 +221,18 @@ class OnboardingScreen : BaseScreen<OnboardingScreenModel>() {
                             } else {
                                 // PIN not set, go to setup PIN first with callback
                                 val setupPinScreen = ScreenRegistry.get(
-                                    screenModel.getSetupPinScreen {
-                                        // After PIN setup success, navigate to create wallet screen
-                                        navigator.push(
-                                            ScreenRegistry.get(screenModel.getCreateWalletScreen())
-                                        )
-                                    }
+                                    screenModel.getSetupPinScreen(
+                                        onPinSetupSuccess = {
+                                            // After PIN setup success, navigate to create wallet screen
+                                            navigator.push(
+                                                ScreenRegistry.get(screenModel.getCreateWalletScreen())
+                                            )
+                                        },
+                                        onPinSetupCancel = {
+                                            // Return explicitly to Create/Import selection on cancel.
+                                            navigator.pop()
+                                        }
+                                    )
                                 )
                                 navigator.push(setupPinScreen)
                             }

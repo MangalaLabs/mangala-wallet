@@ -15,8 +15,12 @@ interface CreateWalletNavigator {
     /**
      * Returns the SetupPinScreen for this wallet type
      * @param onPinSetupSuccess callback to be invoked when PIN setup succeeds
+     * @param onPinSetupCancel callback to be invoked when PIN setup is cancelled
      */
-    fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen
+    fun getSetupPinScreen(
+        onPinSetupSuccess: () -> Unit,
+        onPinSetupCancel: () -> Unit
+    ): SharedScreen
 
     /**
      * Returns the CreateWalletScreen for this wallet type (used when PIN is already set)
@@ -29,11 +33,15 @@ class AntelopeCreateWalletNavigator(
 ) : CreateWalletNavigator {
     override fun isPinSetup(): Boolean = getIsPinSetupUseCase()
 
-    override fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen {
+    override fun getSetupPinScreen(
+        onPinSetupSuccess: () -> Unit,
+        onPinSetupCancel: () -> Unit
+    ): SharedScreen {
         return SharedScreen.SetupPinScreen(
             blockchainUid = BlockchainType.Eos.uid,
             pinCase = SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET.name,
-            onPinSetupSuccess = onPinSetupSuccess
+            onPinSetupSuccess = onPinSetupSuccess,
+            onPinSetupCancel = onPinSetupCancel
         )
     }
 
@@ -47,11 +55,15 @@ class EvmCreateWalletNavigator(
 ) : CreateWalletNavigator {
     override fun isPinSetup(): Boolean = getIsPinSetupUseCase()
 
-    override fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen {
+    override fun getSetupPinScreen(
+        onPinSetupSuccess: () -> Unit,
+        onPinSetupCancel: () -> Unit
+    ): SharedScreen {
         return SharedScreen.SetupPinScreen(
             blockchainUid = BlockchainType.Ethereum.uid,
             pinCase = SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET.name,
-            onPinSetupSuccess = onPinSetupSuccess
+            onPinSetupSuccess = onPinSetupSuccess,
+            onPinSetupCancel = onPinSetupCancel
         )
     }
 
@@ -68,11 +80,15 @@ class BitcoinCreateWalletNavigator(
 ) : CreateWalletNavigator {
     override fun isPinSetup(): Boolean = getIsPinSetupUseCase()
 
-    override fun getSetupPinScreen(onPinSetupSuccess: () -> Unit): SharedScreen {
+    override fun getSetupPinScreen(
+        onPinSetupSuccess: () -> Unit,
+        onPinSetupCancel: () -> Unit
+    ): SharedScreen {
         return SharedScreen.SetupPinScreen(
             blockchainUid = BlockchainType.Bitcoin.uid,
             pinCase = SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET.name,
-            onPinSetupSuccess = onPinSetupSuccess
+            onPinSetupSuccess = onPinSetupSuccess,
+            onPinSetupCancel = onPinSetupCancel
         )
     }
 

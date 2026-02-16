@@ -92,6 +92,11 @@ internal class AddWalletScreen : BaseScreen<AddWalletScreenModel>() {
                         // PIN exists - verify user identity first (V2 callback approach)
                         val unlockPinScreen = ScreenRegistry.get(
                             SharedScreen.UnlockPinScreen(
+                                unlockPinCallback = { isCorrectPin ->
+                                    if (!isCorrectPin) {
+                                        println("[AddWalletScreen] Create wallet PIN unlock cancelled")
+                                    }
+                                },
                                 onUnlockSuccess = {
                                     val createWalletScreen = ScreenRegistry.get(
                                         SharedScreen.CreateWalletScreen(
