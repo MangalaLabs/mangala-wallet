@@ -91,6 +91,15 @@ data class BackupWalletAlertScreen(
         val warningParagraph2 = messageParts.getOrElse(1) { "" }
 
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
+        val navigateToHome = {
+            globalNavigator.replaceAll(homeScreen)
+        }
+
+        // Do not allow navigation back to generating screen.
+        onBackPressedCallback = {
+            navigateToHome()
+            false
+        }
 
         // Determine unlock PIN case based on network type
         val networkType = BlockchainType.fromUid(blockchainUid).networkType
@@ -133,7 +142,7 @@ data class BackupWalletAlertScreen(
                         modifier = Modifier
                             .size(40.dp)
                             .clip(CircleShape)
-                            .clickable { navigator.pop() }
+                            .clickable { navigateToHome() }
                             .padding(8.dp),
                         contentAlignment = Alignment.Center
                     ) {

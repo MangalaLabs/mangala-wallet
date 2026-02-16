@@ -90,6 +90,11 @@ class CreateWalletScreen(
         val homeScreen = rememberScreen(SharedScreen.HomeScreen())
         val walletState = screenModel.state.collectAsStateMultiplatform().value
 
+        // Prevent back navigation while wallet generation/restore flow is active.
+        onBackPressedCallback = {
+            false
+        }
+
         // Error dialog
         if (walletState is CreateWalletState.Error) {
             AlertDialog(
@@ -139,7 +144,7 @@ class CreateWalletScreen(
                     )
                 )
                 GenerateWalletAnimation {
-                    navigator.replaceAll(backupWalletAlertScreen)
+                    navigator.replace(backupWalletAlertScreen)
                 }
             }
 
@@ -453,4 +458,3 @@ private fun GeneratingStepItem(
         }
     }
 }
-
