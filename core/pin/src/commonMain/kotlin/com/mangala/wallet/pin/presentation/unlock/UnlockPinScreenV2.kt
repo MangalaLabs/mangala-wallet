@@ -116,6 +116,8 @@ class UnlockPinScreenV2(
 
         var visible by remember { mutableStateOf(false) }
         var hasCompletedSuccessfully by remember { mutableStateOf(false) }
+        var hasHandledCancellation by remember { mutableStateOf(false) }
+        val isCallbackFlow = onUnlockSuccess != null
 
         val titleBiometry = MR.strings.title_request_biometry_sign_in.desc().localized()
         val reasonBiometry = MR.strings.title_request_biometry_reason.desc().localized()
@@ -146,9 +148,10 @@ class UnlockPinScreenV2(
                 screenModel.onDispose()
                 biometryScreenModel.resetBiometryState()
                 // Cancel any pending navigation callbacks only if not completed successfully
-                if (!hasCompletedSuccessfully) {
+                if (!hasCompletedSuccessfully && !hasHandledCancellation) {
                     // Log for monitoring in case of unexpected behavior
                     try {
+                        println("[UnlockPinScreenV2] onDisposed -> invoking cancel callback")
                         unlockPinCallback?.invoke(false)
                     } catch (e: Exception) {
                         println("[UnlockPinScreenV2] Error invoking cancel callback: ${e.message}")
@@ -156,6 +159,17 @@ class UnlockPinScreenV2(
                 }
             }
         )
+
+        fun handleCancelAndPop(source: String) {
+            println("[UnlockPinScreenV2] Cancel requested from: $source")
+            hasHandledCancellation = true
+            try {
+                unlockPinCallback?.invoke(false)
+            } catch (e: Exception) {
+                println("[UnlockPinScreenV2] Error invoking cancel callback from $source: ${e.message}")
+            }
+            navigator.pop()
+        }
 
         LaunchedEffect(true) {
             keyboardController?.hide()
@@ -200,30 +214,40 @@ class UnlockPinScreenV2(
         
         // Add BackHandler for cases where user should be able to cancel
         if (unlockPinCase == SharedScreen.UnlockPinScreen.VERIFY_SEND_TRANSACTION ||
-            unlockPinCase == SharedScreen.UnlockPinScreen.CONFIRM_DAPP) {
+            unlockPinCase == SharedScreen.UnlockPinScreen.CONFIRM_DAPP ||
+            isCallbackFlow) {
             BackHandler { _ ->
                 println("[UnlockPinScreenV2] BackHandler triggered for case: $unlockPinCase")
-                // Invoke callback with false to indicate cancellation
-                try {
-                    unlockPinCallback?.invoke(false)
-                } catch (e: Exception) {
-                    println("[UnlockPinScreenV2] Error in BackHandler callback: ${e.message}")
+                if (isCallbackFlow) {
+                    handleCancelAndPop("system_back")
+                    true
+                } else {
+                    // Keep backward-compatible behavior for V1 flows
+                    try {
+                        unlockPinCallback?.invoke(false)
+                    } catch (e: Exception) {
+                        println("[UnlockPinScreenV2] Error in BackHandler callback: ${e.message}")
+                    }
+                    false
                 }
-                // Return false to allow navigation
-                false
             }
         }
 
         UnlockPinScreenV2Content(
-            screenModel,
-            biometryScreenModel,
-            navigator,
-            unlockPinCase,
-            visible,
-            MR.strings.forgot_pin.desc().localized()
-        ) {
-            screenModel.showForgotPinScreen()
-        }
+            screenModel = screenModel,
+            biometryScreenModel = biometryScreenModel,
+            navigator = navigator,
+            unlockPinCase = unlockPinCase,
+            isCallbackFlow = isCallbackFlow,
+            visible = visible,
+            messageForgotPin = MR.strings.forgot_pin.desc().localized(),
+            onClickForgotPin = {
+                screenModel.showForgotPinScreen()
+            },
+            onCancelRequested = {
+                handleCancelAndPop("top_bar")
+            }
+        )
 
         val state by screenModel.pinScreenFlowState.collectAsStateMultiplatform()
         when (state) {
@@ -299,9 +323,11 @@ class UnlockPinScreenV2(
         biometryScreenModel: IBiometryScreenModel,
         navigator: cafe.adriel.voyager.navigator.Navigator,
         unlockPinCase: Int,
+        isCallbackFlow: Boolean,
         visible: Boolean,
         messageForgotPin: String,
         onClickForgotPin: (Boolean) -> Unit,
+        onCancelRequested: () -> Unit,
     ) {
         val platformTexts = when (unlockPinCase) {
             OPEN_APP -> UnlockPinScreenTexts(
@@ -364,6 +390,11 @@ class UnlockPinScreenV2(
                                     SharedScreen.UnlockPinScreen.VERIFY_SEND_TRANSACTION,
                                     CONFIRM_DAPP -> {
                                         navigator.pop()
+                                    }
+                                    0 -> {
+                                        if (isCallbackFlow) {
+                                            onCancelRequested()
+                                        }
                                     }
                                     else -> {
                                         // No back action for other cases

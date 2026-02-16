@@ -102,9 +102,12 @@ class SetupPinScreenV2(
         val onBackClickRemembered = remember {
             {
                 screenModel.resetPinEntered()
-                onPinSetupCancelRef.value?.invoke()
-
-                if (screenModel.pinCase == SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET ||
+                val cancelCallback = onPinSetupCancelRef.value
+                if (cancelCallback != null) {
+                    // Delegate navigation/cleanup to caller when explicit cancel callback is provided.
+                    cancelCallback.invoke()
+                } else if (
+                    screenModel.pinCase == SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_WALLET ||
                     screenModel.pinCase == SharedScreen.SetupPinScreen.SetupPinScreenCase.RESTORE_WALLET ||
                     screenModel.pinCase == SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_PIN ||
                     screenModel.pinCase == SharedScreen.SetupPinScreen.SetupPinScreenCase.CREATE_NEW_PIN_AND_CONTINUE
@@ -113,6 +116,7 @@ class SetupPinScreenV2(
                 } else {
                     globalNavigator.replaceAll(homeScreen)
                 }
+
             }
         }
 
