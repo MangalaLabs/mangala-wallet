@@ -71,7 +71,12 @@ class WalletScreenModel(
             val items = wallets.map {
                 WalletScreenModelItemUiModel(it)
             }
-            _uiModel.update { it.copy(items = items) }
+            _uiModel.update {
+                it.copy(
+                    isLoading = false,
+                    items = items
+                )
+            }
         }
     }
 
