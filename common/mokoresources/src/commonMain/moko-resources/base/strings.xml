@@ -1347,4 +1347,21 @@
 
     <!--    Network Selection Bottom Sheet -->
     <string name="label_testnet">Testnet</string>
+
+    <!--    Wallet Detail Screen -->
+    <string name="title_wallet_detail">Wallet Detail</string>
+    <string name="label_accounts_and_addresses">ACCOUNTS &amp; ADDRESSES</string>
+    <string name="message_address_copied">Address copied</string>
+    <string name="label_wallet_management">WALLET MANAGEMENT</string>
+    <string name="action_remove_entire_wallet">Remove Entire Wallet</string>
+    <string name="label_standard_wallet">Standard Wallet</string>
+    <string name="label_verified_backed_up">Verified &amp; Backed up</string>
+    <string name="button_view_phrase">View Phrase</string>
+    <string name="label_balance_upper">BALANCE</string>
+    <string name="content_description_options">Options</string>
+    <string name="placeholder_masked_balance">88,888.88 MATIC</string>
+    <string name="placeholder_visible_balance">2,500.50 MATIC</string>
+    <string name="title_remove_wallet_confirm">Remove Wallet?</string>
+    <string name="message_remove_wallet_confirm">This will remove %s from this device. Make sure you have backed up your recovery phrase.</string>
+    <string name="action_yes_remove_it">Yes, remove it</string>
 </resources>
