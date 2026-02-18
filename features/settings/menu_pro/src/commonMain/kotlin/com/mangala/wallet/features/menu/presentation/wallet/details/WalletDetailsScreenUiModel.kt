@@ -6,5 +6,8 @@ data class WalletDetailsScreenUiModel(
     val accounts: List<AccountItemUiModel> = emptyList()
 )
 data class AccountItemUiModel(
-    val account: AccountBlockchainModel
+    val account: AccountBlockchainModel,
+    val totalValueUsd: String = "0",
+    val currencySymbol: String = "$",
+    val isBalanceLoading: Boolean = true
 )
