@@ -144,6 +144,21 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
             onClickDeleteWallet = {
                 screenModel.onClickDeletedWallet(walletId)
                 navigator.pop()
+            },
+            onClickPrivateKey = { accountId ->
+                val unlockPinScreen = ScreenRegistry.get(
+                    SharedScreen.UnlockPinScreen(
+                        onUnlockSuccess = {
+                            navigator.replace(
+                                ExportPrivateKeyScreen(
+                                    walletId = walletId,
+                                    accountId = accountId
+                                )
+                            )
+                        }
+                    )
+                )
+                navigator.push(unlockPinScreen)
             }
         )
     }
@@ -156,7 +171,8 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
         onNameChanged: (String) -> Unit,
         onClickAddAccount: () -> Unit,
         onClickViewPhrase: () -> Unit,
-        onClickDeleteWallet: () -> Unit
+        onClickDeleteWallet: () -> Unit,
+        onClickPrivateKey: (String) -> Unit
     ) {
         val colors = MaterialTheme.mangalaColors
         val clipboardManager = LocalClipboardManager.current
@@ -238,7 +254,8 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
                             onCopyAddress = { address ->
                                 clipboardManager.setText(AnnotatedString(address))
                                 copiedAddress = address
-                            }
+                            },
+                            onClickPrivateKey = { onClickPrivateKey(account.account.account.id) }
                         )
                     }
 
@@ -680,7 +697,8 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
     private fun AccountCard(
         item: AccountItemUiModel,
         isPrivateMode: Boolean,
-        onCopyAddress: (String) -> Unit
+        onCopyAddress: (String) -> Unit,
+        onClickPrivateKey: () -> Unit
     ) {
         val colors = MaterialTheme.mangalaColors
         val address = item.account.account.bip44Address
@@ -799,6 +817,7 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
                                 color = colors.textLink.copy(alpha = 0.22f),
                                 shape = RoundedCornerShape(Dimensions.Padding.xsmall)
                             )
+                            .clickable(onClick = onClickPrivateKey)
                             .padding(
                                 horizontal = Dimensions.Padding.xsmall,
                                 vertical = Spacing.STINY
