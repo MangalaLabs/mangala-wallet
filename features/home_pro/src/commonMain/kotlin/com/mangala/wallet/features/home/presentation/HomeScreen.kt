@@ -46,7 +46,6 @@ import com.mangala.wallet.features.addressbook.presentation.ContactTab
 import com.mangala.wallet.features.conversationui.presentation.ConversationUITab
 import com.mangala.wallet.features.menu.presentation.SettingTab
 import com.mangala.wallet.features.nft_base.presentation.NftTab
-import com.mangala.wallet.features.menu.presentation.SettingsTab
 import com.mangala.wallet.features.swap_base.presentation.SwapTab
 import com.mangala.wallet.features.wallet.presentation.WalletTab
 import com.mangala.wallet.model.blockchain.NetworkType

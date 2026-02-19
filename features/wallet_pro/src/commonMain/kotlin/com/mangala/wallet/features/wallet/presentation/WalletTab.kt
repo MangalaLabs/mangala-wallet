@@ -10,17 +10,10 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.benasher44.uuid.uuid4
 import com.mangala.features.wallet.presentationv2.WalletScreenFactoryV2
-
-import com.mangala.features.wallet.presentationv2.antelope.AntelopeWalletScreenV2
-
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Wallet
-import com.mangala.wallet.features.wallet.presentation.main.WalletMainScreen
-import com.mangala.wallet.model.blockchain.NetworkType
-
 import com.mangala.wallet.ui.tab.PopToRootTab
 import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
 import com.mangala.wallet.ui.utils.navigation.BackHandler
@@ -34,7 +27,7 @@ import kotlin.native.HiddenFromObjC
 object WalletTab: PopToRootTab() {
 
     override val key: ScreenKey
-        get() = uuid4().toString()
+        get() = "wallet_tab_key"
 
     override val route: String
         get() = "wallet_tab"
@@ -59,8 +52,7 @@ object WalletTab: PopToRootTab() {
         val screenModel = rememberScreenModel { WalletTabScreenModel() }
         val selectedNetwork by screenModel.selectedNetwork.collectAsStateMultiplatform()
 
-        val currentNetworkType = selectedNetwork?.blockchainType?.networkType
-            ?: NetworkType.ANTELOPE
+        val currentNetworkType = selectedNetwork?.blockchainType?.networkType ?: return
 
         val screenKey = remember(currentNetworkType) {
             "wallet_${currentNetworkType.name}"
@@ -80,4 +72,3 @@ object WalletTab: PopToRootTab() {
     }
 
 }
-
