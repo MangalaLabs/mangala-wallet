@@ -162,6 +162,7 @@ object MangalaAnalytics {
         const val EVM_RESTORE_RECOVERY_PHRASE = "EvmRestoreRecoveryPhraseScreen"
         const val EVM_IMPORT_WALLET_SUCCESS = "EvmImportWalletSuccessScreen"
         const val EVM_WALLET_DETAILS = "EvmWalletDetailsScreen"
+        const val EVM_EXPORT_PRIVATE_KEY = "EvmExportPrivateKeyScreen"
         const val EVM_ADD_ACCOUNT = "EvmAddAccountScreen"
         const val EVM_TRANSACTION_FEE = "EvmTransactionFeeScreen"
         const val EVM_RESET_WALLET = "EvmResetWalletScreen"
@@ -285,4 +286,3 @@ object MangalaAnalytics {
         const val TERMS_OF_SERVICE = "TermsOfServiceScreen"
     }
 }
-
