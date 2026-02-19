@@ -110,6 +110,24 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
             walletName = walletName,
             onBackClicked = { navigator.pop() },
             onNameChanged = screenModel::updateWalletName,
+            onClickAddAccount = {
+                val unlockPinScreen = ScreenRegistry.get(
+                    SharedScreen.UnlockPinScreen(
+                        onUnlockSuccess = {
+                            val addAccountScreen = ScreenRegistry.get(
+                                SharedScreen.EvmCreateAccountScreen(
+                                    isPinVerified = true,
+                                    walletId = walletId
+                                )
+                            )
+                            // Replace unlock screen to keep a clean back stack:
+                            // WalletDetails -> AddAccount (without stale UnlockPin behind it)
+                            navigator.replace(addAccountScreen)
+                        }
+                    )
+                )
+                navigator.push(unlockPinScreen)
+            },
             onClickViewPhrase = {
                 val unlockPinScreen = ScreenRegistry.get(
                     SharedScreen.UnlockPinScreen(
@@ -136,6 +154,7 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
         walletName: String,
         onBackClicked: () -> Unit,
         onNameChanged: (String) -> Unit,
+        onClickAddAccount: () -> Unit,
         onClickViewPhrase: () -> Unit,
         onClickDeleteWallet: () -> Unit
     ) {
@@ -233,6 +252,7 @@ internal class WalletDetailsScreen(private val walletId: String) : BaseScreen<Wa
                                     color = colors.border.copy(alpha = 0.5f),
                                     shape = RoundedCornerShape(Spacing.XXMEDIUM)
                                 )
+                                .clickable(onClick = onClickAddAccount)
                                 .padding(
                                     horizontal = Dimensions.Padding.medium,
                                     vertical = Dimensions.Padding.medium

@@ -8,6 +8,10 @@ import com.mangala.wallet.model.account.domain.AccountModel
 import com.mangala.wallet.model.account.domain.AccountType
 import com.mangala.wallet.model.blockchain.BlockchainType
 import com.mangala.wallet.model.blockchain.NetworkType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class CreateWalletAccountUseCase(
     private val accountRepository: AccountRepository,
@@ -15,6 +19,8 @@ class CreateWalletAccountUseCase(
     private val mapAccountToAccountBlockchainUseCase: MapAccountToAccountBlockchainUseCase,
     private val accountCreators: List<AccountCreator>
 ) {
+    private val sideEffectScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
     suspend operator fun invoke(
         name: String,
         accountId: String,
@@ -56,12 +62,11 @@ class CreateWalletAccountUseCase(
         walletId: String,
         blockchainType: BlockchainType
     ): Result<Unit> {
-        val wallet = walletRepository.getWalletById(walletId) ?: return Result.failure(
-            IllegalArgumentException("Wallet with id $walletId does not exist")
-        )
+        val wallet = walletRepository.getWalletById(walletId)
+            ?: return Result.failure(IllegalArgumentException("Wallet with id $walletId does not exist"))
         val existingAccountsForWallet = accountRepository.getAllAccountsByWalletId(walletId, filterHiddenAccounts = false)
 
-        val newDerivationPathIndex = existingAccountsForWallet.maxOf { it.derivationPathIndex } + 1
+        val newDerivationPathIndex = (existingAccountsForWallet.maxOfOrNull { it.derivationPathIndex } ?: -1) + 1
         val sortingOrder = existingAccountsForWallet.size
 
         // Always derive from Ethereum for stable account ID (chain-agnostic identifier)
@@ -90,12 +95,17 @@ class CreateWalletAccountUseCase(
 
         accountRepository.saveAccount(account)
 
-        accountCreators.forEach {
-            it.createAccount(
-                accountId = accountId,
-                derivationPathIndex = newDerivationPathIndex,
-                wallet = wallet
-            )
+        // Run post-create side effects asynchronously so account creation UX is not blocked by network calls.
+        sideEffectScope.launch {
+            accountCreators.forEach { creator ->
+                runCatching {
+                    creator.createAccount(
+                        accountId = accountId,
+                        derivationPathIndex = newDerivationPathIndex,
+                        wallet = wallet
+                    )
+                }
+            }
         }
 
         return Result.success(Unit)

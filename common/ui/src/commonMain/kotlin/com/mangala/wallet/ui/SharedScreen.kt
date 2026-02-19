@@ -196,7 +196,8 @@ sealed class SharedScreen : ScreenProvider {
     data class ReceiveTokenScreen(val accountId: String?, val address: String?, val networkType : NetworkType, val initialBlockchainUid: String?) : SharedScreen()
     class ReceiveTokenPickAccountScreen(val onClickAccountInfo: (accountId: String) -> Unit,val networkType: NetworkType) : SharedScreen()
     data class EvmCreateAccountScreen(
-        val isPinVerified: Boolean = false
+        val isPinVerified: Boolean = false,
+        val walletId: String? = null
     ) : SharedScreen()
     data class BitcoinCreateAccountScreen(
         val isPinVerified: Boolean = false
