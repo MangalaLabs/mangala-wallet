@@ -23,10 +23,28 @@ class AddAccountScreenModel(
         _uiModel.update { it.copy(accountName = accountName) }
     }
 
-    fun onAddNewAccount() {
+    fun onAddNewAccount(walletId: String? = null) {
         screenModelScope.launch {
-            createWalletAccountUseCase(_uiModel.value.accountName, getSelectedNetworkUseCase().blockchainType)
-            onCreateDone.trySend(Unit)
+            if (_uiModel.value.isCreating) {
+                return@launch
+            }
+            val accountName = _uiModel.value.accountName
+            _uiModel.update { it.copy(isCreating = true) }
+            val selectedNetwork = runCatching { getSelectedNetworkUseCase() }.getOrNull()
+            try {
+                val result = if (walletId.isNullOrBlank()) {
+                    createWalletAccountUseCase(accountName, selectedNetwork?.blockchainType ?: getSelectedNetworkUseCase().blockchainType)
+                } else {
+                    createWalletAccountUseCase(accountName, walletId, selectedNetwork?.blockchainType ?: getSelectedNetworkUseCase().blockchainType)
+                }
+
+                if (result.isSuccess) {
+                    onCreateDone.trySend(Unit)
+                }
+            } catch (_: Exception) {
+            } finally {
+                _uiModel.update { it.copy(isCreating = false) }
+            }
         }
     }
 }
