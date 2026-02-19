@@ -5,7 +5,6 @@ import androidx.compose.runtime.remember
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.benasher44.uuid.uuid4
 import com.mangala.wallet.features.conversationui.presentation.test.ConversationUiEntryPointTestScreen
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.tab.PopToRootTab
@@ -21,7 +20,7 @@ import kotlin.native.HiddenFromObjC
 object ConversationUITab : PopToRootTab() {
 
     override val key: ScreenKey
-        get() = uuid4().toString()
+        get() = "conversation_ui_tab_key"
 
     override val route: String
         get() = "conversation_ui_tab"
@@ -50,4 +49,3 @@ object ConversationUITab : PopToRootTab() {
     }
 
 }
-

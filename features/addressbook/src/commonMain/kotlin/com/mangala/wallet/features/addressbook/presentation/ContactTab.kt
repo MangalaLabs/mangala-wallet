@@ -5,7 +5,6 @@ import androidx.compose.runtime.remember
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.benasher44.uuid.uuid4
 import com.mangala.wallet.features.addressbook.presentation.contact.list.ContactListScreen
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.tab.PopToRootTab
@@ -21,7 +20,7 @@ import kotlin.native.HiddenFromObjC
 object ContactTab : PopToRootTab() {
 
     override val key: ScreenKey
-        get() = uuid4().toString()
+        get() = "contact_tab_key"
 
     override val route: String
         get() = "address_book_tab"
@@ -50,4 +49,3 @@ object ContactTab : PopToRootTab() {
     }
 
 }
-
