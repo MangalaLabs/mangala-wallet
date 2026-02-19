@@ -6,6 +6,7 @@ import com.mangala.wallet.domain.account.usecases.CreateWalletAccountUseCase
 import com.mangala.wallet.domain.account.usecases.GetAccountBalanceUseCase
 import com.mangala.wallet.domain.account.usecases.GetAccountBalancesInEvmAccountUseCase
 import com.mangala.wallet.domain.account.usecases.GetAccountByIdUseCase
+import com.mangala.wallet.domain.account.usecases.GetEvmAccountPrivateKeyUseCase
 import com.mangala.wallet.domain.account.usecases.GetAllAccountBalancesInEvmWalletUseCase
 import com.mangala.wallet.domain.portfolio.usecases.GetAllWalletsPortfolioUseCase
 import com.mangala.wallet.domain.account.usecases.SetHiddenAccountUseCase
@@ -208,6 +209,7 @@ fun domainModule() = module {
     factoryOf(::UpdateTokenPriceUseCase)
 
     factoryOf(::GetAccountByIdUseCase)
+    factoryOf(::GetEvmAccountPrivateKeyUseCase)
     factoryOf(::GetAllAccountBalancesInEvmWalletUseCase)
     factoryOf(::GetAccountBalancesInEvmAccountUseCase)
     factoryOf(::GetAccountBalanceUseCase)
