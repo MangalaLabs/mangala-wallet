@@ -48,7 +48,7 @@ val walletModule = module {
 
 val walletScreenModule = screenModule {
     register<SharedScreen.EvmCreateAccountScreen> {
-        AddAccountScreen(it.isPinVerified)
+        AddAccountScreen(it.isPinVerified, it.walletId)
     }
 
     register<SharedScreen.WalletMainScreen> {
