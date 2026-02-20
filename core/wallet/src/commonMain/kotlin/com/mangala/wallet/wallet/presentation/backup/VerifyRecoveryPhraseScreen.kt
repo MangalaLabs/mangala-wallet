@@ -25,7 +25,6 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
-import com.mangala.wallet.ui.SecureScreen
 import com.mangala.wallet.ui.SharedScreen
 import com.mangala.wallet.ui.component.OnboardingButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
@@ -52,23 +51,21 @@ class VerifyRecoveryPhraseScreen : BaseScreen<ShowRecoveryPhraseScreenModel>() {
         val backupWalletDoneScreen = rememberScreen(SharedScreen.BackupWalletDoneScreen)
         val uiState by screenModel.uiState.collectAsStateMultiplatform()
 
-        SecureScreen {
-            if (uiState.recoveryPhrase.isNotEmpty() && uiState.verificationPositions.size == 3) {
-                val words = uiState.recoveryPhrase
-                val words2 = remember(words) { BIP39_WORDLIST_ENGLISH.filterNot { it in words } }
+        if (uiState.recoveryPhrase.isNotEmpty() && uiState.verificationPositions.size == 3) {
+            val words = uiState.recoveryPhrase
+            val words2 = remember(words) { BIP39_WORDLIST_ENGLISH.filterNot { it in words } }
 
-                VerifyPhraseContent(
-                    words = words,
-                    wrongWords = words2,
-                    verificationPositions = uiState.verificationPositions,
-                    onComplete = {
-                        navigator.push(backupWalletDoneScreen)
-                    },
-                    onBack = {
-                        navigator.pop()
-                    }
-                )
-            }
+            VerifyPhraseContent(
+                words = words,
+                wrongWords = words2,
+                verificationPositions = uiState.verificationPositions,
+                onComplete = {
+                    navigator.push(backupWalletDoneScreen)
+                },
+                onBack = {
+                    navigator.pop()
+                }
+            )
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.lifecycle.LifecycleEffect
 import cafe.adriel.voyager.core.screen.Screen
 import com.mangala.wallet.ui.LocalBottomNavigationVisibility
+import com.mangala.wallet.ui.SecureScreen
 import com.mangala.wallet.utils.analytics.MangalaAnalytics
 import kotlin.jvm.Transient
 
@@ -17,6 +18,22 @@ abstract class BaseScreen<T : BaseScreenModel>: Screen {
 
     open val isBottomBarVisible: Boolean = true
 
+    /**
+     * Per-screen opt-in flag for screenshot / screen-recording protection.
+     *
+     * Override to `true` to protect this screen regardless of [SecureScreenConfig].
+     * [SecureScreenConfig.secureScreenClassNames] is always checked as well — either
+     * this flag OR the registry entry being present is sufficient to enable protection.
+     *
+     * Example:
+     * ```kotlin
+     * class MyScreen : BaseScreen<MyScreenModel>() {
+     *     override val isSecure = true
+     * }
+     * ```
+     */
+    open val isSecure: Boolean = false
+
     abstract val screenName: String
     abstract val screenClassName: String
 
@@ -26,7 +43,14 @@ abstract class BaseScreen<T : BaseScreenModel>: Screen {
 
         LocalBottomNavigationVisibility.current.value = isBottomBarVisible
 
-        ScreenContent(screenModel)
+        val shouldSecure = isSecure || SecureScreenConfig.isSecure(screenClassName)
+        if (shouldSecure) {
+            SecureScreen {
+                ScreenContent(screenModel)
+            }
+        } else {
+            ScreenContent(screenModel)
+        }
 
         LifecycleEffect(
             onStarted = {
