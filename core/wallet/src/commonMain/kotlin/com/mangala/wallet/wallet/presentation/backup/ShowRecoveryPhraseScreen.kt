@@ -31,7 +31,6 @@ import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.ArrowLeft
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Copy
 import com.mangala.wallet.mokoresources.MR
-import com.mangala.wallet.ui.SecureScreen
 import com.mangala.wallet.ui.component.OnboardingButton
 import com.mangala.wallet.ui.component.OnboardingGradientBackground
 import com.mangala.wallet.ui.utils.collectAsStateMultiplatform
@@ -81,8 +80,7 @@ class ShowRecoveryPhraseScreen(
             }
         }
 
-        SecureScreen {
-            OnboardingGradientBackground(
+        OnboardingGradientBackground(
             circleBackgroundEnabled = true,
             afterBackgroundModifier = Modifier.navigationBarsPadding().imePadding()
         ) {
@@ -231,7 +229,6 @@ class ShowRecoveryPhraseScreen(
                 )
             }
         }
-        } // SecureScreen
     }
 
     override val isBottomBarVisible: Boolean = false

@@ -38,7 +38,9 @@ actual fun SecureScreen(content: @Composable () -> Unit) {
         }
     }
 
-    Box {
+    // fillMaxSize ensures the privacy overlay always covers the entire screen,
+    // not just the bounds of content() which may be smaller than the display.
+    Box(modifier = Modifier.fillMaxSize()) {
         content()
         if (isCaptured) {
             Box(
