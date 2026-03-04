@@ -45,15 +45,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.ionspin.kotlin.bignum.decimal.BigDecimal
 import com.mangala.features.wallet.presentationv2.antelope.components.TokenLogo
 import com.mangala.features.wallet.presentationv2.evm.model.EVMAggregatedToken
 import com.mangala.features.wallet.presentationv2.evm.model.EVMTokenAccountBreakdown
-import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.common.mokoresources.icons.MangalaWalletPack
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Filter
 import com.mangala.wallet.common.mokoresources.icons.mangalawalletpack.Search
@@ -65,6 +62,7 @@ import com.mangala.wallet.ui.HIDDEN_BALANCE_STRING
 import com.mangala.wallet.ui.WalletThemeV2
 import com.mangala.wallet.ui.imageloader.ImageSource
 import com.mangala.wallet.ui.placeholder.mangalaWalletPlaceholder
+import com.mangala.wallet.ui.theme.MangalaTypography
 import com.mangala.wallet.utils.ext.formatFiat
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -74,7 +72,7 @@ private fun Modifier.tokenListCard(): Modifier = this
     .background(WalletThemeV2.Colors.cardBackground)
     .border(
         width = 1.dp,
-        color = Color.White.copy(alpha = 0.05f),
+        color = WalletThemeV2.Colors.cardBorder,
         shape = RoundedCornerShape(16.dp)
     )
 
@@ -85,7 +83,7 @@ private fun TokenListDivider() {
             .fillMaxWidth()
             .height(1.dp)
             .padding(horizontal = WalletThemeV2.Dimensions.paddingLarge)
-            .background(Color.White.copy(alpha = 0.03f))
+            .background(WalletThemeV2.Colors.divider)
     )
 }
 
@@ -192,10 +190,8 @@ private fun TokenListHeader(
     ) {
         Text(
             text = if (isAllAccountsView) stringResource(MR.strings.label_portfolio) else tokensLabel,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
-            color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-            fontFamily = getInterFontFamily()
+            style = MangalaTypography.Size14SemiBold(),
+            color = WalletThemeV2.Colors.primaryText
         )
 
         Row(
@@ -254,9 +250,8 @@ private fun TokenSearchField(
         placeholder = {
             Text(
                 text = placeholderText,
-                color = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.6f),
-                fontSize = 14.sp,
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size14Regular(),
+                color = WalletThemeV2.Colors.secondaryText.copy(alpha = 0.6f)
             )
         },
         leadingIcon = {
@@ -286,7 +281,7 @@ private fun TokenSearchField(
             textColor = WalletThemeV2.Colors.primaryText,
             backgroundColor = WalletThemeV2.Colors.cardBackground.copy(alpha = 0.5f),
             focusedBorderColor = WalletThemeV2.Colors.evmAccent.copy(alpha = 0.8f),
-            unfocusedBorderColor = Color.White.copy(alpha = 0.1f),
+            unfocusedBorderColor = WalletThemeV2.Colors.cardBorder,
             cursorColor = WalletThemeV2.Colors.evmAccent
         ),
         modifier = Modifier
@@ -403,25 +398,21 @@ private fun EVMAggregatedTokenItem(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = token.contractSymbol,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.9f),
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size14Medium(),
+                        color = WalletThemeV2.Colors.primaryText
                     )
 
                     Text(
                         text = token.contractName,
-                        fontSize = 12.sp,
+                        style = MangalaTypography.Size12Regular(),
                         color = WalletThemeV2.Colors.secondaryText,
-                        fontFamily = getInterFontFamily(),
                         maxLines = 1
                     )
 
                     Text(
                         text = label24h,
-                        fontSize = 10.sp,
-                        color = WalletThemeV2.Colors.tertiaryText,
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size10Regular(),
+                        color = WalletThemeV2.Colors.tertiaryText
                     )
                 }
 
@@ -429,25 +420,21 @@ private fun EVMAggregatedTokenItem(
                     Text(
                         text = if (isBalanceHidden) HIDDEN_BALANCE_STRING
                         else token.totalBalance.scale(4).toStringExpanded(),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.9f),
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size14Medium(),
+                        color = WalletThemeV2.Colors.primaryText
                     )
 
                     Text(
                         text = if (isBalanceHidden) HIDDEN_BALANCE_STRING
                         else token.totalValueUsd.formatFiat(currencySymbol, decimalPlaces = 2),
-                        fontSize = 12.sp,
-                        color = WalletThemeV2.Colors.secondaryText,
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size12Regular(),
+                        color = WalletThemeV2.Colors.secondaryText
                     )
 
                     Text(
                         text = formatPnlPercentage(pnlPercentage, isBalanceHidden),
-                        fontSize = 10.sp,
-                        color = if (isBalanceHidden) WalletThemeV2.Colors.secondaryText else pnlColor,
-                        fontFamily = getInterFontFamily()
+                        style = MangalaTypography.Size10Regular(),
+                        color = if (isBalanceHidden) WalletThemeV2.Colors.secondaryText else pnlColor
                     )
                 }
             }
@@ -469,10 +456,8 @@ private fun EVMAggregatedTokenItem(
             ) {
                 Text(
                     text = stringResource(MR.strings.label_allocation),
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Medium,
+                    style = MangalaTypography.Size10Medium(),
                     color = WalletThemeV2.Colors.tertiaryText,
-                    fontFamily = getInterFontFamily(),
                     modifier = Modifier.padding(bottom = 6.dp)
                 )
 
@@ -537,10 +522,8 @@ private fun AccountAllocationRow(
             }
             Text(
                 text = percentageText,
-                fontSize = 8.sp,
-                fontWeight = FontWeight.Medium,
-                color = indicatorColor,
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size8SemiBold(),
+                color = indicatorColor
             )
         }
 
@@ -548,9 +531,8 @@ private fun AccountAllocationRow(
 
         Text(
             text = breakdown.accountName,
-            fontSize = 12.sp,
+            style = MangalaTypography.Size12Regular(),
             color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-            fontFamily = getInterFontFamily(),
             modifier = Modifier.weight(1f)
         )
 
@@ -558,17 +540,15 @@ private fun AccountAllocationRow(
             Text(
                 text = if (isBalanceHidden) HIDDEN_BALANCE_STRING
                 else breakdown.balance.scale(4).toStringExpanded(),
-                fontSize = 12.sp,
-                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size12Regular(),
+                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f)
             )
 
             Text(
                 text = if (isBalanceHidden) HIDDEN_BALANCE_STRING
                 else breakdown.valueUsd.formatFiat(currencySymbol, decimalPlaces = 2),
-                fontSize = 10.sp,
-                color = WalletThemeV2.Colors.secondaryText,
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size10Regular(),
+                color = WalletThemeV2.Colors.secondaryText
             )
         }
     }
@@ -631,49 +611,41 @@ private fun EVMTokenItem(
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = token.contractSymbol,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.9f),
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size14Medium(),
+                    color = WalletThemeV2.Colors.primaryText
                 )
 
                 Text(
                     text = token.contractName,
-                    fontSize = 12.sp,
+                    style = MangalaTypography.Size12Regular(),
                     color = WalletThemeV2.Colors.secondaryText,
-                    fontFamily = getInterFontFamily(),
                     maxLines = 1
                 )
 
                 Text(
                     text = label24h,
-                    fontSize = 10.sp,
-                    color = WalletThemeV2.Colors.tertiaryText,
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size10Regular(),
+                    color = WalletThemeV2.Colors.tertiaryText
                 )
             }
 
             Column(horizontalAlignment = Alignment.End) {
                 Text(
                     text = if (isBalanceHidden) HIDDEN_BALANCE_STRING else token.formattedBalanceForHuman(),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.9f),
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size14Medium(),
+                    color = WalletThemeV2.Colors.primaryText
                 )
 
                 Text(
                     text = if (isBalanceHidden) HIDDEN_BALANCE_STRING else token.formattedValue(currencySymbol),
-                    fontSize = 12.sp,
-                    color = WalletThemeV2.Colors.secondaryText,
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size12Regular(),
+                    color = WalletThemeV2.Colors.secondaryText
                 )
 
                 Text(
                     text = formatPnlPercentage(pnlPercentage, isBalanceHidden),
-                    fontSize = 10.sp,
-                    color = if (isBalanceHidden) WalletThemeV2.Colors.secondaryText else pnlColor,
-                    fontFamily = getInterFontFamily()
+                    style = MangalaTypography.Size10Regular(),
+                    color = if (isBalanceHidden) WalletThemeV2.Colors.secondaryText else pnlColor
                 )
             }
         }
@@ -773,9 +745,8 @@ private fun EmptyTokenState(
     ) {
         Text(
             text = message,
-            fontSize = 14.sp,
-            color = WalletThemeV2.Colors.secondaryText,
-            fontFamily = getInterFontFamily()
+            style = MangalaTypography.Size14Regular(),
+            color = WalletThemeV2.Colors.secondaryText
         )
     }
 }

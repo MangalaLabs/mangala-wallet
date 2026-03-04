@@ -162,7 +162,6 @@ data class EVMAccountInfo(
     val address: String,
     val walletId: String = "",
     val balances: List<TokenBalanceModel>? = null,
-    val isActive: Boolean = false,
     val isBalanceVisible: Boolean = true,
     val currencySymbol: String = "$",
     // Pre-calculated values from UseCase

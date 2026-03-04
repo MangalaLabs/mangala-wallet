@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -25,17 +26,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.mangala.features.wallet.presentationv2.evm.model.EVMFilterOptions
 import com.mangala.features.wallet.presentationv2.evm.model.EVMTokenSortBy
 import com.mangala.features.wallet.presentationv2.evm.model.EVMViewMode
-import com.mangala.wallet.common.mokoresources.font.getInterFontFamily
 import com.mangala.wallet.mokoresources.MR
 import com.mangala.wallet.ui.WalletThemeV2
+import com.mangala.wallet.ui.theme.MangalaTypography
+import com.mangala.wallet.ui.theme.mangalaColors
 import dev.icerock.moko.resources.compose.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,11 +49,13 @@ fun EVMFilterBottomSheet(
         skipPartiallyExpanded = true
     )
 
+    val colors = MaterialTheme.mangalaColors
+
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         sheetState = bottomSheetState,
-        containerColor = WalletThemeV2.Colors.cardBackground,
-        contentColor = Color.White,
+        containerColor = colors.bgInnerCard,
+        contentColor = colors.textPrimary,
         dragHandle = {
             Box(
                 modifier = Modifier
@@ -61,7 +63,7 @@ fun EVMFilterBottomSheet(
                     .width(40.dp)
                     .height(4.dp)
                     .background(
-                        Color.White.copy(alpha = 0.3f),
+                        colors.textSecondary.copy(alpha = 0.3f),
                         RoundedCornerShape(2.dp)
                     )
             )
@@ -74,10 +76,8 @@ fun EVMFilterBottomSheet(
         ) {
             Text(
                 text = stringResource(MR.strings.label_filter_and_sort),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = WalletThemeV2.Colors.primaryText,
-                fontFamily = getInterFontFamily(),
+                style = MangalaTypography.Size17SemiBold(),
+                color = colors.textPrimary,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp)
             )
 
@@ -95,10 +95,8 @@ fun EVMFilterBottomSheet(
 
             Text(
                 text = stringResource(MR.strings.label_sort_by),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-                fontFamily = getInterFontFamily(),
+                style = MangalaTypography.Size14SemiBold(),
+                color = colors.textSecondary,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
             )
 
@@ -122,10 +120,8 @@ fun EVMFilterBottomSheet(
 
             Text(
                 text = stringResource(MR.strings.label_view_mode),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-                fontFamily = getInterFontFamily(),
+                style = MangalaTypography.Size14SemiBold(),
+                color = colors.textSecondary,
                 modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
             )
 
@@ -160,6 +156,8 @@ private fun EVMFilterToggleItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val colors = MaterialTheme.mangalaColors
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -168,12 +166,7 @@ private fun EVMFilterToggleItem(
             .background(Color.Transparent)
             .border(
                 width = 1.dp,
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        Color(0xFF2A3E6C),
-                        Color(0xFF2A3E6C)
-                    )
-                ),
+                brush = SolidColor(colors.border),
                 shape = RoundedCornerShape(16.dp)
             )
             .clickable { onClick() }
@@ -187,10 +180,8 @@ private fun EVMFilterToggleItem(
         ) {
             Text(
                 text = title,
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Medium,
-                color = WalletThemeV2.Colors.primaryText.copy(alpha = 0.8f),
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size14Medium(),
+                color = colors.textSecondary
             )
 
             if (isSelected) {
@@ -219,6 +210,8 @@ private fun EVMFilterSelectableItem(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
+    val colors = MaterialTheme.mangalaColors
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -228,19 +221,9 @@ private fun EVMFilterSelectableItem(
             .border(
                 width = if (isSelected) 2.dp else 1.dp,
                 brush = if (isSelected) {
-                    Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFF3B90FF),
-                            Color(0xFFC27DFF)
-                        )
-                    )
+                    colors.borderHighlight
                 } else {
-                    Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFF2A3E6C),
-                            Color(0xFF2A3E6C)
-                        )
-                    )
+                    SolidColor(colors.border)
                 },
                 shape = RoundedCornerShape(16.dp)
             )
@@ -255,12 +238,8 @@ private fun EVMFilterSelectableItem(
         ) {
             Text(
                 text = title,
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Medium,
-                color = WalletThemeV2.Colors.primaryText.copy(
-                    alpha = if (isSelected) 0.95f else 0.8f
-                ),
-                fontFamily = getInterFontFamily()
+                style = MangalaTypography.Size14Medium(),
+                color = if (isSelected) colors.textPrimary else colors.textSecondary
             )
 
             if (isSelected) {

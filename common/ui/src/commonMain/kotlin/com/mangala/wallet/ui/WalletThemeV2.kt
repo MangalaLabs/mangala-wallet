@@ -14,6 +14,8 @@ object WalletThemeV2 {
         val primaryBackground = Color(0xFF0A0E1A)
         val secondaryBackground = Color(0xFF1A1A1A)
         val cardBackground = Color(0xFF1D263E)
+        val cardBorder = Color.White.copy(alpha = 0.05f)
+        val divider = Color.White.copy(alpha = 0.03f)
 
         // Text colors
         val primaryText = Color(0xFFF1F5F9)

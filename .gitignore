@@ -22,3 +22,4 @@ google-services.json
 /build-cache
 GoogleService-Info.plist
 output-metadata.json
+.omc
