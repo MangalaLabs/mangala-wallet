@@ -15,6 +15,7 @@ object WalletThemeV2 {
         val secondaryBackground = Color(0xFF1A1A1A)
         val cardBackground = Color(0xFF1D263E)
         val cardBorder = Color.White.copy(alpha = 0.05f)
+        val searchFieldBorder = Color.White.copy(alpha = 0.1f)
         val divider = Color.White.copy(alpha = 0.03f)
 
         // Text colors

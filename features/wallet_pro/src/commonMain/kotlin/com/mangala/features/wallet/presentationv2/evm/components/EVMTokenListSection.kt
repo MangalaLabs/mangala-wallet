@@ -66,6 +66,8 @@ import com.mangala.wallet.ui.theme.MangalaTypography
 import com.mangala.wallet.utils.ext.formatFiat
 import dev.icerock.moko.resources.compose.stringResource
 
+// TODO: Migrate WalletThemeV2.Colors references to MaterialTheme.mangalaColors
+//  for design system consistency with EVMFilterBottomSheet (see PR #54 review).
 private fun Modifier.tokenListCard(): Modifier = this
     .fillMaxWidth()
     .clip(RoundedCornerShape(16.dp))
@@ -281,7 +283,7 @@ private fun TokenSearchField(
             textColor = WalletThemeV2.Colors.primaryText,
             backgroundColor = WalletThemeV2.Colors.cardBackground.copy(alpha = 0.5f),
             focusedBorderColor = WalletThemeV2.Colors.evmAccent.copy(alpha = 0.8f),
-            unfocusedBorderColor = WalletThemeV2.Colors.cardBorder,
+            unfocusedBorderColor = WalletThemeV2.Colors.searchFieldBorder,
             cursorColor = WalletThemeV2.Colors.evmAccent
         ),
         modifier = Modifier

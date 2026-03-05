@@ -60,13 +60,30 @@ class EVMWalletScreenModel(
 
     private var loadPortfolioJob: Job? = null
 
-    // Resolved synchronously so it's available before any coroutine runs
-    private var activeWalletId: String? = getSelectedWalletUseCase()?.id
+    /**
+     * Tracks the currently selected wallet ID for account index resolution.
+     * Stored in UiState to avoid thread-safety issues with a bare var.
+     * Updated by [observeWalletSelection] and read by [resolveAccountIndex].
+     */
+    private val activeWalletId: String?
+        get() = _uiState.value.activeWalletId
 
     init {
+        initActiveWalletId()
         observeBalanceVisibility()
         observeNetworkAndLoadPortfolio()
         observeWalletSelection()
+    }
+
+    /**
+     * Loads the initial active wallet ID asynchronously to avoid blocking the
+     * UI thread with a synchronous SQLDelight query during ScreenModel construction.
+     */
+    private fun initActiveWalletId() {
+        screenModelScope.launch {
+            val walletId = getSelectedWalletUseCase.invokeFlow().first()?.id
+            _uiState.update { it.copy(activeWalletId = walletId) }
+        }
     }
 
     private fun observeBalanceVisibility() {
@@ -107,7 +124,7 @@ class EVMWalletScreenModel(
                 .distinctUntilChanged()
                 .collectLatest { walletId ->
                     val previousWalletId = activeWalletId
-                    activeWalletId = walletId
+                    _uiState.update { it.copy(activeWalletId = walletId) }
 
                     if (previousWalletId != null && walletId != null && walletId != previousWalletId) {
                         selectFirstAccountOfWallet(walletId)
@@ -116,15 +133,23 @@ class EVMWalletScreenModel(
         }
     }
 
+    /**
+     * Selects the first account belonging to [walletId] in the current account list.
+     *
+     * If accounts haven't loaded yet (empty list), this is a no-op — [resolveAccountIndex]
+     * will handle the correct selection when accounts arrive, using [activeWalletId].
+     *
+     * If [walletId] has no matching accounts (e.g., the wallet was just imported but has no
+     * EVM accounts on the current network), falls back to index 0 so the UI doesn't show
+     * a stale account from the previous wallet.
+     */
     private fun selectFirstAccountOfWallet(walletId: String) {
         _uiState.update { state ->
             val accounts = state.accounts
             if (accounts.isEmpty()) return@update state
 
             val targetIndex = accounts.indexOfFirst { it.walletId == walletId }
-            if (targetIndex < 0) return@update state
-
-            state.copy(selectedAccountIndex = targetIndex)
+            state.copy(selectedAccountIndex = if (targetIndex >= 0) targetIndex else 0)
         }
     }
 

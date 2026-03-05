@@ -41,6 +41,8 @@ data class EVMWalletUiState(
     val searchQuery: String = "",
     // Filter state
     val filterOptions: EVMFilterOptions = EVMFilterOptions(),
+    // Internal: tracks which wallet is selected for account index resolution
+    val activeWalletId: String? = null,
 ) {
     val hasWallet: Boolean = accounts.isNotEmpty() || isLoadingWallets
 
