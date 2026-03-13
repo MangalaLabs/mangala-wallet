@@ -41,6 +41,8 @@ data class EVMWalletUiState(
     val searchQuery: String = "",
     // Filter state
     val filterOptions: EVMFilterOptions = EVMFilterOptions(),
+    // Internal: tracks which wallet is selected for account index resolution
+    val activeWalletId: String? = null,
 ) {
     val hasWallet: Boolean = accounts.isNotEmpty() || isLoadingWallets
 
@@ -162,7 +164,6 @@ data class EVMAccountInfo(
     val address: String,
     val walletId: String = "",
     val balances: List<TokenBalanceModel>? = null,
-    val isActive: Boolean = false,
     val isBalanceVisible: Boolean = true,
     val currencySymbol: String = "$",
     // Pre-calculated values from UseCase

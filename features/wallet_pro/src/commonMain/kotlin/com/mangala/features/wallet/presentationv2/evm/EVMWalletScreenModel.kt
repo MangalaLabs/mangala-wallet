@@ -1,10 +1,8 @@
 package com.mangala.features.wallet.presentationv2.evm
 
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.mangala.features.wallet.presentationv2.evm.model.EVMFilterOptions
-import com.mangala.features.wallet.presentationv2.evm.model.EVMViewMode
-import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.features.wallet.presentationv2.core.base.BaseWalletViewModel
+import com.mangala.features.wallet.presentationv2.evm.model.EVMFilterOptions
 import com.mangala.wallet.domain.currency.usecases.GetCurrentCurrencyCodeUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetBalanceVisibleStatusUseCase
 import com.mangala.wallet.domain.datastore.usecases.GetSelectedNetworkUseCase
@@ -12,8 +10,10 @@ import com.mangala.wallet.domain.datastore.usecases.SaveBalanceVisibleStatusUseC
 import com.mangala.wallet.domain.datastore.usecases.SaveSelectedNetworkUseCase
 import com.mangala.wallet.domain.portfolio.model.AccountPortfolio
 import com.mangala.wallet.domain.portfolio.usecases.GetAllWalletsPortfolioUseCase
+import com.mangala.wallet.domain.wallet.usecases.GetSelectedWalletUseCase
 import com.mangala.wallet.features.chains.evmcompatible.model.Address
 import com.mangala.wallet.model.blockchain.BlockchainNetworkData
+import com.mangala.wallet.model.blockchain.NetworkType
 import com.mangala.wallet.model.currency.Currency
 import com.mangala.wallet.model.util.Resource
 import com.mangala.wallet.qrcode.domain.model.QrCodeData
@@ -26,7 +26,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -38,6 +40,7 @@ class EVMWalletScreenModel(
     private val saveBalanceVisibleStatusUseCase: SaveBalanceVisibleStatusUseCase,
     private val saveSelectedNetworkUseCase: SaveSelectedNetworkUseCase,
     private val parseQRCodeResultUseCase: ParseQRCodeResultUseCase,
+    private val getSelectedWalletUseCase: GetSelectedWalletUseCase,
     private val clipboardFactory: ClipboardFactory,
     private val shareFactory: ShareFactory,
     private val buildEnvironmentProvider: BuildEnvironmentProvider,
@@ -57,9 +60,30 @@ class EVMWalletScreenModel(
 
     private var loadPortfolioJob: Job? = null
 
+    /**
+     * Tracks the currently selected wallet ID for account index resolution.
+     * Stored in UiState to avoid thread-safety issues with a bare var.
+     * Updated by [observeWalletSelection] and read by [resolveAccountIndex].
+     */
+    private val activeWalletId: String?
+        get() = _uiState.value.activeWalletId
+
     init {
+        initActiveWalletId()
         observeBalanceVisibility()
         observeNetworkAndLoadPortfolio()
+        observeWalletSelection()
+    }
+
+    /**
+     * Loads the initial active wallet ID asynchronously to avoid blocking the
+     * UI thread with a synchronous SQLDelight query during ScreenModel construction.
+     */
+    private fun initActiveWalletId() {
+        screenModelScope.launch {
+            val walletId = getSelectedWalletUseCase.invokeFlow().first()?.id
+            _uiState.update { it.copy(activeWalletId = walletId) }
+        }
     }
 
     private fun observeBalanceVisibility() {
@@ -93,6 +117,42 @@ class EVMWalletScreenModel(
         }
     }
 
+    private fun observeWalletSelection() {
+        screenModelScope.launch {
+            getSelectedWalletUseCase.invokeFlow()
+                .map { it?.id }
+                .distinctUntilChanged()
+                .collectLatest { walletId ->
+                    val previousWalletId = activeWalletId
+                    _uiState.update { it.copy(activeWalletId = walletId) }
+
+                    if (previousWalletId != null && walletId != null && walletId != previousWalletId) {
+                        selectFirstAccountOfWallet(walletId)
+                    }
+                }
+        }
+    }
+
+    /**
+     * Selects the first account belonging to [walletId] in the current account list.
+     *
+     * If accounts haven't loaded yet (empty list), this is a no-op — [resolveAccountIndex]
+     * will handle the correct selection when accounts arrive, using [activeWalletId].
+     *
+     * If [walletId] has no matching accounts (e.g., the wallet was just imported but has no
+     * EVM accounts on the current network), falls back to index 0 so the UI doesn't show
+     * a stale account from the previous wallet.
+     */
+    private fun selectFirstAccountOfWallet(walletId: String) {
+        _uiState.update { state ->
+            val accounts = state.accounts
+            if (accounts.isEmpty()) return@update state
+
+            val targetIndex = accounts.indexOfFirst { it.walletId == walletId }
+            state.copy(selectedAccountIndex = if (targetIndex >= 0) targetIndex else 0)
+        }
+    }
+
     private suspend fun loadPortfolio(forceReload: Boolean, network: BlockchainNetworkData) {
         val currencyCode = getCurrentCurrencyCodeUseCase()
         val currencySymbol = Currency.valueOf(currencyCode).symbol
@@ -103,17 +163,11 @@ class EVMWalletScreenModel(
 
             val portfolioData = resource.data ?: return@collect
 
-            val currentSelectedIndex = _uiState.value.selectedAccountIndex
-            val validatedSelectedIndex = if (portfolioData.accounts.isEmpty()) {
-                0
-            } else {
-                currentSelectedIndex.coerceIn(0, portfolioData.accounts.lastIndex)
-            }
+            val validatedSelectedIndex = resolveAccountIndex(portfolioData.accounts)
 
-            val accountInfos = portfolioData.accounts.mapIndexed { index, accountPortfolio ->
+            val accountInfos = portfolioData.accounts.map { accountPortfolio ->
                 mapToAccountInfo(
                     accountPortfolio = accountPortfolio,
-                    isActive = index == validatedSelectedIndex,
                     isBalanceVisible = balanceVisible,
                     currencySymbol = currencySymbol
                 )
@@ -135,9 +189,34 @@ class EVMWalletScreenModel(
         }
     }
 
+    /**
+     * Determines which account index to select.
+     *
+     * - First load (accounts empty): pick the first account of the selected wallet.
+     * - Subsequent loads (refresh): keep current selection, clamped to valid range.
+     */
+    private fun resolveAccountIndex(loadedAccounts: List<AccountPortfolio>): Int {
+        if (loadedAccounts.isEmpty()) return 0
+
+        val currentAccounts = _uiState.value.accounts
+        val currentSelectedIndex = _uiState.value.selectedAccountIndex
+
+        // First load – select the first account belonging to the active wallet
+        if (currentAccounts.isEmpty()) {
+            val walletId = activeWalletId
+            if (walletId != null) {
+                val walletIndex = loadedAccounts.indexOfFirst { it.walletId == walletId }
+                if (walletIndex >= 0) return walletIndex
+            }
+            return 0
+        }
+
+        // Subsequent loads – preserve user's selection
+        return currentSelectedIndex.coerceIn(0, loadedAccounts.lastIndex)
+    }
+
     private fun mapToAccountInfo(
         accountPortfolio: AccountPortfolio,
-        isActive: Boolean,
         isBalanceVisible: Boolean,
         currencySymbol: String
     ): EVMAccountInfo {
@@ -147,7 +226,6 @@ class EVMWalletScreenModel(
             address = Address(accountPortfolio.address).eip55,
             walletId = accountPortfolio.walletId,
             balances = accountPortfolio.balances,
-            isActive = isActive,
             isBalanceVisible = isBalanceVisible,
             currencySymbol = currencySymbol,
             totalValueUsd = accountPortfolio.totalValueUsd,
@@ -190,13 +268,7 @@ class EVMWalletScreenModel(
 
     fun onAccountSelected(accountIndex: Int) {
         _uiState.update { state ->
-            val updatedAccounts = state.accounts.mapIndexed { index, account ->
-                account.copy(isActive = index == accountIndex)
-            }
-            state.copy(
-                accounts = updatedAccounts,
-                selectedAccountIndex = accountIndex
-            )
+            state.copy(selectedAccountIndex = accountIndex)
         }
     }
 
